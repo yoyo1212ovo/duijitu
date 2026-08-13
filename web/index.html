@@ -162,6 +162,8 @@ select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--
 .cs-ms-list label{display:flex;align-items:center;gap:8px;padding:6px 12px;font-size:12px;color:var(--text);cursor:pointer;transition:background .15s}
 .cs-ms-list label:hover{background:rgba(255,255,255,.04)}
 .cs-ms-list input[type=checkbox]{accent-color:var(--accent)}
+.cs-ms-dropdown .cs-ms-search{padding:6px 10px;border-bottom:1px solid var(--border)}
+.cs-ms-dropdown .cs-ms-search input{padding:5px 8px;border:1px solid var(--border);border-radius:4px;background:var(--surface2);font-size:12px;color:var(--text);outline:none;width:100%;font-family:var(--font)}
 .cs-summary{font-size:12px;color:var(--text2)}
 .cs-table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:10px;background:var(--card)}
 .cs-table-wrap table{border-collapse:collapse;width:100%;font-size:12px}
@@ -309,13 +311,25 @@ select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--
   </div>
   <!-- Existing toolbar + table -->
   <div class="cs-toolbar">
-    <div class="cs-filter-wrap">
+        <div class="cs-filter-wrap">
       <span class="cs-filter-label">物流渠道：</span>
       <div class="cs-multi-select" id="csMultiSelect">
         <div class="cs-ms-trigger" id="csMsTrigger"><span>请选择线路</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><polyline points="6 9 12 15 18 9"/></svg></div>
         <div class="cs-ms-dropdown" id="csMsDropdown" style="display:none;">
+          <div class="cs-ms-search"><input id="csChannelSearch" placeholder="搜索渠道..."></div>
           <label class="cs-ms-all"><input type="checkbox" id="csSelectAll" checked> 全选</label>
           <div class="cs-ms-list" id="csMsList"></div>
+        </div>
+      </div>
+    </div>
+    <div class="cs-filter-wrap">
+      <span class="cs-filter-label">国家：</span>
+      <div class="cs-multi-select" id="csCountrySelect">
+        <div class="cs-ms-trigger" id="csCountryMsTrigger"><span>全部国家</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><polyline points="6 9 12 15 18 9"/></svg></div>
+        <div class="cs-ms-dropdown" id="csCountryMsDropdown" style="display:none;">
+          <div class="cs-ms-search"><input id="csCountrySearch" placeholder="搜索国家..."></div>
+          <label class="cs-ms-all"><input type="checkbox" id="csCountrySelectAll"> 全选</label>
+          <div class="cs-ms-list" id="csCountryMsList"></div>
         </div>
       </div>
     </div>
@@ -381,19 +395,48 @@ document.querySelectorAll('.mt-btn').forEach(function(btn){btn.addEventListener(
 var rankingChart = null;
 var trendChart = null;
 var csSelectedWeek = null;
+var csSelectedChannels = [];
+var csSelectedCountries = [];
 var csTrendChannels = [];
 
 function getWeekFilteredTotal(channel) {
-  if (!csSelectedWeek || !channelSummary || !channelSummary.weeklySeries) {
-    return channelSummary ? (channelSummary.totalByChannel[channel] || 0) : 0;
+  if (!channelSummary) return 0;
+  var countries = csSelectedCountries || [];
+  if (countries.length > 0 && channelSummary.countryWeeklySeries && channelSummary.countryWeeklySeries[channel]) {
+    var cw = channelSummary.countryWeeklySeries[channel];
+    var total = 0;
+    if (csSelectedWeek) {
+      countries.forEach(function(cn) {
+        var weekData = cw[cn];
+        if (weekData) total += weekData[csSelectedWeek] || 0;
+      });
+    } else {
+      countries.forEach(function(cn) {
+        var d = channelSummary.data[channel] && channelSummary.data[channel][cn];
+        if (d) total += d;
+      });
+    }
+    return total;
   }
-  var ws = channelSummary.weeklySeries[channel];
-  return ws ? (ws[csSelectedWeek] || 0) : 0;
+  if (csSelectedWeek && channelSummary.weeklySeries) {
+    var ws = channelSummary.weeklySeries[channel];
+    return ws ? (ws[csSelectedWeek] || 0) : 0;
+  }
+  return channelSummary.totalByChannel[channel] || 0;
 }
 
 function getWeekFilteredTimeSeries(channel) {
   if (!channelSummary || !channelSummary.weeklySeries || !channelSummary.weeklySeries[channel]) return {};
-  return channelSummary.weeklySeries[channel];
+  var countries = csSelectedCountries || [];
+  if (countries.length === 0) return channelSummary.weeklySeries[channel];
+  var result = {};
+  (channelSummary.allWeeks || []).forEach(function(w) { result[w] = 0; });
+  countries.forEach(function(cn) {
+    var cw = channelSummary.countryWeeklySeries && channelSummary.countryWeeklySeries[channel] && channelSummary.countryWeeklySeries[channel][cn];
+    if (!cw) return;
+    for (var w in cw) result[w] = (result[w] || 0) + cw[w];
+  });
+  return result;
 }
 
 function getAllWeeks() {
@@ -622,6 +665,122 @@ function initWeekPicker() {
   csSelectedWeek = select.value || null;
 }
 
+function withArrow(label) {
+  return '<span>' + label + '</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><polyline points="6 9 12 15 18 9"/></svg>';
+}
+
+function getCheckedValues(list) {
+  var out = [];
+  if (!list) return out;
+  list.querySelectorAll('input[type=checkbox]').forEach(function(cb) { if (cb.checked) out.push(cb.value); });
+  return out;
+}
+
+function initChannelMultiSelect() {
+  var list = document.getElementById('csMsList');
+  var trigger = document.getElementById('csMsTrigger');
+  var dropdown = document.getElementById('csMsDropdown');
+  var search = document.getElementById('csChannelSearch');
+  var selectAll = document.getElementById('csSelectAll');
+  if (!list || !trigger || !dropdown || !search || !selectAll) return;
+  var all = channelSummary.channels;
+  csSelectedChannels = all.slice();
+
+  function renderItems(filter) {
+    var f = (filter || '').toLowerCase();
+    list.innerHTML = '';
+    all.forEach(function(ch) {
+      if (f && ch.toLowerCase().indexOf(f) === -1) return;
+      var label = document.createElement('label');
+      var cb = document.createElement('input');
+      cb.type = 'checkbox';
+      cb.value = ch;
+      cb.checked = csSelectedChannels.indexOf(ch) >= 0;
+      cb.addEventListener('change', function() { csSelectedChannels = getCheckedValues(list); refreshFilteredChannelViews(); });
+      label.appendChild(cb);
+      label.appendChild(document.createTextNode(ch));
+      list.appendChild(label);
+    });
+  }
+
+  function updateTrigger() {
+    var count = getCheckedValues(list).length;
+    var label = count === all.length ? '全部线路 (' + count + ')' : '已选' + count + ' 条线路';
+    trigger.innerHTML = withArrow(label);
+    selectAll.checked = count === all.length;
+  }
+
+  renderItems('');
+  updateTrigger();
+  selectAll.onchange = function() {
+    list.querySelectorAll('input[type=checkbox]').forEach(function(cb) { cb.checked = selectAll.checked; });
+    csSelectedChannels = getCheckedValues(list);
+    refreshFilteredChannelViews();
+  };
+  trigger.onclick = function(e) { e.stopPropagation(); dropdown.style.display = dropdown.style.display === 'none' ? 'flex' : 'none'; search.focus(); };
+  search.addEventListener('input', function() { renderItems(this.value); });
+  search.addEventListener('click', function(e) { e.stopPropagation(); });
+  dropdown.addEventListener('click', function(e) { e.stopPropagation(); });
+  document.addEventListener('click', function() { dropdown.style.display = 'none'; });
+}
+
+function initCountryMultiSelect() {
+  var list = document.getElementById('csCountryMsList');
+  var trigger = document.getElementById('csCountryMsTrigger');
+  var dropdown = document.getElementById('csCountryMsDropdown');
+  var search = document.getElementById('csCountrySearch');
+  var selectAll = document.getElementById('csCountrySelectAll');
+  if (!list || !trigger || !dropdown || !search || !selectAll) return;
+  var all = channelSummary.countries;
+  csSelectedCountries = [];
+
+  function renderItems(filter) {
+    var f = (filter || '').toLowerCase();
+    list.innerHTML = '';
+    all.forEach(function(cn) {
+      if (f && cn.toLowerCase().indexOf(f) === -1) return;
+      var label = document.createElement('label');
+      var cb = document.createElement('input');
+      cb.type = 'checkbox';
+      cb.value = cn;
+      cb.checked = csSelectedCountries.indexOf(cn) >= 0;
+      cb.addEventListener('change', function() {
+        csSelectedCountries = getCheckedValues(list);
+        refreshFilteredChannelViews();
+      });
+      label.appendChild(cb);
+      label.appendChild(document.createTextNode(cn));
+      list.appendChild(label);
+    });
+  }
+
+  function updateTrigger() {
+    var count = getCheckedValues(list).length;
+    var label = count === 0 ? '全部国家' : '已选' + count + ' 个国家';
+    trigger.innerHTML = withArrow(label);
+    selectAll.checked = count === all.length && count > 0;
+  }
+
+  renderItems('');
+  updateTrigger();
+  selectAll.onchange = function() {
+    list.querySelectorAll('input[type=checkbox]').forEach(function(cb) { cb.checked = selectAll.checked; });
+    csSelectedCountries = getCheckedValues(list);
+    refreshFilteredChannelViews();
+  };
+  trigger.onclick = function(e) { e.stopPropagation(); dropdown.style.display = dropdown.style.display === 'none' ? 'flex' : 'none'; search.focus(); };
+  search.addEventListener('input', function() { renderItems(this.value); });
+  search.addEventListener('click', function(e) { e.stopPropagation(); });
+  dropdown.addEventListener('click', function(e) { e.stopPropagation(); });
+  document.addEventListener('click', function() { dropdown.style.display = 'none'; });
+}
+
+function refreshFilteredChannelViews() {
+  updateSummaryTable();
+  renderRankingChart();
+  renderTrendChart();
+}
+
 function renderChannelSummary(){
   var cs = document.getElementById('channelSummary');
   if (!channelSummary || !channelSummary.channels || channelSummary.channels.length === 0) {
@@ -638,31 +797,11 @@ function renderChannelSummary(){
   }
   
   if (!document.getElementById("csMsList")) {
-    cs.innerHTML = '<div class="cs-date-bar" id="csDateBar" style="display:none;"><label>自然周</label><select id="csWeekSelect"><option value="">全部周</option></select></div><div class="cs-ranking" id="csRanking" style="display:none;"><div class="cs-ranking-header"><span class="cs-ranking-title">物流渠道单量排行</span><span class="cs-ranking-sub" id="csRankingSub"></span></div><div class="cs-ranking-wrap" id="csRankingWrap"><div class="cs-ranking-empty" id="csRankingEmpty">暂无数据</div></div></div><div class="cs-toolbar"><div class="cs-filter-wrap"><span class="cs-filter-label">物流渠道：</span><div class="cs-multi-select" id="csMultiSelect"><div class="cs-ms-trigger" id="csMsTrigger"><span>请选择线路</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><polyline points="6 9 12 15 18 9"/></svg></div><div class="cs-ms-dropdown" id="csMsDropdown" style="display:none;"><label class="cs-ms-all"><input type="checkbox" id="csSelectAll" checked> 全选</label><div class="cs-ms-list" id="csMsList"></div></div></div></div><div class="cs-summary" id="csSummary"></div></div><div class="cs-table-wrap" id="csTableWrap"></div><div class="cs-trend" id="csTrend" style="display:none;"><div class="cs-trend-header"><span class="cs-trend-title">每周单量趋势</span></div><div class="cs-trend-sub">选择渠道查看每周单量变化</div><div class="cs-search-ms" id="csTrendSelect"><input class="cs-search-ms-input" id="csTrendInput" placeholder="输入渠道名称搜索..." autocomplete="off" readonly><div class="cs-search-ms-dropdown" id="csTrendDropdown"><div class="cs-ms-search"><input id="csTrendSearch" placeholder="搜索..."></div><div class="cs-ms-items" id="csTrendItems"></div></div></div><div class="cs-search-ms-tags" id="csTrendTags"></div><div class="cs-trend-wrap" id="csTrendWrap"><div class="cs-trend-empty" id="csTrendEmpty">请选择渠道查看趋势</div></div></div>';
+    cs.innerHTML = '<div class="cs-date-bar" id="csDateBar" style="display:none;"><label>自然周</label><select id="csWeekSelect"><option value="">全部周</option></select></div><div class="cs-ranking" id="csRanking" style="display:none;"><div class="cs-ranking-header"><span class="cs-ranking-title">物流渠道单量排行</span><span class="cs-ranking-sub" id="csRankingSub"></span></div><div class="cs-ranking-wrap" id="csRankingWrap"><div class="cs-ranking-empty" id="csRankingEmpty">暂无数据</div></div></div> <div class="cs-filter-wrap"> <span class="cs-filter-label">物流渠道：</span> <div class="cs-multi-select" id="csMultiSelect"> <div class="cs-ms-trigger" id="csMsTrigger"><span>请选择线路</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><polyline points="6 9 12 15 18 9"/></svg></div> <div class="cs-ms-dropdown" id="csMsDropdown" style="display:none;"> <div class="cs-ms-search"><input id="csChannelSearch" placeholder="搜索渠道..."></div> <label class="cs-ms-all"><input type="checkbox" id="csSelectAll" checked> 全选</label> <div class="cs-ms-list" id="csMsList"></div> </div> </div> </div> <div class="cs-filter-wrap"> <span class="cs-filter-label">国家：</span> <div class="cs-multi-select" id="csCountrySelect"> <div class="cs-ms-trigger" id="csCountryMsTrigger"><span>全部国家</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><polyline points="6 9 12 15 18 9"/></svg></div> <div class="cs-ms-dropdown" id="csCountryMsDropdown" style="display:none;"> <div class="cs-ms-search"><input id="csCountrySearch" placeholder="搜索国家..."></div> <label class="cs-ms-all"><input type="checkbox" id="csCountrySelectAll"> 全选</label> <div class="cs-ms-list" id="csCountryMsList"></div> </div> </div> </div><div class="cs-summary" id="csSummary"></div></div><div class="cs-table-wrap" id="csTableWrap"></div><div class="cs-trend" id="csTrend" style="display:none;"><div class="cs-trend-header"><span class="cs-trend-title">每周单量趋势</span></div><div class="cs-trend-sub">选择渠道查看每周单量变化</div><div class="cs-search-ms" id="csTrendSelect"><input class="cs-search-ms-input" id="csTrendInput" placeholder="输入渠道名称搜索..." autocomplete="off" readonly><div class="cs-search-ms-dropdown" id="csTrendDropdown"><div class="cs-ms-search"><input id="csTrendSearch" placeholder="搜索..."></div><div class="cs-ms-items" id="csTrendItems"></div></div></div><div class="cs-search-ms-tags" id="csTrendTags"></div><div class="cs-trend-wrap" id="csTrendWrap"><div class="cs-trend-empty" id="csTrendEmpty">请选择渠道查看趋势</div></div></div>';
   }
   
-  var allChannels = channelSummary.channels, allCountries = channelSummary.countries, data = channelSummary.data;
-  var msList = document.getElementById('csMsList'), msTrigger = document.getElementById('csMsTrigger'), dropdown = document.getElementById('csMsDropdown'), selectAll = document.getElementById('csSelectAll');
-  
-  msList.innerHTML = '';
-  allChannels.forEach(function(ch){
-    var label = document.createElement('label');
-    var cb = document.createElement('input');
-    cb.type = 'checkbox'; cb.value = ch; cb.checked = true;
-    cb.addEventListener('change', updateSummaryTable);
-    label.appendChild(cb); label.appendChild(document.createTextNode(ch));
-    msList.appendChild(label);
-  });
-  selectAll.checked = true;
-  selectAll.onchange = function(){
-    var cbs = msList.querySelectorAll('input[type=checkbox]');
-    cbs.forEach(function(cb){ cb.checked = selectAll.checked; });
-    updateSummaryTable();
-  };
-  msTrigger.onclick = function(e){ e.stopPropagation(); dropdown.style.display = dropdown.style.display === 'none' ? 'flex' : 'none'; };
-  document.addEventListener('click', function(){ dropdown.style.display = 'none'; });
-  dropdown.addEventListener('click', function(e){ e.stopPropagation(); });
-  
+    initChannelMultiSelect();
+  initCountryMultiSelect();
   updateSummaryTable();
   
   if (rankingChart) { rankingChart.destroy(); rankingChart = null; }
@@ -676,51 +815,57 @@ function renderChannelSummary(){
 }
 
 function updateSummaryTable(){
-  var msList = document.getElementById('csMsList');
-  var cbs = msList.querySelectorAll('input[type=checkbox]');
-  var selected = []; cbs.forEach(function(cb){ if (cb.checked) selected.push(cb.value); });
+  var selected = getCheckedValues(document.getElementById('csMsList'));
+  var selectedCountries = getCheckedValues(document.getElementById('csCountryMsList'));
+  csSelectedChannels = selected;
+  csSelectedCountries = selectedCountries;
+
   var selectAll = document.getElementById('csSelectAll');
-  selectAll.checked = selected.length === channelSummary.channels.length;
-  var count = selected.length;
+  if (selectAll) selectAll.checked = selected.length === channelSummary.channels.length;
   var msTrigger = document.getElementById('csMsTrigger');
-  msTrigger.innerHTML = count === channelSummary.channels.length ? ('<span>全部线路 (' + count + ')</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><polyline points="6 9 12 15 18 9"/></svg>') : ('<span>已选' + count + ' 条线路</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><polyline points="6 9 12 15 18 9"/></svg>');
-  
+  if (msTrigger) msTrigger.innerHTML = withArrow(selected.length === channelSummary.channels.length ? ('全部线路 (' + selected.length + ')') : ('已选' + selected.length + ' 条线路'));
+
+  var countrySelectAll = document.getElementById('csCountrySelectAll');
+  if (countrySelectAll) countrySelectAll.checked = selectedCountries.length === channelSummary.countries.length && selectedCountries.length > 0;
+  var countryTrigger = document.getElementById('csCountryMsTrigger');
+  if (countryTrigger) countryTrigger.innerHTML = withArrow(selectedCountries.length === 0 ? '全部国家' : ('已选' + selectedCountries.length + ' 个国家'));
+
   var tw = document.getElementById('csTableWrap'), sm = document.getElementById('csSummary');
   if (selected.length === 0) { tw.innerHTML = '<div class="cs-no-data">请至少选择一条线路</div>'; sm.textContent = ''; return; }
-  
+
   var data = channelSummary.data;
-  var allCountries = channelSummary.countries;
-  var totalOrders = 0;
+  var countries = selectedCountries.length > 0 ? selectedCountries : channelSummary.countries;
   var html2 = '<table><thead><tr><th>物流渠道</th>';
-  allCountries.forEach(function(c){ html2 += '<th>' + c + '</th>'; });
+  countries.forEach(function(c){ html2 += '<th>' + c + '</th>'; });
   html2 += '<th>合计</th></tr></thead><tbody>';
-  
+
   selected.forEach(function(ch){
     html2 += '<tr><td>' + ch + '</td>';
     var rowTotal = 0;
-    allCountries.forEach(function(cn){
+    countries.forEach(function(cn){
       var v = data[ch] && data[ch][cn] ? data[ch][cn] : 0;
-      rowTotal += v; totalOrders += v;
+      rowTotal += v;
       html2 += '<td>' + (v > 0 ? v : '-') + '</td>';
     });
     html2 += '<td><strong>' + rowTotal + '</strong></td></tr>';
   });
-  
+
   html2 += '<tr style="font-weight:600;background:#1a1a2e"><td>合计</td>';
   var colTotals = {};
   selected.forEach(function(ch){
-    allCountries.forEach(function(cn){
+    countries.forEach(function(cn){
       var v = data[ch] && data[ch][cn] ? data[ch][cn] : 0;
       colTotals[cn] = (colTotals[cn] || 0) + v;
     });
   });
-  allCountries.forEach(function(cn){ html2 += '<td>' + (colTotals[cn] || '-') + '</td>'; });
+  countries.forEach(function(cn){ html2 += '<td>' + (colTotals[cn] || '-') + '</td>'; });
   var grandTotal = Object.values(colTotals).reduce(function(a, b){ return a + b; }, 0);
   html2 += '<td><strong>' + grandTotal + '</strong></td></tr>';
   html2 += '</tbody></table>';
   tw.innerHTML = html2;
-  sm.textContent = '共' + selected.length + ' 条线路，' + allCountries.length + ' 个国家，总单量：' + grandTotal.toLocaleString();
+  sm.textContent = '共' + selected.length + ' 条线路，' + countries.length + ' 个国家，总单量：' + grandTotal.toLocaleString();
 }
+
 </script>
 
 <div class="vol-popup-overlay" id="volPopupOverlay" style="display:none;" onclick="if(event.target===this)closeVolPopup()">

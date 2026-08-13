@@ -559,6 +559,7 @@ function processChannelSummary(wb) {
   const XLSX = require("xlsx");
   const channelData = {};
   const weeklySeries = {};
+  const countryWeeklySeries = {};
   const weekLabels = {};
   const allWeekSet = new Set();
 
@@ -644,6 +645,9 @@ function processChannelSummary(wb) {
           weekLabels[info.key] = info.label;
           if (!weeklySeries[channel]) weeklySeries[channel] = {};
           weeklySeries[channel][info.key] = (weeklySeries[channel][info.key] || 0) + 1;
+          if (!countryWeeklySeries[channel]) countryWeeklySeries[channel] = {};
+          if (!countryWeeklySeries[channel][country]) countryWeeklySeries[channel][country] = {};
+          countryWeeklySeries[channel][country][info.key] = (countryWeeklySeries[channel][country][info.key] || 0) + 1;
         }
       }
     });
@@ -667,6 +671,7 @@ function processChannelSummary(wb) {
     data: channelData,
     totalByChannel,
     weeklySeries: Object.keys(weeklySeries).length > 0 ? weeklySeries : null,
+    countryWeeklySeries: Object.keys(countryWeeklySeries).length > 0 ? countryWeeklySeries : null,
     allWeeks: [...allWeekSet].sort(),
     weekLabels
   };
