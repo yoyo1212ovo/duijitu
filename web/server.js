@@ -32,11 +32,7 @@ const PORT = process.env.PORT || 4567;
 const app = express();
 app.use(express.json());
 
-app.use(express.static(__dirname, {
-  setHeaders: (res, filePath) => {
-    if (filePath.endsWith(".html")) { res.setHeader("Cache-Control", "no-cache"); res.setHeader("Content-Type", "text/html; charset=utf-8"); }
-  }
-}));
+app.get("/", (req, res) => res.sendFile(path.join(__dirname, "index.html")));
 
 app.get("/api/health", (req, res) => res.json({ status: "ok", time: new Date().toISOString() }));
 
