@@ -558,30 +558,52 @@ function processOrderVolumes(wb) {
 function processChannelSummary(wb) {
   const XLSX = require("xlsx");
   const channelData = {};
-  const timeSeries = {};
-  const allDates = new Set();
+  const weeklySeries = {};
+  const weekLabels = {};
+  const allWeekSet = new Set();
 
-  // Date parsing helper
   function parseDate(val) {
     if (val == null) return null;
-    // Excel serial number
     if (typeof val === 'number') {
       const d = new Date((val - 25569) * 86400000);
       if (isNaN(d.getTime())) return null;
       return d.toISOString().slice(0, 10);
     }
-    let s = String(val).trim();
-    if (!s) return null;
-    // Try common date formats
-    const m = s.match(/^(d{4})[-/.](d{1,2})[-/.](d{1,2})/);
-    if (m) return m[1] + '-' + m[2].padStart(2,'0') + '-' + m[3].padStart(2,'0');
-    // Try Chinese format
-    const m2 = s.match(/^(d{4})年(d{1,2})月(d{1,2})日/);
-    if (m2) return m2[1] + '-' + m2[2].padStart(2,'0') + '-' + m2[3].padStart(2,'0');
-    // Try parsing as date string
-    const d = new Date(s);
+    let str = String(val).trim();
+    if (!str) return null;
+    const m = str.match(/^(\d{4})[-/.](\d{1,2})[-/.](\d{1,2})/);
+    if (m) return m[1] + '-' + m[2].padStart(2, '0') + '-' + m[3].padStart(2, '0');
+    const m2 = str.match(/^(\d{4})年(\d{1,2})月(\d{1,2})日/);
+    if (m2) return m2[1] + '-' + m2[2].padStart(2, '0') + '-' + m2[3].padStart(2, '0');
+    const d = new Date(str);
     if (!isNaN(d.getTime())) return d.toISOString().slice(0, 10);
     return null;
+  }
+
+  function startOfWeek(date) {
+    const d = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
+    const day = (d.getUTCDay() + 6) % 7;
+    d.setUTCDate(d.getUTCDate() - day);
+    d.setUTCHours(0, 0, 0, 0);
+    return d;
+  }
+
+  function weekInfo(dateStr) {
+    const parts = dateStr.split('-').map(Number);
+    const date = new Date(Date.UTC(parts[0], parts[1] - 1, parts[2]));
+    const start = startOfWeek(date);
+    const end = new Date(start);
+    end.setUTCDate(end.getUTCDate() + 6);
+    const jan4 = new Date(Date.UTC(start.getUTCFullYear(), 0, 4));
+    const jan4Mon = startOfWeek(jan4);
+    const week = Math.round((start - jan4Mon) / 604800000) + 1;
+    const pad = (n) => String(n).padStart(2, '0');
+    const label = pad(start.getUTCMonth() + 1) + '-' + pad(start.getUTCDate()) + '~' + pad(end.getUTCMonth() + 1) + '-' + pad(end.getUTCDate());
+    return {
+      key: start.toISOString().slice(0, 10),
+      label,
+      iso: start.getUTCFullYear() + '-W' + String(week).padStart(2, '0')
+    };
   }
 
   wb.SheetNames.forEach(name => {
@@ -595,12 +617,12 @@ function processChannelSummary(wb) {
 
     if (!("物流渠道" in colIdx) || !("国家" in colIdx)) return;
 
-    // Find time column
     let timeCol = null;
     for (let i = 0; i < headers.length; i++) {
       const h = headers[i];
-      if (h && (h.includes('时间') || h.includes('日期') || h.includes('date'))) {
-        timeCol = i; break;
+      if (h && (h.includes('时间') || h.includes('日期') || String(h).toLowerCase().includes('date'))) {
+        timeCol = i;
+        break;
       }
     }
 
@@ -614,13 +636,14 @@ function processChannelSummary(wb) {
       if (!channelData[channel]) channelData[channel] = {};
       channelData[channel][country] = (channelData[channel][country] || 0) + 1;
 
-      // Time series
       if (timeCol !== null) {
         const dateStr = parseDate(row[timeCol]);
         if (dateStr) {
-          allDates.add(dateStr);
-          if (!timeSeries[channel]) timeSeries[channel] = {};
-          timeSeries[channel][dateStr] = (timeSeries[channel][dateStr] || 0) + 1;
+          const info = weekInfo(dateStr);
+          allWeekSet.add(info.key);
+          weekLabels[info.key] = info.label;
+          if (!weeklySeries[channel]) weeklySeries[channel] = {};
+          weeklySeries[channel][info.key] = (weeklySeries[channel][info.key] || 0) + 1;
         }
       }
     });
@@ -633,18 +656,19 @@ function processChannelSummary(wb) {
   channels.forEach(ch => Object.keys(channelData[ch]).forEach(c => countrySet.add(c)));
   const countries = [...countrySet].sort();
 
-  // Total by channel for ranking
   const totalByChannel = {};
   channels.forEach(ch => {
-    totalByChannel[ch] = Object.values(timeSeries[ch] || channelData[ch] || {}).reduce((a,b) => a+b, 0);
+    totalByChannel[ch] = Object.values(channelData[ch] || {}).reduce((a, b) => a + b, 0);
   });
 
   return {
-    channels, countries,
+    channels,
+    countries,
     data: channelData,
     totalByChannel,
-    timeSeries: Object.keys(timeSeries).length > 0 ? timeSeries : null,
-    allDates: [...allDates].sort()
+    weeklySeries: Object.keys(weeklySeries).length > 0 ? weeklySeries : null,
+    allWeeks: [...allWeekSet].sort(),
+    weekLabels
   };
 }
 

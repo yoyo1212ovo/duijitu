@@ -106,6 +106,8 @@ select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--
 .cs-date-bar input[type=date]{padding:7px 12px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--surface2);font-size:13px;color:var(--text);outline:none;font-family:var(--font);transition:border-color .2s}
 .cs-date-bar input[type=date]:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-glow)}
 .cs-date-bar input[type=date]::-webkit-calendar-picker-indicator{filter:invert(.7)}
+.cs-date-bar select{padding:7px 12px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--surface2);font-size:13px;color:var(--text);outline:none;font-family:var(--font);transition:border-color .2s}
+.cs-date-bar select:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-glow)}
 .cs-date-btn{padding:7px 14px;border:1px solid var(--border);border-radius:var(--radius-sm);background:transparent;font-size:12px;cursor:pointer;color:var(--text2);transition:all .2s;font-family:var(--font)}
 .cs-date-btn:hover{border-color:var(--accent);color:var(--text)}
 .cs-date-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
@@ -291,15 +293,10 @@ select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--
 </div>
 <div class="channel-summary" id="channelSummary" style="display:none;">
   <!-- Date Filter -->
-  <div class="cs-date-bar" id="csDateBar" style="display:none;">
-    <label>日期范围</label>
-    <input type="date" id="csDateFrom">
-    <span style="color:var(--text3);font-size:12px">至</span>
-    <input type="date" id="csDateTo">
-    <button class="cs-date-btn active" id="csDateAll">全部</button>
-    <button class="cs-date-btn" id="csDate7d">近7天</button>
-    <button class="cs-date-btn" id="csDate30d">近30天</button>
-  </div>
+      <div class="cs-date-bar" id="csDateBar" style="display:none;">
+      <label>自然周</label>
+      <select id="csWeekSelect"><option value="">全部周</option></select>
+    </div>
   <!-- Ranking Chart -->
   <div class="cs-ranking" id="csRanking" style="display:none;">
     <div class="cs-ranking-header">
@@ -328,9 +325,9 @@ select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--
   <!-- Trend Line Chart -->
   <div class="cs-trend" id="csTrend" style="display:none;">
     <div class="cs-trend-header">
-      <span class="cs-trend-title">单量趋势</span>
+      <span class="cs-trend-title">每周单量趋势</span>
     </div>
-    <div class="cs-trend-sub">选择渠道查看单量走向</div>
+    <div class="cs-trend-sub">选择渠道查看每周单量变化</div>
     <div class="cs-search-ms" id="csTrendSelect">
       <input class="cs-search-ms-input" id="csTrendInput" placeholder="输入渠道名称搜索..." autocomplete="off" readonly onclick="document.getElementById('csTrendDropdown').style.display='flex';document.getElementById('csTrendSearch').focus()">
       <div class="cs-search-ms-dropdown" id="csTrendDropdown">
@@ -383,43 +380,30 @@ document.querySelectorAll('.mt-btn').forEach(function(btn){btn.addEventListener(
 // === Channel Summary Rendering ===
 var rankingChart = null;
 var trendChart = null;
-var csSelectedDates = null;
+var csSelectedWeek = null;
 var csTrendChannels = [];
 
-function getDateFilteredTotal(channel) {
-  if (!csSelectedDates || !channelSummary || !channelSummary.timeSeries) {
+function getWeekFilteredTotal(channel) {
+  if (!csSelectedWeek || !channelSummary || !channelSummary.weeklySeries) {
     return channelSummary ? (channelSummary.totalByChannel[channel] || 0) : 0;
   }
-  var ts = channelSummary.timeSeries[channel];
-  if (!ts) return 0;
-  var total = 0;
-  for (var d in ts) {
-    if (d >= csSelectedDates.from && d <= csSelectedDates.to) total += ts[d];
-  }
-  return total;
+  var ws = channelSummary.weeklySeries[channel];
+  return ws ? (ws[csSelectedWeek] || 0) : 0;
 }
 
-function getDateFilteredTimeSeries(channel) {
-  if (!channelSummary || !channelSummary.timeSeries || !channelSummary.timeSeries[channel]) return {};
-  if (!csSelectedDates) return channelSummary.timeSeries[channel];
-  var ts = channelSummary.timeSeries[channel];
-  var filtered = {};
-  for (var d in ts) {
-    if (d >= csSelectedDates.from && d <= csSelectedDates.to) filtered[d] = ts[d];
-  }
-  return filtered;
+function getWeekFilteredTimeSeries(channel) {
+  if (!channelSummary || !channelSummary.weeklySeries || !channelSummary.weeklySeries[channel]) return {};
+  return channelSummary.weeklySeries[channel];
 }
 
-function getAllDatesInRange() {
-  var dates = channelSummary ? (channelSummary.allDates || []) : [];
-  if (!csSelectedDates) return dates;
-  return dates.filter(function(d) { return d >= csSelectedDates.from && d <= csSelectedDates.to; });
+function getAllWeeks() {
+  return channelSummary ? (channelSummary.allWeeks || []) : [];
 }
 
 function renderRankingChart() {
   var csRanking = document.getElementById('csRanking');
   if (!csRanking) return;
-  var hasTime = channelSummary && channelSummary.timeSeries && channelSummary.allDates && channelSummary.allDates.length > 0;
+  var hasTime = channelSummary && channelSummary.weeklySeries && channelSummary.allWeeks && channelSummary.allWeeks.length > 0;
   
   if (!channelSummary || !channelSummary.totalByChannel) {
     csRanking.style.display = 'none';
@@ -432,7 +416,7 @@ function renderRankingChart() {
   
   var channels = channelSummary.channels;
   var ranking = channels.map(function(ch) {
-    return { channel: ch, total: getDateFilteredTotal(ch) };
+    return { channel: ch, total: getWeekFilteredTotal(ch) };
   }).filter(function(r) { return r.total > 0; })
     .sort(function(a, b) { return b.total - a.total; });
   
@@ -495,7 +479,7 @@ function renderRankingChart() {
 function renderTrendChart() {
   var csTrend = document.getElementById('csTrend');
   if (!csTrend) return;
-  var hasTime = channelSummary && channelSummary.timeSeries && channelSummary.allDates && channelSummary.allDates.length > 0;
+  var hasTime = channelSummary && channelSummary.weeklySeries && channelSummary.allWeeks && channelSummary.allWeeks.length > 0;
   
   if (!hasTime) { csTrend.style.display = 'none'; return; }
   csTrend.style.display = 'block';
@@ -510,8 +494,8 @@ function renderTrendChart() {
   var empty2 = document.getElementById('csTrendEmpty');
   if (empty2) empty2.style.display = 'none';
   
-  var allDates = getAllDatesInRange();
-  if (allDates.length === 0) return;
+  var allWeeks = getAllWeeks();
+  if (allWeeks.length === 0) return;
   
   if (trendChart) { trendChart.destroy(); trendChart = null; }
   
@@ -523,8 +507,8 @@ function renderTrendChart() {
   
   var colors = ['#818cf8', '#34d399', '#fbbf24', '#f87171', '#a78bfa', '#f472b6', '#38bdf8', '#fb923c'];
   var datasets = csTrendChannels.map(function(ch, i) {
-    var ts = getDateFilteredTimeSeries(ch);
-    var data = allDates.map(function(d) { return ts[d] || 0; });
+    var ts = getWeekFilteredTimeSeries(ch);
+    var data = allWeeks.map(function(w) { return ts[w] || 0; });
     return {
       label: ch.length > 30 ? ch.substring(0, 28) + '...' : ch,
       data: data,
@@ -535,7 +519,7 @@ function renderTrendChart() {
   });
   
   trendChart = new Chart(canvas, {
-    type: 'line', data: { labels: allDates, datasets: datasets },
+    type: 'line', data: { labels: allWeeks.map(function(w) { return channelSummary.weekLabels && channelSummary.weekLabels[w] ? channelSummary.weekLabels[w] : w; }), datasets: datasets },
     options: {
       responsive: true, maintainAspectRatio: false,
       interaction: { mode: 'index', intersect: false },
@@ -610,56 +594,32 @@ function initTrendSelect() {
   document.addEventListener('click', function() { dropdown.style.display = 'none'; });
 }
 
-function initDatePicker() {
-  var dateBar = document.getElementById('csDateBar');
-  if (!dateBar) return;
-  if (!channelSummary || !channelSummary.timeSeries || !channelSummary.allDates || channelSummary.allDates.length === 0) {
-    dateBar.style.display = 'none'; return;
+function initWeekPicker() {
+  var weekBar = document.getElementById('csDateBar');
+  if (!weekBar) return;
+  if (!channelSummary || !channelSummary.weeklySeries || !channelSummary.allWeeks || channelSummary.allWeeks.length === 0) {
+    weekBar.style.display = 'none';
+    return;
   }
-  
-  dateBar.style.display = 'flex';
-  var allDates = channelSummary.allDates;
-  var fromInput = document.getElementById('csDateFrom');
-  var toInput = document.getElementById('csDateTo');
-  if (!fromInput || !toInput) return;
-  
-  fromInput.min = allDates[0]; fromInput.max = allDates[allDates.length - 1];
-  toInput.min = allDates[0]; toInput.max = allDates[allDates.length - 1];
-  
-  function setDateButtons(activeId) {
-    ['csDateAll', 'csDate7d', 'csDate30d'].forEach(function(id) {
-      var btn = document.getElementById(id); if (btn) btn.classList.toggle('active', id === activeId);
-    });
-  }
-  
-  function applyDateFilter(from, to, presetId) {
-    if (from && to) { csSelectedDates = { from: from, to: to }; fromInput.value = from; toInput.value = to; }
-    else { csSelectedDates = null; fromInput.value = ''; toInput.value = ''; }
-    setDateButtons(presetId || 'csDateAll');
+  weekBar.style.display = 'flex';
+
+  var select = document.getElementById('csWeekSelect');
+  if (!select) return;
+  select.innerHTML = '<option value="">全部周</option>';
+  channelSummary.allWeeks.forEach(function(w) {
+    var label = channelSummary.weekLabels && channelSummary.weekLabels[w] ? channelSummary.weekLabels[w] : w;
+    var option = document.createElement('option');
+    option.value = w;
+    option.textContent = label;
+    select.appendChild(option);
+  });
+  select.value = csSelectedWeek || '';
+  select.onchange = function() {
+    csSelectedWeek = this.value || null;
     renderRankingChart();
-    if (csTrendChannels.length > 0) renderTrendChart();
-  }
-  
-  var btnAll = document.getElementById('csDateAll');
-  var btn7d = document.getElementById('csDate7d');
-  var btn30d = document.getElementById('csDate30d');
-  if (btnAll) btnAll.addEventListener('click', function() { applyDateFilter(null, null, 'csDateAll'); });
-  if (btn7d) btn7d.addEventListener('click', function() {
-    var last = allDates[allDates.length - 1];
-    var d = new Date(last); d.setDate(d.getDate() - 6);
-    applyDateFilter(d.toISOString().slice(0,10), last, 'csDate7d');
-  });
-  if (btn30d) btn30d.addEventListener('click', function() {
-    var last = allDates[allDates.length - 1];
-    var d = new Date(last); d.setDate(d.getDate() - 29);
-    applyDateFilter(d.toISOString().slice(0,10), last, 'csDate30d');
-  });
-  
-  fromInput.addEventListener('change', function() { if (this.value && toInput.value) applyDateFilter(this.value, toInput.value, null); });
-  toInput.addEventListener('change', function() { if (fromInput.value && this.value) applyDateFilter(fromInput.value, this.value, null); });
-  
-  csSelectedDates = null;
-  setDateButtons('csDateAll');
+  };
+
+  csSelectedWeek = select.value || null;
 }
 
 function renderChannelSummary(){
@@ -678,7 +638,7 @@ function renderChannelSummary(){
   }
   
   if (!document.getElementById("csMsList")) {
-    cs.innerHTML = '<div class="cs-date-bar" id="csDateBar" style="display:none;"><label>日期范围</label><input type="date" id="csDateFrom"><span style="color:var(--text3);font-size:12px">至</span><input type="date" id="csDateTo"><button class="cs-date-btn active" id="csDateAll">全部</button><button class="cs-date-btn" id="csDate7d">近7天</button><button class="cs-date-btn" id="csDate30d">近30天</button></div><div class="cs-ranking" id="csRanking" style="display:none;"><div class="cs-ranking-header"><span class="cs-ranking-title">物流渠道单量排行</span><span class="cs-ranking-sub" id="csRankingSub"></span></div><div class="cs-ranking-wrap" id="csRankingWrap"><div class="cs-ranking-empty" id="csRankingEmpty">暂无数据</div></div></div><div class="cs-toolbar"><div class="cs-filter-wrap"><span class="cs-filter-label">物流渠道：</span><div class="cs-multi-select" id="csMultiSelect"><div class="cs-ms-trigger" id="csMsTrigger"><span>请选择线路</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><polyline points="6 9 12 15 18 9"/></svg></div><div class="cs-ms-dropdown" id="csMsDropdown" style="display:none;"><label class="cs-ms-all"><input type="checkbox" id="csSelectAll" checked> 全选</label><div class="cs-ms-list" id="csMsList"></div></div></div></div><div class="cs-summary" id="csSummary"></div></div><div class="cs-table-wrap" id="csTableWrap"></div><div class="cs-trend" id="csTrend" style="display:none;"><div class="cs-trend-header"><span class="cs-trend-title">单量趋势</span></div><div class="cs-trend-sub">选择渠道查看单量走向</div><div class="cs-search-ms" id="csTrendSelect"><input class="cs-search-ms-input" id="csTrendInput" placeholder="输入渠道名称搜索..." autocomplete="off" readonly><div class="cs-search-ms-dropdown" id="csTrendDropdown"><div class="cs-ms-search"><input id="csTrendSearch" placeholder="搜索..."></div><div class="cs-ms-items" id="csTrendItems"></div></div></div><div class="cs-search-ms-tags" id="csTrendTags"></div><div class="cs-trend-wrap" id="csTrendWrap"><div class="cs-trend-empty" id="csTrendEmpty">请选择渠道查看趋势</div></div></div>';
+    cs.innerHTML = '<div class="cs-date-bar" id="csDateBar" style="display:none;"><label>自然周</label><select id="csWeekSelect"><option value="">全部周</option></select></div><div class="cs-ranking" id="csRanking" style="display:none;"><div class="cs-ranking-header"><span class="cs-ranking-title">物流渠道单量排行</span><span class="cs-ranking-sub" id="csRankingSub"></span></div><div class="cs-ranking-wrap" id="csRankingWrap"><div class="cs-ranking-empty" id="csRankingEmpty">暂无数据</div></div></div><div class="cs-toolbar"><div class="cs-filter-wrap"><span class="cs-filter-label">物流渠道：</span><div class="cs-multi-select" id="csMultiSelect"><div class="cs-ms-trigger" id="csMsTrigger"><span>请选择线路</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><polyline points="6 9 12 15 18 9"/></svg></div><div class="cs-ms-dropdown" id="csMsDropdown" style="display:none;"><label class="cs-ms-all"><input type="checkbox" id="csSelectAll" checked> 全选</label><div class="cs-ms-list" id="csMsList"></div></div></div></div><div class="cs-summary" id="csSummary"></div></div><div class="cs-table-wrap" id="csTableWrap"></div><div class="cs-trend" id="csTrend" style="display:none;"><div class="cs-trend-header"><span class="cs-trend-title">每周单量趋势</span></div><div class="cs-trend-sub">选择渠道查看每周单量变化</div><div class="cs-search-ms" id="csTrendSelect"><input class="cs-search-ms-input" id="csTrendInput" placeholder="输入渠道名称搜索..." autocomplete="off" readonly><div class="cs-search-ms-dropdown" id="csTrendDropdown"><div class="cs-ms-search"><input id="csTrendSearch" placeholder="搜索..."></div><div class="cs-ms-items" id="csTrendItems"></div></div></div><div class="cs-search-ms-tags" id="csTrendTags"></div><div class="cs-trend-wrap" id="csTrendWrap"><div class="cs-trend-empty" id="csTrendEmpty">请选择渠道查看趋势</div></div></div>';
   }
   
   var allChannels = channelSummary.channels, allCountries = channelSummary.countries, data = channelSummary.data;
@@ -710,7 +670,7 @@ function renderChannelSummary(){
   csTrendChannels = [];
   
   renderRankingChart();
-  initDatePicker();
+  initWeekPicker();
   initTrendSelect();
   renderTrendChart();
 }
