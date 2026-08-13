@@ -1,0 +1,13 @@
+node_modules/
+.DS_Store
+*.log
+web/data/*.json
+web/uploads/*
+!web/uploads/.gitkeep
+tunnel_url.txt
+try_subdomain.js
+inspect.js
+test_script_only.js
+tunnel.js
+堆积图素材6.11.xlsx
+web/堆积图素材6.11.xlsx
