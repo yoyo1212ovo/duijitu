@@ -6,12 +6,8 @@ services:
     startCommand: npm start
     envVars:
       - key: DATA_DIR
-        value: /data
+        value: /tmp/data
       - key: UPLOADS_DIR
-        value: /data/uploads
+        value: /tmp/uploads
       - key: JWT_SECRET
         generateValue: true
-    disk:
-      name: data
-      mountPath: /data
-      sizeGB: 5
