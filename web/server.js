@@ -2,6 +2,7 @@
 const fs = require("fs");
 const path = require("path");
 const crypto = require("crypto");
+const { parseChannelSummary } = require("./xlsx-channel");
 
 const DATA_DIR = process.env.DATA_DIR || path.join(__dirname, "data");
 
@@ -137,6 +138,30 @@ app.get("/api/files", auth, (req, res) => {
     .filter(f => f.userId === req.user.id)
     .sort((a, b) => new Date(b.uploadedAt) - new Date(a.uploadedAt));
   res.json(userFiles);
+});
+
+// === API: Get channel summary without loading unrelated datasets ===
+app.get("/api/file/:id/channel-summary", auth, async (req, res) => {
+  const files = readJSON("files.json");
+  const fileRecord = files.find(f => f.id === req.params.id && f.userId === req.user.id);
+  if (!fileRecord) return res.status(404).json({ error: "file not found" });
+
+  const filePath = path.join(uploadsDir, fileRecord.storedName);
+  if (!fs.existsSync(filePath)) return res.status(404).json({ error: "file deleted" });
+
+  try {
+    let channelSummary = null;
+    if (path.extname(fileRecord.storedName).toLowerCase() === ".xlsx") {
+      channelSummary = await parseChannelSummary(filePath);
+    } else {
+      const XLSX = require("xlsx");
+      const wb = XLSX.readFile(filePath);
+      channelSummary = processChannelSummary(wb);
+    }
+    res.json({ fileName: fileRecord.originalName, channelSummary });
+  } catch (err) {
+    res.status(500).json({ error: "parse error: " + err.message });
+  }
 });
 
 // === API: Get file chart data ===
