@@ -13,3 +13,7 @@ services:
         value: /tmp/uploads
       - key: JWT_SECRET
         generateValue: true
+      - key: MABANG_APP_KEY
+        sync: false
+      - key: MABANG_APP_TOKEN
+        sync: false

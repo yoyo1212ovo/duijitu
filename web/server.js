@@ -3,10 +3,26 @@ const fs = require("fs");
 const path = require("path");
 const crypto = require("crypto");
 const { parseChannelSummary } = require("./xlsx-channel");
+const { fetchLiveChannelSummary } = require("./mabang");
 
 const DATA_DIR = process.env.DATA_DIR || path.join(__dirname, "data");
 
 if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
+
+function loadEnvFile(filePath) {
+  if (!fs.existsSync(filePath)) return;
+  const lines = fs.readFileSync(filePath, "utf8").split(/\r?\n/);
+  for (const line of lines) {
+    const match = line.match(/^\s*([A-Za-z_][A-Za-z0-9_]*)\s*=\s*(.*)\s*$/);
+    if (!match) continue;
+    const key = match[1];
+    if (process.env[key] !== undefined) continue;
+    process.env[key] = match[2].replace(/^["']|["']$/g, "");
+  }
+}
+
+loadEnvFile(path.join(__dirname, "..", ".env"));
+loadEnvFile(path.join(__dirname, ".env"));
 
 function readJSON(filename) {
   const p = path.join(DATA_DIR, filename);
@@ -107,17 +123,30 @@ app.post("/api/login", async (req, res) => {
 });
 
 // === API: Get current user ===
-app.get("/api/me", auth, (req, res) => {
-  res.json({ user: req.user });
+app.get("/api/me", (req, res) => {
+  res.json({ user: { id: "public", username: "访客" } });
+});
+
+// === API: Live order data from MABANG ===
+app.get("/api/live/channel-summary", async (req, res) => {
+  try {
+    const startDate = typeof req.query.startDate === "string" && req.query.startDate ? req.query.startDate : undefined;
+    const endDate = typeof req.query.endDate === "string" && req.query.endDate ? req.query.endDate : undefined;
+    const result = await fetchLiveChannelSummary({ startDate, endDate });
+    res.json(result);
+  } catch (err) {
+    console.error("MABANG live channel summary failed:", err && err.message ? err.message : err);
+    res.status(502).json({ error: "马帮实时数据拉取失败: " + ((err && err.message) || err) });
+  }
 });
 
 // === API: Upload Excel ===
-app.post("/api/upload", auth, upload.single("file"), (req, res) => {
+app.post("/api/upload", upload.single("file"), (req, res) => {
   if (!req.file) return res.status(400).json({ error: "no file" });
 
   const fileRecord = {
     id: uuidv4(),
-    userId: req.user.id,
+    userId: "public",
     originalName: Buffer.from(req.file.originalname, 'latin1').toString('utf8'),
     storedName: req.file.filename,
     size: req.file.size,
@@ -132,18 +161,16 @@ app.post("/api/upload", auth, upload.single("file"), (req, res) => {
 });
 
 // === API: List user files ===
-app.get("/api/files", auth, (req, res) => {
+app.get("/api/files", (req, res) => {
   const files = readJSON("files.json");
-  const userFiles = files
-    .filter(f => f.userId === req.user.id)
-    .sort((a, b) => new Date(b.uploadedAt) - new Date(a.uploadedAt));
-  res.json(userFiles);
+  const sorted = [...files].sort((a, b) => new Date(b.uploadedAt) - new Date(a.uploadedAt));
+  res.json(sorted);
 });
 
 // === API: Get channel summary without loading unrelated datasets ===
-app.get("/api/file/:id/channel-summary", auth, async (req, res) => {
+app.get("/api/file/:id/channel-summary", async (req, res) => {
   const files = readJSON("files.json");
-  const fileRecord = files.find(f => f.id === req.params.id && f.userId === req.user.id);
+  const fileRecord = files.find(f => f.id === req.params.id);
   if (!fileRecord) return res.status(404).json({ error: "file not found" });
 
   const filePath = path.join(uploadsDir, fileRecord.storedName);
@@ -165,9 +192,9 @@ app.get("/api/file/:id/channel-summary", auth, async (req, res) => {
 });
 
 // === API: Get file chart data ===
-app.get("/api/file/:id/data", auth, (req, res) => {
+app.get("/api/file/:id/data", (req, res) => {
   const files = readJSON("files.json");
-  const fileRecord = files.find(f => f.id === req.params.id && f.userId === req.user.id);
+  const fileRecord = files.find(f => f.id === req.params.id);
   if (!fileRecord) return res.status(404).json({ error: "file not found" });
 
   const filePath = path.join(uploadsDir, fileRecord.storedName);
@@ -187,9 +214,9 @@ app.get("/api/file/:id/data", auth, (req, res) => {
 });
 
 // === API: Delete file ===
-app.delete("/api/file/:id", auth, (req, res) => {
+app.delete("/api/file/:id", (req, res) => {
   const files = readJSON("files.json");
-  const idx = files.findIndex(f => f.id === req.params.id && f.userId === req.user.id);
+  const idx = files.findIndex(f => f.id === req.params.id);
   if (idx === -1) return res.status(404).json({ error: "file not found" });
 
   const fileRecord = files[idx];
@@ -203,19 +230,8 @@ app.delete("/api/file/:id", auth, (req, res) => {
 
 // === API: Download file ===
 app.get("/api/file/:id/download", (req, res) => {
-  let userId = null;
-  // Support both header auth and query param token
-  const header = req.headers.authorization;
-  if (header && header.startsWith("Bearer ")) {
-    try { userId = jwt.verify(header.slice(7), JWT_SECRET).id; } catch {}
-  }
-  if (!userId && req.query.token) {
-    try { userId = jwt.verify(req.query.token, JWT_SECRET).id; } catch {}
-  }
-  if (!userId) return res.status(401).json({ error: "not logged in" });
-
   const files = readJSON("files.json");
-  const fileRecord = files.find(f => f.id === req.params.id && f.userId === userId);
+  const fileRecord = files.find(f => f.id === req.params.id);
   if (!fileRecord) return res.status(404).json({ error: "file not found" });
 
   const filePath = path.join(uploadsDir, fileRecord.storedName);
@@ -226,9 +242,9 @@ app.get("/api/file/:id/download", (req, res) => {
 
 
 // === Export Report ===
-app.get("/api/file/:id/export", auth, (req, res) => {
+app.get("/api/file/:id/export", (req, res) => {
   const files = readJSON("files.json");
-  const fileRecord = files.find(f => f.id === req.params.id && f.userId === req.user.id);
+  const fileRecord = files.find(f => f.id === req.params.id);
   if (!fileRecord) return res.status(404).json({ error: "file not found" });
 
   const filePath = path.join(uploadsDir, fileRecord.storedName);
