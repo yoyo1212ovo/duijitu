@@ -4,7 +4,7 @@ const DEFAULT_GATEWAY = "https://gwapi.mabangerp.com/api/v2";
 const DEFAULT_ACTION = "order-get-order-list-new";
 const PAGE_SIZE = 200;
 const MAX_PAGES = 2000;
-const LOOKBACK_DAYS = 120;
+const MAX_LIVE_LOOKBACK_DAYS = 7;
 const REQUEST_TIMEOUT_MS = Number(process.env.MABANG_TIMEOUT_MS) || 15000;
 
 function pad(n) {
@@ -363,11 +363,11 @@ function findTotalPages(response) {
 
 function buildDateRange(query = {}) {
   const endDate = toDateTime(query.endDate) || new Date();
-  const hour = endDate.getHours();
-  // The new Mabang API only allows a 7-day range from 07:00 to 19:00.
-  const daytime = hour >= 7 && hour < 19;
-  const defaultLookbackDays = daytime ? 7 : LOOKBACK_DAYS;
-  const startDate = toDateTime(query.startDate) || new Date(endDate.getTime() - defaultLookbackDays * 24 * 60 * 60 * 1000);
+  const requestedStart = toDateTime(query.startDate);
+  const earliestStart = new Date(endDate.getTime() - MAX_LIVE_LOOKBACK_DAYS * 24 * 60 * 60 * 1000);
+  const startDate = !requestedStart || requestedStart.getTime() < earliestStart.getTime()
+    ? earliestStart
+    : requestedStart;
   return { startDate, endDate };
 }
 
