@@ -337,6 +337,31 @@ function aggregateOrders(orders) {
   };
 }
 
+function aggregateDailyOrders(orders) {
+  const byDate = {};
+
+  for (const order of orders) {
+    const channel = extractChannel(order);
+    const country = extractCountry(order);
+    if (!channel || !country) continue;
+
+    const dateStr = extractDate(order);
+    if (!dateStr) continue;
+
+    if (!byDate[dateStr]) byDate[dateStr] = { channels: {}, countries: {} };
+    const day = byDate[dateStr];
+
+    day.channels[channel] = (day.channels[channel] || 0) + 1;
+    if (!day.countries[channel]) day.countries[channel] = {};
+    day.countries[channel][country] = (day.countries[channel][country] || 0) + 1;
+  }
+
+  return {
+    allDays: Object.keys(byDate).sort(),
+    byDate
+  };
+}
+
 function findTotal(value) {
   if (value == null) return null;
   if (typeof value === "number") return value;
@@ -471,6 +496,7 @@ async function fetchLiveOrders(options = {}) {
 async function fetchLiveChannelSummary(options = {}) {
   const { orders, total, startDate, endDate } = await fetchLiveOrders(options);
   const channelSummary = aggregateOrders(orders);
+  const dailySummary = aggregateDailyOrders(orders);
   return {
     source: "mabang",
     action: options.action || process.env.MABANG_ORDER_ACTION || DEFAULT_ACTION,
@@ -478,7 +504,8 @@ async function fetchLiveChannelSummary(options = {}) {
     startDate: startDate.toISOString(),
     endDate: endDate.toISOString(),
     total,
-    channelSummary
+    channelSummary,
+    dailySummary
   };
 }
 
@@ -487,5 +514,6 @@ module.exports = {
   fetchLiveOrders,
   fetchLiveChannelSummary,
   aggregateOrders,
+  aggregateDailyOrders,
   findOrderArray
 };

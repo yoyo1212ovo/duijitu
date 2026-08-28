@@ -36,6 +36,140 @@ function writeJSON(filename, data) {
   fs.renameSync(tmp, p);
 }
 
+const HISTORY_FILE = "live-history.json";
+
+function pad2(n) {
+  return String(n).padStart(2, "0");
+}
+
+function dateFromString(value) {
+  if (typeof value !== "string") return null;
+  const parts = value.split("-").map(Number);
+  if (parts.length !== 3 || parts.some(Number.isNaN)) return null;
+  const date = new Date(Date.UTC(parts[0], parts[1] - 1, parts[2]));
+  return Number.isNaN(date.getTime()) ? null : date;
+}
+
+function getWeekKey(dateStr) {
+  const date = dateFromString(dateStr);
+  if (!date) return null;
+  const day = (date.getUTCDay() + 6) % 7;
+  const start = new Date(date);
+  start.setUTCDate(start.getUTCDate() - day);
+  return start.toISOString().slice(0, 10);
+}
+
+function getWeekLabel(weekKey) {
+  const start = dateFromString(weekKey);
+  if (!start) return weekKey;
+  const end = new Date(start);
+  end.setUTCDate(end.getUTCDate() + 6);
+  return pad2(start.getUTCMonth() + 1) + "-" + pad2(start.getUTCDate()) + "~" + pad2(end.getUTCMonth() + 1) + "-" + pad2(end.getUTCDate());
+}
+
+function readHistory() {
+  const filePath = path.join(DATA_DIR, HISTORY_FILE);
+  if (!fs.existsSync(filePath)) return { days: {}, updatedAt: null };
+  try {
+    const parsed = JSON.parse(fs.readFileSync(filePath, "utf8"));
+    if (!parsed || typeof parsed !== "object") return { days: {}, updatedAt: null };
+    return { days: parsed.days && typeof parsed.days === "object" ? parsed.days : {}, updatedAt: parsed.updatedAt || null };
+  } catch {
+    return { days: {}, updatedAt: null };
+  }
+}
+
+function writeHistory(history) {
+  writeJSON(HISTORY_FILE, history);
+}
+
+function saveLiveHistory(result) {
+  if (!result || !result.dailySummary || !result.dailySummary.byDate) return;
+  const history = readHistory();
+  for (const [date, record] of Object.entries(result.dailySummary.byDate)) {
+    history.days[date] = record;
+  }
+  history.updatedAt = new Date().toISOString();
+  history.lastFetchedAt = result.fetchedAt || history.lastFetchedAt || null;
+  history.lastStartDate = result.startDate || history.lastStartDate || null;
+  history.lastEndDate = result.endDate || history.lastEndDate || null;
+  writeHistory(history);
+}
+
+function listLiveHistoryWeeks(history) {
+  const days = history && history.days ? history.days : {};
+  const weeks = {};
+  for (const [date, record] of Object.entries(days)) {
+    const key = getWeekKey(date);
+    if (!key) continue;
+    if (!weeks[key]) weeks[key] = { key, total: 0, daysCount: 0 };
+    const total = record && record.channels ? Object.values(record.channels).reduce((sum, value) => sum + Number(value || 0), 0) : 0;
+    weeks[key].total += total;
+    weeks[key].daysCount += 1;
+  }
+  return Object.values(weeks).sort((a, b) => b.key.localeCompare(a.key)).map((week) => ({
+    ...week,
+    label: getWeekLabel(week.key),
+    startDate: week.key,
+    endDate: new Date(dateFromString(week.key).getTime() + 6 * 86400000).toISOString().slice(0, 10)
+  }));
+}
+
+function buildHistoryWeekSummary(weekKey, history) {
+  const days = history && history.days ? history.days : {};
+  const entries = Object.entries(days).filter(([date]) => getWeekKey(date) === weekKey).sort((a, b) => a[0].localeCompare(b[0]));
+  if (entries.length === 0) return null;
+
+  const data = {};
+  const countries = new Set();
+  for (const [date, record] of entries) {
+    if (!record || !record.channels) continue;
+    for (const [channel, total] of Object.entries(record.channels)) {
+      if (!data[channel]) data[channel] = {};
+      const channelCountries = record.countries && record.countries[channel] ? record.countries[channel] : {};
+      for (const [country, count] of Object.entries(channelCountries)) {
+        data[channel][country] = (data[channel][country] || 0) + count;
+        countries.add(country);
+      }
+    }
+  }
+
+  const channels = Object.keys(data).sort();
+  const totalByChannel = {};
+  const weeklySeries = {};
+  const countryWeeklySeries = {};
+  for (const channel of channels) {
+    totalByChannel[channel] = Object.values(data[channel]).reduce((sum, value) => sum + value, 0);
+    weeklySeries[channel] = { [weekKey]: totalByChannel[channel] };
+    countryWeeklySeries[channel] = {};
+    for (const country of Object.keys(data[channel])) {
+      countryWeeklySeries[channel][country] = { [weekKey]: data[channel][country] };
+    }
+  }
+
+  const total = channels.reduce((sum, channel) => sum + totalByChannel[channel], 0);
+  const start = dateFromString(weekKey);
+  const end = new Date(start.getTime() + 6 * 86400000);
+  return {
+    key: weekKey,
+    label: getWeekLabel(weekKey),
+    startDate: weekKey,
+    endDate: end.toISOString().slice(0, 10),
+    total,
+    daysCount: entries.length,
+    channelSummary: {
+      channels,
+      countries: [...countries].sort(),
+      data,
+      totalByChannel,
+      weeklySeries,
+      countryWeeklySeries,
+      allWeeks: [weekKey],
+      weekLabels: { [weekKey]: getWeekLabel(weekKey) }
+    }
+  };
+}
+
 // === Express app ===
 const express = require("express");
 const bcrypt = require("bcryptjs");
@@ -133,11 +267,28 @@ app.get("/api/live/channel-summary", async (req, res) => {
     const startDate = typeof req.query.startDate === "string" && req.query.startDate ? req.query.startDate : undefined;
     const endDate = typeof req.query.endDate === "string" && req.query.endDate ? req.query.endDate : undefined;
     const result = await fetchLiveChannelSummary({ startDate, endDate });
+    try { saveLiveHistory(result); } catch (err) { console.error("Save live history failed:", err && err.message ? err.message : err); }
+    delete result.dailySummary;
     res.json(result);
   } catch (err) {
     console.error("MABANG live channel summary failed:", err && err.message ? err.message : err);
     res.status(502).json({ error: "马帮实时数据拉取失败: " + ((err && err.message) || err) });
   }
+});
+
+// === API: Historical weekly snapshots ===
+app.get("/api/live/history", (req, res) => {
+  const history = readHistory();
+  res.json({ weeks: listLiveHistoryWeeks(history), updatedAt: history.updatedAt || null });
+});
+
+app.get("/api/live/history/:weekKey", (req, res) => {
+  const weekKey = req.params.weekKey;
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(weekKey)) return res.status(400).json({ error: "invalid week key" });
+  const history = readHistory();
+  const snapshot = buildHistoryWeekSummary(weekKey, history);
+  if (!snapshot) return res.status(404).json({ error: "week snapshot not found" });
+  res.json(snapshot);
 });
 
 // === API: Upload Excel ===
