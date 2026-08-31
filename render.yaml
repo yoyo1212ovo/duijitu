@@ -11,6 +11,8 @@ services:
         value: /tmp/data
       - key: UPLOADS_DIR
         value: /tmp/uploads
+      - key: HISTORY_SEED_FILE
+        value: /opt/render/project/src/web/data/live-history.json
       - key: JWT_SECRET
         generateValue: true
       - key: MABANG_APP_KEY

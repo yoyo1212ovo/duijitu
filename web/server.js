@@ -37,6 +37,7 @@ function writeJSON(filename, data) {
 }
 
 const HISTORY_FILE = "live-history.json";
+const HISTORY_SEED_FILE = process.env.HISTORY_SEED_FILE || path.join(__dirname, "data", HISTORY_FILE);
 
 function pad2(n) {
   return String(n).padStart(2, "0");
@@ -67,16 +68,33 @@ function getWeekLabel(weekKey) {
   return pad2(start.getUTCMonth() + 1) + "-" + pad2(start.getUTCDate()) + "~" + pad2(end.getUTCMonth() + 1) + "-" + pad2(end.getUTCDate());
 }
 
-function readHistory() {
-  const filePath = path.join(DATA_DIR, HISTORY_FILE);
-  if (!fs.existsSync(filePath)) return { days: {}, updatedAt: null };
+function readHistoryFile(filePath) {
+  if (!filePath || !fs.existsSync(filePath)) return { days: {}, updatedAt: null };
   try {
     const parsed = JSON.parse(fs.readFileSync(filePath, "utf8"));
     if (!parsed || typeof parsed !== "object") return { days: {}, updatedAt: null };
-    return { days: parsed.days && typeof parsed.days === "object" ? parsed.days : {}, updatedAt: parsed.updatedAt || null };
+    return {
+      days: parsed.days && typeof parsed.days === "object" ? parsed.days : {},
+      updatedAt: parsed.updatedAt || null,
+      lastFetchedAt: parsed.lastFetchedAt || null,
+      lastStartDate: parsed.lastStartDate || null,
+      lastEndDate: parsed.lastEndDate || null
+    };
   } catch {
     return { days: {}, updatedAt: null };
   }
+}
+
+function readHistory() {
+  const seed = readHistoryFile(HISTORY_SEED_FILE);
+  const current = readHistoryFile(path.join(DATA_DIR, HISTORY_FILE));
+  return {
+    days: Object.assign({}, seed.days, current.days),
+    updatedAt: current.updatedAt || seed.updatedAt || null,
+    lastFetchedAt: current.lastFetchedAt || seed.lastFetchedAt || null,
+    lastStartDate: current.lastStartDate || seed.lastStartDate || null,
+    lastEndDate: current.lastEndDate || seed.lastEndDate || null
+  };
 }
 
 function writeHistory(history) {
