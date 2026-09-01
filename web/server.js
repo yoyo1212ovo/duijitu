@@ -188,6 +188,76 @@ function buildHistoryWeekSummary(weekKey, history) {
   };
 }
 
+function buildHistoryRangeSummary(startDate, endDate, history) {
+  const days = history && history.days ? history.days : {};
+  const entries = Object.entries(days)
+    .filter(([date]) => date >= startDate && date <= endDate)
+    .sort((a, b) => a[0].localeCompare(b[0]));
+  if (entries.length === 0) return null;
+
+  const data = {};
+  const countries = new Set();
+  const weeklySeries = {};
+  const countryWeeklySeries = {};
+  const weekLabels = {};
+  const allWeekSet = new Set();
+
+  for (const [date, record] of entries) {
+    if (!record || !record.channels) continue;
+    const weekKey = getWeekKey(date);
+    if (weekKey) {
+      allWeekSet.add(weekKey);
+      weekLabels[weekKey] = getWeekLabel(weekKey);
+    }
+
+    for (const [channel, total] of Object.entries(record.channels)) {
+      if (!data[channel]) data[channel] = {};
+      const channelCountries = record.countries && record.countries[channel] ? record.countries[channel] : {};
+      for (const [country, count] of Object.entries(channelCountries)) {
+        data[channel][country] = (data[channel][country] || 0) + count;
+        countries.add(country);
+      }
+
+      if (weekKey) {
+        if (!weeklySeries[channel]) weeklySeries[channel] = {};
+        weeklySeries[channel][weekKey] = (weeklySeries[channel][weekKey] || 0) + Number(total || 0);
+        if (!countryWeeklySeries[channel]) countryWeeklySeries[channel] = {};
+        for (const [country, count] of Object.entries(channelCountries)) {
+          if (!countryWeeklySeries[channel][country]) countryWeeklySeries[channel][country] = {};
+          countryWeeklySeries[channel][country][weekKey] = (countryWeeklySeries[channel][country][weekKey] || 0) + Number(count || 0);
+        }
+      }
+    }
+  }
+
+  const channels = Object.keys(data).sort();
+  const totalByChannel = {};
+  for (const channel of channels) {
+    totalByChannel[channel] = Object.values(data[channel]).reduce((sum, value) => sum + Number(value || 0), 0);
+  }
+
+  const total = channels.reduce((sum, channel) => sum + totalByChannel[channel], 0);
+  const allWeeks = [...allWeekSet].sort();
+  return {
+    startDate,
+    endDate,
+    label: startDate + "~" + endDate,
+    total,
+    daysCount: entries.length,
+    dates: entries.map(([date]) => date),
+    channelSummary: {
+      channels,
+      countries: [...countries].sort(),
+      data,
+      totalByChannel,
+      weeklySeries,
+      countryWeeklySeries,
+      allWeeks,
+      weekLabels
+    }
+  };
+}
+
 // === Express app ===
 const express = require("express");
 const bcrypt = require("bcryptjs");
@@ -297,7 +367,27 @@ app.get("/api/live/channel-summary", async (req, res) => {
 // === API: Historical weekly snapshots ===
 app.get("/api/live/history", (req, res) => {
   const history = readHistory();
-  res.json({ weeks: listLiveHistoryWeeks(history), updatedAt: history.updatedAt || null });
+  res.json({
+    weeks: listLiveHistoryWeeks(history),
+    days: Object.keys(history.days || {}).sort(),
+    updatedAt: history.updatedAt || null
+  });
+});
+
+app.get("/api/live/history/range", (req, res) => {
+  const startDate = typeof req.query.startDate === "string" ? req.query.startDate : "";
+  const endDate = typeof req.query.endDate === "string" ? req.query.endDate : "";
+  const datePattern = /^\d{4}-\d{2}-\d{2}$/;
+  if (!datePattern.test(startDate) || !datePattern.test(endDate) || !dateFromString(startDate) || !dateFromString(endDate)) {
+    return res.status(400).json({ error: "invalid date range" });
+  }
+  if (startDate > endDate) {
+    return res.status(400).json({ error: "start date must be before or equal to end date" });
+  }
+  const history = readHistory();
+  const snapshot = buildHistoryRangeSummary(startDate, endDate, history);
+  if (!snapshot) return res.status(404).json({ error: "date range snapshot not found" });
+  res.json(snapshot);
 });
 
 app.get("/api/live/history/:weekKey", (req, res) => {
