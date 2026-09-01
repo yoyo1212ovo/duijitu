@@ -129,6 +129,7 @@ select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--
 .cs-trend{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px 24px;margin-top:16px}
 .cs-trend-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
 .cs-trend-title{font-size:14px;font-weight:700;letter-spacing:-.01em}
+.cs-trend-mode{display:flex;align-items:center;gap:6px}
 .cs-trend-sub{font-size:11px;color:var(--text3);margin-bottom:16px}
 .cs-trend-wrap{position:relative;height:380px}
 .cs-trend-wrap canvas{width:100%!important}
@@ -371,7 +372,11 @@ select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--
   <!-- Trend Line Chart -->
   <div class="cs-trend" id="csTrend" style="display:none;">
     <div class="cs-trend-header">
-      <span class="cs-trend-title">每周单量趋势</span>
+      <span class="cs-trend-title" id="csTrendTitle">每周单量趋势</span>
+      <div class="cs-trend-mode">
+        <button class="cs-date-btn active" id="csTrendWeekBtn">周</button>
+        <button class="cs-date-btn" id="csTrendDayBtn">日</button>
+      </div>
     </div>
     <div class="cs-trend-sub" id="csTrendSub">选择渠道或国家查看每周单量变化</div>
     <div class="cs-search-ms" id="csTrendSelect">
@@ -442,6 +447,7 @@ var csSelectedChannels = [];
 var csSelectedCountries = [];
 var csTrendChannels = [];
 var csTrendCountries = [];
+var csTrendMode = "week";
 
 function getWeekFilteredTotal(channel) {
   if (!channelSummary) return 0;
@@ -510,8 +516,39 @@ function getTrendCountryTimeSeries(country, channels) {
   return result;
 }
 
+function getTrendDailyChannelTimeSeries(channel) {
+  if (!channelSummary || !channelSummary.dailySeries || !channelSummary.dailySeries[channel]) return {};
+  var countries = csTrendCountries || [];
+  if (countries.length === 0) return channelSummary.dailySeries[channel];
+  var result = {};
+  (channelSummary.allDays || []).forEach(function(d) { result[d] = 0; });
+  countries.forEach(function(cn) {
+    var cd = channelSummary.countryDailySeries && channelSummary.countryDailySeries[channel] && channelSummary.countryDailySeries[channel][cn];
+    if (!cd) return;
+    for (var d in cd) result[d] = (result[d] || 0) + cd[d];
+  });
+  return result;
+}
+
+function getTrendDailyCountryTimeSeries(country, channels) {
+  if (!channelSummary || !channelSummary.countryDailySeries || !channelSummary.allDays) return {};
+  var channelList = channels && channels.length ? channels : (channelSummary.channels || []);
+  var result = {};
+  (channelSummary.allDays || []).forEach(function(d) { result[d] = 0; });
+  channelList.forEach(function(ch) {
+    var cd = channelSummary.countryDailySeries[ch] && channelSummary.countryDailySeries[ch][country];
+    if (!cd) return;
+    for (var d in cd) result[d] = (result[d] || 0) + cd[d];
+  });
+  return result;
+}
+
 function getAllWeeks() {
   return channelSummary ? (channelSummary.allWeeks || []) : [];
+}
+
+function getAllTrendDays() {
+  return channelSummary ? (channelSummary.allDays || []) : [];
 }
 
 function renderRankingChart() {
@@ -593,14 +630,23 @@ function renderRankingChart() {
 function renderTrendChart() {
   var csTrend = document.getElementById('csTrend');
   if (!csTrend) return;
-  var hasTime = channelSummary && channelSummary.weeklySeries && channelSummary.allWeeks && channelSummary.allWeeks.length > 0;
+  var isDaily = csTrendMode === 'day';
+  var hasTime = isDaily
+    ? channelSummary && channelSummary.dailySeries && channelSummary.allDays && channelSummary.allDays.length > 0
+    : channelSummary && channelSummary.weeklySeries && channelSummary.allWeeks && channelSummary.allWeeks.length > 0;
+
+  var title = document.getElementById('csTrendTitle');
+  if (title) title.textContent = isDaily ? '每日单量趋势' : '每周单量趋势';
 
   if (!hasTime) { csTrend.style.display = 'none'; return; }
   csTrend.style.display = 'block';
 
+  var sub = document.getElementById('csTrendSub');
+
   if (csTrendChannels.length === 0 && csTrendCountries.length === 0) {
     var empty2 = document.getElementById('csTrendEmpty');
     if (empty2) empty2.style.display = 'block';
+    if (sub) sub.textContent = isDaily ? '选择渠道或国家查看每日单量变化' : '选择渠道或国家查看每周单量变化';
     if (trendChart) { trendChart.destroy(); trendChart = null; }
     return;
   }
@@ -608,20 +654,20 @@ function renderTrendChart() {
   var empty2 = document.getElementById('csTrendEmpty');
   if (empty2) empty2.style.display = 'none';
 
-  var sub = document.getElementById('csTrendSub');
   if (sub) {
+    var modeLabel = isDaily ? '每日单量趋势' : '每周单量趋势';
     if (csTrendCountries.length === 1 && csTrendChannels.length > 0) {
       sub.textContent = '当前展示 ' + csTrendChannels.length + ' 条渠道在 ' + csTrendCountries[0] + ' 的单量';
     } else if (csTrendCountries.length > 0) {
-      sub.textContent = '当前展示 ' + csTrendCountries.length + ' 个国家的每周单量趋势';
+      sub.textContent = '当前展示 ' + csTrendCountries.length + ' 个国家的' + modeLabel;
       if (csTrendChannels.length > 0) sub.textContent += '（按已选 ' + csTrendChannels.length + ' 条渠道汇总）';
     } else {
-      sub.textContent = '当前展示 ' + csTrendChannels.length + ' 条渠道的每周单量趋势';
+      sub.textContent = '当前展示 ' + csTrendChannels.length + ' 条渠道的' + modeLabel;
     }
   }
 
-  var allWeeks = getAllWeeks();
-  if (allWeeks.length === 0) return;
+  var points = isDaily ? getAllTrendDays() : getAllWeeks();
+  if (points.length === 0) return;
 
   if (trendChart) { trendChart.destroy(); trendChart = null; }
 
@@ -635,8 +681,8 @@ function renderTrendChart() {
   var datasets;
   if (csTrendCountries.length === 1 && csTrendChannels.length > 0) {
     datasets = csTrendChannels.map(function(ch, i) {
-      var ts = getTrendChannelTimeSeries(ch);
-      var data = allWeeks.map(function(w) { return ts[w] || 0; });
+      var ts = isDaily ? getTrendDailyChannelTimeSeries(ch) : getTrendChannelTimeSeries(ch);
+      var data = points.map(function(p) { return ts[p] || 0; });
       return {
         label: ch.length > 30 ? ch.substring(0, 28) + '...' : ch,
         data: data,
@@ -647,8 +693,8 @@ function renderTrendChart() {
     });
   } else if (csTrendCountries.length > 0) {
     datasets = csTrendCountries.map(function(cn, i) {
-      var ts = getTrendCountryTimeSeries(cn, csTrendChannels);
-      var data = allWeeks.map(function(w) { return ts[w] || 0; });
+      var ts = isDaily ? getTrendDailyCountryTimeSeries(cn, csTrendChannels) : getTrendCountryTimeSeries(cn, csTrendChannels);
+      var data = points.map(function(p) { return ts[p] || 0; });
       return {
         label: cn.length > 30 ? cn.substring(0, 28) + '...' : cn,
         data: data,
@@ -659,8 +705,8 @@ function renderTrendChart() {
     });
   } else {
     datasets = csTrendChannels.map(function(ch, i) {
-      var ts = getTrendChannelTimeSeries(ch);
-      var data = allWeeks.map(function(w) { return ts[w] || 0; });
+      var ts = isDaily ? getTrendDailyChannelTimeSeries(ch) : getTrendChannelTimeSeries(ch);
+      var data = points.map(function(p) { return ts[p] || 0; });
       return {
         label: ch.length > 30 ? ch.substring(0, 28) + '...' : ch,
         data: data,
@@ -672,7 +718,10 @@ function renderTrendChart() {
   }
 
   trendChart = new Chart(canvas, {
-    type: 'line', data: { labels: allWeeks.map(function(w) { return channelSummary.weekLabels && channelSummary.weekLabels[w] ? channelSummary.weekLabels[w] : w; }), datasets: datasets },
+    type: 'line', data: { labels: points.map(function(p) {
+      if (isDaily) return channelSummary.dayLabels && channelSummary.dayLabels[p] ? channelSummary.dayLabels[p] : p;
+      return channelSummary.weekLabels && channelSummary.weekLabels[p] ? channelSummary.weekLabels[p] : p;
+    }), datasets: datasets },
     options: {
       responsive: true, maintainAspectRatio: false,
       interaction: { mode: 'index', intersect: false },
@@ -686,7 +735,25 @@ function renderTrendChart() {
       }
     }
   });
-}function initTrendSelect() {
+}
+
+function initTrendModeToggle() {
+  var weekBtn = document.getElementById('csTrendWeekBtn');
+  var dayBtn = document.getElementById('csTrendDayBtn');
+  if (!weekBtn || !dayBtn) return;
+
+  function applyMode() {
+    weekBtn.classList.toggle('active', csTrendMode === 'week');
+    dayBtn.classList.toggle('active', csTrendMode === 'day');
+    renderTrendChart();
+  }
+
+  weekBtn.onclick = function() { csTrendMode = 'week'; applyMode(); };
+  dayBtn.onclick = function() { csTrendMode = 'day'; applyMode(); };
+  applyMode();
+}
+
+function initTrendSelect() {
   var input = document.getElementById('csTrendInput');
   var dropdown = document.getElementById('csTrendDropdown');
   var search = document.getElementById('csTrendSearch');
@@ -1070,7 +1137,7 @@ function renderChannelSummary(){
   }
   
   if (!document.getElementById("csMsList")) {
-    cs.innerHTML = '<div class="cs-date-bar" id="csDateBar" style="display:none;"><label>自然周</label><select id="csWeekSelect"><option value="">全部周</option></select></div><div class="cs-ranking" id="csRanking" style="display:none;"><div class="cs-ranking-header"><span class="cs-ranking-title">物流渠道单量排行</span><span class="cs-ranking-sub" id="csRankingSub"></span></div><div class="cs-ranking-wrap" id="csRankingWrap"><div class="cs-ranking-empty" id="csRankingEmpty">暂无数据</div></div></div> <div class="cs-filter-wrap"> <span class="cs-filter-label">物流渠道：</span> <div class="cs-multi-select" id="csMultiSelect"> <div class="cs-ms-trigger" id="csMsTrigger"><span>请选择线路</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><polyline points="6 9 12 15 18 9"/></svg></div> <div class="cs-ms-dropdown" id="csMsDropdown" style="display:none;"> <div class="cs-ms-search"><input id="csChannelSearch" placeholder="搜索渠道..."></div> <label class="cs-ms-all"><input type="checkbox" id="csSelectAll" checked> 全选</label> <div class="cs-ms-list" id="csMsList"></div> </div> </div> </div> <div class="cs-filter-wrap"> <span class="cs-filter-label">国家：</span> <div class="cs-multi-select" id="csCountrySelect"> <div class="cs-ms-trigger" id="csCountryMsTrigger"><span>全部国家</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><polyline points="6 9 12 15 18 9"/></svg></div> <div class="cs-ms-dropdown" id="csCountryMsDropdown" style="display:none;"> <div class="cs-ms-search"><input id="csCountrySearch" placeholder="搜索国家..."></div> <label class="cs-ms-all"><input type="checkbox" id="csCountrySelectAll"> 全选</label> <div class="cs-ms-list" id="csCountryMsList"></div> </div> </div> </div><div class="cs-summary" id="csSummary"></div></div><div class="cs-table-wrap" id="csTableWrap"></div><div class="cs-trend" id="csTrend" style="display:none;"><div class="cs-trend-header"><span class="cs-trend-title">每周单量趋势</span></div><div class="cs-trend-sub" id="csTrendSub">选择渠道或国家查看每周单量变化</div><div class="cs-search-ms" id="csTrendSelect"><input class="cs-search-ms-input" id="csTrendInput" placeholder="输入渠道名称搜索..." autocomplete="off" readonly><div class="cs-search-ms-dropdown" id="csTrendDropdown"><div class="cs-ms-search"><input id="csTrendSearch" placeholder="搜索..."></div><div class="cs-ms-items" id="csTrendItems"></div></div></div><div class="cs-search-ms-tags" id="csTrendTags"></div><div class="cs-trend-selector" style="margin-top:12px"><span class="cs-trend-selector-label">国家</span><div class="cs-search-ms" id="csTrendCountrySelect"><input class="cs-search-ms-input" id="csTrendCountryInput" placeholder="输入国家名称搜索..." autocomplete="off" readonly><div class="cs-search-ms-dropdown" id="csTrendCountryDropdown"><div class="cs-ms-search"><input id="csTrendCountrySearch" placeholder="搜索国家..."></div><div class="cs-ms-items" id="csTrendCountryItems"></div></div></div><div class="cs-search-ms-tags" id="csTrendCountryTags"></div></div><div class="cs-trend-wrap" id="csTrendWrap"><div class="cs-trend-empty" id="csTrendEmpty">请选择渠道或国家查看趋势</div></div></div>';
+    cs.innerHTML = '<div class="cs-date-bar" id="csDateBar" style="display:none;"><label>自然周</label><select id="csWeekSelect"><option value="">全部周</option></select></div><div class="cs-ranking" id="csRanking" style="display:none;"><div class="cs-ranking-header"><span class="cs-ranking-title">物流渠道单量排行</span><span class="cs-ranking-sub" id="csRankingSub"></span></div><div class="cs-ranking-wrap" id="csRankingWrap"><div class="cs-ranking-empty" id="csRankingEmpty">暂无数据</div></div></div> <div class="cs-filter-wrap"> <span class="cs-filter-label">物流渠道：</span> <div class="cs-multi-select" id="csMultiSelect"> <div class="cs-ms-trigger" id="csMsTrigger"><span>请选择线路</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><polyline points="6 9 12 15 18 9"/></svg></div> <div class="cs-ms-dropdown" id="csMsDropdown" style="display:none;"> <div class="cs-ms-search"><input id="csChannelSearch" placeholder="搜索渠道..."></div> <label class="cs-ms-all"><input type="checkbox" id="csSelectAll" checked> 全选</label> <div class="cs-ms-list" id="csMsList"></div> </div> </div> </div> <div class="cs-filter-wrap"> <span class="cs-filter-label">国家：</span> <div class="cs-multi-select" id="csCountrySelect"> <div class="cs-ms-trigger" id="csCountryMsTrigger"><span>全部国家</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><polyline points="6 9 12 15 18 9"/></svg></div> <div class="cs-ms-dropdown" id="csCountryMsDropdown" style="display:none;"> <div class="cs-ms-search"><input id="csCountrySearch" placeholder="搜索国家..."></div> <label class="cs-ms-all"><input type="checkbox" id="csCountrySelectAll"> 全选</label> <div class="cs-ms-list" id="csCountryMsList"></div> </div> </div> </div><div class="cs-summary" id="csSummary"></div></div><div class="cs-table-wrap" id="csTableWrap"></div><div class="cs-trend" id="csTrend" style="display:none;"><div class="cs-trend-header"><span class="cs-trend-title" id="csTrendTitle">每周单量趋势</span><div class="cs-trend-mode"><button class="cs-date-btn active" id="csTrendWeekBtn">周</button><button class="cs-date-btn" id="csTrendDayBtn">日</button></div></div><div class="cs-trend-sub" id="csTrendSub">选择渠道或国家查看每周单量变化</div><div class="cs-search-ms" id="csTrendSelect"><input class="cs-search-ms-input" id="csTrendInput" placeholder="输入渠道名称搜索..." autocomplete="off" readonly><div class="cs-search-ms-dropdown" id="csTrendDropdown"><div class="cs-ms-search"><input id="csTrendSearch" placeholder="搜索..."></div><div class="cs-ms-items" id="csTrendItems"></div></div></div><div class="cs-search-ms-tags" id="csTrendTags"></div><div class="cs-trend-selector" style="margin-top:12px"><span class="cs-trend-selector-label">国家</span><div class="cs-search-ms" id="csTrendCountrySelect"><input class="cs-search-ms-input" id="csTrendCountryInput" placeholder="输入国家名称搜索..." autocomplete="off" readonly><div class="cs-search-ms-dropdown" id="csTrendCountryDropdown"><div class="cs-ms-search"><input id="csTrendCountrySearch" placeholder="搜索国家..."></div><div class="cs-ms-items" id="csTrendCountryItems"></div></div></div><div class="cs-search-ms-tags" id="csTrendCountryTags"></div></div><div class="cs-trend-wrap" id="csTrendWrap"><div class="cs-trend-empty" id="csTrendEmpty">请选择渠道或国家查看趋势</div></div></div>';
   }
   
     initChannelMultiSelect();
@@ -1081,11 +1148,13 @@ function renderChannelSummary(){
   if (trendChart) { trendChart.destroy(); trendChart = null; }
   csTrendChannels = [];
   csTrendCountries = [];
+  csTrendMode = currentPeriodMode === 'custom' ? 'day' : 'week';
   
   renderRankingChart();
   initWeekPicker();
   initTrendSelect();
   initTrendCountrySelect();
+  initTrendModeToggle();
   renderTrendChart();
   renderCostSuggestions();
 }

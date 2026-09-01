@@ -285,8 +285,12 @@ function aggregateOrders(orders) {
   const data = {};
   const weeklySeries = {};
   const countryWeeklySeries = {};
+  const dailySeries = {};
+  const countryDailySeries = {};
   const weekLabels = {};
+  const dayLabels = {};
   const allWeekSet = new Set();
+  const allDaySet = new Set();
   let datedCount = 0;
 
   for (const order of orders) {
@@ -301,7 +305,9 @@ function aggregateOrders(orders) {
     if (!dateStr) continue;
     const info = weekInfo(dateStr);
     datedCount++;
+    allDaySet.add(dateStr);
     allWeekSet.add(info.key);
+    dayLabels[dateStr] = dateStr.slice(5);
     weekLabels[info.key] = info.label;
 
     if (!weeklySeries[channel]) weeklySeries[channel] = {};
@@ -310,6 +316,13 @@ function aggregateOrders(orders) {
     if (!countryWeeklySeries[channel]) countryWeeklySeries[channel] = {};
     if (!countryWeeklySeries[channel][country]) countryWeeklySeries[channel][country] = {};
     countryWeeklySeries[channel][country][info.key] = (countryWeeklySeries[channel][country][info.key] || 0) + 1;
+
+    if (!dailySeries[channel]) dailySeries[channel] = {};
+    dailySeries[channel][dateStr] = (dailySeries[channel][dateStr] || 0) + 1;
+
+    if (!countryDailySeries[channel]) countryDailySeries[channel] = {};
+    if (!countryDailySeries[channel][country]) countryDailySeries[channel][country] = {};
+    countryDailySeries[channel][country][dateStr] = (countryDailySeries[channel][country][dateStr] || 0) + 1;
   }
 
   if (Object.keys(data).length === 0) return null;
@@ -333,7 +346,11 @@ function aggregateOrders(orders) {
     weeklySeries: datedCount > 0 ? weeklySeries : null,
     countryWeeklySeries: datedCount > 0 ? countryWeeklySeries : null,
     allWeeks: [...allWeekSet].sort(),
-    weekLabels
+    weekLabels,
+    dailySeries: datedCount > 0 ? dailySeries : null,
+    countryDailySeries: datedCount > 0 ? countryDailySeries : null,
+    allDays: [...allDaySet].sort(),
+    dayLabels
   };
 }
 

@@ -133,6 +133,31 @@ function listLiveHistoryWeeks(history) {
   }));
 }
 
+function buildDailySeries(entries) {
+  const dailySeries = {};
+  const countryDailySeries = {};
+  const allDays = entries.map(([date]) => date).sort();
+  const dayLabels = {};
+
+  for (const [date, record] of entries) {
+    if (!record || !record.channels) continue;
+    dayLabels[date] = date.slice(5).replace("-", "-");
+    for (const [channel, total] of Object.entries(record.channels)) {
+      if (!dailySeries[channel]) dailySeries[channel] = {};
+      dailySeries[channel][date] = Number(total || 0);
+
+      const channelCountries = record.countries && record.countries[channel] ? record.countries[channel] : {};
+      for (const [country, count] of Object.entries(channelCountries)) {
+        if (!countryDailySeries[channel]) countryDailySeries[channel] = {};
+        if (!countryDailySeries[channel][country]) countryDailySeries[channel][country] = {};
+        countryDailySeries[channel][country][date] = Number(count || 0);
+      }
+    }
+  }
+
+  return { dailySeries, countryDailySeries, allDays, dayLabels };
+}
+
 function buildHistoryWeekSummary(weekKey, history) {
   const days = history && history.days ? history.days : {};
   const entries = Object.entries(days).filter(([date]) => getWeekKey(date) === weekKey).sort((a, b) => a[0].localeCompare(b[0]));
@@ -183,7 +208,8 @@ function buildHistoryWeekSummary(weekKey, history) {
       weeklySeries,
       countryWeeklySeries,
       allWeeks: [weekKey],
-      weekLabels: { [weekKey]: getWeekLabel(weekKey) }
+      weekLabels: { [weekKey]: getWeekLabel(weekKey) },
+      ...buildDailySeries(entries)
     }
   };
 }
@@ -253,7 +279,8 @@ function buildHistoryRangeSummary(startDate, endDate, history) {
       weeklySeries,
       countryWeeklySeries,
       allWeeks,
-      weekLabels
+      weekLabels,
+      ...buildDailySeries(entries)
     }
   };
 }
@@ -860,8 +887,12 @@ function processChannelSummary(wb) {
   const channelData = {};
   const weeklySeries = {};
   const countryWeeklySeries = {};
+  const dailySeries = {};
+  const countryDailySeries = {};
   const weekLabels = {};
+  const dayLabels = {};
   const allWeekSet = new Set();
+  const allDaySet = new Set();
 
   function parseDate(val) {
     if (val == null) return null;
@@ -941,13 +972,20 @@ function processChannelSummary(wb) {
         const dateStr = parseDate(row[timeCol]);
         if (dateStr) {
           const info = weekInfo(dateStr);
+          allDaySet.add(dateStr);
           allWeekSet.add(info.key);
+          dayLabels[dateStr] = dateStr.slice(5);
           weekLabels[info.key] = info.label;
           if (!weeklySeries[channel]) weeklySeries[channel] = {};
           weeklySeries[channel][info.key] = (weeklySeries[channel][info.key] || 0) + 1;
           if (!countryWeeklySeries[channel]) countryWeeklySeries[channel] = {};
           if (!countryWeeklySeries[channel][country]) countryWeeklySeries[channel][country] = {};
           countryWeeklySeries[channel][country][info.key] = (countryWeeklySeries[channel][country][info.key] || 0) + 1;
+          if (!dailySeries[channel]) dailySeries[channel] = {};
+          dailySeries[channel][dateStr] = (dailySeries[channel][dateStr] || 0) + 1;
+          if (!countryDailySeries[channel]) countryDailySeries[channel] = {};
+          if (!countryDailySeries[channel][country]) countryDailySeries[channel][country] = {};
+          countryDailySeries[channel][country][dateStr] = (countryDailySeries[channel][country][dateStr] || 0) + 1;
         }
       }
     });
@@ -973,7 +1011,11 @@ function processChannelSummary(wb) {
     weeklySeries: Object.keys(weeklySeries).length > 0 ? weeklySeries : null,
     countryWeeklySeries: Object.keys(countryWeeklySeries).length > 0 ? countryWeeklySeries : null,
     allWeeks: [...allWeekSet].sort(),
-    weekLabels
+    weekLabels,
+    dailySeries: Object.keys(dailySeries).length > 0 ? dailySeries : null,
+    countryDailySeries: Object.keys(countryDailySeries).length > 0 ? countryDailySeries : null,
+    allDays: [...allDaySet].sort(),
+    dayLabels
   };
 }
 
