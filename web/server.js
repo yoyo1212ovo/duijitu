@@ -68,6 +68,18 @@ function getWeekLabel(weekKey) {
   return pad2(start.getUTCMonth() + 1) + "-" + pad2(start.getUTCDate()) + "~" + pad2(end.getUTCMonth() + 1) + "-" + pad2(end.getUTCDate());
 }
 
+function chinaDateKey(value) {
+  const date = value == null ? new Date() : new Date(value);
+  if (Number.isNaN(date.getTime())) return null;
+  return new Date(date.getTime() + 8 * 60 * 60 * 1000).toISOString().slice(0, 10);
+}
+
+function getRecentDateRange(days = 7) {
+  const endDate = chinaDateKey(new Date());
+  const startDate = chinaDateKey(new Date(Date.now() - (days - 1) * 24 * 60 * 60 * 1000));
+  return { startDate, endDate };
+}
+
 function readHistoryFile(filePath) {
   if (!filePath || !fs.existsSync(filePath)) return { days: {}, updatedAt: null };
   try {
@@ -377,18 +389,59 @@ app.get("/api/me", (req, res) => {
 });
 
 // === API: Live order data from MABANG ===
+let liveTodayCache = null;
+
 app.get("/api/live/channel-summary", async (req, res) => {
+  const requestedStart = typeof req.query.startDate === "string" && req.query.startDate ? req.query.startDate : undefined;
+  const requestedEnd = typeof req.query.endDate === "string" && req.query.endDate ? req.query.endDate : undefined;
+  const today = chinaDateKey(new Date());
+  const hasExplicitRange = Boolean(requestedStart || requestedEnd);
+  let liveResult = null;
+  let liveError = null;
+
   try {
-    const startDate = typeof req.query.startDate === "string" && req.query.startDate ? req.query.startDate : undefined;
-    const endDate = typeof req.query.endDate === "string" && req.query.endDate ? req.query.endDate : undefined;
-    const result = await fetchLiveChannelSummary({ startDate, endDate });
-    try { saveLiveHistory(result); } catch (err) { console.error("Save live history failed:", err && err.message ? err.message : err); }
-    delete result.dailySummary;
-    res.json(result);
+    if (!hasExplicitRange) {
+      if (liveTodayCache && liveTodayCache.date === today && liveTodayCache.result && Date.now() - liveTodayCache.fetchedAt < 5 * 60 * 1000) {
+        liveResult = liveTodayCache.result;
+      } else {
+        const result = await fetchLiveChannelSummary({ startDate: today, endDate: today });
+        liveResult = result;
+        liveTodayCache = { date: today, result, fetchedAt: Date.now() };
+        try { saveLiveHistory(result); } catch (err) { console.error("Save live history failed:", err && err.message ? err.message : err); }
+      }
+    } else {
+      const result = await fetchLiveChannelSummary({ startDate: requestedStart, endDate: requestedEnd });
+      liveResult = result;
+      try { saveLiveHistory(result); } catch (err) { console.error("Save live history failed:", err && err.message ? err.message : err); }
+    }
   } catch (err) {
-    console.error("MABANG live channel summary failed:", err && err.message ? err.message : err);
-    res.status(502).json({ error: "马帮实时数据拉取失败: " + ((err && err.message) || err) });
+    liveError = (err && err.message) || String(err);
+    console.error("MABANG live channel summary failed:", liveError);
   }
+
+  const range = getRecentDateRange(7);
+  const history = readHistory();
+  const snapshot = buildHistoryRangeSummary(range.startDate, range.endDate, history);
+  if (snapshot && snapshot.channelSummary && snapshot.channelSummary.channels && snapshot.channelSummary.channels.length > 0) {
+    const fetchedAt = (liveResult && liveResult.fetchedAt) || history.updatedAt || new Date().toISOString();
+    return res.json({
+      source: "mabang-history",
+      action: process.env.MABANG_ORDER_ACTION || "order-get-order-list-new",
+      fetchedAt,
+      startDate: range.startDate,
+      endDate: range.endDate,
+      total: snapshot.total,
+      channelSummary: snapshot.channelSummary,
+      liveFetchError: liveError || null
+    });
+  }
+
+  if (liveResult && liveResult.channelSummary && liveResult.channelSummary.channels && liveResult.channelSummary.channels.length > 0) {
+    delete liveResult.dailySummary;
+    return res.json(liveResult);
+  }
+
+  return res.status(502).json({ error: "马帮实时数据拉取失败: " + (liveError || "没有可用的发货数据") });
 });
 
 // === API: Historical weekly snapshots ===
