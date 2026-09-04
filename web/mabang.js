@@ -282,6 +282,44 @@ function extractDate(order) {
   return null;
 }
 
+function extractShippingDate(order) {
+  const keys = [
+    "transportTime",
+    "expressTime",
+    "shipTime",
+    "shipDate",
+    "quickPickTime"
+  ];
+  for (const key of keys) {
+    const parsed = parseDateValue(order[key]);
+    if (parsed) return parsed;
+  }
+  return null;
+}
+
+function normalizeDateOnly(value) {
+  if (value == null || value === "") return null;
+  if (value instanceof Date) {
+    if (Number.isNaN(value.getTime())) return null;
+    return value.getFullYear() + "-" + pad(value.getMonth() + 1) + "-" + pad(value.getDate());
+  }
+  return parseDateValue(value);
+}
+
+function filterOrdersByShippingDateRange(orders, startDate, endDate) {
+  const start = normalizeDateOnly(startDate);
+  const end = normalizeDateOnly(endDate);
+  if (!start && !end) return orders;
+
+  return orders.filter((order) => {
+    const shippingDate = extractShippingDate(order);
+    if (!shippingDate) return false;
+    if (start && shippingDate < start) return false;
+    if (end && shippingDate > end) return false;
+    return true;
+  });
+}
+
 function aggregateOrders(orders) {
   const data = {};
   const weeklySeries = {};
@@ -299,11 +337,11 @@ function aggregateOrders(orders) {
     const country = extractCountry(order);
     if (!channel || !country) continue;
 
+    const dateStr = extractShippingDate(order);
+    if (!dateStr) continue;
     if (!data[channel]) data[channel] = {};
     data[channel][country] = (data[channel][country] || 0) + 1;
 
-    const dateStr = extractDate(order);
-    if (!dateStr) continue;
     const info = weekInfo(dateStr);
     datedCount++;
     allDaySet.add(dateStr);
@@ -363,7 +401,7 @@ function aggregateDailyOrders(orders) {
     const country = extractCountry(order);
     if (!channel || !country) continue;
 
-    const dateStr = extractDate(order);
+    const dateStr = extractShippingDate(order);
     if (!dateStr) continue;
 
     if (!byDate[dateStr]) byDate[dateStr] = { channels: {}, countries: {} };
@@ -430,6 +468,7 @@ function buildTimeWindows(startDate, endDate) {
 }
 
 async function fetchOrderListPage({ appKey, appToken, gateway, action, cursor, startDate, endDate, signal }) {
+  // This action does not expose a transportTime query parameter, so fetch by create time and group by shipping time during aggregation.
   const params = {
     createDateStart: formatDateTime(startDate),
     createDateEnd: formatDateTime(endDate)
@@ -512,16 +551,20 @@ async function fetchLiveOrders(options = {}) {
 }
 
 async function fetchLiveChannelSummary(options = {}) {
-  const { orders, total, startDate, endDate } = await fetchLiveOrders(options);
-  const channelSummary = aggregateOrders(orders);
-  const dailySummary = aggregateDailyOrders(orders);
+  const { orders, total: rawTotal, startDate, endDate } = await fetchLiveOrders(options);
+  const shippingStartDate = normalizeDateOnly(options.shippingDateStart || startDate);
+  const shippingEndDate = normalizeDateOnly(options.shippingDateEnd || endDate);
+  const filteredOrders = filterOrdersByShippingDateRange(orders, shippingStartDate, shippingEndDate);
+  const channelSummary = aggregateOrders(filteredOrders);
+  const dailySummary = aggregateDailyOrders(filteredOrders);
   return {
     source: "mabang",
     action: options.action || process.env.MABANG_ORDER_ACTION || DEFAULT_ACTION,
     fetchedAt: new Date().toISOString(),
-    startDate: startDate.toISOString(),
-    endDate: endDate.toISOString(),
-    total,
+    startDate: shippingStartDate,
+    endDate: shippingEndDate,
+    total: filteredOrders.length,
+    rawTotal,
     channelSummary,
     dailySummary
   };
@@ -533,5 +576,6 @@ module.exports = {
   fetchLiveChannelSummary,
   aggregateOrders,
   aggregateDailyOrders,
+  filterOrdersByShippingDateRange,
   findOrderArray
 };
