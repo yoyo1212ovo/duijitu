@@ -389,38 +389,42 @@ app.get("/api/me", (req, res) => {
 });
 
 // === API: Live order data from MABANG ===
-let liveTodayCache = null;
-
 app.get("/api/live/channel-summary", async (req, res) => {
   const requestedStart = typeof req.query.startDate === "string" && req.query.startDate ? req.query.startDate : undefined;
   const requestedEnd = typeof req.query.endDate === "string" && req.query.endDate ? req.query.endDate : undefined;
-  const today = chinaDateKey(new Date());
   const hasExplicitRange = Boolean(requestedStart || requestedEnd);
+  const range = getRecentDateRange(7);
+  const history = readHistory();
   let liveResult = null;
   let liveError = null;
 
-  try {
-    if (!hasExplicitRange) {
-      if (liveTodayCache && liveTodayCache.date === today && liveTodayCache.result && Date.now() - liveTodayCache.fetchedAt < 5 * 60 * 1000) {
-        liveResult = liveTodayCache.result;
-      } else {
-        const result = await fetchLiveChannelSummary({ startDate: today, endDate: today });
-        liveResult = result;
-        liveTodayCache = { date: today, result, fetchedAt: Date.now() };
-        try { saveLiveHistory(result); } catch (err) { console.error("Save live history failed:", err && err.message ? err.message : err); }
-      }
-    } else {
-      const result = await fetchLiveChannelSummary({ startDate: requestedStart, endDate: requestedEnd });
-      liveResult = result;
-      try { saveLiveHistory(result); } catch (err) { console.error("Save live history failed:", err && err.message ? err.message : err); }
+  if (!hasExplicitRange) {
+    const snapshot = buildHistoryRangeSummary(range.startDate, range.endDate, history);
+    if (snapshot && snapshot.channelSummary && snapshot.channelSummary.channels && snapshot.channelSummary.channels.length > 0) {
+      return res.json({
+        source: "mabang-history",
+        action: process.env.MABANG_ORDER_ACTION || "order-get-order-list-new",
+        fetchedAt: history.updatedAt || new Date().toISOString(),
+        startDate: range.startDate,
+        endDate: range.endDate,
+        total: snapshot.total,
+        channelSummary: snapshot.channelSummary,
+        liveFetchError: null
+      });
     }
+  }
+
+  try {
+    const startDate = hasExplicitRange ? requestedStart : range.startDate;
+    const endDate = hasExplicitRange ? requestedEnd : range.endDate;
+    const result = await fetchLiveChannelSummary({ startDate, endDate });
+    liveResult = result;
+    try { saveLiveHistory(result); } catch (err) { console.error("Save live history failed:", err && err.message ? err.message : err); }
   } catch (err) {
     liveError = (err && err.message) || String(err);
     console.error("MABANG live channel summary failed:", liveError);
   }
 
-  const range = getRecentDateRange(7);
-  const history = readHistory();
   const snapshot = buildHistoryRangeSummary(range.startDate, range.endDate, history);
   if (snapshot && snapshot.channelSummary && snapshot.channelSummary.channels && snapshot.channelSummary.channels.length > 0) {
     const fetchedAt = (liveResult && liveResult.fetchedAt) || history.updatedAt || new Date().toISOString();
