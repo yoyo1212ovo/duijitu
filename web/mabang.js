@@ -467,12 +467,13 @@ function buildTimeWindows(startDate, endDate) {
   return windows;
 }
 
-async function fetchOrderListPage({ appKey, appToken, gateway, action, cursor, startDate, endDate, signal }) {
+async function fetchOrderListPage({ appKey, appToken, gateway, action, cursor, startDate, endDate, status, signal }) {
   // This action does not expose a transportTime query parameter, so fetch by create time and group by shipping time during aggregation.
   const params = {
     createDateStart: formatDateTime(startDate),
     createDateEnd: formatDateTime(endDate)
   };
+  if (status != null) params.status = status;
   if (cursor) params.cursor = cursor;
 
   return mabangRequest({
@@ -493,6 +494,7 @@ async function fetchLiveOrders(options = {}) {
     action = process.env.MABANG_ORDER_ACTION || DEFAULT_ACTION,
     startDate: startDateInput,
     endDate: endDateInput,
+    statuses: statusesInput,
     maxPages = Number(process.env.MABANG_MAX_PAGES) || DEFAULT_MAX_PAGES_PER_WINDOW,
     signal
   } = options;
@@ -502,10 +504,15 @@ async function fetchLiveOrders(options = {}) {
   }
 
   const { startDate, endDate } = buildDateRange({ startDate: startDateInput, endDate: endDateInput });
+  const statuses = Array.isArray(statusesInput) && statusesInput.length > 0
+    ? statusesInput.map((value) => Number(value)).filter((value) => Number.isFinite(value))
+    : [3, 7];
+  const apiEnd = new Date(Math.min(Date.now(), endDate.getTime() + 24 * 60 * 60 * 1000));
   const seen = new Set();
-  const windows = buildTimeWindows(startDate, endDate);
+  const orders = [];
+  const windows = buildTimeWindows(startDate, apiEnd);
 
-  async function fetchWindow(window) {
+  async function fetchWindow(window, status) {
     const windowOrders = [];
     let cursor = null;
 
@@ -518,6 +525,7 @@ async function fetchLiveOrders(options = {}) {
         cursor,
         startDate: window.startDate,
         endDate: window.endDate,
+        status,
         signal
       });
 
@@ -536,24 +544,36 @@ async function fetchLiveOrders(options = {}) {
     return windowOrders;
   }
 
-  const windowResults = await Promise.all(windows.map((window) => fetchWindow(window)));
-  const orders = [];
-  for (const windowOrders of windowResults) {
-    for (const order of windowOrders) {
-      const key = order.platformOrderId || order.salesRecordNumber || order.trackNumber || JSON.stringify(order);
-      if (seen.has(key)) continue;
-      seen.add(key);
-      orders.push(order);
+  const jobs = [];
+  for (const window of windows) {
+    for (const status of statuses) jobs.push({ window, status });
+  }
+
+  const concurrency = Math.min(4, Math.max(1, jobs.length));
+  let nextIndex = 0;
+  async function worker() {
+    while (nextIndex < jobs.length) {
+      const job = jobs[nextIndex++];
+      const windowOrders = await fetchWindow(job.window, job.status);
+      for (const order of windowOrders) {
+        const key = order.platformOrderId || order.salesRecordNumber || order.trackNumber || JSON.stringify(order);
+        if (seen.has(key)) continue;
+        seen.add(key);
+        orders.push(order);
+      }
     }
   }
+  await Promise.all(Array.from({ length: concurrency }, () => worker()));
 
   return { orders, total: orders.length, startDate, endDate };
 }
 
 async function fetchLiveChannelSummary(options = {}) {
-  const { orders, total: rawTotal, startDate, endDate } = await fetchLiveOrders(options);
-  const shippingStartDate = normalizeDateOnly(options.shippingDateStart || startDate);
-  const shippingEndDate = normalizeDateOnly(options.shippingDateEnd || endDate);
+  const shippingStartDate = normalizeDateOnly(options.shippingDateStart || options.startDate);
+  const shippingEndDate = normalizeDateOnly(options.shippingDateEnd || options.endDate);
+  const queryStartDate = options.queryStartDate || options.startDate;
+  const queryEndDate = options.queryEndDate || options.endDate;
+  const { orders, total: rawTotal } = await fetchLiveOrders({ ...options, startDate: queryStartDate, endDate: queryEndDate });
   const filteredOrders = filterOrdersByShippingDateRange(orders, shippingStartDate, shippingEndDate);
   const channelSummary = aggregateOrders(filteredOrders);
   const dailySummary = aggregateDailyOrders(filteredOrders);
