@@ -4,6 +4,7 @@ const DEFAULT_GATEWAY = "https://gwapi.mabangerp.com/api/v2";
 const DEFAULT_ACTION = "order-get-order-list-new";
 const PAGE_SIZE = 200;
 const MAX_PAGES = 2000;
+const DEFAULT_MAX_PAGES_PER_WINDOW = 500;
 const MAX_LIVE_LOOKBACK_DAYS = 7;
 const REQUEST_TIMEOUT_MS = Number(process.env.MABANG_TIMEOUT_MS) || 15000;
 
@@ -453,7 +454,7 @@ async function fetchLiveOrders(options = {}) {
     action = process.env.MABANG_ORDER_ACTION || DEFAULT_ACTION,
     startDate: startDateInput,
     endDate: endDateInput,
-    maxPages = 20,
+    maxPages = Number(process.env.MABANG_MAX_PAGES) || DEFAULT_MAX_PAGES_PER_WINDOW,
     signal
   } = options;
 
