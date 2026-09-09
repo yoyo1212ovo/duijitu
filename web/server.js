@@ -38,6 +38,7 @@ function writeJSON(filename, data) {
 
 const HISTORY_FILE = "live-history.json";
 const HISTORY_SEED_FILE = process.env.HISTORY_SEED_FILE || path.join(__dirname, "data", HISTORY_FILE);
+const CHANNEL_MAPPING_FILE = "channel-mapping.json";
 
 function pad2(n) {
   return String(n).padStart(2, "0");
@@ -111,6 +112,67 @@ function readHistory() {
 
 function writeHistory(history) {
   writeJSON(HISTORY_FILE, history);
+}
+
+function readChannelMapping() {
+  const parsed = readJSON(CHANNEL_MAPPING_FILE);
+  const records = Array.isArray(parsed) ? parsed : (parsed && Array.isArray(parsed.records) ? parsed.records : []);
+  const bySource = new Map();
+  for (const record of records) {
+    if (!record || !record.sourceName) continue;
+    bySource.set(record.sourceName, record);
+  }
+
+  const history = readHistory();
+  let dynamicIndex = bySource.size + 1;
+  for (const day of Object.values(history.days || {})) {
+    for (const channel of Object.keys(day.channels || {})) {
+      if (bySource.has(channel)) continue;
+      bySource.set(channel, {
+        id: "map-unknown-" + dynamicIndex++,
+        sourceName: channel,
+        providerChannel: "",
+        provider: "",
+        displayName: "",
+        status: "unmapped",
+        enabled: false
+      });
+    }
+  }
+
+  const normalized = [...bySource.values()];
+  return { records: normalized, bySource: Object.fromEntries(bySource) };
+}
+
+function writeChannelMapping(mapping) {
+  writeJSON(CHANNEL_MAPPING_FILE, { version: 1, updatedAt: new Date().toISOString(), records: mapping.records });
+}
+
+function resolveDisplayChannel(sourceName, mapping) {
+  const record = mapping.bySource[sourceName];
+  if (!record || record.status !== "mapped" || !record.enabled || !record.displayName) return null;
+  return record.displayName;
+}
+
+function mapHistoryToDisplay(history) {
+  const mapping = readChannelMapping();
+  const days = {};
+  for (const [date, record] of Object.entries(history.days || {})) {
+    if (!record || !record.channels) continue;
+    const mapped = { channels: {}, countries: {} };
+    for (const [sourceName, total] of Object.entries(record.channels)) {
+      const displayName = resolveDisplayChannel(sourceName, mapping);
+      if (!displayName) continue;
+      mapped.channels[displayName] = (mapped.channels[displayName] || 0) + Number(total || 0);
+      const sourceCountries = record.countries && record.countries[sourceName] ? record.countries[sourceName] : {};
+      if (!mapped.countries[displayName]) mapped.countries[displayName] = {};
+      for (const [country, count] of Object.entries(sourceCountries)) {
+        mapped.countries[displayName][country] = (mapped.countries[displayName][country] || 0) + Number(count || 0);
+      }
+    }
+    if (Object.keys(mapped.channels).length > 0) days[date] = mapped;
+  }
+  return { ...history, days };
 }
 
 function saveLiveHistory(result) {
@@ -388,13 +450,50 @@ app.get("/api/me", (req, res) => {
   res.json({ user: { id: "public", username: "访客" } });
 });
 
+// === API: Mabang channel mapping database ===
+app.get("/api/channel-mapping", (req, res) => {
+  const mapping = readChannelMapping();
+  const records = mapping.records
+    .map((record) => ({ ...record }))
+    .sort((a, b) => {
+      if (a.status === b.status) return a.sourceName.localeCompare(b.sourceName, "zh-CN");
+      return a.status === "unmapped" ? -1 : 1;
+    });
+  res.json({
+    records,
+    mappedCount: records.filter((record) => record.status === "mapped").length,
+    unmappedCount: records.filter((record) => record.status === "unmapped").length
+  });
+});
+
+app.put("/api/channel-mapping/:id", (req, res) => {
+  const mapping = readChannelMapping();
+  const record = mapping.records.find((item) => item.id === req.params.id);
+  if (!record) return res.status(404).json({ error: "channel mapping record not found" });
+
+  const allowed = ["sourceName", "providerChannel", "provider", "displayName", "enabled"];
+  for (const key of allowed) {
+    if (Object.prototype.hasOwnProperty.call(req.body, key)) record[key] = req.body[key];
+  }
+  record.sourceName = String(record.sourceName || "").trim();
+  record.providerChannel = String(record.providerChannel || "").trim();
+  record.provider = String(record.provider || "").trim();
+  record.displayName = String(record.displayName || "").trim();
+  record.enabled = Boolean(record.enabled);
+  record.status = record.displayName && record.enabled ? "mapped" : "unmapped";
+
+  if (!record.sourceName) return res.status(400).json({ error: "sourceName is required" });
+  writeChannelMapping(mapping);
+  res.json({ record });
+});
+
 // === API: Live order data from MABANG ===
 app.get("/api/live/channel-summary", async (req, res) => {
   const requestedStart = typeof req.query.startDate === "string" && req.query.startDate ? req.query.startDate : undefined;
   const requestedEnd = typeof req.query.endDate === "string" && req.query.endDate ? req.query.endDate : undefined;
   const hasExplicitRange = Boolean(requestedStart || requestedEnd);
   const range = getRecentDateRange(7);
-  const history = readHistory();
+  const history = mapHistoryToDisplay(readHistory());
   let liveResult = null;
   let liveError = null;
 
@@ -420,20 +519,29 @@ app.get("/api/live/channel-summary", async (req, res) => {
     const result = await fetchLiveChannelSummary({ startDate, endDate });
     liveResult = result;
     try { saveLiveHistory(result); } catch (err) { console.error("Save live history failed:", err && err.message ? err.message : err); }
+    const refreshedHistory = mapHistoryToDisplay(readHistory());
+    const refreshedSnapshot = buildHistoryRangeSummary(startDate, endDate, refreshedHistory);
+    if (refreshedSnapshot && refreshedSnapshot.channelSummary && refreshedSnapshot.channelSummary.channels && refreshedSnapshot.channelSummary.channels.length > 0) {
+      delete refreshedSnapshot.dailySummary;
+      return res.json(refreshedSnapshot);
+    }
   } catch (err) {
     liveError = (err && err.message) || String(err);
     console.error("MABANG live channel summary failed:", liveError);
   }
 
-  const snapshot = buildHistoryRangeSummary(range.startDate, range.endDate, history);
+  const fallbackHistory = mapHistoryToDisplay(readHistory());
+  const fallbackStart = hasExplicitRange ? (requestedStart || range.startDate) : range.startDate;
+  const fallbackEnd = hasExplicitRange ? (requestedEnd || range.endDate) : range.endDate;
+  const snapshot = buildHistoryRangeSummary(fallbackStart, fallbackEnd, fallbackHistory);
   if (snapshot && snapshot.channelSummary && snapshot.channelSummary.channels && snapshot.channelSummary.channels.length > 0) {
-    const fetchedAt = (liveResult && liveResult.fetchedAt) || history.updatedAt || new Date().toISOString();
+    const fetchedAt = (liveResult && liveResult.fetchedAt) || fallbackHistory.updatedAt || new Date().toISOString();
     return res.json({
       source: "mabang-history",
       action: process.env.MABANG_ORDER_ACTION || "order-get-order-list-new",
       fetchedAt,
-      startDate: range.startDate,
-      endDate: range.endDate,
+      startDate: fallbackStart,
+      endDate: fallbackEnd,
       total: snapshot.total,
       channelSummary: snapshot.channelSummary,
       liveFetchError: liveError || null
@@ -450,7 +558,7 @@ app.get("/api/live/channel-summary", async (req, res) => {
 
 // === API: Historical weekly snapshots ===
 app.get("/api/live/history", (req, res) => {
-  const history = readHistory();
+  const history = mapHistoryToDisplay(readHistory());
   res.json({
     weeks: listLiveHistoryWeeks(history),
     days: Object.keys(history.days || {}).sort(),
@@ -468,7 +576,7 @@ app.get("/api/live/history/range", (req, res) => {
   if (startDate > endDate) {
     return res.status(400).json({ error: "start date must be before or equal to end date" });
   }
-  const history = readHistory();
+  const history = mapHistoryToDisplay(readHistory());
   const snapshot = buildHistoryRangeSummary(startDate, endDate, history);
   if (!snapshot) return res.status(404).json({ error: "date range snapshot not found" });
   res.json(snapshot);
@@ -477,7 +585,7 @@ app.get("/api/live/history/range", (req, res) => {
 app.get("/api/live/history/:weekKey", (req, res) => {
   const weekKey = req.params.weekKey;
   if (!/^\d{4}-\d{2}-\d{2}$/.test(weekKey)) return res.status(400).json({ error: "invalid week key" });
-  const history = readHistory();
+  const history = mapHistoryToDisplay(readHistory());
   const snapshot = buildHistoryWeekSummary(weekKey, history);
   if (!snapshot) return res.status(404).json({ error: "week snapshot not found" });
   res.json(snapshot);

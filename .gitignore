@@ -3,6 +3,8 @@ node_modules/
 .DS_Store
 *.log
 web/data/*.json
+!web/data/channel-mapping.json
+!web/data/live-history.json
 web/uploads/*
 !web/uploads/.gitkeep
 tunnel_url.txt

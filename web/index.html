@@ -261,6 +261,26 @@ select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--
 .vol-store-name{color:var(--text2);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-right:12px}
 .vol-store-count{font-weight:600;color:var(--accent2);flex-shrink:0}
 .vol-popup-footer{padding:12px 20px;border-top:1px solid var(--border);font-size:11px;color:var(--text3)}
+.channel-alert-badge{position:absolute;top:-7px;right:-7px;min-width:18px;height:18px;border-radius:9px;background:var(--red);color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;padding:0 5px;box-shadow:0 0 0 2px var(--surface)}
+.channel-alert-popover{position:absolute;top:calc(100% + 10px);right:0;width:250px;padding:10px 12px;border:1px solid rgba(248,113,113,.45);border-radius:8px;background:#1b1118;color:#fecaca;font-size:12px;line-height:1.5;box-shadow:0 12px 28px rgba(0,0,0,.45);display:none;z-index:30}
+.channel-alert-popover::before{content:"";position:absolute;top:-6px;right:18px;width:10px;height:10px;border-left:1px solid rgba(248,113,113,.45);border-top:1px solid rgba(248,113,113,.45);background:#1b1118;transform:rotate(45deg)}
+.channel-mapping-overlay{position:fixed;inset:0;background:rgba(0,0,0,.58);z-index:3000;display:flex;align-items:center;justify-content:center;padding:18px}
+.channel-mapping-modal{background:var(--surface);border:1px solid var(--border);border-radius:12px;width:1100px;max-width:96vw;max-height:90vh;display:flex;flex-direction:column;box-shadow:0 24px 70px rgba(0,0,0,.55);animation:fadeIn .18s ease-out}
+.channel-mapping-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid var(--border)}
+.channel-mapping-header h3{font-size:15px;font-weight:700;letter-spacing:-.01em}
+.channel-mapping-body{overflow:auto;padding:16px 20px}
+.cm-table{width:100%;border-collapse:collapse;font-size:12px}
+.cm-table th{position:sticky;top:0;background:var(--surface2);text-align:left;padding:10px 12px;font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid var(--border);z-index:1}
+.cm-table td{padding:8px 12px;border-bottom:1px solid rgba(255,255,255,.03);vertical-align:middle}
+.cm-input{width:100%;min-width:110px;background:#121222;border:1px solid var(--border);border-radius:6px;color:var(--text);padding:7px 9px;font-size:12px;font-family:var(--font)}
+.cm-input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 2px rgba(99,102,241,.12)}
+.cm-status{display:inline-flex;align-items:center;gap:5px;font-size:11px}
+.cm-status-dot{width:7px;height:7px;border-radius:50%;background:var(--text3)}
+.cm-status.mapped .cm-status-dot{background:var(--green)}
+.cm-status.unmapped .cm-status-dot{background:var(--red)}
+.cm-save{width:100%;padding:7px 10px;border-radius:6px;border:1px solid var(--accent);background:transparent;color:var(--accent2);font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;font-family:var(--font)}
+.cm-save:hover{background:var(--accent);color:#fff}
+.channel-mapping-footer{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;border-top:1px solid var(--border);font-size:12px;color:var(--text3)}
 </style>
 </head>
 <body>
@@ -278,7 +298,7 @@ select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--
 </div>
 <header class="header" id="appHeader" style="display:none;">
   <div class="header-l"><span class="dot"></span><h1>&#x7269;&#x6D41;&#x8FD0;&#x8D39;&#x5206;&#x6790;&#x5E73;&#x53F0;</h1></div>
-  <div class="header-r"><button class="export-btn" id="exportBtn" style="display:none;" title="导出报告">📥 导出</button><button class="admin-btn" id="adminBtn" style="display:none;">&#x2699; &#x7BA1;&#x7406;</button><span class="user-tag" id="liveTime" style="display:none;"></span><span class="user-tag" id="userTag"></span><button class="logout-btn" id="logoutBtn">&#x9000;&#x51FA;</button></div>
+  <div class="header-r"><button class="export-btn" id="exportBtn" style="display:none;" title="导出报告">📥 导出</button><div style="position:relative;display:inline-flex"><button class="admin-btn" id="channelMappingBtn" style="display:none;">&#x1F4E6; 物流渠道</button><span class="channel-alert-badge" id="channelAlertBadge" style="display:none;">0</span><div class="channel-alert-popover" id="channelAlertPopover" role="status"></div></div><button class="admin-btn" id="adminBtn" style="display:none;">&#x2699; &#x7BA1;&#x7406;</button><span class="user-tag" id="liveTime" style="display:none;"></span><span class="user-tag" id="userTag"></span><button class="logout-btn" id="logoutBtn">&#x9000;&#x51FA;</button></div>
 </header>
 <div class="file-bar" id="fileBar" style="display:none;">
   <button class="upload-btn" id="uploadBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>&#x4E0A;&#x4F20; Excel</button>
@@ -409,7 +429,7 @@ div>
   <p>&#x4E0A;&#x4F20; Excel &#x6587;&#x4EF6;&#x4EE5;&#x67E5;&#x770B;&#x8FD0;&#x8D39;&#x5BF9;&#x6BD4;&#x56FE;&#x8868;</p>
 </div><script>
 
-var API={async request(method,url,body){var opts={method:method,headers:{"Content-Type":"application/json"}};var token=localStorage.getItem("token");if(token)opts.headers["Authorization"]="Bearer "+token;if(body)opts.body=JSON.stringify(body);var res=await fetch(url,opts);var text=await res.text();var data;try{data=JSON.parse(text)}catch(e){if(text&&(text.indexOf("<!DOCTYPE")>=0||text.indexOf("<html")>=0)){if(res.status>=500)throw new Error("服务暂时不可用或正在启动，请稍后重试");throw new Error("服务返回了非 JSON 数据，请稍后重试")}throw e}if(!res.ok)throw new Error(data&&data.error?data.error:"请求失败");return data},async uploadFile(file){var form=new FormData();form.append("file",file);var token=localStorage.getItem("token");var res=await fetch("/api/upload",{method:"POST",headers:{"Authorization":"Bearer "+token},body:form});var data=await res.json();if(!res.ok)throw new Error(data.error||"上传失败");return data},register:function(u,p){return API.request("POST","/api/register",{username:u,password:p})},login:function(u,p){return API.request("POST","/api/login",{username:u,password:p})},me:function(){return API.request("GET","/api/me")},files:function(){return API.request("GET","/api/files")},fileData:function(id){return API.request("GET","/api/file/"+id+"/data")},channelSummary:function(id){return API.request("GET","/api/file/"+id+"/channel-summary")},liveChannelSummary:function(){return API.request("GET","/api/live/channel-summary")},liveHistory:function(){return API.request("GET","/api/live/history")},liveHistoryWeek:function(week){return API.request("GET","/api/live/history/"+encodeURIComponent(week))},liveHistoryRange:function(start,end){return API.request("GET","/api/live/history/range?startDate="+encodeURIComponent(start)+"&endDate="+encodeURIComponent(end))},deleteFile:function(id){return API.request("DELETE","/api/file/"+id)}};
+var API={async request(method,url,body){var opts={method:method,headers:{"Content-Type":"application/json"}};var token=localStorage.getItem("token");if(token)opts.headers["Authorization"]="Bearer "+token;if(body)opts.body=JSON.stringify(body);var res=await fetch(url,opts);var text=await res.text();var data;try{data=JSON.parse(text)}catch(e){if(text&&(text.indexOf("<!DOCTYPE")>=0||text.indexOf("<html")>=0)){if(res.status>=500)throw new Error("服务暂时不可用或正在启动，请稍后重试");throw new Error("服务返回了非 JSON 数据，请稍后重试")}throw e}if(!res.ok)throw new Error(data&&data.error?data.error:"请求失败");return data},async uploadFile(file){var form=new FormData();form.append("file",file);var token=localStorage.getItem("token");var res=await fetch("/api/upload",{method:"POST",headers:{"Authorization":"Bearer "+token},body:form});var data=await res.json();if(!res.ok)throw new Error(data.error||"上传失败");return data},register:function(u,p){return API.request("POST","/api/register",{username:u,password:p})},login:function(u,p){return API.request("POST","/api/login",{username:u,password:p})},me:function(){return API.request("GET","/api/me")},files:function(){return API.request("GET","/api/files")},fileData:function(id){return API.request("GET","/api/file/"+id+"/data")},channelSummary:function(id){return API.request("GET","/api/file/"+id+"/channel-summary")},liveChannelSummary:function(){return API.request("GET","/api/live/channel-summary")},liveHistory:function(){return API.request("GET","/api/live/history")},liveHistoryWeek:function(week){return API.request("GET","/api/live/history/"+encodeURIComponent(week))},liveHistoryRange:function(start,end){return API.request("GET","/api/live/history/range?startDate="+encodeURIComponent(start)+"&endDate="+encodeURIComponent(end))},channelMapping:function(){return API.request("GET","/api/channel-mapping")},updateChannelMapping:function(id,body){return API.request("PUT","/api/channel-mapping/"+encodeURIComponent(id),body)},deleteFile:function(id){return API.request("DELETE","/api/file/"+id)}};
 var isLoginMode=true;
 function showAuthError(msg){document.getElementById("authError").textContent=msg;document.getElementById("authError").classList.add("show")}
 function clearAuthError(){document.getElementById("authError").classList.remove("show")}
@@ -1212,6 +1232,38 @@ function updateSummaryTable(){
 }
 
 </script>
+
+<script>
+var channelMappingRecords=[];
+function updateChannelAlert(){var badge=document.getElementById('channelAlertBadge'),popover=document.getElementById('channelAlertPopover');if(!badge)return;var count=channelMappingRecords.filter(function(r){return r.status==='unmapped'}).length;badge.textContent=count;badge.style.display=count>0?'flex':'none';if(popover){popover.style.display=count>0?'block':'none';popover.textContent=count>0?'有 '+count+' 条马帮渠道未匹配，请点击“物流渠道”处理':'';}}
+function renderChannelMappingRows(){var tbody=document.getElementById('channelMappingBody');if(!tbody)return;var records=channelMappingRecords.slice().sort(function(a,b){if(a.status===b.status)return a.sourceName.localeCompare(b.sourceName,'zh-CN');return a.status==='unmapped'?-1:1});tbody.innerHTML=records.map(function(r){var statusText=r.status==='mapped'?'已映射':'待编辑';return'<tr><td><input class="cm-input" id="cm-source-'+r.id+'" value="'+escapeHtml(r.sourceName)+'"></td><td><input class="cm-input" id="cm-providerChannel-'+r.id+'" value="'+escapeHtml(r.providerChannel)+'"></td><td><input class="cm-input" id="cm-provider-'+r.id+'" value="'+escapeHtml(r.provider)+'"></td><td><input class="cm-input" id="cm-display-'+r.id+'" value="'+escapeHtml(r.displayName)+'"></td><td><span class="cm-status '+r.status+'"><span class="cm-status-dot"></span>'+statusText+'</span></td><td><button class="cm-save" onclick="saveChannelMappingRecord(\''+r.id+'\')">保存</button></td></tr>'}).join('');document.getElementById('channelMappingSummary').textContent='共 '+records.length+' 条，未映射 '+records.filter(function(r){return r.status==='unmapped'}).length+' 条';}
+async function loadChannelMapping(){try{var data=await API.channelMapping();channelMappingRecords=(data&&data.records)||[];updateChannelAlert();if(document.getElementById('channelMappingOverlay').style.display==='flex')renderChannelMappingRows()}catch(e){console.error(e)}}
+function openChannelMapping(){var popover=document.getElementById('channelAlertPopover');if(popover)popover.style.display='none';document.getElementById('channelMappingOverlay').style.display='flex';loadChannelMapping().then(renderChannelMappingRows)}
+function closeChannelMapping(){document.getElementById('channelMappingOverlay').style.display='none'}
+async function saveChannelMappingRecord(id){var source=document.getElementById('cm-source-'+id),providerChannel=document.getElementById('cm-providerChannel-'+id),provider=document.getElementById('cm-provider-'+id),display=document.getElementById('cm-display-'+id);if(!source||!providerChannel||!provider||!display)return;var btn=event&&event.target;if(btn){btn.disabled=true;btn.textContent='保存中'}try{await API.updateChannelMapping(id,{sourceName:source.value,providerChannel:providerChannel.value,provider:provider.value,displayName:display.value,enabled:true});await loadChannelMapping();renderChannelMappingRows();if(pageMode==='channel'){if(currentPeriodMode==='history'&&currentHistoryWeek)loadHistoryWeek(currentHistoryWeek);else if(currentPeriodMode==='custom'&&currentRangeStart&&currentRangeEnd)loadHistoryRange(currentRangeStart,currentRangeEnd);else loadLiveChannelSummary()}}catch(e){alert('保存失败: '+e.message)}finally{if(btn){btn.disabled=false;btn.textContent='保存'}}}
+document.getElementById('channelMappingBtn').style.display='inline-flex';
+document.getElementById('channelMappingBtn').onclick=openChannelMapping;
+loadChannelMapping();
+</script>
+
+<div class="channel-mapping-overlay" id="channelMappingOverlay" style="display:none;" onclick="if(event.target===this)closeChannelMapping()">
+  <div class="channel-mapping-modal">
+    <div class="channel-mapping-header">
+      <h3>物流渠道映射</h3>
+      <button class="vol-popup-close" onclick="closeChannelMapping()">&times;</button>
+    </div>
+    <div class="channel-mapping-body">
+      <div style="margin-bottom:12px;font-size:12px;color:var(--text3);">原始渠道未填写“最终物流渠道”时不会进入单量排行、物流渠道和曲线图。</div>
+      <div style="overflow:auto;max-height:68vh;">
+        <table class="cm-table">
+          <thead><tr><th>马帮物流渠道</th><th>物流商渠道</th><th>物流商</th><th>最终物流渠道</th><th>状态</th><th>操作</th></tr></thead>
+          <tbody id="channelMappingBody"><tr><td colspan="6" style="text-align:center;padding:28px;color:var(--text3)">加载中...</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="channel-mapping-footer"><span id="channelMappingSummary"></span><span>保存后会立即刷新页面渠道统计</span></div>
+  </div>
+</div>
 
 <div class="vol-popup-overlay" id="volPopupOverlay" style="display:none;" onclick="if(event.target===this)closeVolPopup()">
   <div class="vol-popup" id="volPopup">

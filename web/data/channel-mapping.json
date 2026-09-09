@@ -1,0 +1,2661 @@
+{
+  "version": 1,
+  "updatedAt": "2026-09-09T07:24:26.497Z",
+  "records": [
+    {
+      "id": "map-1",
+      "sourceName": "DHL - Warenpost  International Premium Parcel (Economy 2-8 Business Days)",
+      "providerChannel": "DHL海外仓",
+      "provider": "万邑通",
+      "displayName": "万邑通/DHL海外仓",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-2",
+      "sourceName": "DHL - Warenpost International Economy Parcel (Economy 2-10 Business Days)-DE",
+      "providerChannel": "DHL海外仓",
+      "provider": "万邑通",
+      "displayName": "万邑通/DHL海外仓",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-3",
+      "sourceName": "ECSLR - 敏感专线",
+      "providerChannel": "万邦敏感货专线",
+      "provider": "万邦",
+      "displayName": "万邦/万邦敏感货专线",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-4",
+      "sourceName": "EUSLPHR - 万邦专线挂号普货",
+      "providerChannel": "万邦专线挂号普货",
+      "provider": "万邦",
+      "displayName": "万邦/万邦专线挂号普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-5",
+      "sourceName": "EUSLPHR - 万邦专线挂号普货-回传转单号",
+      "providerChannel": "万邦专线挂号普货",
+      "provider": "万邦",
+      "displayName": "万邦/万邦专线挂号普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-6",
+      "sourceName": "EUSLPHR - 万邦专线挂号普货-加拿大",
+      "providerChannel": "万邦专线挂号普货",
+      "provider": "万邦",
+      "displayName": "万邦/万邦专线挂号普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-7",
+      "sourceName": "EUSLR - 万邦专线挂号含电",
+      "providerChannel": "万邦专线挂号含电",
+      "provider": "万邦",
+      "displayName": "万邦/万邦专线挂号含电",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-8",
+      "sourceName": "ivy活页海外仓",
+      "providerChannel": "ivy活页海外仓",
+      "provider": "ubi",
+      "displayName": "ubi/ivy活页海外仓",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-9",
+      "sourceName": "JS11-带电-回传",
+      "providerChannel": "JS11-带电",
+      "provider": "急速",
+      "displayName": "急速/JS11-带电",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-10",
+      "sourceName": "JS11-化妆品",
+      "providerChannel": "JS11-化妆品",
+      "provider": "急速",
+      "displayName": "急速/JS11-化妆品",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-11",
+      "sourceName": "JS11-化妆品-回传转单号",
+      "providerChannel": "JS11-化妆品",
+      "provider": "急速",
+      "displayName": "急速/JS11-化妆品",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-12",
+      "sourceName": "JS11-普货",
+      "providerChannel": "JS11-普货",
+      "provider": "急速",
+      "displayName": "急速/JS11-普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-13",
+      "sourceName": "JS11-普货-回传转单号",
+      "providerChannel": "JS11-普货",
+      "provider": "急速",
+      "displayName": "急速/JS11-普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-14",
+      "sourceName": "PLXB-P2",
+      "providerChannel": "PLXB-P2",
+      "provider": "环世通",
+      "displayName": "环世通/PLXB-P2",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-15",
+      "sourceName": "PLXB-Z2",
+      "providerChannel": "PLXB-Z2",
+      "provider": "环世通",
+      "displayName": "环世通/PLXB-Z2",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-16",
+      "sourceName": "Specialpak-优速专线",
+      "providerChannel": "Specialpak-优速专线",
+      "provider": "华翰",
+      "displayName": "华翰/Specialpak-优速专线",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-17",
+      "sourceName": "ST美国普货岛屿专线",
+      "providerChannel": "ST美国普货岛屿专线",
+      "provider": "嘉运",
+      "displayName": "嘉运/ST美国普货岛屿专线",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-18",
+      "sourceName": "ST美国普货专线特惠",
+      "providerChannel": "ST美国普货专线特惠",
+      "provider": "嘉运",
+      "displayName": "嘉运/ST美国普货专线特惠",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-19",
+      "sourceName": "ST美国食品专线特惠",
+      "providerChannel": "ST美国食品专线特惠",
+      "provider": "嘉运",
+      "displayName": "嘉运/ST美国食品专线特惠",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-20",
+      "sourceName": "SYEPL-顺速宝plus挂号",
+      "providerChannel": "顺速宝plus挂号",
+      "provider": "顺友",
+      "displayName": "顺友/顺速宝plus挂号",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-21",
+      "sourceName": "傲飞JS_带电专线（BBC）",
+      "providerChannel": "JS11-带电",
+      "provider": "急速",
+      "displayName": "急速/JS11-带电",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-22",
+      "sourceName": "傲飞JS_带电专线（BBC）-回传",
+      "providerChannel": "JS11-带电",
+      "provider": "急速",
+      "displayName": "急速/JS11-带电",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-23",
+      "sourceName": "傲飞JS_带电专线（BBC）-转单号-Trae-德国杂货铺",
+      "providerChannel": "JS11-带电",
+      "provider": "急速",
+      "displayName": "急速/JS11-带电",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-24",
+      "sourceName": "傲飞JS_化妆品专线（BBC）",
+      "providerChannel": "JS11-化妆品",
+      "provider": "急速",
+      "displayName": "急速/JS11-化妆品",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-25",
+      "sourceName": "傲飞JS_化妆品专线（BBC）-回传",
+      "providerChannel": "JS11-化妆品",
+      "provider": "急速",
+      "displayName": "急速/JS11-化妆品",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-26",
+      "sourceName": "傲飞JS_普货专线（BBC）",
+      "providerChannel": "JS11-普货",
+      "provider": "急速",
+      "displayName": "急速/JS11-普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-27",
+      "sourceName": "傲飞JS_普货专线（BBC）-回传",
+      "providerChannel": "JS11-普货",
+      "provider": "急速",
+      "displayName": "急速/JS11-普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-28",
+      "sourceName": "傲飞JS_普货专线（BBC）-转单号-Trae-德国杂货铺",
+      "providerChannel": "JS11-普货",
+      "provider": "急速",
+      "displayName": "急速/JS11-普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-29",
+      "sourceName": "傲飞国际快线_SL美国专线小包-特惠（经济）",
+      "providerChannel": "美国专线小包-特惠",
+      "provider": "顺瓴",
+      "displayName": "顺瓴/美国专线小包-特惠",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-30",
+      "sourceName": "傲飞国际快线_WB 化妆品专线",
+      "providerChannel": "万邦化妆品专线",
+      "provider": "万邦",
+      "displayName": "万邦/万邦化妆品专线",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-31",
+      "sourceName": "傲飞国际快线_WB 快线含电",
+      "providerChannel": "万邦快线含电",
+      "provider": "万邦",
+      "displayName": "万邦/万邦快线含电",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-32",
+      "sourceName": "傲飞国际快线_WB 专线挂号含电",
+      "providerChannel": "万邦专线挂号含电",
+      "provider": "万邦",
+      "displayName": "万邦/万邦专线挂号含电",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-33",
+      "sourceName": "傲飞国际快线_WB 专线挂号普货",
+      "providerChannel": "万邦专线挂号普货",
+      "provider": "万邦",
+      "displayName": "万邦/万邦专线挂号普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-34",
+      "sourceName": "傲飞国际快线_WB 专线挂号普货（美国）",
+      "providerChannel": "万邦专线挂号普货",
+      "provider": "万邦",
+      "displayName": "万邦/万邦专线挂号普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-35",
+      "sourceName": "傲飞国际快线_WB 专线挂号普货——回传传单号",
+      "providerChannel": "万邦专线挂号普货",
+      "provider": "万邦",
+      "displayName": "万邦/万邦专线挂号普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-36",
+      "sourceName": "傲飞国际快线_WB敏感专线",
+      "providerChannel": "万邦敏感货专线",
+      "provider": "万邦",
+      "displayName": "万邦/万邦敏感货专线",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-37",
+      "sourceName": "傲飞国际快线_WB敏感专线-回传",
+      "providerChannel": "万邦敏感货专线",
+      "provider": "万邦",
+      "displayName": "万邦/万邦敏感货专线",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-38",
+      "sourceName": "傲飞国际快线_欧美_特惠带电-加拿大",
+      "providerChannel": "云途全球专线挂号（特惠带电）",
+      "provider": "云途",
+      "displayName": "云途/云途全球专线挂号（特惠带电）",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-39",
+      "sourceName": "傲飞国际快线_欧美_特惠普货-加拿大",
+      "providerChannel": "云途全球专线挂号（特惠普货）",
+      "provider": "云途",
+      "displayName": "云途/云途全球专线挂号（特惠普货）",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-40",
+      "sourceName": "傲飞国际快线_欧美_特惠普货-只回传尾程",
+      "providerChannel": "云途全球专线挂号（特惠普货）",
+      "provider": "云途",
+      "displayName": "云途/云途全球专线挂号（特惠普货）",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-41",
+      "sourceName": "傲飞国际快线HH_全球专线-特敏",
+      "providerChannel": "全球专线-特敏",
+      "provider": "领讯",
+      "displayName": "领讯/全球专线-特敏",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-42",
+      "sourceName": "傲飞国际快线HH_优速专线",
+      "providerChannel": "Specialpak-优速专线",
+      "provider": "华翰",
+      "displayName": "华翰/Specialpak-优速专线",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-43",
+      "sourceName": "傲飞国际快线HH_甄选专线",
+      "providerChannel": "Specialpak甄选专线",
+      "provider": "华翰",
+      "displayName": "华翰/Specialpak甄选专线",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-44",
+      "sourceName": "傲飞国际快线HH_智惠选专线-特惠",
+      "providerChannel": "智惠选专线-特惠",
+      "provider": "华翰",
+      "displayName": "华翰/智惠选专线-特惠",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-45",
+      "sourceName": "傲飞国际快线HH_智惠选专线-特货",
+      "providerChannel": "智惠选专线-特货",
+      "provider": "华翰",
+      "displayName": "华翰/智惠选专线-特货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-46",
+      "sourceName": "傲飞国际快线HH_智惠选专线-特货(PR)",
+      "providerChannel": "(包税)智惠选专线-偏远",
+      "provider": "华翰",
+      "displayName": "华翰/(包税)智惠选专线-偏远",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-47",
+      "sourceName": "傲飞国际快线HH_智尚宝-特货",
+      "providerChannel": "智尚宝-特敏",
+      "provider": "华翰",
+      "displayName": "华翰/智尚宝-特敏",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-48",
+      "sourceName": "傲飞国际快线HH_智尚宝-特货-回传",
+      "providerChannel": "智尚宝-特货",
+      "provider": "华翰",
+      "displayName": "华翰/智尚宝-特货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-49",
+      "sourceName": "傲飞国际快线JS_美国普货",
+      "providerChannel": "美国普货渠道",
+      "provider": "急速",
+      "displayName": "急速/美国普货渠道",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-50",
+      "sourceName": "傲飞国际快线JS_专线标快-带电",
+      "providerChannel": "急速全球专线标快-带电",
+      "provider": "急速",
+      "displayName": "急速/急速全球专线标快-带电",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-51",
+      "sourceName": "傲飞国际快线JS_专线标快-普货",
+      "providerChannel": "急速全球专线标快-普货",
+      "provider": "急速",
+      "displayName": "急速/急速全球专线标快-普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-52",
+      "sourceName": "傲飞国际快线JS_专线标快-普货-回传",
+      "providerChannel": "急速全球专线标快-普货",
+      "provider": "急速",
+      "displayName": "急速/急速全球专线标快-普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-53",
+      "sourceName": "傲飞国际快线JS_专线特惠-普货",
+      "providerChannel": "急速全球专线特惠-普货",
+      "provider": "急速",
+      "displayName": "急速/急速全球专线特惠-普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-54",
+      "sourceName": "傲飞国际快线LX_荷邮挂号（敏感）",
+      "providerChannel": "荷邮挂号-敏感",
+      "provider": "领讯",
+      "displayName": "领讯/荷邮挂号-敏感",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-55",
+      "sourceName": "傲飞国际快线LX_全球专线-带电普货",
+      "providerChannel": "全球专线-带电普货",
+      "provider": "领讯",
+      "displayName": "领讯/全球专线-带电普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-56",
+      "sourceName": "傲飞国际快线LX_全球专线-普货",
+      "providerChannel": "全球专线-普货",
+      "provider": "领讯",
+      "displayName": "领讯/全球专线-普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-57",
+      "sourceName": "傲飞国际快线LX_专线超敏感",
+      "providerChannel": "全球专线-超敏感",
+      "provider": "领讯",
+      "displayName": "领讯/全球专线-超敏感",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-58",
+      "sourceName": "傲飞国际快线LX_专线特敏感",
+      "providerChannel": "全球专线-特敏感",
+      "provider": "领讯",
+      "displayName": "领讯/全球专线-特敏感",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-59",
+      "sourceName": "傲飞国际快线LX_专线微敏感",
+      "providerChannel": "全球专线-微敏感",
+      "provider": "领讯",
+      "displayName": "领讯/全球专线-微敏感",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-60",
+      "sourceName": "傲飞国际快线LX_专线微敏感-丛麟美国口红",
+      "providerChannel": "全球专线-微敏感",
+      "provider": "领讯",
+      "displayName": "领讯/全球专线-微敏感",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-61",
+      "sourceName": "傲飞国际快线LX_专线微敏感回传转单号",
+      "providerChannel": "全球专线-微敏感",
+      "provider": "领讯",
+      "displayName": "领讯/全球专线-微敏感",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-62",
+      "sourceName": "傲飞国际快线SF_标准挂号-带电",
+      "providerChannel": "联邮通标准挂号-带电",
+      "provider": "递四方",
+      "displayName": "递四方/联邮通标准挂号-带电",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-63",
+      "sourceName": "傲飞国际快线SF_标准挂号-带电-回传尾程",
+      "providerChannel": "联邮通标准挂号-带电",
+      "provider": "递四方",
+      "displayName": "递四方/联邮通标准挂号-带电",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-64",
+      "sourceName": "傲飞国际快线SF_标准挂号-普货",
+      "providerChannel": "联邮通标准挂号-普货",
+      "provider": "递四方",
+      "displayName": "递四方/联邮通标准挂号-普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-65",
+      "sourceName": "傲飞国际快线SF_标准挂号-普货——回传转单号",
+      "providerChannel": "联邮通标准挂号-普货",
+      "provider": "递四方",
+      "displayName": "递四方/联邮通标准挂号-普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-66",
+      "sourceName": "傲飞国际快线SF_标准挂号-普货-加拿大",
+      "providerChannel": "联邮通标准挂号-普货",
+      "provider": "递四方",
+      "displayName": "递四方/联邮通标准挂号-普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-67",
+      "sourceName": "傲飞国际快线SF_标准挂号-普货-美国",
+      "providerChannel": "联邮通标准挂号-普货",
+      "provider": "递四方",
+      "displayName": "递四方/联邮通标准挂号-普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-68",
+      "sourceName": "傲飞国际快线SF_标准挂号-普货-美国-回传转单号",
+      "providerChannel": "联邮通标准挂号-普货",
+      "provider": "递四方",
+      "displayName": "递四方/联邮通标准挂号-普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-69",
+      "sourceName": "傲飞国际快线SF_服装专线",
+      "providerChannel": "联邮通服装专线",
+      "provider": "递四方",
+      "displayName": "递四方/联邮通服装专线",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-70",
+      "sourceName": "傲飞国际快线SF_服装专线-美国",
+      "providerChannel": "联邮通服装专线",
+      "provider": "递四方",
+      "displayName": "递四方/联邮通服装专线",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-71",
+      "sourceName": "傲飞国际快线SF_服装专线-美国-回传转单号",
+      "providerChannel": "联邮通服装专线",
+      "provider": "递四方",
+      "displayName": "递四方/联邮通服装专线",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-72",
+      "sourceName": "傲飞国际快线SF_经济挂号-带电",
+      "providerChannel": "联邮通经济挂号-带电",
+      "provider": "递四方",
+      "displayName": "递四方/联邮通经济挂号-带电",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-73",
+      "sourceName": "傲飞国际快线SF_经济挂号-带电-回传尾程",
+      "providerChannel": "联邮通经济挂号-带电",
+      "provider": "递四方",
+      "displayName": "递四方/联邮通经济挂号-带电",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-74",
+      "sourceName": "傲飞国际快线SF_经济挂号-普货",
+      "providerChannel": "联邮通经济挂号-普货",
+      "provider": "递四方",
+      "displayName": "递四方/联邮通经济挂号-普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-75",
+      "sourceName": "傲飞国际快线SF_经济挂号-普货-加拿大",
+      "providerChannel": "联邮通经济挂号-普货",
+      "provider": "递四方",
+      "displayName": "递四方/联邮通经济挂号-普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-76",
+      "sourceName": "傲飞国际快线SF_轻小件-带电-美国",
+      "providerChannel": "联邮通轻小件-带电",
+      "provider": "递四方",
+      "displayName": "递四方/联邮通轻小件-带电",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-77",
+      "sourceName": "傲飞国际快线SF_轻小件-普货",
+      "providerChannel": "联邮通轻小件-普货",
+      "provider": "递四方",
+      "displayName": "递四方/联邮通轻小件-普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-78",
+      "sourceName": "傲飞国际快线SF_轻小件-普货-——回传转单号",
+      "providerChannel": "联邮通轻小件-普货",
+      "provider": "递四方",
+      "displayName": "递四方/联邮通轻小件-普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-79",
+      "sourceName": "傲飞国际快线SF_轻小件-普货-美国",
+      "providerChannel": "联邮通轻小件-普货",
+      "provider": "递四方",
+      "displayName": "递四方/联邮通轻小件-普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-80",
+      "sourceName": "傲飞国际快线SL_美国超级普货专线（邮编）",
+      "providerChannel": "美国超级普货-商派",
+      "provider": "顺瓴",
+      "displayName": "顺瓴/美国超级普货-商派",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-81",
+      "sourceName": "傲飞国际快线SL_美国普货小包专线（邮编）",
+      "providerChannel": "美国专线小包服装-商派",
+      "provider": "顺瓴",
+      "displayName": "顺瓴/美国专线小包服装-商派",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-82",
+      "sourceName": "傲飞国际快线ST_纯电专线小包",
+      "providerChannel": "ST纯电专线小包",
+      "provider": "嘉运",
+      "displayName": "嘉运/ST纯电专线小包",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-83",
+      "sourceName": "傲飞国际快线ST_广东E邮宝普货",
+      "providerChannel": "广东E邮宝普货",
+      "provider": "嘉运",
+      "displayName": "嘉运/广东E邮宝普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-84",
+      "sourceName": "傲飞国际快线ST_广东E邮宝普货-转单号-Trae-德国杂货铺",
+      "providerChannel": "广东E邮宝普货",
+      "provider": "嘉运",
+      "displayName": "嘉运/广东E邮宝普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-85",
+      "sourceName": "傲飞国际快线ST_美国食品专线",
+      "providerChannel": "ST美国食品专线",
+      "provider": "嘉运",
+      "displayName": "嘉运/ST美国食品专线",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-86",
+      "sourceName": "傲飞国际快线ST_敏感专线",
+      "providerChannel": "ST敏感专线小包",
+      "provider": "嘉运",
+      "displayName": "嘉运/ST敏感专线小包",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-87",
+      "sourceName": "傲飞国际快线SY_ 顺邮宝Plus",
+      "providerChannel": "顺邮宝Plus",
+      "provider": "顺友",
+      "displayName": "顺友/顺邮宝Plus",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-88",
+      "sourceName": "傲飞国际快线SY_ 顺邮宝挂号",
+      "providerChannel": "顺邮宝挂号",
+      "provider": "顺友",
+      "displayName": "顺友/顺邮宝挂号",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-89",
+      "sourceName": "傲飞国际快线SY_ 顺邮宝挂号-回传尾程单号",
+      "providerChannel": "顺邮宝挂号",
+      "provider": "顺友",
+      "displayName": "顺友/顺邮宝挂号",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-90",
+      "sourceName": "傲飞国际快线SY_顺速宝（普货）",
+      "providerChannel": "顺速宝(普货)",
+      "provider": "顺友",
+      "displayName": "顺友/顺速宝(普货)",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-91",
+      "sourceName": "傲飞国际快线SY_顺速宝(特货)",
+      "providerChannel": "顺速宝(特货)",
+      "provider": "顺友",
+      "displayName": "顺友/顺速宝(特货)",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-92",
+      "sourceName": "傲飞国际快线SY_顺速宝Plus",
+      "providerChannel": "顺速宝Plus",
+      "provider": "顺友",
+      "displayName": "顺友/顺速宝Plus",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-93",
+      "sourceName": "傲飞国际快线WB_美国特惠专线",
+      "providerChannel": "美国特惠专线普货-精选邮编",
+      "provider": "万邦",
+      "displayName": "万邦/美国特惠专线普货-精选邮编",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-94",
+      "sourceName": "傲飞国际快线WB_优选专线含电（BBC）",
+      "providerChannel": "万邦优选专线含电",
+      "provider": "万邦",
+      "displayName": "万邦/万邦优选专线含电",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-95",
+      "sourceName": "傲飞国际快线WB_优选专线普货（BBC）",
+      "providerChannel": "万邦优选专线普货",
+      "provider": "万邦",
+      "displayName": "万邦/万邦优选专线普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-96",
+      "sourceName": "傲飞国际快线YT_A01特惠普货",
+      "providerChannel": "A01特惠普货",
+      "provider": "云途",
+      "displayName": "云途/A01特惠普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-97",
+      "sourceName": "傲飞国际快线YT_标快带电02",
+      "providerChannel": "云途全球商派专线(标快带电)",
+      "provider": "云途",
+      "displayName": "云途/云途全球商派专线(标快带电)",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-98",
+      "sourceName": "傲飞国际快线YT_精选自提特惠带电",
+      "providerChannel": "云途精选自提专线挂号（特惠带电）",
+      "provider": "云途",
+      "displayName": "云途/云途精选自提专线挂号（特惠带电）",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-99",
+      "sourceName": "傲飞国际快线YT_精选自提特惠带电-回传尾程",
+      "providerChannel": "云途精选自提专线挂号（特惠带电）",
+      "provider": "云途",
+      "displayName": "云途/云途精选自提专线挂号（特惠带电）",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-100",
+      "sourceName": "傲飞国际快线YT_精选自提特惠普货",
+      "providerChannel": "云途精选自提专线挂号（特惠普货）",
+      "provider": "云途",
+      "displayName": "云途/云途精选自提专线挂号（特惠普货）",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-101",
+      "sourceName": "傲飞国际快线YT_精选自提特惠普货--回传尾程单号",
+      "providerChannel": "云途精选自提专线挂号（特惠普货）",
+      "provider": "云途",
+      "displayName": "云途/云途精选自提专线挂号（特惠普货）",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-102",
+      "sourceName": "傲飞国际快线YT_欧美_标快带电",
+      "providerChannel": "云途全球专线挂号（标快带电）",
+      "provider": "云途",
+      "displayName": "云途/云途全球专线挂号（标快带电）",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-103",
+      "sourceName": "傲飞国际快线YT_欧美_标快带电-回传转单号",
+      "providerChannel": "云途全球专线挂号（标快带电）",
+      "provider": "云途",
+      "displayName": "云途/云途全球专线挂号（标快带电）",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-104",
+      "sourceName": "傲飞国际快线YT_欧美_标快普货",
+      "providerChannel": "云途全球专线挂号（标快普货）",
+      "provider": "云途",
+      "displayName": "云途/云途全球专线挂号（标快普货）",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-105",
+      "sourceName": "傲飞国际快线YT_欧美_标快普货-回传转单号",
+      "providerChannel": "云途全球专线挂号（标快普货）",
+      "provider": "云途",
+      "displayName": "云途/云途全球专线挂号（标快普货）",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-106",
+      "sourceName": "傲飞国际快线YT_欧美_标快普货-加拿大",
+      "providerChannel": "云途全球专线挂号（标快普货）",
+      "provider": "云途",
+      "displayName": "云途/云途全球专线挂号（标快普货）",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-107",
+      "sourceName": "傲飞国际快线YT_欧美_标快普货-美国",
+      "providerChannel": "云途全球专线挂号（标快普货）",
+      "provider": "云途",
+      "displayName": "云途/云途全球专线挂号（标快普货）",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-108",
+      "sourceName": "傲飞国际快线YT_欧美_大货特惠普货",
+      "providerChannel": "云途大货18000专线挂号（特惠普货）",
+      "provider": "云途",
+      "displayName": "云途/云途大货18000专线挂号（特惠普货）",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-109",
+      "sourceName": "傲飞国际快线YT_欧美_大货特惠普货-回传",
+      "providerChannel": "云途大货18000专线挂号（特惠普货）",
+      "provider": "云途",
+      "displayName": "云途/云途大货18000专线挂号（特惠普货）",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-110",
+      "sourceName": "傲飞国际快线YT_欧美_岛屿特惠带电",
+      "providerChannel": "云途岛屿专线（特惠带电）",
+      "provider": "云途",
+      "displayName": "云途/云途岛屿专线（特惠带电）",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-111",
+      "sourceName": "傲飞国际快线YT_欧美_岛屿特惠普货",
+      "providerChannel": "云途岛屿专线（特惠普货）",
+      "provider": "云途",
+      "displayName": "云途/云途岛屿专线（特惠普货）",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-112",
+      "sourceName": "傲飞国际快线YT_欧美_岛屿特惠普货——只回传尾程单号",
+      "providerChannel": "云途岛屿专线（特惠普货）",
+      "provider": "云途",
+      "displayName": "云途/云途岛屿专线（特惠普货）",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-113",
+      "sourceName": "傲飞国际快线YT_欧美_化妆品-回传转单号",
+      "providerChannel": "云途全球化妆品类专线挂号",
+      "provider": "云途",
+      "displayName": "云途/云途全球化妆品类专线挂号",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-114",
+      "sourceName": "傲飞国际快线YT_欧美_化妆品类专线",
+      "providerChannel": "云途全球化妆品类专线挂号",
+      "provider": "云途",
+      "displayName": "云途/云途全球化妆品类专线挂号",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-115",
+      "sourceName": "傲飞国际快线YT_欧美_化妆品类专线-加拿大",
+      "providerChannel": "云途全球化妆品类专线挂号",
+      "provider": "云途",
+      "displayName": "云途/云途全球化妆品类专线挂号",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-116",
+      "sourceName": "傲飞国际快线YT_欧美_化妆品类专线-美国",
+      "providerChannel": "云途全球化妆品类专线挂号",
+      "provider": "云途",
+      "displayName": "云途/云途全球化妆品类专线挂号",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-117",
+      "sourceName": "傲飞国际快线YT_欧美_化妆品类专线——只回传尾程单号",
+      "providerChannel": "云途全球化妆品类专线挂号",
+      "provider": "云途",
+      "displayName": "云途/云途全球化妆品类专线挂号",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-118",
+      "sourceName": "傲飞国际快线YT_欧美_精选特惠普货",
+      "providerChannel": "云途全球精选专线挂号（特惠普货）",
+      "provider": "云途",
+      "displayName": "云途/云途全球精选专线挂号（特惠普货）",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-119",
+      "sourceName": "傲飞国际快线YT_欧美_全球服装专线",
+      "providerChannel": "云途全球服装专线挂号",
+      "provider": "云途",
+      "displayName": "云途/云途全球服装专线挂号",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-120",
+      "sourceName": "傲飞国际快线YT_欧美_特惠带电",
+      "providerChannel": "云途全球专线挂号（特惠带电）",
+      "provider": "云途",
+      "displayName": "云途/云途全球专线挂号（特惠带电）",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-121",
+      "sourceName": "傲飞国际快线YT_欧美_特惠带电-回传转单号",
+      "providerChannel": "云途全球专线挂号（特惠带电）",
+      "provider": "云途",
+      "displayName": "云途/云途全球专线挂号（特惠带电）",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-122",
+      "sourceName": "傲飞国际快线YT_欧美_特惠带电-墨西哥",
+      "providerChannel": "云途全球专线挂号（特惠带电）",
+      "provider": "云途",
+      "displayName": "云途/云途全球专线挂号（特惠带电）",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-123",
+      "sourceName": "傲飞国际快线YT_欧美_特惠带电-以色列",
+      "providerChannel": "云途全球专线挂号（特惠带电）",
+      "provider": "云途",
+      "displayName": "云途/云途全球专线挂号（特惠带电）",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-124",
+      "sourceName": "傲飞国际快线YT_欧美_特惠普货",
+      "providerChannel": "云途全球专线挂号（特惠普货）",
+      "provider": "云途",
+      "displayName": "云途/云途全球专线挂号（特惠普货）",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-125",
+      "sourceName": "傲飞国际快线YT_欧美_特惠普货-回传转单号",
+      "providerChannel": "云途全球专线挂号（特惠普货）",
+      "provider": "云途",
+      "displayName": "云途/云途全球专线挂号（特惠普货）",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-126",
+      "sourceName": "傲飞国际快线YT_欧美_特惠普货-墨西哥",
+      "providerChannel": "云途全球专线挂号（特惠普货）",
+      "provider": "云途",
+      "displayName": "云途/云途全球专线挂号（特惠普货）",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-127",
+      "sourceName": "傲飞国际快线YT_欧美_特惠普货-以色列",
+      "providerChannel": "云途全球专线挂号（特惠普货）",
+      "provider": "云途",
+      "displayName": "云途/云途全球专线挂号（特惠普货）",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-128",
+      "sourceName": "傲飞国际快线YT_欧美_特快带电",
+      "providerChannel": "云途全球专线挂号（特快带电）",
+      "provider": "云途",
+      "displayName": "云途/云途全球专线挂号（特快带电）",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-129",
+      "sourceName": "傲飞国际快线YT_欧美_特快普货",
+      "providerChannel": "云途全球专线挂号（特快普货）",
+      "provider": "云途",
+      "displayName": "云途/云途全球专线挂号（特快普货）",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-130",
+      "sourceName": "傲飞国际快线YT_欧美_中包特惠普货",
+      "providerChannel": "云途中包专线挂号（特惠普货）",
+      "provider": "云途",
+      "displayName": "云途/云途中包专线挂号（特惠普货）",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-131",
+      "sourceName": "傲飞国际快线YT_欧洲化妆品专线-CHC",
+      "providerChannel": "云途欧洲化妆品专线-CHC",
+      "provider": "云途",
+      "displayName": "云途/云途欧洲化妆品专线-CHC",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-132",
+      "sourceName": "傲飞国际快线YT_欧洲化妆品专线-CHC-回传尾程",
+      "providerChannel": "云途欧洲化妆品专线-CHC",
+      "provider": "云途",
+      "displayName": "云途/云途欧洲化妆品专线-CHC",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-133",
+      "sourceName": "傲飞国际快线YT_欧洲专线（特惠带电）-CHC",
+      "providerChannel": "云途欧洲专线（特惠带电）-CHC",
+      "provider": "云途",
+      "displayName": "云途/云途欧洲专线（特惠带电）-CHC",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-134",
+      "sourceName": "傲飞国际快线YT_欧洲专线（特惠带电）-chc-回传尾程",
+      "providerChannel": "云途欧洲专线（特惠带电）-CHC",
+      "provider": "云途",
+      "displayName": "云途/云途欧洲专线（特惠带电）-CHC",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-135",
+      "sourceName": "傲飞国际快线YT_欧洲专线（特惠普货）-CHC",
+      "providerChannel": "云途欧洲专线（特惠普货）-CHC",
+      "provider": "云途",
+      "displayName": "云途/云途欧洲专线（特惠普货）-CHC",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-136",
+      "sourceName": "傲飞国际快线YT_欧洲专线-chc（特惠普货）-回传尾程",
+      "providerChannel": "云途欧洲专线（特惠普货）-CHC",
+      "provider": "云途",
+      "displayName": "云途/云途欧洲专线（特惠普货）-CHC",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-137",
+      "sourceName": "傲飞国际快线YT_轻小件特惠带电",
+      "providerChannel": "云途轻小件专线挂号（特惠带电）",
+      "provider": "云途",
+      "displayName": "云途/云途轻小件专线挂号（特惠带电）",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-138",
+      "sourceName": "傲飞国际快线YT_轻小件特惠普货",
+      "providerChannel": "云途轻小件专线挂号（特惠普货）",
+      "provider": "云途",
+      "displayName": "云途/云途轻小件专线挂号（特惠普货）",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-139",
+      "sourceName": "傲飞国际快线YT_特惠带电（邮编）",
+      "providerChannel": "云途商派专线（特惠带电）",
+      "provider": "云途",
+      "displayName": "云途/云途商派专线（特惠带电）",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-140",
+      "sourceName": "傲飞国际快线YT_特惠普货（邮编）",
+      "providerChannel": "云途商派专线（特惠普货）",
+      "provider": "云途",
+      "displayName": "云途/云途商派专线（特惠普货）",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-141",
+      "sourceName": "傲飞国际快线YT_特惠普货（邮编）-转单号",
+      "providerChannel": "云途商派专线（特惠普货）",
+      "provider": "云途",
+      "displayName": "云途/云途商派专线（特惠普货）",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-142",
+      "sourceName": "澳洲专线特惠带电小包",
+      "providerChannel": "澳洲专线特惠带电小包",
+      "provider": "顺瓴",
+      "displayName": "顺瓴/澳洲专线特惠带电小包",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-143",
+      "sourceName": "出口易标快专线-普货",
+      "providerChannel": "出口易标快专线-普货",
+      "provider": "出口易",
+      "displayName": "出口易/出口易标快专线-普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-144",
+      "sourceName": "出口易超级专线-普货(包税1)",
+      "providerChannel": "出口易超级专线-普货",
+      "provider": "出口易",
+      "displayName": "出口易/出口易超级专线-普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-145",
+      "sourceName": "出口易服装专线",
+      "providerChannel": "出口易服装专线",
+      "provider": "出口易",
+      "displayName": "出口易/出口易服装专线",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-146",
+      "sourceName": "出口易服装专线-max家居服",
+      "providerChannel": "出口易服装专线",
+      "provider": "出口易",
+      "displayName": "出口易/出口易服装专线",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-147",
+      "sourceName": "出口易服装专线-转单号",
+      "providerChannel": "出口易服装专线",
+      "provider": "出口易",
+      "displayName": "出口易/出口易服装专线",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-148",
+      "sourceName": "够快商派服装专线",
+      "providerChannel": "够快商派服装专线",
+      "provider": "够快",
+      "displayName": "够快/够快商派服装专线",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-149",
+      "sourceName": "广东E特快A",
+      "providerChannel": "广东E特快A",
+      "provider": "易德",
+      "displayName": "易德/广东E特快A",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-150",
+      "sourceName": "广东E邮宝普货",
+      "providerChannel": "广东E邮宝普货",
+      "provider": "嘉运",
+      "displayName": "嘉运/广东E邮宝普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-151",
+      "sourceName": "广东航空大包-A",
+      "providerChannel": "广东航空大包-A",
+      "provider": "易德",
+      "displayName": "易德/广东航空大包-A",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-152",
+      "sourceName": "合规保健品专线-商派-JC",
+      "providerChannel": "合规保健品专线-商派-JC",
+      "provider": "SANA",
+      "displayName": "SANA/合规保健品专线-商派-JC",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-153",
+      "sourceName": "急速全球专线标快-普货-回传",
+      "providerChannel": "急速全球专线标快-普货",
+      "provider": "急速",
+      "displayName": "急速/急速全球专线标快-普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-154",
+      "sourceName": "联邮通标准挂号-带电",
+      "providerChannel": "联邮通标准挂号-带电",
+      "provider": "递四方",
+      "displayName": "递四方/联邮通标准挂号-带电",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-155",
+      "sourceName": "联邮通标准挂号-带电-回传转单号",
+      "providerChannel": "联邮通标准挂号-带电",
+      "provider": "递四方",
+      "displayName": "递四方/联邮通标准挂号-带电",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-156",
+      "sourceName": "联邮通标准挂号-带电-加拿大",
+      "providerChannel": "联邮通标准挂号-带电",
+      "provider": "递四方",
+      "displayName": "递四方/联邮通标准挂号-带电",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-157",
+      "sourceName": "联邮通标准挂号-带电-美国",
+      "providerChannel": "联邮通标准挂号-带电",
+      "provider": "递四方",
+      "displayName": "递四方/联邮通标准挂号-带电",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-158",
+      "sourceName": "联邮通标准挂号-带电-美国-回传尾程",
+      "providerChannel": "联邮通标准挂号-带电",
+      "provider": "递四方",
+      "displayName": "递四方/联邮通标准挂号-带电",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-159",
+      "sourceName": "联邮通标准挂号-带电-身体护理剂",
+      "providerChannel": "联邮通标准挂号-带电",
+      "provider": "递四方",
+      "displayName": "递四方/联邮通标准挂号-带电",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-160",
+      "sourceName": "联邮通标准挂号-普货",
+      "providerChannel": "联邮通标准挂号-普货",
+      "provider": "递四方",
+      "displayName": "递四方/联邮通标准挂号-普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-161",
+      "sourceName": "联邮通标准挂号-普货-回传转单号",
+      "providerChannel": "联邮通标准挂号-普货",
+      "provider": "递四方",
+      "displayName": "递四方/联邮通标准挂号-普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-162",
+      "sourceName": "联邮通标准挂号-普货-加拿大",
+      "providerChannel": "联邮通标准挂号-普货",
+      "provider": "递四方",
+      "displayName": "递四方/联邮通标准挂号-普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-163",
+      "sourceName": "联邮通标准挂号-普货-美国",
+      "providerChannel": "联邮通标准挂号-普货",
+      "provider": "递四方",
+      "displayName": "递四方/联邮通标准挂号-普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-164",
+      "sourceName": "联邮通标准挂号-普货-美国-回传尾程",
+      "providerChannel": "联邮通标准挂号-普货",
+      "provider": "递四方",
+      "displayName": "递四方/联邮通标准挂号-普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-165",
+      "sourceName": "联邮通标准自提-带电",
+      "providerChannel": "联邮通标准自提-带电",
+      "provider": "递四方",
+      "displayName": "递四方/联邮通标准自提-带电",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-166",
+      "sourceName": "联邮通服装专线",
+      "providerChannel": "联邮通服装专线",
+      "provider": "递四方",
+      "displayName": "递四方/联邮通服装专线",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-167",
+      "sourceName": "联邮通服装专线-回传尾程",
+      "providerChannel": "联邮通服装专线",
+      "provider": "递四方",
+      "displayName": "递四方/联邮通服装专线",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-168",
+      "sourceName": "联邮通服装专线-美国",
+      "providerChannel": "联邮通服装专线",
+      "provider": "递四方",
+      "displayName": "递四方/联邮通服装专线",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-169",
+      "sourceName": "联邮通服装专线-美国-回传转单号",
+      "providerChannel": "联邮通服装专线",
+      "provider": "递四方",
+      "displayName": "递四方/联邮通服装专线",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-170",
+      "sourceName": "联邮通经济挂号-带电",
+      "providerChannel": "联邮通经济挂号-带电",
+      "provider": "递四方",
+      "displayName": "递四方/联邮通经济挂号-带电",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-171",
+      "sourceName": "联邮通经济挂号-带电-回传",
+      "providerChannel": "联邮通经济挂号-带电",
+      "provider": "递四方",
+      "displayName": "递四方/联邮通经济挂号-带电",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-172",
+      "sourceName": "联邮通经济挂号-带电-加拿大",
+      "providerChannel": "联邮通经济挂号-带电",
+      "provider": "递四方",
+      "displayName": "递四方/联邮通经济挂号-带电",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-173",
+      "sourceName": "联邮通经济挂号-带电-身体护理剂",
+      "providerChannel": "联邮通经济挂号-带电",
+      "provider": "递四方",
+      "displayName": "递四方/联邮通经济挂号-带电",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-174",
+      "sourceName": "联邮通经济挂号-普货",
+      "providerChannel": "联邮通经济挂号-普货",
+      "provider": "递四方",
+      "displayName": "递四方/联邮通经济挂号-普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-175",
+      "sourceName": "联邮通经济挂号-普货-回传尾程",
+      "providerChannel": "联邮通经济挂号-普货",
+      "provider": "递四方",
+      "displayName": "递四方/联邮通经济挂号-普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-176",
+      "sourceName": "联邮通经济挂号-普货-加拿大",
+      "providerChannel": "联邮通经济挂号-普货",
+      "provider": "递四方",
+      "displayName": "递四方/联邮通经济挂号-普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-177",
+      "sourceName": "联邮通轻小件-带电",
+      "providerChannel": "联邮通轻小件-带电",
+      "provider": "递四方",
+      "displayName": "递四方/联邮通轻小件-带电",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-178",
+      "sourceName": "联邮通轻小件-带电-加拿大",
+      "providerChannel": "联邮通轻小件-带电",
+      "provider": "递四方",
+      "displayName": "递四方/联邮通轻小件-带电",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-179",
+      "sourceName": "联邮通轻小件-带电-美国",
+      "providerChannel": "联邮通轻小件-带电",
+      "provider": "递四方",
+      "displayName": "递四方/联邮通轻小件-带电",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-180",
+      "sourceName": "联邮通轻小件-带电-美国-回传转单号",
+      "providerChannel": "联邮通轻小件-带电",
+      "provider": "递四方",
+      "displayName": "递四方/联邮通轻小件-带电",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-181",
+      "sourceName": "联邮通轻小件-普货",
+      "providerChannel": "联邮通轻小件-普货",
+      "provider": "递四方",
+      "displayName": "递四方/联邮通轻小件-普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-182",
+      "sourceName": "联邮通轻小件-普货-回传尾程",
+      "providerChannel": "联邮通轻小件-普货",
+      "provider": "递四方",
+      "displayName": "递四方/联邮通轻小件-普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-183",
+      "sourceName": "联邮通轻小件-普货-加拿大",
+      "providerChannel": "联邮通轻小件-普货",
+      "provider": "递四方",
+      "displayName": "递四方/联邮通轻小件-普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-184",
+      "sourceName": "联邮通轻小件-普货-美国",
+      "providerChannel": "联邮通轻小件-普货",
+      "provider": "递四方",
+      "displayName": "递四方/联邮通轻小件-普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-185",
+      "sourceName": "联邮通轻小件-普货-美国-回传转单号",
+      "providerChannel": "联邮通轻小件-普货",
+      "provider": "递四方",
+      "displayName": "递四方/联邮通轻小件-普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-186",
+      "sourceName": "联邮通优先挂号-带电",
+      "providerChannel": "联邮通优先挂号-带电",
+      "provider": "递四方",
+      "displayName": "递四方/联邮通优先挂号-带电",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-187",
+      "sourceName": "联邮通优先挂号-普货",
+      "providerChannel": "联邮通优先挂号-普货",
+      "provider": "递四方",
+      "displayName": "递四方/联邮通优先挂号-普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-188",
+      "sourceName": "联邮通优先挂号-普货-美国-usps",
+      "providerChannel": "联邮通优先挂号-普货",
+      "provider": "递四方",
+      "displayName": "递四方/联邮通优先挂号-普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-189",
+      "sourceName": "联邮通智选产品-标准普货",
+      "providerChannel": "联邮通智选产品-标准普货",
+      "provider": "递四方",
+      "displayName": "递四方/联邮通智选产品-标准普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-190",
+      "sourceName": "美国经济小包-普货",
+      "providerChannel": "美国经济小包-普货",
+      "provider": "百运",
+      "displayName": "百运/美国经济小包-普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-191",
+      "sourceName": "美国经济专线普货",
+      "providerChannel": "美国经济专线普货",
+      "provider": "顺瓴",
+      "displayName": "顺瓴/美国经济专线普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-192",
+      "sourceName": "美国特快专线",
+      "providerChannel": "美国特快专线",
+      "provider": "出口易",
+      "displayName": "出口易/美国特快专线",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-193",
+      "sourceName": "美国专线特惠带电小包",
+      "providerChannel": "美国专线特惠带电小包",
+      "provider": "顺瓴",
+      "displayName": "顺瓴/美国专线特惠带电小包",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-194",
+      "sourceName": "美国专线小包-特惠",
+      "providerChannel": "美国专线小包-特惠",
+      "provider": "顺瓴",
+      "displayName": "顺瓴/美国专线小包-特惠",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-195",
+      "sourceName": "墨西哥特货专线-化妆品",
+      "providerChannel": "墨西哥特货专线-化妆品",
+      "provider": "纬狮",
+      "displayName": "纬狮/墨西哥特货专线-化妆品",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-196",
+      "sourceName": "欧洲快线小包-P带电",
+      "providerChannel": "欧洲快线小包-P带电",
+      "provider": "易德",
+      "displayName": "易德/欧洲快线小包-P带电",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-197",
+      "sourceName": "欧洲优选专线普货",
+      "providerChannel": "欧洲优选专线普货",
+      "provider": "万邦",
+      "displayName": "万邦/欧洲优选专线普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-198",
+      "sourceName": "全球专线-超敏感",
+      "providerChannel": "全球专线-超敏感",
+      "provider": "领讯",
+      "displayName": "领讯/全球专线-超敏感",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-199",
+      "sourceName": "全球专线-超敏感(LX)",
+      "providerChannel": "全球专线-超敏感",
+      "provider": "领讯",
+      "displayName": "领讯/全球专线-超敏感",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-200",
+      "sourceName": "全球专线-超敏感尾端",
+      "providerChannel": "全球专线-超敏感",
+      "provider": "领讯",
+      "displayName": "领讯/全球专线-超敏感",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-201",
+      "sourceName": "全球专线-带电普货",
+      "providerChannel": "全球专线-带电普货",
+      "provider": "领讯",
+      "displayName": "领讯/全球专线-带电普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-202",
+      "sourceName": "全球专线敏感",
+      "providerChannel": "全球专线敏感",
+      "provider": "云速递",
+      "displayName": "云速递/全球专线敏感",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-203",
+      "sourceName": "全球专线-普货(LX)",
+      "providerChannel": "全球专线-普货",
+      "provider": "领讯",
+      "displayName": "领讯/全球专线-普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-204",
+      "sourceName": "全球专线-特敏",
+      "providerChannel": "全球专线-特敏感",
+      "provider": "领讯",
+      "displayName": "领讯/全球专线-特敏感",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-205",
+      "sourceName": "全球专线-特敏感",
+      "providerChannel": "全球专线-特敏感",
+      "provider": "领讯",
+      "displayName": "领讯/全球专线-特敏感",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-206",
+      "sourceName": "全球专线-特敏感(LX)",
+      "providerChannel": "全球专线-特敏感",
+      "provider": "领讯",
+      "displayName": "领讯/全球专线-特敏感",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-207",
+      "sourceName": "全球专线-特敏感尾端",
+      "providerChannel": "全球专线-特敏感",
+      "provider": "领讯",
+      "displayName": "领讯/全球专线-特敏感",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-208",
+      "sourceName": "全球专线-微敏感",
+      "providerChannel": "全球专线-微敏感",
+      "provider": "领讯",
+      "displayName": "领讯/全球专线-微敏感",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-209",
+      "sourceName": "全球专线-微敏感(LX)",
+      "providerChannel": "全球专线-微敏感",
+      "provider": "领讯",
+      "displayName": "领讯/全球专线-微敏感",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-210",
+      "sourceName": "日本专线",
+      "providerChannel": "日本专线",
+      "provider": "本捷",
+      "displayName": "本捷/日本专线",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-211",
+      "sourceName": "三态专选(STZX)",
+      "providerChannel": "三态专选(STZX)",
+      "provider": "三态",
+      "displayName": "三态/三态专选(STZX)",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-212",
+      "sourceName": "顺速宝Pro",
+      "providerChannel": "顺速宝Pro",
+      "provider": "顺友",
+      "displayName": "顺友/顺速宝Pro",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-213",
+      "sourceName": "顺速宝挂号",
+      "providerChannel": "顺速宝(普货)",
+      "provider": "顺友",
+      "displayName": "顺友/顺速宝(普货)",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-214",
+      "sourceName": "顺速宝挂号普货",
+      "providerChannel": "顺速宝(普货)",
+      "provider": "顺友",
+      "displayName": "顺友/顺速宝(普货)",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-215",
+      "sourceName": "顺邮宝挂号",
+      "providerChannel": "顺邮宝挂号",
+      "provider": "顺友",
+      "displayName": "顺友/顺邮宝挂号",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-216",
+      "sourceName": "万邦化妆品专线",
+      "providerChannel": "万邦化妆品专线",
+      "provider": "万邦",
+      "displayName": "万邦/万邦化妆品专线",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-217",
+      "sourceName": "燕文大货专线追踪-普货",
+      "providerChannel": "燕文大货专线追踪-普货",
+      "provider": "燕文",
+      "displayName": "燕文/燕文大货专线追踪-普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-218",
+      "sourceName": "燕文服装专线-普货",
+      "providerChannel": "燕文服装专线-普货",
+      "provider": "燕文",
+      "displayName": "燕文/燕文服装专线-普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-219",
+      "sourceName": "燕文服装专线-普货-加拿大",
+      "providerChannel": "燕文服装专线-普货",
+      "provider": "燕文",
+      "displayName": "燕文/燕文服装专线-普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-220",
+      "sourceName": "燕文航空挂号-普货",
+      "providerChannel": "燕文航空挂号-普货",
+      "provider": "燕文",
+      "displayName": "燕文/燕文航空挂号-普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-221",
+      "sourceName": "燕文航空挂号-普货-回传转单号",
+      "providerChannel": "燕文航空挂号-普货",
+      "provider": "燕文",
+      "displayName": "燕文/燕文航空挂号-普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-222",
+      "sourceName": "燕文航空挂号-特货",
+      "providerChannel": "燕文航空挂号-特货",
+      "provider": "燕文",
+      "displayName": "燕文/燕文航空挂号-特货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-223",
+      "sourceName": "燕文航空挂号-特货-回传",
+      "providerChannel": "燕文航空挂号-特货",
+      "provider": "燕文",
+      "displayName": "燕文/燕文航空挂号-特货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-224",
+      "sourceName": "燕文航空经济小包-普货",
+      "providerChannel": "燕文航空经济小包-普货",
+      "provider": "燕文",
+      "displayName": "燕文/燕文航空经济小包-普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-225",
+      "sourceName": "燕文航空经济小包-普货-回传转单号",
+      "providerChannel": "燕文航空经济小包-普货",
+      "provider": "燕文",
+      "displayName": "燕文/燕文航空经济小包-普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-226",
+      "sourceName": "燕文航空经济小包-特货",
+      "providerChannel": "燕文航空经济小包-特货",
+      "provider": "燕文",
+      "displayName": "燕文/燕文航空经济小包-特货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-227",
+      "sourceName": "燕文航空经济小包-特货-回传",
+      "providerChannel": "燕文航空经济小包-特货",
+      "provider": "燕文",
+      "displayName": "燕文/燕文航空经济小包-特货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-228",
+      "sourceName": "燕文化妆品专线",
+      "providerChannel": "燕文化妆品专线",
+      "provider": "燕文",
+      "displayName": "燕文/燕文化妆品专线",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-229",
+      "sourceName": "燕文化妆品专线-回传转单号",
+      "providerChannel": "燕文化妆品专线",
+      "provider": "燕文",
+      "displayName": "燕文/燕文化妆品专线",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-230",
+      "sourceName": "燕文化妆品专线-加拿大",
+      "providerChannel": "燕文化妆品专线",
+      "provider": "燕文",
+      "displayName": "燕文/燕文化妆品专线",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-231",
+      "sourceName": "燕文化妆品专线-墨西哥",
+      "providerChannel": "燕文化妆品专线",
+      "provider": "燕文",
+      "displayName": "燕文/燕文化妆品专线",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-232",
+      "sourceName": "燕文精品化妆品专线-TI",
+      "providerChannel": "燕文精品化妆品专线-TI",
+      "provider": "燕文",
+      "displayName": "燕文/燕文精品化妆品专线-TI",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-233",
+      "sourceName": "燕文精品追踪普货-TI",
+      "providerChannel": "燕文精品追踪普货-TI",
+      "provider": "燕文",
+      "displayName": "燕文/燕文精品追踪普货-TI",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-234",
+      "sourceName": "燕文精品追踪特货-TI",
+      "providerChannel": "燕文精品追踪特货-TI",
+      "provider": "燕文",
+      "displayName": "燕文/燕文精品追踪特货-TI",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-235",
+      "sourceName": "燕文美国岛屿专线普货-TI",
+      "providerChannel": "燕文美国岛屿专线普货-TI",
+      "provider": "燕文",
+      "displayName": "燕文/燕文美国岛屿专线普货-TI",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-236",
+      "sourceName": "燕文美国岛屿专线特货-TI",
+      "providerChannel": "燕文美国岛屿专线特货-TI",
+      "provider": "燕文",
+      "displayName": "燕文/燕文美国岛屿专线特货-TI",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-237",
+      "sourceName": "燕文专线化妆品-TI",
+      "providerChannel": "燕文专线化妆品-TI",
+      "provider": "燕文",
+      "displayName": "燕文/燕文专线化妆品-TI",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-238",
+      "sourceName": "燕文专线惠选-普货",
+      "providerChannel": "燕文专线惠选-普货",
+      "provider": "燕文",
+      "displayName": "燕文/燕文专线惠选-普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-239",
+      "sourceName": "燕文专线快递-普货",
+      "providerChannel": "燕文专线快递-普货",
+      "provider": "燕文",
+      "displayName": "燕文/燕文专线快递-普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-240",
+      "sourceName": "燕文专线快递-普货-回传",
+      "providerChannel": "燕文专线快递-普货",
+      "provider": "燕文",
+      "displayName": "燕文/燕文专线快递-普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-241",
+      "sourceName": "燕文专线快递-特货",
+      "providerChannel": "燕文专线快递-特货",
+      "provider": "燕文",
+      "displayName": "燕文/燕文专线快递-特货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-242",
+      "sourceName": "燕文专线快递-特货-回传",
+      "providerChannel": "燕文专线快递-特货",
+      "provider": "燕文",
+      "displayName": "燕文/燕文专线快递-特货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-243",
+      "sourceName": "燕文专线追踪-普货",
+      "providerChannel": "燕文专线追踪-普货",
+      "provider": "燕文",
+      "displayName": "燕文/燕文专线追踪-普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-244",
+      "sourceName": "燕文专线追踪普货-TI",
+      "providerChannel": "燕文专线追踪普货-TI",
+      "provider": "燕文",
+      "displayName": "燕文/燕文专线追踪普货-TI",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-245",
+      "sourceName": "燕文专线追踪-普货-阿根廷",
+      "providerChannel": "燕文专线追踪-普货",
+      "provider": "燕文",
+      "displayName": "燕文/燕文专线追踪-普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-246",
+      "sourceName": "燕文专线追踪-普货-回传转单号",
+      "providerChannel": "燕文专线追踪-普货",
+      "provider": "燕文",
+      "displayName": "燕文/燕文专线追踪-普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-247",
+      "sourceName": "燕文专线追踪-普货-活页夹美国",
+      "providerChannel": "燕文专线追踪-普货",
+      "provider": "燕文",
+      "displayName": "燕文/燕文专线追踪-普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-248",
+      "sourceName": "燕文专线追踪-普货-加拿大",
+      "providerChannel": "燕文专线追踪-普货",
+      "provider": "燕文",
+      "displayName": "燕文/燕文专线追踪-普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-249",
+      "sourceName": "燕文专线追踪-普货-加拿大-回传转单号",
+      "providerChannel": "燕文专线追踪-普货",
+      "provider": "燕文",
+      "displayName": "燕文/燕文专线追踪-普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-250",
+      "sourceName": "燕文专线追踪-普货-墨西哥",
+      "providerChannel": "燕文专线追踪-普货",
+      "provider": "燕文",
+      "displayName": "燕文/燕文专线追踪-普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-251",
+      "sourceName": "燕文专线追踪-普货-智利",
+      "providerChannel": "燕文专线追踪-普货",
+      "provider": "燕文",
+      "displayName": "燕文/燕文专线追踪-普货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-252",
+      "sourceName": "燕文专线追踪-特货",
+      "providerChannel": "燕文专线追踪-特货",
+      "provider": "燕文",
+      "displayName": "燕文/燕文专线追踪-特货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-253",
+      "sourceName": "燕文专线追踪特货-TI",
+      "providerChannel": "燕文专线追踪特货-TI",
+      "provider": "燕文",
+      "displayName": "燕文/燕文专线追踪特货-TI",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-254",
+      "sourceName": "燕文专线追踪-特货-回传转单号",
+      "providerChannel": "燕文专线追踪-特货",
+      "provider": "燕文",
+      "displayName": "燕文/燕文专线追踪-特货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-255",
+      "sourceName": "燕文专线追踪-特货-回传转单号-Ivy-英国Sam",
+      "providerChannel": "燕文专线追踪-特货",
+      "provider": "燕文",
+      "displayName": "燕文/燕文专线追踪-特货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-256",
+      "sourceName": "燕文专线追踪-特货-加拿大",
+      "providerChannel": "燕文专线追踪-特货",
+      "provider": "燕文",
+      "displayName": "燕文/燕文专线追踪-特货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-257",
+      "sourceName": "燕文专线追踪-特货-加拿大-回传尾程单号",
+      "providerChannel": "燕文专线追踪-特货",
+      "provider": "燕文",
+      "displayName": "燕文/燕文专线追踪-特货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-258",
+      "sourceName": "燕文专线追踪-特货-墨西哥",
+      "providerChannel": "燕文专线追踪-特货",
+      "provider": "燕文",
+      "displayName": "燕文/燕文专线追踪-特货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-259",
+      "sourceName": "燕文专线追踪-特货-智利",
+      "providerChannel": "燕文专线追踪-特货",
+      "provider": "燕文",
+      "displayName": "燕文/燕文专线追踪-特货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-260",
+      "sourceName": "燕文专线追踪-特货-智利-超哥法国首饰",
+      "providerChannel": "燕文专线追踪-特货",
+      "provider": "燕文",
+      "displayName": "燕文/燕文专线追踪-特货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-261",
+      "sourceName": "云途岛屿专线（特惠带电）",
+      "providerChannel": "云途岛屿专线（特惠带电）",
+      "provider": "云途",
+      "displayName": "云途/云途岛屿专线（特惠带电）",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-262",
+      "sourceName": "云途岛屿专线（特惠普货）",
+      "providerChannel": "云途岛屿专线（特惠普货）",
+      "provider": "云途",
+      "displayName": "云途/云途岛屿专线（特惠普货）",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-263",
+      "sourceName": "云途岛屿专线（特惠普货）-只回传尾程",
+      "providerChannel": "云途岛屿专线（特惠普货）",
+      "provider": "云途",
+      "displayName": "云途/云途岛屿专线（特惠普货）",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-264",
+      "sourceName": "云途精选自提专线挂号（特惠带电）",
+      "providerChannel": "云途精选自提专线挂号（特惠带电）",
+      "provider": "云途",
+      "displayName": "云途/云途精选自提专线挂号（特惠带电）",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-265",
+      "sourceName": "云途精选自提专线挂号（特惠带电）-回传转单号",
+      "providerChannel": "云途精选自提专线挂号（特惠带电）",
+      "provider": "云途",
+      "displayName": "云途/云途精选自提专线挂号（特惠带电）",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-266",
+      "sourceName": "云途精选自提专线挂号（特惠普货）",
+      "providerChannel": "云途精选自提专线挂号（特惠普货）",
+      "provider": "云途",
+      "displayName": "云途/云途精选自提专线挂号（特惠普货）",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-267",
+      "sourceName": "云途精选自提专线挂号（特惠普货）-只回传尾程单号",
+      "providerChannel": "云途精选自提专线挂号（特惠普货）",
+      "provider": "云途",
+      "displayName": "云途/云途精选自提专线挂号（特惠普货）",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-268",
+      "sourceName": "云途轻小件专线挂号（特惠带电）",
+      "providerChannel": "云途轻小件专线挂号（特惠带电）",
+      "provider": "云途",
+      "displayName": "云途/云途轻小件专线挂号（特惠带电）",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-269",
+      "sourceName": "云途轻小件专线挂号（特惠普货）",
+      "providerChannel": "云途轻小件专线挂号（特惠普货）",
+      "provider": "云途",
+      "displayName": "云途/云途轻小件专线挂号（特惠普货）",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-270",
+      "sourceName": "云途全球化妆品类专线挂号",
+      "providerChannel": "云途全球化妆品类专线挂号",
+      "provider": "云途",
+      "displayName": "云途/云途全球化妆品类专线挂号",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-271",
+      "sourceName": "云途全球化妆品类专线挂号-加拿大",
+      "providerChannel": "云途全球化妆品类专线挂号",
+      "provider": "云途",
+      "displayName": "云途/云途全球化妆品类专线挂号",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-272",
+      "sourceName": "云途全球精选专线挂号（特惠普货）",
+      "providerChannel": "云途全球精选专线挂号（特惠普货）",
+      "provider": "云途",
+      "displayName": "云途/云途全球精选专线挂号（特惠普货）",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-273",
+      "sourceName": "云途全球专线挂号（标快带电）-回传转单号",
+      "providerChannel": "云途全球专线挂号（标快带电）",
+      "provider": "云途",
+      "displayName": "云途/云途全球专线挂号（标快带电）",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-274",
+      "sourceName": "云途全球专线挂号（标快普货）",
+      "providerChannel": "云途全球专线挂号（标快普货）",
+      "provider": "云途",
+      "displayName": "云途/云途全球专线挂号（标快普货）",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-275",
+      "sourceName": "云途全球专线挂号（标快普货）-回传转单号",
+      "providerChannel": "云途全球专线挂号（标快普货）",
+      "provider": "云途",
+      "displayName": "云途/云途全球专线挂号（标快普货）",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-276",
+      "sourceName": "云途全球专线挂号（特惠带电）",
+      "providerChannel": "云途全球专线挂号（特惠带电）",
+      "provider": "云途",
+      "displayName": "云途/云途全球专线挂号（特惠带电）",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-277",
+      "sourceName": "云途全球专线挂号（特惠带电）-回传转单号",
+      "providerChannel": "云途全球专线挂号（特惠带电）",
+      "provider": "云途",
+      "displayName": "云途/云途全球专线挂号（特惠带电）",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-278",
+      "sourceName": "云途全球专线挂号（特惠带电）-加拿大",
+      "providerChannel": "云途全球专线挂号（特惠带电）",
+      "provider": "云途",
+      "displayName": "云途/云途全球专线挂号（特惠带电）",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-279",
+      "sourceName": "云途全球专线挂号（特惠带电）-墨西哥",
+      "providerChannel": "云途全球专线挂号（特惠带电）",
+      "provider": "云途",
+      "displayName": "云途/云途全球专线挂号（特惠带电）",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-280",
+      "sourceName": "云途全球专线挂号（特惠普货）",
+      "providerChannel": "云途全球专线挂号（特惠普货）",
+      "provider": "云途",
+      "displayName": "云途/云途全球专线挂号（特惠普货）",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-281",
+      "sourceName": "云途全球专线挂号（特惠普货）-回传转单号",
+      "providerChannel": "云途全球专线挂号（特惠普货）",
+      "provider": "云途",
+      "displayName": "云途/云途全球专线挂号（特惠普货）",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-282",
+      "sourceName": "云途全球专线挂号（特惠普货）-加拿大",
+      "providerChannel": "云途全球专线挂号（特惠普货）",
+      "provider": "云途",
+      "displayName": "云途/云途全球专线挂号（特惠普货）",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-283",
+      "sourceName": "云途全球专线挂号（特惠普货）-墨西哥",
+      "providerChannel": "云途全球专线挂号（特惠普货）",
+      "provider": "云途",
+      "displayName": "云途/云途全球专线挂号（特惠普货）",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-284",
+      "sourceName": "云途商派专线（特惠带电）",
+      "providerChannel": "云途商派专线（特惠带电）",
+      "provider": "云途",
+      "displayName": "云途/云途商派专线（特惠带电）",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-285",
+      "sourceName": "云途商派专线（特惠普货）",
+      "providerChannel": "云途商派专线（特惠普货）",
+      "provider": "云途",
+      "displayName": "云途/云途商派专线（特惠普货）",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-286",
+      "sourceName": "云途商派专线（特惠普货）-回传单号",
+      "providerChannel": "云途商派专线（特惠普货）",
+      "provider": "云途",
+      "displayName": "云途/云途商派专线（特惠普货）",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-287",
+      "sourceName": "云途中包专线挂号（特惠普货）",
+      "providerChannel": "云途中包专线挂号（特惠普货）",
+      "provider": "云途",
+      "displayName": "云途/云途中包专线挂号（特惠普货）",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-288",
+      "sourceName": "智惠选专线-特惠",
+      "providerChannel": "智惠选专线-特惠",
+      "provider": "华翰",
+      "displayName": "华翰/智惠选专线-特惠",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-289",
+      "sourceName": "智惠选专线-特货(不限偏远)",
+      "providerChannel": "智惠选专线-特货",
+      "provider": "华翰",
+      "displayName": "华翰/智惠选专线-特货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-290",
+      "sourceName": "智利专线",
+      "providerChannel": "智利专线",
+      "provider": "纬狮",
+      "displayName": "纬狮/智利专线",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-291",
+      "sourceName": "智尚宝-特货",
+      "providerChannel": "智尚宝-特货",
+      "provider": "华翰",
+      "displayName": "华翰/智尚宝-特货",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-292",
+      "sourceName": "智尚宝-特敏",
+      "providerChannel": "智尚宝-特敏",
+      "provider": "华翰",
+      "displayName": "华翰/智尚宝-特敏",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-293",
+      "sourceName": "智通宝-特惠",
+      "providerChannel": "智通宝-特惠",
+      "provider": "华翰",
+      "displayName": "华翰/智通宝-特惠",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-294",
+      "sourceName": "中邮上海线下E邮宝",
+      "providerChannel": "中邮上海线下E邮宝",
+      "provider": "燕文",
+      "displayName": "燕文/中邮上海线下E邮宝",
+      "status": "mapped",
+      "enabled": true
+    },
+    {
+      "id": "map-unknown-295",
+      "sourceName": "云途欧洲专线（特惠普货）-CHC",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
+    }
+  ]
+}
