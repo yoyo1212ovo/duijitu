@@ -254,6 +254,18 @@ function extractCountry(order) {
   ]);
 }
 
+function extractStore(order) {
+  const store = firstString(order, [
+    "shopName",
+    "originExtendShopName",
+    "source_shop_name",
+    "sellerName",
+    "platformId",
+    "shopId"
+  ]);
+  return store || "未知店铺";
+}
+
 function extractDate(order) {
   const keys = [
     "createDate",
@@ -322,25 +334,35 @@ function filterOrdersByShippingDateRange(orders, startDate, endDate) {
 
 function aggregateOrders(orders) {
   const data = {};
+  const storeData = {};
   const weeklySeries = {};
+  const storeWeeklySeries = {};
   const countryWeeklySeries = {};
   const dailySeries = {};
+  const storeDailySeries = {};
   const countryDailySeries = {};
   const weekLabels = {};
   const dayLabels = {};
   const allWeekSet = new Set();
   const allDaySet = new Set();
+  const storeSet = new Set();
   let datedCount = 0;
 
   for (const order of orders) {
     const channel = extractChannel(order);
     const country = extractCountry(order);
+    const store = extractStore(order);
     if (!channel || !country) continue;
 
     const dateStr = extractShippingDate(order);
     if (!dateStr) continue;
     if (!data[channel]) data[channel] = {};
     data[channel][country] = (data[channel][country] || 0) + 1;
+
+    storeSet.add(store);
+    if (!storeData[store]) storeData[store] = {};
+    if (!storeData[store][channel]) storeData[store][channel] = {};
+    storeData[store][channel][country] = (storeData[store][channel][country] || 0) + 1;
 
     const info = weekInfo(dateStr);
     datedCount++;
@@ -352,12 +374,22 @@ function aggregateOrders(orders) {
     if (!weeklySeries[channel]) weeklySeries[channel] = {};
     weeklySeries[channel][info.key] = (weeklySeries[channel][info.key] || 0) + 1;
 
+    if (!storeWeeklySeries[store]) storeWeeklySeries[store] = {};
+    if (!storeWeeklySeries[store][channel]) storeWeeklySeries[store][channel] = {};
+    if (!storeWeeklySeries[store][channel][country]) storeWeeklySeries[store][channel][country] = {};
+    storeWeeklySeries[store][channel][country][info.key] = (storeWeeklySeries[store][channel][country][info.key] || 0) + 1;
+
     if (!countryWeeklySeries[channel]) countryWeeklySeries[channel] = {};
     if (!countryWeeklySeries[channel][country]) countryWeeklySeries[channel][country] = {};
     countryWeeklySeries[channel][country][info.key] = (countryWeeklySeries[channel][country][info.key] || 0) + 1;
 
     if (!dailySeries[channel]) dailySeries[channel] = {};
     dailySeries[channel][dateStr] = (dailySeries[channel][dateStr] || 0) + 1;
+
+    if (!storeDailySeries[store]) storeDailySeries[store] = {};
+    if (!storeDailySeries[store][channel]) storeDailySeries[store][channel] = {};
+    if (!storeDailySeries[store][channel][country]) storeDailySeries[store][channel][country] = {};
+    storeDailySeries[store][channel][country][dateStr] = (storeDailySeries[store][channel][country][dateStr] || 0) + 1;
 
     if (!countryDailySeries[channel]) countryDailySeries[channel] = {};
     if (!countryDailySeries[channel][country]) countryDailySeries[channel][country] = {};
@@ -380,13 +412,17 @@ function aggregateOrders(orders) {
   return {
     channels,
     countries: [...countrySet].sort(),
+    stores: [...storeSet].sort(),
     data,
+    storeData,
     totalByChannel,
     weeklySeries: datedCount > 0 ? weeklySeries : null,
+    storeWeeklySeries: datedCount > 0 ? storeWeeklySeries : null,
     countryWeeklySeries: datedCount > 0 ? countryWeeklySeries : null,
     allWeeks: [...allWeekSet].sort(),
     weekLabels,
     dailySeries: datedCount > 0 ? dailySeries : null,
+    storeDailySeries: datedCount > 0 ? storeDailySeries : null,
     countryDailySeries: datedCount > 0 ? countryDailySeries : null,
     allDays: [...allDaySet].sort(),
     dayLabels
@@ -399,17 +435,22 @@ function aggregateDailyOrders(orders) {
   for (const order of orders) {
     const channel = extractChannel(order);
     const country = extractCountry(order);
+    const store = extractStore(order);
     if (!channel || !country) continue;
 
     const dateStr = extractShippingDate(order);
     if (!dateStr) continue;
 
-    if (!byDate[dateStr]) byDate[dateStr] = { channels: {}, countries: {} };
+    if (!byDate[dateStr]) byDate[dateStr] = { channels: {}, countries: {}, stores: {}, storeChannels: {} };
     const day = byDate[dateStr];
 
     day.channels[channel] = (day.channels[channel] || 0) + 1;
     if (!day.countries[channel]) day.countries[channel] = {};
     day.countries[channel][country] = (day.countries[channel][country] || 0) + 1;
+    day.stores[store] = (day.stores[store] || 0) + 1;
+    if (!day.storeChannels[store]) day.storeChannels[store] = {};
+    if (!day.storeChannels[store][channel]) day.storeChannels[store][channel] = {};
+    day.storeChannels[store][channel][country] = (day.storeChannels[store][channel][country] || 0) + 1;
   }
 
   return {

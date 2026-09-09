@@ -321,6 +321,7 @@ select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--
   <div class="mode-toggle" id="modeToggle" style="display:none;"><button class="mt-btn" data-mode="stacked">&#x1F4CA; 堆积图分析?/button><button class="mt-btn active" data-mode="channel">&#x1F4E6; 单量汇总?/button></div><div class="controls" id="stackedControls">
     <div class="control-group"><span class="control-label">&#x7EBF;&#x8DEF;</span><select id="routeSelect"></select></div>
     <div class="control-group"><span class="control-label">&#x56FD;&#x5BB6;</span><select id="countrySelect"><option value="">&#x5168;&#x90E8;</option></select></div>
+    <div class="control-group"><span class="control-label">&#x5E97;&#x94FA;</span><select id="storeSelect"><option value="">&#x5168;&#x90E8;</option></select></div>
     <div class="control-group"><span class="control-label">&#x6A21;&#x5F0F;</span><select id="viewMode"><option value="single">&#x5355;&#x6BB5;&#x8BE6;&#x60C5;</option><option value="overview">&#x5168;&#x90E8;&#x603B;&#x89C8;</option></select></div>
   </div>
   <div class="insight-bar" id="insightBar"></div>
@@ -385,6 +386,17 @@ select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--
         </div>
       </div>
     </div>
+    <div class="cs-filter-wrap">
+      <span class="cs-filter-label">店铺：</span>
+      <div class="cs-multi-select" id="csStoreSelect">
+        <div class="cs-ms-trigger" id="csStoreMsTrigger"><span>全部店铺</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><polyline points="6 9 12 15 18 9"/></svg></div>
+        <div class="cs-ms-dropdown" id="csStoreMsDropdown" style="display:none;">
+          <div class="cs-ms-search"><input id="csStoreSearch" placeholder="搜索店铺..."></div>
+          <label class="cs-ms-all"><input type="checkbox" id="csStoreSelectAll"> 全选</label>
+          <div class="cs-ms-list" id="csStoreMsList"></div>
+        </div>
+      </div>
+    </div>
   <div class="cs-summary" id="csSummary"></div>
   </div>
   <div class="cs-suggestions" id="csSuggestions"></div>
@@ -418,8 +430,19 @@ select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--
       </div>
       <div class="cs-search-ms-tags" id="csTrendCountryTags"></div>
     </div>
+    <div class="cs-trend-selector" style="margin-top:12px">
+      <span class="cs-trend-selector-label">店铺</span>
+      <div class="cs-search-ms" id="csTrendStoreSelect">
+        <input class="cs-search-ms-input" id="csTrendStoreInput" placeholder="输入店铺名称搜索..." autocomplete="off" readonly onclick="document.getElementById('csTrendStoreDropdown').style.display='flex';document.getElementById('csTrendStoreSearch').focus()">
+        <div class="cs-search-ms-dropdown" id="csTrendStoreDropdown">
+          <div class="cs-ms-search"><input id="csTrendStoreSearch" placeholder="搜索店铺..."></div>
+          <div class="cs-ms-items" id="csTrendStoreItems"></div>
+        </div>
+      </div>
+      <div class="cs-search-ms-tags" id="csTrendStoreTags"></div>
+    </div>
     <div class="cs-trend-wrap" id="csTrendWrap">
-      <div class="cs-trend-empty" id="csTrendEmpty">请选择渠道或国家查看趋势</div>
+      <div class="cs-trend-empty" id="csTrendEmpty">请选择渠道、国家或店铺查看趋势</div>
     </div>
   </div>
 div>
@@ -465,13 +488,135 @@ var trendChart = null;
 var csSelectedWeek = null;
 var csSelectedChannels = [];
 var csSelectedCountries = [];
+var csSelectedStores = [];
 var csTrendChannels = [];
 var csTrendCountries = [];
+var csTrendStores = [];
 var csTrendMode = "week";
+var stackedSelectedStores = [];
+
+function activeStoreSelection(list) {
+  if (!channelSummary || !list || list.length === 0) return [];
+  var all = channelSummary.stores || [];
+  return list.filter(function(s) { return all.indexOf(s) >= 0; });
+}
+
+function getFilteredChannelCountryValue(channel, country) {
+  if (!channelSummary) return 0;
+  var selectedStores = activeStoreSelection(csSelectedStores);
+  if (selectedStores.length === 0) {
+    var data = channelSummary.data || {};
+    return data[channel] && data[channel][country] ? data[channel][country] : 0;
+  }
+  var storeData = channelSummary.storeData || {};
+  var total = 0;
+  selectedStores.forEach(function(store) {
+    total += storeData[store] && storeData[store][channel] && storeData[store][channel][country] ? storeData[store][channel][country] : 0;
+  });
+  return total;
+}
+
+function getFilteredVolData(volData, selectedStores) {
+  if (!volData) return { total: 0, samTotal: 0, stores: {} };
+  if (!selectedStores || selectedStores.length === 0) return volData;
+  var total = 0;
+  var samTotal = 0;
+  var stores = {};
+  selectedStores.forEach(function(store) {
+    var count = (volData.stores && volData.stores[store]) || 0;
+    if (!count) return;
+    total += count;
+    samTotal += count;
+    stores[store] = count;
+  });
+  return { total: total, samTotal: samTotal, stores: stores };
+}
+
+function getStoreChannelTotal(channel, selectedCountries, selectedStores, weekKey) {
+  var countries = selectedCountries && selectedCountries.length ? selectedCountries : (channelSummary.countries || []);
+  var stores = activeStoreSelection(selectedStores);
+  if (stores.length === 0) return 0;
+  var total = 0;
+  stores.forEach(function(store) {
+    var byChannel;
+    if (weekKey) {
+      var weekly = channelSummary.storeWeeklySeries || {};
+      byChannel = weekly[store] && weekly[store][channel] ? weekly[store][channel] : null;
+    } else {
+      var totals = channelSummary.storeData || {};
+      byChannel = totals[store] && totals[store][channel] ? totals[store][channel] : null;
+    }
+    if (!byChannel) return;
+    countries.forEach(function(country) {
+      var value = weekKey ? (byChannel[country] && byChannel[country][weekKey] ? byChannel[country][weekKey] : 0) : (byChannel[country] || 0);
+      total += value;
+    });
+  });
+  return total;
+}
+
+function getStoreChannelTimeSeries(channel, selectedCountries, selectedStores, isDaily) {
+  var countries = selectedCountries && selectedCountries.length ? selectedCountries : (channelSummary.countries || []);
+  var stores = activeStoreSelection(selectedStores);
+  var result = {};
+  var points = isDaily ? (channelSummary.allDays || []) : (channelSummary.allWeeks || []);
+  points.forEach(function(p) { result[p] = 0; });
+  var root = isDaily ? (channelSummary.storeDailySeries || {}) : (channelSummary.storeWeeklySeries || {});
+  stores.forEach(function(store) {
+    var byChannel = root[store] && root[store][channel] ? root[store][channel] : null;
+    if (!byChannel) return;
+    countries.forEach(function(country) {
+      var series = byChannel[country];
+      if (!series) return;
+      Object.keys(series).forEach(function(point) { result[point] = (result[point] || 0) + series[point]; });
+    });
+  });
+  return result;
+}
+
+function getStoreCountryTimeSeries(country, selectedChannels, selectedStores, isDaily) {
+  var channels = selectedChannels && selectedChannels.length ? selectedChannels : (channelSummary.channels || []);
+  var stores = activeStoreSelection(selectedStores);
+  var result = {};
+  var points = isDaily ? (channelSummary.allDays || []) : (channelSummary.allWeeks || []);
+  points.forEach(function(p) { result[p] = 0; });
+  var root = isDaily ? (channelSummary.storeDailySeries || {}) : (channelSummary.storeWeeklySeries || {});
+  stores.forEach(function(store) {
+    channels.forEach(function(channel) {
+      var byChannel = root[store] && root[store][channel] ? root[store][channel] : null;
+      if (!byChannel) return;
+      var series = byChannel[country];
+      if (!series) return;
+      Object.keys(series).forEach(function(point) { result[point] = (result[point] || 0) + series[point]; });
+    });
+  });
+  return result;
+}
+
+function getStoreTotalTimeSeries(selectedStores, isDaily) {
+  var stores = activeStoreSelection(selectedStores);
+  var result = {};
+  var points = isDaily ? (channelSummary.allDays || []) : (channelSummary.allWeeks || []);
+  points.forEach(function(p) { result[p] = 0; });
+  var root = isDaily ? (channelSummary.storeDailySeries || {}) : (channelSummary.storeWeeklySeries || {});
+  stores.forEach(function(store) {
+    var byChannel = root[store] || {};
+    Object.keys(byChannel).forEach(function(channel) {
+      Object.keys(byChannel[channel] || {}).forEach(function(country) {
+        var series = byChannel[channel][country];
+        Object.keys(series || {}).forEach(function(point) { result[point] = (result[point] || 0) + series[point]; });
+      });
+    });
+  });
+  return result;
+}
 
 function getWeekFilteredTotal(channel) {
   if (!channelSummary) return 0;
   var countries = csSelectedCountries || [];
+  if (csSelectedStores.length > 0) {
+    return getStoreChannelTotal(channel, countries, csSelectedStores, csSelectedWeek);
+  }
   if (countries.length > 0 && channelSummary.countryWeeklySeries && channelSummary.countryWeeklySeries[channel]) {
     var cw = channelSummary.countryWeeklySeries[channel];
     var total = 0;
@@ -497,6 +642,7 @@ function getWeekFilteredTotal(channel) {
 
 function getWeekFilteredTimeSeries(channel) {
   if (!channelSummary || !channelSummary.weeklySeries || !channelSummary.weeklySeries[channel]) return {};
+  if (csSelectedStores.length > 0) return getStoreChannelTimeSeries(channel, csSelectedCountries, csSelectedStores, false);
   var countries = csSelectedCountries || [];
   if (countries.length === 0) return channelSummary.weeklySeries[channel];
   var result = {};
@@ -511,6 +657,7 @@ function getWeekFilteredTimeSeries(channel) {
 
 function getTrendChannelTimeSeries(channel) {
   if (!channelSummary || !channelSummary.weeklySeries || !channelSummary.weeklySeries[channel]) return {};
+  if (csTrendStores.length > 0) return getStoreChannelTimeSeries(channel, csTrendCountries, csTrendStores, false);
   var countries = csTrendCountries || [];
   if (countries.length === 0) return channelSummary.weeklySeries[channel];
   var result = {};
@@ -525,6 +672,7 @@ function getTrendChannelTimeSeries(channel) {
 
 function getTrendCountryTimeSeries(country, channels) {
   if (!channelSummary || !channelSummary.countryWeeklySeries || !channelSummary.allWeeks) return {};
+  if (csTrendStores.length > 0) return getStoreCountryTimeSeries(country, channels, csTrendStores, false);
   var channelList = channels && channels.length ? channels : (channelSummary.channels || []);
   var result = {};
   (channelSummary.allWeeks || []).forEach(function(w) { result[w] = 0; });
@@ -538,6 +686,7 @@ function getTrendCountryTimeSeries(country, channels) {
 
 function getTrendDailyChannelTimeSeries(channel) {
   if (!channelSummary || !channelSummary.dailySeries || !channelSummary.dailySeries[channel]) return {};
+  if (csTrendStores.length > 0) return getStoreChannelTimeSeries(channel, csTrendCountries, csTrendStores, true);
   var countries = csTrendCountries || [];
   if (countries.length === 0) return channelSummary.dailySeries[channel];
   var result = {};
@@ -552,6 +701,7 @@ function getTrendDailyChannelTimeSeries(channel) {
 
 function getTrendDailyCountryTimeSeries(country, channels) {
   if (!channelSummary || !channelSummary.countryDailySeries || !channelSummary.allDays) return {};
+  if (csTrendStores.length > 0) return getStoreCountryTimeSeries(country, channels, csTrendStores, true);
   var channelList = channels && channels.length ? channels : (channelSummary.channels || []);
   var result = {};
   (channelSummary.allDays || []).forEach(function(d) { result[d] = 0; });
@@ -663,10 +813,10 @@ function renderTrendChart() {
 
   var sub = document.getElementById('csTrendSub');
 
-  if (csTrendChannels.length === 0 && csTrendCountries.length === 0) {
+  if (csTrendChannels.length === 0 && csTrendCountries.length === 0 && csTrendStores.length === 0) {
     var empty2 = document.getElementById('csTrendEmpty');
     if (empty2) empty2.style.display = 'block';
-    if (sub) sub.textContent = isDaily ? '选择渠道或国家查看每日发货单量变化' : '选择渠道或国家查看每周发货单量变化';
+    if (sub) sub.textContent = isDaily ? '选择渠道、国家或店铺查看每日发货单量变化' : '选择渠道、国家或店铺查看每周发货单量变化';
     if (trendChart) { trendChart.destroy(); trendChart = null; }
     return;
   }
@@ -676,7 +826,9 @@ function renderTrendChart() {
 
   if (sub) {
     var modeLabel = isDaily ? '每日发货单量趋势' : '每周发货单量趋势';
-    if (csTrendCountries.length === 1 && csTrendChannels.length > 0) {
+    if (csTrendChannels.length === 0 && csTrendCountries.length === 0 && csTrendStores.length > 0) {
+      sub.textContent = '当前展示 ' + csTrendStores.length + ' 个店铺的' + modeLabel;
+    } else if (csTrendCountries.length === 1 && csTrendChannels.length > 0) {
       sub.textContent = '当前展示 ' + csTrendChannels.length + ' 条渠道在 ' + csTrendCountries[0] + ' 的单量';
     } else if (csTrendCountries.length > 0) {
       sub.textContent = '当前展示 ' + csTrendCountries.length + ' 个国家的' + modeLabel;
@@ -684,6 +836,7 @@ function renderTrendChart() {
     } else {
       sub.textContent = '当前展示 ' + csTrendChannels.length + ' 条渠道的' + modeLabel;
     }
+    if (csTrendStores.length > 0) sub.textContent += '（已选 ' + csTrendStores.length + ' 个店铺）';
   }
 
   var points = isDaily ? getAllTrendDays() : getAllWeeks();
@@ -699,7 +852,19 @@ function renderTrendChart() {
 
   var colors = ['#818cf8', '#34d399', '#fbbf24', '#f87171', '#a78bfa', '#f472b6', '#38bdf8', '#fb923c'];
   var datasets;
-  if (csTrendCountries.length === 1 && csTrendChannels.length > 0) {
+  if (csTrendChannels.length === 0 && csTrendCountries.length === 0 && csTrendStores.length > 0) {
+    datasets = csTrendStores.map(function(store, i) {
+      var ts = isDaily ? getStoreTotalTimeSeries([store], true) : getStoreTotalTimeSeries([store], false);
+      var data = points.map(function(p) { return ts[p] || 0; });
+      return {
+        label: store.length > 30 ? store.substring(0, 28) + '...' : store,
+        data: data,
+        borderColor: colors[i % colors.length],
+        backgroundColor: colors[i % colors.length] + '20',
+        borderWidth: 2.5, pointRadius: 3, pointHoverRadius: 6, tension: 0.35, fill: false
+      };
+    });
+  } else if (csTrendCountries.length === 1 && csTrendChannels.length > 0) {
     datasets = csTrendChannels.map(function(ch, i) {
       var ts = isDaily ? getTrendDailyChannelTimeSeries(ch) : getTrendChannelTimeSeries(ch);
       var data = points.map(function(p) { return ts[p] || 0; });
@@ -890,6 +1055,87 @@ function initTrendCountrySelect() {
   dropdown.addEventListener('click', function(e) { e.stopPropagation(); });
   document.addEventListener('click', function() { dropdown.style.display = 'none'; });
 }
+
+function initTrendStoreSelect() {
+  var input = document.getElementById('csTrendStoreInput');
+  var dropdown = document.getElementById('csTrendStoreDropdown');
+  var search = document.getElementById('csTrendStoreSearch');
+  var items = document.getElementById('csTrendStoreItems');
+  var tags = document.getElementById('csTrendStoreTags');
+
+  if (!input || !dropdown || !search || !items || !tags) {
+    var trend = document.getElementById('csTrend');
+    var wrapEl = trend ? trend.querySelector('.cs-trend-wrap') : null;
+    if (!trend || !wrapEl || !wrapEl.parentNode) return;
+    var selector = document.createElement('div');
+    selector.className = 'cs-trend-selector';
+    selector.style.marginTop = '12px';
+    selector.innerHTML = '<span class="cs-trend-selector-label">店铺</span><div class="cs-search-ms" id="csTrendStoreSelect"><input class="cs-search-ms-input" id="csTrendStoreInput" placeholder="输入店铺名称搜索..." autocomplete="off" readonly><div class="cs-search-ms-dropdown" id="csTrendStoreDropdown"><div class="cs-ms-search"><input id="csTrendStoreSearch" placeholder="搜索店铺..."></div><div class="cs-ms-items" id="csTrendStoreItems"></div></div></div><div class="cs-search-ms-tags" id="csTrendStoreTags"></div>';
+    wrapEl.parentNode.insertBefore(selector, wrapEl);
+    return initTrendStoreSelect();
+  }
+  if (!channelSummary) return;
+  var emptyEl = document.getElementById('csTrendEmpty');
+  if (emptyEl) emptyEl.textContent = '请选择渠道、国家或店铺查看趋势';
+  var allStores = channelSummary.stores || [];
+
+  function renderItems(filter) {
+    var f = (filter || '').toLowerCase();
+    items.innerHTML = '';
+    if (allStores.length === 0) {
+      var empty = document.createElement('div');
+      empty.style.padding = '12px';
+      empty.style.color = 'var(--text3)';
+      empty.style.fontSize = '12px';
+      empty.textContent = '当前数据暂无店铺维度';
+      items.appendChild(empty);
+      return;
+    }
+    allStores.forEach(function(store) {
+      if (f && store.toLowerCase().indexOf(f) === -1) return;
+      var label = document.createElement('label');
+      var cb = document.createElement('input');
+      cb.type = 'checkbox'; cb.value = store;
+      cb.checked = csTrendStores.indexOf(store) >= 0;
+      cb.addEventListener('change', function() {
+        if (this.checked) { if (csTrendStores.indexOf(store) < 0) csTrendStores.push(store); }
+        else { var idx = csTrendStores.indexOf(store); if (idx >= 0) csTrendStores.splice(idx, 1); }
+        updateTrendStoreTags();
+        renderTrendChart();
+      });
+      label.appendChild(cb);
+      label.appendChild(document.createTextNode(store));
+      items.appendChild(label);
+    });
+  }
+
+  function updateTrendStoreTags() {
+    tags.innerHTML = csTrendStores.map(function(store) {
+      var short = store.length > 20 ? store.substring(0, 18) + '...' : store;
+      return '<span class="cs-search-ms-tag" data-store="' + store.replace(/"/g, '&quot;') + '">' + short + '<span class="tag-x">&times;</span></span>';
+    }).join('');
+    tags.querySelectorAll('.cs-search-ms-tag').forEach(function(tag) {
+      tag.addEventListener('click', function() {
+        var store = this.getAttribute('data-store');
+        csTrendStores = csTrendStores.filter(function(s) { return s !== store; });
+        updateTrendStoreTags();
+        renderItems(search.value);
+        renderTrendChart();
+      });
+    });
+    input.placeholder = csTrendStores.length === 0 ? '输入店铺名称搜索...' : '已选 ' + csTrendStores.length + ' 个店铺';
+  }
+
+  renderItems('');
+  updateTrendStoreTags();
+
+  input.addEventListener('click', function(e) { e.stopPropagation(); dropdown.style.display = 'flex'; search.focus(); });
+  search.addEventListener('input', function() { renderItems(this.value); });
+  search.addEventListener('click', function(e) { e.stopPropagation(); });
+  dropdown.addEventListener('click', function(e) { e.stopPropagation(); });
+  document.addEventListener('click', function() { dropdown.style.display = 'none'; });
+}
+
 function initWeekPicker() {
   var weekBar = document.getElementById('csDateBar');
   if (!weekBar) return;
@@ -1028,6 +1274,76 @@ function initCountryMultiSelect() {
   document.addEventListener('click', function() { dropdown.style.display = 'none'; });
 }
 
+function initStoreMultiSelect() {
+  var list = document.getElementById('csStoreMsList');
+  var trigger = document.getElementById('csStoreMsTrigger');
+  var dropdown = document.getElementById('csStoreMsDropdown');
+  var search = document.getElementById('csStoreSearch');
+  var selectAll = document.getElementById('csStoreSelectAll');
+  if (!list || !trigger || !dropdown || !search || !selectAll) {
+    var host = document.getElementById('csCountrySelect') || document.getElementById('csMultiSelect');
+    if (!host || !host.parentNode) return;
+    var wrap = document.createElement('div');
+    wrap.className = 'cs-filter-wrap';
+    wrap.innerHTML = '<span class="cs-filter-label">店铺：</span><div class="cs-multi-select" id="csStoreSelect"><div class="cs-ms-trigger" id="csStoreMsTrigger"><span>全部店铺</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><polyline points="6 9 12 15 18 9"/></svg></div><div class="cs-ms-dropdown" id="csStoreMsDropdown" style="display:none;"><div class="cs-ms-search"><input id="csStoreSearch" placeholder="搜索店铺..."></div><label class="cs-ms-all"><input type="checkbox" id="csStoreSelectAll"> 全选</label><div class="cs-ms-list" id="csStoreMsList"></div></div></div>';
+    var summary = document.getElementById('csSummary');
+    if (summary && summary.parentNode) summary.parentNode.insertBefore(wrap, summary);
+    else host.parentNode.insertBefore(wrap, host.nextSibling);
+    return initStoreMultiSelect();
+  }
+  var all = channelSummary.stores || [];
+  csSelectedStores = [];
+
+  function renderItems(filter) {
+    var f = (filter || '').toLowerCase();
+    list.innerHTML = '';
+    if (all.length === 0) {
+      var empty = document.createElement('div');
+      empty.style.padding = '12px';
+      empty.style.color = 'var(--text3)';
+      empty.style.fontSize = '12px';
+      empty.textContent = '当前数据暂无店铺维度';
+      list.appendChild(empty);
+      return;
+    }
+    all.forEach(function(store) {
+      if (f && store.toLowerCase().indexOf(f) === -1) return;
+      var label = document.createElement('label');
+      var cb = document.createElement('input');
+      cb.type = 'checkbox';
+      cb.value = store;
+      cb.checked = csSelectedStores.indexOf(store) >= 0;
+      cb.addEventListener('change', function() {
+        csSelectedStores = getCheckedValues(list);
+        refreshFilteredChannelViews();
+      });
+      label.appendChild(cb);
+      label.appendChild(document.createTextNode(store));
+      list.appendChild(label);
+    });
+  }
+
+  function updateTrigger() {
+    var count = getCheckedValues(list).length;
+    var label = count === 0 ? '全部店铺' : '已选' + count + ' 个店铺';
+    trigger.innerHTML = withArrow(label);
+    selectAll.checked = count === all.length && count > 0;
+  }
+
+  renderItems('');
+  updateTrigger();
+  selectAll.onchange = function() {
+    list.querySelectorAll('input[type=checkbox]').forEach(function(cb) { cb.checked = selectAll.checked; });
+    csSelectedStores = getCheckedValues(list);
+    refreshFilteredChannelViews();
+  };
+  trigger.onclick = function(e) { e.stopPropagation(); dropdown.style.display = dropdown.style.display === 'none' ? 'flex' : 'none'; search.focus(); };
+  search.addEventListener('input', function() { renderItems(this.value); });
+  search.addEventListener('click', function(e) { e.stopPropagation(); });
+  dropdown.addEventListener('click', function(e) { e.stopPropagation(); });
+  document.addEventListener('click', function() { dropdown.style.display = 'none'; });
+}
+
 function renderCostSuggestions() {
   var el = document.getElementById('csSuggestions');
   if (!el) {
@@ -1043,7 +1359,8 @@ function renderCostSuggestions() {
   if (!channelSummary || !channelSummary.channels || channelSummary.channels.length === 0) return;
 
   var channels = channelSummary.channels || [];
-  var totalByChannel = channelSummary.totalByChannel || {};
+  var totalByChannel = {};
+  channels.forEach(function(ch) { totalByChannel[ch] = getWeekFilteredTotal(ch); });
   var total = 0;
   channels.forEach(function(c) { total += totalByChannel[c] || 0; });
   if (!total) return;
@@ -1054,16 +1371,18 @@ function renderCostSuggestions() {
   var top3 = sorted.slice(0, 3);
   var top3Total = top3.reduce(function(s, c) { return s + (totalByChannel[c] || 0); }, 0);
 
-  var data = channelSummary.data || {};
   var countryTotal = {};
+  var countryNames = csSelectedCountries.length > 0 ? csSelectedCountries : (channelSummary.countries || []);
   channels.forEach(function(ch) {
-    var map = data[ch] || {};
-    Object.keys(map).forEach(function(cn) { countryTotal[cn] = (countryTotal[cn] || 0) + map[cn]; });
+    countryNames.forEach(function(cn) {
+      countryTotal[cn] = (countryTotal[cn] || 0) + getFilteredChannelCountryValue(ch, cn);
+    });
   });
   var countrySorted = Object.keys(countryTotal).sort(function(a, b) { return countryTotal[b] - countryTotal[a]; });
   var topCountry = countrySorted[0];
 
-  var weekly = channelSummary.weeklySeries || {};
+  var weekly = {};
+  channels.forEach(function(ch) { weekly[ch] = getWeekFilteredTimeSeries(ch); });
   var allWeeks = channelSummary.allWeeks || [];
   var rising = null;
   var falling = null;
@@ -1162,18 +1481,21 @@ function renderChannelSummary(){
   
     initChannelMultiSelect();
   initCountryMultiSelect();
+  initStoreMultiSelect();
   updateSummaryTable();
   
   if (rankingChart) { rankingChart.destroy(); rankingChart = null; }
   if (trendChart) { trendChart.destroy(); trendChart = null; }
   csTrendChannels = [];
   csTrendCountries = [];
+  csTrendStores = [];
   csTrendMode = currentPeriodMode === 'custom' ? 'day' : 'week';
   
   renderRankingChart();
   initWeekPicker();
   initTrendSelect();
   initTrendCountrySelect();
+  initTrendStoreSelect();
   initTrendModeToggle();
   renderTrendChart();
   renderCostSuggestions();
@@ -1182,8 +1504,10 @@ function renderChannelSummary(){
 function updateSummaryTable(){
   var selected = getCheckedValues(document.getElementById('csMsList'));
   var selectedCountries = getCheckedValues(document.getElementById('csCountryMsList'));
+  var selectedStores = getCheckedValues(document.getElementById('csStoreMsList'));
   csSelectedChannels = selected;
   csSelectedCountries = selectedCountries;
+  csSelectedStores = selectedStores;
 
   var selectAll = document.getElementById('csSelectAll');
   if (selectAll) selectAll.checked = selected.length === channelSummary.channels.length;
@@ -1195,10 +1519,14 @@ function updateSummaryTable(){
   var countryTrigger = document.getElementById('csCountryMsTrigger');
   if (countryTrigger) countryTrigger.innerHTML = withArrow(selectedCountries.length === 0 ? '全部国家' : ('已选' + selectedCountries.length + ' 个国家'));
 
+  var storeSelectAll = document.getElementById('csStoreSelectAll');
+  if (storeSelectAll) storeSelectAll.checked = selectedStores.length === (channelSummary.stores || []).length && selectedStores.length > 0;
+  var storeTrigger = document.getElementById('csStoreMsTrigger');
+  if (storeTrigger) storeTrigger.innerHTML = withArrow(selectedStores.length === 0 ? '全部店铺' : ('已选' + selectedStores.length + ' 个店铺'));
+
   var tw = document.getElementById('csTableWrap'), sm = document.getElementById('csSummary');
   if (selected.length === 0) { tw.innerHTML = '<div class="cs-no-data">请至少选择一条线路</div>'; sm.textContent = ''; return; }
 
-  var data = channelSummary.data;
   var countries = selectedCountries.length > 0 ? selectedCountries : channelSummary.countries;
   var html2 = '<table><thead><tr><th>物流渠道</th>';
   countries.forEach(function(c){ html2 += '<th>' + c + '</th>'; });
@@ -1208,7 +1536,7 @@ function updateSummaryTable(){
     html2 += '<tr><td>' + ch + '</td>';
     var rowTotal = 0;
     countries.forEach(function(cn){
-      var v = data[ch] && data[ch][cn] ? data[ch][cn] : 0;
+      var v = getFilteredChannelCountryValue(ch, cn);
       rowTotal += v;
       html2 += '<td>' + (v > 0 ? v : '-') + '</td>';
     });
@@ -1219,7 +1547,7 @@ function updateSummaryTable(){
   var colTotals = {};
   selected.forEach(function(ch){
     countries.forEach(function(cn){
-      var v = data[ch] && data[ch][cn] ? data[ch][cn] : 0;
+      var v = getFilteredChannelCountryValue(ch, cn);
       colTotals[cn] = (colTotals[cn] || 0) + v;
     });
   });
@@ -1228,7 +1556,8 @@ function updateSummaryTable(){
   html2 += '<td><strong>' + grandTotal + '</strong></td></tr>';
   html2 += '</tbody></table>';
   tw.innerHTML = html2;
-  sm.textContent = '共' + selected.length + ' 条线路，' + countries.length + ' 个国家，总单量：' + grandTotal.toLocaleString();
+  var storeSummary = channelSummary.stores && channelSummary.stores.length ? ((selectedStores.length || channelSummary.stores.length) + ' 个店铺') : '暂无店铺维度';
+  sm.textContent = '共' + selected.length + ' 条线路，' + countries.length + ' 个国家，' + storeSummary + '，总单量：' + grandTotal.toLocaleString();
 }
 
 </script>
@@ -1279,5 +1608,75 @@ loadChannelMapping();
     <div class="vol-popup-footer" id="volPopupFooter"></div>
   </div>
 </div>
+<script>
+function filterOrderVolumesByStores(vols, selectedStores) {
+  if (!vols || !selectedStores || selectedStores.length === 0) return vols;
+  var filtered = {};
+  Object.keys(vols).forEach(function(route) {
+    filtered[route] = {};
+    Object.keys(vols[route]).forEach(function(date) {
+      filtered[route][date] = getFilteredVolData(vols[route][date], selectedStores);
+    });
+  });
+  return filtered;
+}
+
+function syncStackedStoreOptions() {
+  var select = document.getElementById('storeSelect');
+  if (!select || !currentRoute) return;
+  var routeLabel = routes[currentRoute] ? routes[currentRoute].routeLabel : currentRoute;
+  var routeVols = orderVolumes && (orderVolumes[routeLabel] || orderVolumes[currentRoute]);
+  var storeNames = {};
+  if (routeVols) {
+    Object.keys(routeVols).forEach(function(date) {
+      Object.keys(routeVols[date].stores || {}).forEach(function(store) {
+        if (store) storeNames[store] = 1;
+      });
+    });
+  }
+  var options = Object.keys(storeNames).sort();
+  var current = select.value || '';
+  select.innerHTML = '<option value="">全部</option>';
+  options.forEach(function(store) {
+    var option = document.createElement('option');
+    option.value = store;
+    option.textContent = store;
+    select.appendChild(option);
+  });
+  if (current && options.indexOf(current) >= 0) select.value = current;
+  else select.value = '';
+  stackedSelectedStores = select.value ? [select.value] : [];
+}
+
+var __origRenderCharts = window.renderCharts;
+window.renderCharts = function() {
+  __origRenderCharts();
+  syncStackedStoreOptions();
+};
+
+var __origCreateChart = window.createChart;
+window.createChart = function(canvasId, data, label) {
+  var originalVolumes = window.orderVolumes;
+  if (stackedSelectedStores && stackedSelectedStores.length > 0) {
+    window.orderVolumes = filterOrderVolumesByStores(originalVolumes, stackedSelectedStores);
+  }
+  try {
+    return __origCreateChart(canvasId, data, label);
+  } finally {
+    window.orderVolumes = originalVolumes;
+  }
+};
+
+var __origShowVolPopup = window.showVolPopup;
+window.showVolPopup = function(title, dateStr, volData, evt) {
+  return __origShowVolPopup(title, dateStr, getFilteredVolData(volData, stackedSelectedStores), evt);
+};
+
+document.getElementById('storeSelect').addEventListener('change', function() {
+  stackedSelectedStores = this.value ? [this.value] : [];
+  window.renderCharts();
+});
+setTimeout(syncStackedStoreOptions, 0);
+</script>
 </body>
 </html>

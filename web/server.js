@@ -171,7 +171,7 @@ function mapHistoryToDisplay(history) {
   const days = {};
   for (const [date, record] of Object.entries(history.days || {})) {
     if (!record || !record.channels) continue;
-    const mapped = { channels: {}, countries: {} };
+    const mapped = { channels: {}, countries: {}, stores: {}, storeChannels: {} };
     for (const [sourceName, total] of Object.entries(record.channels)) {
       const displayName = resolveDisplayChannel(sourceName, mapping);
       if (!displayName) continue;
@@ -180,6 +180,21 @@ function mapHistoryToDisplay(history) {
       if (!mapped.countries[displayName]) mapped.countries[displayName] = {};
       for (const [country, count] of Object.entries(sourceCountries)) {
         mapped.countries[displayName][country] = (mapped.countries[displayName][country] || 0) + Number(count || 0);
+      }
+    }
+
+    for (const [store, storeTotal] of Object.entries(record.stores || {})) {
+      mapped.stores[store] = (mapped.stores[store] || 0) + Number(storeTotal || 0);
+    }
+    for (const [store, bySource] of Object.entries(record.storeChannels || {})) {
+      if (!mapped.storeChannels[store]) mapped.storeChannels[store] = {};
+      for (const [sourceName, sourceCountries] of Object.entries(bySource || {})) {
+        const displayName = resolveDisplayChannel(sourceName, mapping);
+        if (!displayName) continue;
+        if (!mapped.storeChannels[store][displayName]) mapped.storeChannels[store][displayName] = {};
+        for (const [country, count] of Object.entries(sourceCountries || {})) {
+          mapped.storeChannels[store][displayName][country] = (mapped.storeChannels[store][displayName][country] || 0) + Number(count || 0);
+        }
       }
     }
     if (Object.keys(mapped.channels).length > 0) days[date] = mapped;
@@ -222,8 +237,11 @@ function listLiveHistoryWeeks(history) {
 function buildDailySeries(entries) {
   const dailySeries = {};
   const countryDailySeries = {};
+  const storeData = {};
+  const storeDailySeries = {};
   const allDays = entries.map(([date]) => date).sort();
   const dayLabels = {};
+  const storeSet = new Set();
 
   for (const [date, record] of entries) {
     if (!record || !record.channels) continue;
@@ -239,9 +257,43 @@ function buildDailySeries(entries) {
         countryDailySeries[channel][country][date] = Number(count || 0);
       }
     }
+
+    for (const [store, byChannel] of Object.entries(record.storeChannels || {})) {
+      storeSet.add(store);
+      if (!storeData[store]) storeData[store] = {};
+      if (!storeDailySeries[store]) storeDailySeries[store] = {};
+      for (const [channel, byCountry] of Object.entries(byChannel || {})) {
+        if (!storeData[store][channel]) storeData[store][channel] = {};
+        if (!storeDailySeries[store][channel]) storeDailySeries[store][channel] = {};
+        for (const [country, count] of Object.entries(byCountry || {})) {
+          storeData[store][channel][country] = (storeData[store][channel][country] || 0) + Number(count || 0);
+          if (!storeDailySeries[store][channel][country]) storeDailySeries[store][channel][country] = {};
+          storeDailySeries[store][channel][country][date] = Number(count || 0);
+        }
+      }
+    }
   }
 
-  return { dailySeries, countryDailySeries, allDays, dayLabels };
+  return { dailySeries, countryDailySeries, allDays, dayLabels, stores: [...storeSet].sort(), storeData, storeDailySeries };
+}
+
+function buildStoreWeeklySeries(storeDailySeries) {
+  const storeWeeklySeries = {};
+  for (const [store, byChannel] of Object.entries(storeDailySeries || {})) {
+    for (const [channel, byCountry] of Object.entries(byChannel || {})) {
+      for (const [country, byDate] of Object.entries(byCountry || {})) {
+        for (const [date, count] of Object.entries(byDate || {})) {
+          const weekKey = getWeekKey(date);
+          if (!weekKey) continue;
+          if (!storeWeeklySeries[store]) storeWeeklySeries[store] = {};
+          if (!storeWeeklySeries[store][channel]) storeWeeklySeries[store][channel] = {};
+          if (!storeWeeklySeries[store][channel][country]) storeWeeklySeries[store][channel][country] = {};
+          storeWeeklySeries[store][channel][country][weekKey] = (storeWeeklySeries[store][channel][country][weekKey] || 0) + Number(count || 0);
+        }
+      }
+    }
+  }
+  return storeWeeklySeries;
 }
 
 function buildHistoryWeekSummary(weekKey, history) {
@@ -279,6 +331,8 @@ function buildHistoryWeekSummary(weekKey, history) {
   const total = channels.reduce((sum, channel) => sum + totalByChannel[channel], 0);
   const start = dateFromString(weekKey);
   const end = new Date(start.getTime() + 6 * 86400000);
+  const dailyBundle = buildDailySeries(entries);
+  const storeWeeklySeries = buildStoreWeeklySeries(dailyBundle.storeDailySeries);
   return {
     key: weekKey,
     label: getWeekLabel(weekKey),
@@ -289,13 +343,16 @@ function buildHistoryWeekSummary(weekKey, history) {
     channelSummary: {
       channels,
       countries: [...countries].sort(),
+      stores: dailyBundle.stores,
       data,
+      storeData: dailyBundle.storeData,
       totalByChannel,
       weeklySeries,
+      storeWeeklySeries,
       countryWeeklySeries,
       allWeeks: [weekKey],
       weekLabels: { [weekKey]: getWeekLabel(weekKey) },
-      ...buildDailySeries(entries)
+      ...dailyBundle
     }
   };
 }
@@ -350,6 +407,8 @@ function buildHistoryRangeSummary(startDate, endDate, history) {
 
   const total = channels.reduce((sum, channel) => sum + totalByChannel[channel], 0);
   const allWeeks = [...allWeekSet].sort();
+  const dailyBundle = buildDailySeries(entries);
+  const storeWeeklySeries = buildStoreWeeklySeries(dailyBundle.storeDailySeries);
   return {
     startDate,
     endDate,
@@ -360,13 +419,16 @@ function buildHistoryRangeSummary(startDate, endDate, history) {
     channelSummary: {
       channels,
       countries: [...countries].sort(),
+      stores: dailyBundle.stores,
       data,
+      storeData: dailyBundle.storeData,
       totalByChannel,
       weeklySeries,
+      storeWeeklySeries,
       countryWeeklySeries,
       allWeeks,
       weekLabels,
-      ...buildDailySeries(entries)
+      ...dailyBundle
     }
   };
 }
@@ -511,7 +573,8 @@ app.get("/api/live/channel-summary", async (req, res) => {
 
   if (!hasExplicitRange) {
     const snapshot = buildHistoryRangeSummary(range.startDate, range.endDate, history);
-    if (snapshot && snapshot.channelSummary && snapshot.channelSummary.channels && snapshot.channelSummary.channels.length > 0) {
+    const hasStoreDimension = snapshot && snapshot.channelSummary && snapshot.channelSummary.stores && snapshot.channelSummary.stores.length > 0;
+    if (hasStoreDimension && snapshot && snapshot.channelSummary && snapshot.channelSummary.channels && snapshot.channelSummary.channels.length > 0) {
       return res.json({
         source: "mabang-history",
         action: process.env.MABANG_ORDER_ACTION || "order-get-order-list-new",
@@ -1062,14 +1125,18 @@ function processOrderVolumes(wb) {
 function processChannelSummary(wb) {
   const XLSX = require("xlsx");
   const channelData = {};
+  const storeData = {};
   const weeklySeries = {};
+  const storeWeeklySeries = {};
   const countryWeeklySeries = {};
   const dailySeries = {};
+  const storeDailySeries = {};
   const countryDailySeries = {};
   const weekLabels = {};
   const dayLabels = {};
   const allWeekSet = new Set();
   const allDaySet = new Set();
+  const storeSet = new Set();
 
   function parseDate(val) {
     if (val == null) return null;
@@ -1127,6 +1194,7 @@ function processChannelSummary(wb) {
     if (!("物流渠道" in colIdx) || !("国家" in colIdx)) return;
 
     let timeCol = null;
+    let storeCol = "店铺" in colIdx ? colIdx["店铺"] : -1;
     for (let i = 0; i < headers.length; i++) {
       const h = headers[i];
       if (h && (h.includes('时间') || h.includes('日期') || String(h).toLowerCase().includes('date'))) {
@@ -1140,10 +1208,16 @@ function processChannelSummary(wb) {
     rows.forEach(row => {
       const channel = String(row[colIdx["物流渠道"]] || "").trim();
       const country = String(row[colIdx["国家"]] || "").trim();
+      const store = storeCol >= 0 ? (String(row[storeCol] || "").trim() || "未知店铺") : "未知店铺";
       if (!channel || !country) return;
 
       if (!channelData[channel]) channelData[channel] = {};
       channelData[channel][country] = (channelData[channel][country] || 0) + 1;
+
+      storeSet.add(store);
+      if (!storeData[store]) storeData[store] = {};
+      if (!storeData[store][channel]) storeData[store][channel] = {};
+      storeData[store][channel][country] = (storeData[store][channel][country] || 0) + 1;
 
       if (timeCol !== null) {
         const dateStr = parseDate(row[timeCol]);
@@ -1158,8 +1232,16 @@ function processChannelSummary(wb) {
           if (!countryWeeklySeries[channel]) countryWeeklySeries[channel] = {};
           if (!countryWeeklySeries[channel][country]) countryWeeklySeries[channel][country] = {};
           countryWeeklySeries[channel][country][info.key] = (countryWeeklySeries[channel][country][info.key] || 0) + 1;
+          if (!storeWeeklySeries[store]) storeWeeklySeries[store] = {};
+          if (!storeWeeklySeries[store][channel]) storeWeeklySeries[store][channel] = {};
+          if (!storeWeeklySeries[store][channel][country]) storeWeeklySeries[store][channel][country] = {};
+          storeWeeklySeries[store][channel][country][info.key] = (storeWeeklySeries[store][channel][country][info.key] || 0) + 1;
           if (!dailySeries[channel]) dailySeries[channel] = {};
           dailySeries[channel][dateStr] = (dailySeries[channel][dateStr] || 0) + 1;
+          if (!storeDailySeries[store]) storeDailySeries[store] = {};
+          if (!storeDailySeries[store][channel]) storeDailySeries[store][channel] = {};
+          if (!storeDailySeries[store][channel][country]) storeDailySeries[store][channel][country] = {};
+          storeDailySeries[store][channel][country][dateStr] = (storeDailySeries[store][channel][country][dateStr] || 0) + 1;
           if (!countryDailySeries[channel]) countryDailySeries[channel] = {};
           if (!countryDailySeries[channel][country]) countryDailySeries[channel][country] = {};
           countryDailySeries[channel][country][dateStr] = (countryDailySeries[channel][country][dateStr] || 0) + 1;
@@ -1183,13 +1265,17 @@ function processChannelSummary(wb) {
   return {
     channels,
     countries,
+    stores: [...storeSet].sort(),
     data: channelData,
+    storeData,
     totalByChannel,
     weeklySeries: Object.keys(weeklySeries).length > 0 ? weeklySeries : null,
+    storeWeeklySeries: Object.keys(storeWeeklySeries).length > 0 ? storeWeeklySeries : null,
     countryWeeklySeries: Object.keys(countryWeeklySeries).length > 0 ? countryWeeklySeries : null,
     allWeeks: [...allWeekSet].sort(),
     weekLabels,
     dailySeries: Object.keys(dailySeries).length > 0 ? dailySeries : null,
+    storeDailySeries: Object.keys(storeDailySeries).length > 0 ? storeDailySeries : null,
     countryDailySeries: Object.keys(countryDailySeries).length > 0 ? countryDailySeries : null,
     allDays: [...allDaySet].sort(),
     dayLabels

@@ -155,10 +155,13 @@ async function parseWorksheet(buf, entry, shared) {
   const out = {
     data: {},
     totalByChannel: {},
+    storeData: {},
     weeklySeries: {},
+    storeWeeklySeries: {},
     countryWeeklySeries: {},
     weekLabels: {},
-    allWeekSet: new Set()
+    allWeekSet: new Set(),
+    storeSet: new Set()
   };
 
   let tail = "";
@@ -193,10 +196,12 @@ async function parseWorksheet(buf, entry, shared) {
 
       let channelCol = -1;
       let countryCol = -1;
+      let storeCol = -1;
       let timeCol = -1;
       for (const c of cells) {
         if (c.text === "物流渠道" && channelCol < 0) channelCol = c.col;
         else if (c.text === "国家" && countryCol < 0) countryCol = c.col;
+        else if (c.text === "店铺" && storeCol < 0) storeCol = c.col;
         else if (timeCol < 0 && c.text && (c.text.includes("时间") || c.text.includes("日期") || c.text.toLowerCase().includes("date"))) timeCol = c.col;
       }
 
@@ -205,7 +210,7 @@ async function parseWorksheet(buf, entry, shared) {
         return;
       }
 
-      cols = { channelCol, countryCol, timeCol };
+      cols = { channelCol, countryCol, storeCol, timeCol };
       foundSheet = true;
       return;
     }
@@ -214,10 +219,16 @@ async function parseWorksheet(buf, entry, shared) {
 
     const channel = extractCell(rowXml, cols.channelCol);
     const country = extractCell(rowXml, cols.countryCol);
+    const store = cols.storeCol >= 0 ? (extractCell(rowXml, cols.storeCol) || "未知店铺") : "未知店铺";
     if (!channel || !country) return;
 
     if (!out.data[channel]) out.data[channel] = {};
     out.data[channel][country] = (out.data[channel][country] || 0) + 1;
+
+    out.storeSet.add(store);
+    if (!out.storeData[store]) out.storeData[store] = {};
+    if (!out.storeData[store][channel]) out.storeData[store][channel] = {};
+    out.storeData[store][channel][country] = (out.storeData[store][channel][country] || 0) + 1;
 
     if (cols.timeCol >= 0) {
       const dateStr = parseDateValue(extractCell(rowXml, cols.timeCol));
@@ -228,6 +239,11 @@ async function parseWorksheet(buf, entry, shared) {
 
         if (!out.weeklySeries[channel]) out.weeklySeries[channel] = {};
         out.weeklySeries[channel][info.key] = (out.weeklySeries[channel][info.key] || 0) + 1;
+
+        if (!out.storeWeeklySeries[store]) out.storeWeeklySeries[store] = {};
+        if (!out.storeWeeklySeries[store][channel]) out.storeWeeklySeries[store][channel] = {};
+        if (!out.storeWeeklySeries[store][channel][country]) out.storeWeeklySeries[store][channel][country] = {};
+        out.storeWeeklySeries[store][channel][country][info.key] = (out.storeWeeklySeries[store][channel][country][info.key] || 0) + 1;
 
         if (!out.countryWeeklySeries[channel]) out.countryWeeklySeries[channel] = {};
         if (!out.countryWeeklySeries[channel][country]) out.countryWeeklySeries[channel][country] = {};
@@ -269,10 +285,13 @@ async function parseChannelSummary(filePath) {
   const agg = {
     data: {},
     totalByChannel: {},
+    storeData: {},
     weeklySeries: {},
+    storeWeeklySeries: {},
     countryWeeklySeries: {},
     weekLabels: {},
-    allWeekSet: new Set()
+    allWeekSet: new Set(),
+    storeSet: new Set()
   };
 
   let found = false;
@@ -287,9 +306,29 @@ async function parseChannelSummary(filePath) {
         agg.data[ch][cn] = (agg.data[ch][cn] || 0) + one.data[ch][cn];
       }
     }
+    for (const store in one.storeData) {
+      agg.storeSet.add(store);
+      if (!agg.storeData[store]) agg.storeData[store] = {};
+      for (const ch in one.storeData[store]) {
+        if (!agg.storeData[store][ch]) agg.storeData[store][ch] = {};
+        for (const cn in one.storeData[store][ch]) {
+          agg.storeData[store][ch][cn] = (agg.storeData[store][ch][cn] || 0) + one.storeData[store][ch][cn];
+        }
+      }
+    }
     for (const ch in one.weeklySeries) {
       if (!agg.weeklySeries[ch]) agg.weeklySeries[ch] = {};
       Object.assign(agg.weeklySeries[ch], one.weeklySeries[ch]);
+    }
+    for (const store in one.storeWeeklySeries) {
+      if (!agg.storeWeeklySeries[store]) agg.storeWeeklySeries[store] = {};
+      for (const ch in one.storeWeeklySeries[store]) {
+        if (!agg.storeWeeklySeries[store][ch]) agg.storeWeeklySeries[store][ch] = {};
+        for (const cn in one.storeWeeklySeries[store][ch]) {
+          if (!agg.storeWeeklySeries[store][ch][cn]) agg.storeWeeklySeries[store][ch][cn] = {};
+          Object.assign(agg.storeWeeklySeries[store][ch][cn], one.storeWeeklySeries[store][ch][cn]);
+        }
+      }
     }
     for (const ch in one.countryWeeklySeries) {
       if (!agg.countryWeeklySeries[ch]) agg.countryWeeklySeries[ch] = {};
@@ -300,6 +339,7 @@ async function parseChannelSummary(filePath) {
     }
     Object.assign(agg.weekLabels, one.weekLabels);
     one.allWeekSet.forEach(w => agg.allWeekSet.add(w));
+    one.storeSet.forEach(s => agg.storeSet.add(s));
   }
 
   if (!found) return null;
@@ -317,9 +357,12 @@ async function parseChannelSummary(filePath) {
   return {
     channels,
     countries,
+    stores: [...agg.storeSet].sort(),
     data: agg.data,
+    storeData: agg.storeData,
     totalByChannel,
     weeklySeries: Object.keys(agg.weeklySeries).length > 0 ? agg.weeklySeries : null,
+    storeWeeklySeries: Object.keys(agg.storeWeeklySeries).length > 0 ? agg.storeWeeklySeries : null,
     countryWeeklySeries: Object.keys(agg.countryWeeklySeries).length > 0 ? agg.countryWeeklySeries : null,
     allWeeks: [...agg.allWeekSet].sort(),
     weekLabels: agg.weekLabels
