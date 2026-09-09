@@ -39,6 +39,7 @@ function writeJSON(filename, data) {
 const HISTORY_FILE = "live-history.json";
 const HISTORY_SEED_FILE = process.env.HISTORY_SEED_FILE || path.join(__dirname, "data", HISTORY_FILE);
 const CHANNEL_MAPPING_FILE = "channel-mapping.json";
+const CHANNEL_MAPPING_SEED_FILE = process.env.CHANNEL_MAPPING_SEED_FILE || path.join(__dirname, "data", CHANNEL_MAPPING_FILE);
 
 function pad2(n) {
   return String(n).padStart(2, "0");
@@ -115,8 +116,19 @@ function writeHistory(history) {
 }
 
 function readChannelMapping() {
-  const parsed = readJSON(CHANNEL_MAPPING_FILE);
-  const records = Array.isArray(parsed) ? parsed : (parsed && Array.isArray(parsed.records) ? parsed.records : []);
+  const readMappingFile = (filePath) => {
+    if (!filePath || !fs.existsSync(filePath)) return [];
+    try {
+      const parsed = JSON.parse(fs.readFileSync(filePath, "utf8"));
+      return Array.isArray(parsed) ? parsed : (parsed && Array.isArray(parsed.records) ? parsed.records : []);
+    } catch {
+      return [];
+    }
+  };
+  const records = [
+    ...readMappingFile(CHANNEL_MAPPING_SEED_FILE),
+    ...readMappingFile(path.join(DATA_DIR, CHANNEL_MAPPING_FILE))
+  ];
   const bySource = new Map();
   for (const record of records) {
     if (!record || !record.sourceName) continue;
