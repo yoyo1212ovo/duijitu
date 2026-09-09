@@ -52,6 +52,8 @@ async function main() {
   const shippingEndDate = process.argv[3] || process.env.BACKFILL_END_DATE || today;
   const queryStartDate = process.argv[4] || process.env.BACKFILL_QUERY_START_DATE || shippingStartDate;
   const queryEndDate = process.argv[5] || process.env.BACKFILL_QUERY_END_DATE || shippingEndDate;
+  const queryMode = process.argv[6] || process.env.BACKFILL_TIME_FIELD || "createDate";
+  const timeField = queryMode === "shipping" ? "expressTime" : "createDate";
   if (shippingStartDate > shippingEndDate) throw new Error("shipping start date must be before or equal to end date");
   if (queryStartDate > queryEndDate) throw new Error("query start date must be before or equal to end date");
 
@@ -67,6 +69,8 @@ async function main() {
     endDate: shippingEndDate,
     queryStartDate,
     queryEndDate,
+    timeField,
+    allowHistorical: true,
     statuses: [3, 7]
   });
   const daily = result && result.dailySummary && result.dailySummary.byDate ? result.dailySummary.byDate : {};

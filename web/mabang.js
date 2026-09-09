@@ -446,7 +446,7 @@ function buildDateRange(query = {}) {
   const endDate = toDateTime(query.endDate) || new Date();
   const requestedStart = toDateTime(query.startDate);
   const earliestStart = new Date(endDate.getTime() - MAX_LIVE_LOOKBACK_DAYS * 24 * 60 * 60 * 1000);
-  const startDate = !requestedStart || requestedStart.getTime() < earliestStart.getTime()
+  const startDate = !requestedStart || (!query.allowHistorical && requestedStart.getTime() < earliestStart.getTime())
     ? earliestStart
     : requestedStart;
   return { startDate, endDate };
@@ -467,12 +467,16 @@ function buildTimeWindows(startDate, endDate) {
   return windows;
 }
 
-async function fetchOrderListPage({ appKey, appToken, gateway, action, cursor, startDate, endDate, status, signal }) {
-  // This action does not expose a transportTime query parameter, so fetch by create time and group by shipping time during aggregation.
-  const params = {
-    createDateStart: formatDateTime(startDate),
-    createDateEnd: formatDateTime(endDate)
-  };
+async function fetchOrderListPage({ appKey, appToken, gateway, action, cursor, startDate, endDate, status, signal, timeField = "createDate" }) {
+  const params = timeField === "expressTime"
+    ? {
+        expressTimeStart: formatDateTime(startDate),
+        expressTimeEnd: formatDateTime(endDate)
+      }
+    : {
+        createDateStart: formatDateTime(startDate),
+        createDateEnd: formatDateTime(endDate)
+      };
   if (status != null) params.status = status;
   if (cursor) params.cursor = cursor;
 
@@ -495,6 +499,8 @@ async function fetchLiveOrders(options = {}) {
     startDate: startDateInput,
     endDate: endDateInput,
     statuses: statusesInput,
+    timeField = "createDate",
+    allowHistorical = false,
     maxPages = Number(process.env.MABANG_MAX_PAGES) || DEFAULT_MAX_PAGES_PER_WINDOW,
     signal
   } = options;
@@ -503,7 +509,7 @@ async function fetchLiveOrders(options = {}) {
     throw new Error("缺少马帮接口配置：MABANG_APP_KEY 或 MABANG_APP_TOKEN 未设置");
   }
 
-  const { startDate, endDate } = buildDateRange({ startDate: startDateInput, endDate: endDateInput });
+  const { startDate, endDate } = buildDateRange({ startDate: startDateInput, endDate: endDateInput, allowHistorical });
   const statuses = Array.isArray(statusesInput) && statusesInput.length > 0
     ? statusesInput.map((value) => Number(value)).filter((value) => Number.isFinite(value))
     : [3, 7];
@@ -526,6 +532,7 @@ async function fetchLiveOrders(options = {}) {
         startDate: window.startDate,
         endDate: window.endDate,
         status,
+        timeField,
         signal
       });
 
