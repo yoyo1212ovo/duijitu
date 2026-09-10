@@ -28,7 +28,7 @@ jobs:
         run: npm ci
 
       - name: Backfill last week by shipping time
-        run: node scripts/backfill-mabang.js 2026-08-24 2026-08-30 2026-08-17 2026-08-31
+        run: node scripts/backfill-mabang.js 2026-08-24 2026-08-30 2026-08-24 2026-08-30 shipping
         env:
           MABANG_APP_KEY: ${{ secrets.MABANG_APP_KEY }}
           MABANG_APP_TOKEN: ${{ secrets.MABANG_APP_TOKEN }}
