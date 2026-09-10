@@ -197,6 +197,36 @@ select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--
 .cs-table-wrap th:first-child{z-index:2}
 .cs-table-wrap tbody tr:hover td{background:rgba(255,255,255,.02)}
 .cs-table-wrap td{color:var(--text)}
+.cs-daily-board{border:1px solid var(--border);border-radius:10px;background:var(--card);overflow:hidden}
+.cs-daily-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--border);border-bottom:1px solid var(--border)}
+.cs-daily-kpi{background:var(--surface2);padding:14px 18px;min-width:0}
+.cs-daily-kpi-label{font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.04em}
+.cs-daily-kpi-value{font-size:22px;font-weight:700;margin-top:4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cs-daily-kpi-sub{font-size:11px;color:var(--text3);margin-top:2px}
+.cs-daily-board-head,.cs-daily-row{display:grid;grid-template-columns:minmax(180px,1.4fr) minmax(96px,.7fr) minmax(88px,.65fr) minmax(130px,.9fr) minmax(110px,.8fr) minmax(110px,.9fr);column-gap:12px;align-items:center}
+.cs-daily-board-head{padding:10px 16px;background:#1a1a2e;color:var(--text2);font-size:11px;font-weight:600;white-space:nowrap}
+.cs-daily-row{padding:12px 16px;border-top:1px solid var(--border);color:var(--text);font-size:12px}
+.cs-daily-row:hover{background:rgba(255,255,255,.02)}
+.cs-daily-channel{display:flex;align-items:center;gap:10px;min-width:0}
+.cs-daily-rank{width:22px;height:22px;border-radius:6px;background:rgba(99,102,241,.12);color:var(--accent2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0}
+.cs-daily-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600}
+.cs-daily-avg{font-size:17px;font-weight:700;white-space:nowrap}
+.cs-daily-total{color:var(--text2);white-space:nowrap}
+.cs-daily-share{display:flex;flex-direction:column;gap:4px;min-width:0}
+.cs-daily-share-text{font-weight:600;white-space:nowrap}
+.cs-daily-bar{height:5px;border-radius:3px;background:rgba(255,255,255,.06);overflow:hidden}
+.cs-daily-bar i{display:block;height:100%;border-radius:3px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+.cs-daily-country{color:var(--text2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cs-daily-action{display:inline-flex;padding:3px 8px;border-radius:10px;font-size:11px;font-weight:600;white-space:nowrap}
+.cs-daily-action.priority{background:rgba(99,102,241,.14);color:var(--accent2)}
+.cs-daily-action.stable{background:rgba(52,211,153,.14);color:var(--green)}
+.cs-daily-action.tail{background:rgba(251,191,36,.14);color:var(--orange)}
+.cs-daily-more{padding:10px 16px;font-size:11px;color:var(--text3);border-top:1px solid var(--border);text-align:center}
+.cs-daily-board .cs-no-data{padding:40px;text-align:center;color:var(--text2);font-size:13px}
+@media(max-width:900px){
+  .cs-daily-board{overflow-x:auto}
+  .cs-daily-board-head,.cs-daily-row{min-width:820px}
+}
 .cs-no-data{padding:40px;text-align:center;color:var(--text2);font-size:13px}.cs-upload-btn{margin-top:8px;display:inline-flex!important}.empty-state{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:calc(100vh - 120px);gap:16px;color:var(--text3)}
 .empty-state .empty-icon{width:56px;height:56px;opacity:.3;margin-bottom:4px}
 .empty-state p{font-size:14px}
@@ -1527,39 +1557,94 @@ function updateSummaryTable(){
   if (storeTrigger) storeTrigger.innerHTML = withArrow(selectedStores.length === 0 ? '全部店铺' : ('已选' + selectedStores.length + ' 个店铺'));
 
   var tw = document.getElementById('csTableWrap'), sm = document.getElementById('csSummary');
+  tw.className = 'cs-daily-board';
   if (selected.length === 0) { tw.innerHTML = '<div class="cs-no-data">请至少选择一条线路</div>'; sm.textContent = ''; return; }
 
   var countries = selectedCountries.length > 0 ? selectedCountries : channelSummary.countries;
-  var html2 = '<table><thead><tr><th>物流渠道</th>';
-  countries.forEach(function(c){ html2 += '<th>' + c + '</th>'; });
-  html2 += '<th>合计</th></tr></thead><tbody>';
+  var dayCount = channelSummary.allDays && channelSummary.allDays.length > 0 ? channelSummary.allDays.length : 1;
 
-  selected.forEach(function(ch){
-    html2 += '<tr><td>' + ch + '</td>';
-    var rowTotal = 0;
-    countries.forEach(function(cn){
-      var v = getFilteredChannelCountryValue(ch, cn);
-      rowTotal += v;
-      html2 += '<td>' + (v > 0 ? v : '-') + '</td>';
-    });
-    html2 += '<td><strong>' + rowTotal + '</strong></td></tr>';
-  });
+  function channelCountryPeriodValue(channel, country) {
+    var stores = activeStoreSelection(selectedStores);
+    if (stores.length > 0) {
+      var storeTotal = 0;
+      stores.forEach(function(store) {
+        if (csSelectedWeek) {
+          var weekly = channelSummary.storeWeeklySeries && channelSummary.storeWeeklySeries[store] && channelSummary.storeWeeklySeries[store][channel];
+          storeTotal += weekly && weekly[country] && weekly[country][csSelectedWeek] || 0;
+        } else {
+          storeTotal += channelSummary.storeData && channelSummary.storeData[store] && channelSummary.storeData[store][channel] && channelSummary.storeData[store][channel][country] || 0;
+        }
+      });
+      return storeTotal;
+    }
+    if (csSelectedWeek) {
+      var cw = channelSummary.countryWeeklySeries && channelSummary.countryWeeklySeries[channel] && channelSummary.countryWeeklySeries[channel][country];
+      return cw && cw[csSelectedWeek] || 0;
+    }
+    var data = channelSummary.data || {};
+    return data[channel] && data[channel][country] || 0;
+  }
 
-  html2 += '<tr style="font-weight:600;background:#1a1a2e"><td>合计</td>';
-  var colTotals = {};
-  selected.forEach(function(ch){
-    countries.forEach(function(cn){
-      var v = getFilteredChannelCountryValue(ch, cn);
-      colTotals[cn] = (colTotals[cn] || 0) + v;
+  var rows = selected.map(function(ch) {
+    var total = getWeekFilteredTotal(ch);
+    var avg = total / dayCount;
+    var topCountry = '';
+    var topCountryValue = 0;
+    countries.forEach(function(cn) {
+      var v = channelCountryPeriodValue(ch, cn);
+      if (v > topCountryValue) { topCountryValue = v; topCountry = cn; }
     });
+    return { channel: ch, total: total, avg: avg, topCountry: topCountry, topCountryValue: topCountryValue };
+  }).filter(function(r) { return r.total > 0; })
+    .sort(function(a, b) { return b.avg - a.avg; });
+
+  var grandTotal = rows.reduce(function(sum, r) { return sum + r.total; }, 0);
+  var overallAvg = grandTotal / dayCount;
+  var maxAvg = rows.length ? rows[0].avg : 1;
+  var topChannel = rows.length ? rows[0].channel : '-';
+
+  var countryTotals = {};
+  countries.forEach(function(cn) { countryTotals[cn] = 0; });
+  selected.forEach(function(ch) {
+    countries.forEach(function(cn) { countryTotals[cn] += channelCountryPeriodValue(ch, cn); });
   });
-  countries.forEach(function(cn){ html2 += '<td>' + (colTotals[cn] || '-') + '</td>'; });
-  var grandTotal = Object.values(colTotals).reduce(function(a, b){ return a + b; }, 0);
-  html2 += '<td><strong>' + grandTotal + '</strong></td></tr>';
-  html2 += '</tbody></table>';
-  tw.innerHTML = html2;
-  var storeSummary = channelSummary.stores && channelSummary.stores.length ? ((selectedStores.length || channelSummary.stores.length) + ' 个店铺') : '暂无店铺维度';
-  sm.textContent = '共' + selected.length + ' 条线路，' + countries.length + ' 个国家，' + storeSummary + '，总单量：' + grandTotal.toLocaleString();
+  var topCountry = Object.keys(countryTotals).sort(function(a, b) { return countryTotals[b] - countryTotals[a]; })[0] || '-';
+  var topCountryTotal = countryTotals[topCountry] || 0;
+  var topCountryShare = grandTotal ? (topCountryTotal / grandTotal * 100) : 0;
+
+  sm.textContent = '共 ' + selected.length + ' 条渠道，近 ' + dayCount + ' 天日均 ' + Math.round(overallAvg).toLocaleString() + ' 单，合计 ' + grandTotal.toLocaleString() + ' 单；按日均单量排序';
+
+  var kpis = '<div class="cs-daily-kpis">'
+    + '<div class="cs-daily-kpi"><div class="cs-daily-kpi-label">日均发货</div><div class="cs-daily-kpi-value accent-blue">' + Math.round(overallAvg).toLocaleString() + '</div><div class="cs-daily-kpi-sub">近 ' + dayCount + ' 天</div></div>'
+    + '<div class="cs-daily-kpi"><div class="cs-daily-kpi-label">总单量</div><div class="cs-daily-kpi-value">' + grandTotal.toLocaleString() + '</div><div class="cs-daily-kpi-sub">' + rows.length + ' 条有单渠道</div></div>'
+    + '<div class="cs-daily-kpi"><div class="cs-daily-kpi-label">主力渠道</div><div class="cs-daily-kpi-value accent-orange">' + escapeHtml(topChannel) + '</div><div class="cs-daily-kpi-sub">日均 ' + Math.round(rows.length ? rows[0].avg : 0).toLocaleString() + ' 单</div></div>'
+    + '<div class="cs-daily-kpi"><div class="cs-daily-kpi-label">主力国家</div><div class="cs-daily-kpi-value accent-green">' + escapeHtml(topCountry) + '</div><div class="cs-daily-kpi-sub">占 ' + topCountryShare.toFixed(1) + '%</div></div>'
+    + '</div>';
+
+  var html = kpis + '<div class="cs-daily-board-head"><span>渠道</span><span>日均单量</span><span>总单量</span><span>占比</span><span>主力国家</span><span>建议</span></div>';
+  var visibleRows = rows.slice(0, 12);
+  visibleRows.forEach(function(r, index) {
+    var rank = index + 1;
+    var share = grandTotal ? (r.total / grandTotal * 100) : 0;
+    var ratio = overallAvg > 0 ? r.avg / overallAvg : 0;
+    var action = '常规监控';
+    var actionClass = 'stable';
+    if (rank <= 3) { action = '优先议价'; actionClass = 'priority'; }
+    else if (ratio >= 1) { action = '稳定主力'; actionClass = 'stable'; }
+    else if (share < 3) { action = '长尾优化'; actionClass = 'tail'; }
+    var barWidth = maxAvg > 0 ? Math.max(2, r.avg / maxAvg * 100) : 0;
+    html += '<div class="cs-daily-row">'
+      + '<div class="cs-daily-channel"><span class="cs-daily-rank">' + rank + '</span><span class="cs-daily-name" title="' + escapeHtml(r.channel) + '">' + escapeHtml(r.channel) + '</span></div>'
+      + '<div class="cs-daily-avg">' + Math.round(r.avg).toLocaleString() + '</div>'
+      + '<div class="cs-daily-total">' + r.total.toLocaleString() + '</div>'
+      + '<div class="cs-daily-share"><span class="cs-daily-share-text">' + share.toFixed(1) + '%</span><span class="cs-daily-bar"><i style="width:' + barWidth + '%"></i></span></div>'
+      + '<div class="cs-daily-country" title="' + escapeHtml(r.topCountry) + '">' + escapeHtml(r.topCountry || '-') + '</div>'
+      + '<div><span class="cs-daily-action ' + actionClass + '">' + action + '</span></div>'
+      + '</div>';
+  });
+  if (rows.length > visibleRows.length) html += '<div class="cs-daily-more">仅显示日均单量前 12 条，使用上方筛选查看其余渠道</div>';
+
+  tw.innerHTML = html;
 }
 
 </script>
