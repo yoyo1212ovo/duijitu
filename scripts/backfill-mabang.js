@@ -26,6 +26,18 @@ function addDays(dateStr, amount) {
   return date.toISOString().slice(0, 10);
 }
 
+function minDate(a, b) {
+  return a < b ? a : b;
+}
+
+function maxDate(a, b) {
+  return a > b ? a : b;
+}
+
+function sumChannels(record) {
+  return Object.values(record && record.channels || {}).reduce((sum, value) => sum + Number(value || 0), 0);
+}
+
 function writeHistory(historyFile, history) {
   const tmpFile = historyFile + ".tmp";
   fs.writeFileSync(tmpFile, JSON.stringify(history, null, 2));
@@ -33,14 +45,15 @@ function writeHistory(historyFile, history) {
 }
 
 async function fetchRangeWithRetry(options, attempts = 3) {
+  const maxAttempts = Number(process.env.BACKFILL_RETRY_ATTEMPTS) || attempts;
   let lastError = null;
-  for (let attempt = 1; attempt <= attempts; attempt++) {
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
     try {
       return await fetchLiveChannelSummary(options);
     } catch (err) {
       lastError = err;
-      console.log(`  attempt ${attempt}/${attempts} failed: ${err && err.message ? err.message : err}`);
-      if (attempt < attempts) await new Promise((resolve) => setTimeout(resolve, attempt * 5000));
+      console.log(`  attempt ${attempt}/${maxAttempts} failed: ${err && err.message ? err.message : err}`);
+      if (attempt < maxAttempts) await new Promise((resolve) => setTimeout(resolve, Math.min(30000, attempt * 5000)));
     }
   }
   throw lastError;
@@ -64,30 +77,44 @@ async function main() {
   history.days = history.days && typeof history.days === "object" ? history.days : {};
 
   console.log(`Fetching query=${queryStartDate}..${queryEndDate} shipping=${shippingStartDate}..${shippingEndDate}`);
-  const result = await fetchRangeWithRetry({
-    startDate: shippingStartDate,
-    endDate: shippingEndDate,
-    queryStartDate,
-    queryEndDate,
-    timeField,
-    allowHistorical: true,
-    statuses: [3, 7]
-  });
-  const daily = result && result.dailySummary && result.dailySummary.byDate ? result.dailySummary.byDate : {};
-  for (const [day, record] of Object.entries(daily)) history.days[day] = record;
+  const savedTotals = {};
+  let cursor = queryStartDate;
 
-  history.updatedAt = new Date().toISOString();
-  history.lastFetchedAt = history.updatedAt;
-  history.lastStartDate = shippingStartDate;
-  history.lastEndDate = shippingEndDate;
-  writeHistory(historyFile, history);
+  while (cursor <= queryEndDate) {
+    const dayShippingStart = maxDate(shippingStartDate, cursor);
+    const dayShippingEnd = minDate(shippingEndDate, cursor);
+    if (dayShippingStart <= dayShippingEnd) {
+      console.log(`Fetching day ${cursor} (shipping ${dayShippingStart}..${dayShippingEnd})`);
+      const result = await fetchRangeWithRetry({
+        startDate: dayShippingStart,
+        endDate: dayShippingEnd,
+        queryStartDate: cursor,
+        queryEndDate: cursor,
+        timeField,
+        allowHistorical: true,
+        statuses: [3, 7]
+      });
 
-  const savedTotals = Object.fromEntries(Object.entries(daily).map(([day, record]) => {
-    const total = Object.values(record && record.channels || {}).reduce((sum, value) => sum + Number(value || 0), 0);
-    return [day, total];
-  }));
-  console.log(`Saved range total=${result.total || 0} days=${JSON.stringify(savedTotals)}`);
+      const daily = result && result.dailySummary && result.dailySummary.byDate ? result.dailySummary.byDate : {};
+      for (const [day, record] of Object.entries(daily)) {
+        history.days[day] = record;
+        savedTotals[day] = sumChannels(record);
+      }
 
+      history.updatedAt = new Date().toISOString();
+      history.lastFetchedAt = history.updatedAt;
+      history.lastStartDate = shippingStartDate;
+      history.lastEndDate = shippingEndDate;
+      writeHistory(historyFile, history);
+      console.log(`  saved day=${cursor} totals=${JSON.stringify(savedTotals)}`);
+    } else {
+      console.log(`Skipping day ${cursor}: outside shipping range`);
+    }
+
+    cursor = addDays(cursor, 1);
+  }
+
+  console.log(`Saved range totals=${JSON.stringify(savedTotals)}`);
   console.log(`Wrote ${historyFile}`);
 }
 

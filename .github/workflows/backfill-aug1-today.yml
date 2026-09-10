@@ -3,8 +3,8 @@ name: Backfill Aug 1 through today
 on:
   workflow_dispatch:
   schedule:
-    # 2026-09-09 19:35 Asia/Shanghai = 11:35 UTC
-    - cron: '35 11 9 9 *'
+    # 2026-09-10 19:05 Asia/Shanghai = 11:05 UTC
+    - cron: '5 11 10 9 *'
 
 permissions:
   contents: write
@@ -13,6 +13,10 @@ jobs:
   backfill:
     runs-on: ubuntu-latest
     timeout-minutes: 120
+    env:
+      NODE_OPTIONS: --max-old-space-size=4096
+      MABANG_TIMEOUT_MS: 30000
+      BACKFILL_RETRY_ATTEMPTS: 8
 
     steps:
       - name: Check out repository

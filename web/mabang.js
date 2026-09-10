@@ -296,9 +296,9 @@ function extractDate(order) {
 
 function extractShippingDate(order) {
   const keys = [
-    "transportTime",
     "expressTime",
     "shipTime",
+    "transportTime",
     "shipDate",
     "quickPickTime"
   ];
