@@ -558,7 +558,7 @@ async function fetchLiveOrders(options = {}) {
   const { startDate, endDate } = buildDateRange({ startDate: startDateInput, endDate: endDateInput, allowHistorical });
   const statuses = Array.isArray(statusesInput) && statusesInput.length > 0
     ? statusesInput.map((value) => Number(value)).filter((value) => Number.isFinite(value))
-    : [3, 7];
+    : [1, 2, 3, 4, 5, 6, 7];
   const apiEnd = new Date(Math.min(Date.now(), endDate.getTime() + 24 * 60 * 60 * 1000));
   const seen = new Set();
   const orders = [];
