@@ -10,8 +10,10 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
+  color-scheme:dark;
   --bg:#0f1117;--surface:#161822;--surface2:#1c1f2e;--border:#252836;
   --text:#e4e6f0;--text2:#8b8fa8;--text3:#5c6080;
+  --card:#1a1d2a;
   --accent:#6366f1;--accent2:#818cf8;--accent-glow:rgba(99,102,241,.25);
   --green:#34d399;--green-glow:rgba(52,211,153,.2);
   --orange:#fbbf24;--orange-glow:rgba(251,191,36,.25);
@@ -112,7 +114,7 @@ select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--
 .cs-range-picker{display:flex;align-items:center;gap:8px}
 .cs-range-picker button{padding:7px 14px;border:1px solid var(--accent);border-radius:var(--radius-sm);background:var(--accent);color:white;font-size:13px;font-weight:700;outline:none;cursor:pointer;font-family:var(--font)}
 .cs-range-picker button:hover{filter:brightness(1.08)}
-.cs-date-btn{padding:7px 14px;border:1px solid var(--border);border-radius:var(--radius-sm);background:transparent;font-size:12px;cursor:pointer;color:var(--text2);transition:all .2s;font-family:var(--font)}
+.cs-date-btn{padding:7px 14px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--surface2);font-size:12px;cursor:pointer;color:var(--text2);transition:all .2s;font-family:var(--font)}
 .cs-date-btn:hover{border-color:var(--accent);color:var(--text)}
 .cs-date-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
 
