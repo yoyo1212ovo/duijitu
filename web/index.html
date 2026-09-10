@@ -1692,28 +1692,26 @@ function updateSummaryTable(){
 
   function countryDetail(cn) {
     var total = countryTotal(cn) || 1;
-    var items = selected.map(function(ch) { return { name: ch, total: getChannelCountryPeriodValue(ch, cn) }; })
+    var items = selected.map(function(ch) { return { name: ch, total: getChannelCountryPeriodValue(ch, cn), topStore: topStoreForChannelCountry(ch, cn) }; })
       .filter(function(r) { return r.total > 0; })
       .sort(function(a, b) { return b.total - a.total; });
-    return '<div class="cs-detail-grid"><div class="cs-detail-row cs-detail-head"><span>物流渠道</span><span>单量</span><span>日均</span><span>占比</span></div>'
+    return '<div class="cs-detail-grid"><div class="cs-detail-row cs-detail-head"><span>物流渠道</span><span>单量</span><span>日均</span><span>占比</span><span>主力店铺</span></div>'
       + items.map(function(r) {
-        return '<div class="cs-detail-row"><span>' + escapeHtml(r.name) + '</span><span>' + r.total.toLocaleString() + '</span><span>' + Math.round(r.total / dayCount).toLocaleString() + '</span><span>' + (r.total / total * 100).toFixed(1) + '%</span></div>';
+        return '<div class="cs-detail-row"><span>' + escapeHtml(r.name) + '</span><span>' + r.total.toLocaleString() + '</span><span>' + Math.round(r.total / dayCount).toLocaleString() + '</span><span>' + (r.total / total * 100).toFixed(1) + '%</span><span>' + escapeHtml(r.topStore || '-') + '</span></div>';
       }).join('') + '</div>';
   }
 
   function storeDetail(st) {
     var total = storeTotal(st) || 1;
-    var items = selected.map(function(ch) {
-      var value = 0, country = '', countryValue = 0;
+    var items = [];
+    selected.forEach(function(ch) {
       countries.forEach(function(cn) {
-        var v = getStoreChannelCountryPeriodValue(st, ch, cn);
-        value += v;
-        if (v > countryValue) { countryValue = v; country = cn; }
+        var value = getStoreChannelCountryPeriodValue(st, ch, cn);
+        if (value > 0) items.push({ channel: ch, country: cn, total: value });
       });
-      return { channel: ch, total: value, country: country };
-    }).filter(function(r) { return r.total > 0; })
-      .sort(function(a, b) { return b.total - a.total; });
-    return '<div class="cs-detail-grid"><div class="cs-detail-row cs-detail-head"><span>物流渠道</span><span>主力国家</span><span>单量</span><span>日均</span><span>占比</span></div>'
+    });
+    items.sort(function(a, b) { return b.total - a.total; });
+    return '<div class="cs-detail-grid"><div class="cs-detail-row cs-detail-head"><span>物流渠道</span><span>国家</span><span>单量</span><span>日均</span><span>占比</span></div>'
       + items.map(function(r) {
         return '<div class="cs-detail-row"><span>' + escapeHtml(r.channel) + '</span><span>' + escapeHtml(r.country || '-') + '</span><span>' + r.total.toLocaleString() + '</span><span>' + Math.round(r.total / dayCount).toLocaleString() + '</span><span>' + (r.total / total * 100).toFixed(1) + '%</span></div>';
       }).join('') + '</div>';
