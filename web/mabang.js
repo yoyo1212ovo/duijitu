@@ -14,6 +14,10 @@ function pad(n) {
 
 function toDateTime(value) {
   if (value instanceof Date) return value;
+  if (typeof value === "string" && /^\d{4}-\d{2}-\d{2}$/.test(value.trim())) {
+    const d = new Date(value.trim() + "T00:00:00+08:00");
+    return Number.isNaN(d.getTime()) ? null : d;
+  }
   const d = new Date(value);
   return Number.isNaN(d.getTime()) ? null : d;
 }
@@ -21,9 +25,10 @@ function toDateTime(value) {
 function formatDateTime(date) {
   const d = toDateTime(date);
   if (!d) return "";
+  const chinaTime = new Date(d.getTime() + 8 * 60 * 60 * 1000);
   return (
-    d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate()) +
-    " " + pad(d.getHours()) + ":" + pad(d.getMinutes()) + ":" + pad(d.getSeconds())
+    chinaTime.getUTCFullYear() + "-" + pad(chinaTime.getUTCMonth() + 1) + "-" + pad(chinaTime.getUTCDate()) +
+    " " + pad(chinaTime.getUTCHours()) + ":" + pad(chinaTime.getUTCMinutes()) + ":" + pad(chinaTime.getUTCSeconds())
   );
 }
 
@@ -540,7 +545,7 @@ async function fetchLiveOrders(options = {}) {
     startDate: startDateInput,
     endDate: endDateInput,
     statuses: statusesInput,
-    timeField = "createDate",
+    timeField = "expressTime",
     allowHistorical = false,
     maxPages = Number(process.env.MABANG_MAX_PAGES) || DEFAULT_MAX_PAGES_PER_WINDOW,
     signal
