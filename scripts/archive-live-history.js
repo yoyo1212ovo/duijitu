@@ -44,7 +44,7 @@ async function main() {
     throw new Error("缺少 MABANG_APP_KEY / MABANG_APP_TOKEN");
   }
 
-  const result = await fetchLiveChannelSummary();
+  const result = await fetchLiveChannelSummary({ timeField: "expressTime" });
   const history = readHistory();
 
   if (!result.dailySummary || !result.dailySummary.byDate) {
