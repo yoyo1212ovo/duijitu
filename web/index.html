@@ -228,13 +228,20 @@ select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--
 .cs-daily-tab.active{background:var(--accent);border-color:var(--accent);color:#fff}
 .cs-daily-expand{padding:5px 9px;border:1px solid var(--border);border-radius:7px;background:var(--surface2);color:var(--text2);font-size:11px;font-weight:600;cursor:pointer;white-space:nowrap;font-family:var(--font)}
 .cs-daily-expand:hover{border-color:var(--accent);color:var(--text)}
-.cs-daily-detail{display:none;border-top:1px solid var(--border);background:rgba(15,17,23,.45);padding:12px 16px}
-.cs-daily-detail.open{display:block}
 .cs-detail-grid{display:grid;grid-template-columns:repeat(5,minmax(110px,1fr));gap:8px 14px}
 .cs-detail-row{display:grid;grid-template-columns:subgrid;grid-column:1/-1;align-items:center;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.04);color:var(--text);font-size:12px}
 .cs-detail-row:last-child{border-bottom:none}
 .cs-detail-row span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .cs-detail-row.cs-detail-head{color:var(--text3);font-size:11px;font-weight:600;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.cs-detail-overlay{position:fixed;inset:0;background:rgba(0,0,0,.62);z-index:3200;display:none;align-items:center;justify-content:center;padding:18px}
+.cs-detail-modal{background:var(--surface);border:1px solid var(--border);border-radius:12px;width:min(900px,94vw);max-height:86vh;display:flex;flex-direction:column;box-shadow:0 24px 70px rgba(0,0,0,.55);animation:fadeIn .18s ease-out}
+.cs-detail-header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 20px;border-bottom:1px solid var(--border)}
+.cs-detail-header h3{font-size:15px;font-weight:700;letter-spacing:-.01em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cs-detail-body{overflow:auto;min-height:0;padding:14px 20px 18px;scrollbar-width:thin;scrollbar-color:rgba(139,143,168,.5) rgba(255,255,255,.04)}
+.cs-detail-body::-webkit-scrollbar{width:8px;height:8px}
+.cs-detail-body::-webkit-scrollbar-track{background:rgba(255,255,255,.04);border-radius:8px}
+.cs-detail-body::-webkit-scrollbar-thumb{background:rgba(139,143,168,.55);border-radius:8px}
+.cs-detail-row.cs-detail-head{position:sticky;top:0;background:var(--surface2);z-index:1}
 .cs-daily-board .cs-no-data{padding:40px;text-align:center;color:var(--text2);font-size:13px}
 @media(max-width:900px){
   .cs-daily-board{overflow-x:auto}
@@ -733,6 +740,30 @@ function getActiveStoresForBoard() {
   if (csSelectedStores.length > 0) return activeStoreSelection(csSelectedStores);
   return channelSummary.stores.slice();
 }
+
+function openDailyDetail(title, bodyHtml) {
+  var overlay = document.getElementById('dailyDetailOverlay');
+  var titleEl = document.getElementById('dailyDetailTitle');
+  var bodyEl = document.getElementById('dailyDetailBody');
+  if (!overlay || !titleEl || !bodyEl) return;
+  titleEl.textContent = title;
+  bodyEl.innerHTML = bodyHtml;
+  bodyEl.scrollTop = 0;
+  bodyEl.scrollLeft = 0;
+  overlay.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+
+function closeDailyDetail() {
+  var overlay = document.getElementById('dailyDetailOverlay');
+  if (!overlay) return;
+  overlay.style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeDailyDetail();
+});
 
 function getTrendChannelTimeSeries(channel) {
   if (!channelSummary || !channelSummary.weeklySeries || !channelSummary.weeklySeries[channel]) return {};
@@ -1770,8 +1801,8 @@ function updateSummaryTable(){
         + '<div class="cs-daily-share"><span class="cs-daily-share-text">' + share.toFixed(1) + '%</span>' + shareBar(r.total, grandTotal) + '</div>'
         + '<div class="cs-daily-country">' + escapeHtml(r.topChannel || '-') + '</div>'
         + '<div><span class="cs-daily-action ' + action.cls + '">' + action.text + '</span></div>'
-        + '<div><button class="cs-daily-expand" data-target="country-detail-' + index + '">详情</button></div>'
-        + '</div><div class="cs-daily-detail" id="country-detail-' + index + '">' + countryDetail(r.name) + '</div>';
+        + '<div><button class="cs-daily-expand" data-name="' + escapeHtml(r.name) + '">详情</button></div>'
+        + '</div>';
     });
     if (countryRows.length > visibleCountries.length) listHtml += '<div class="cs-daily-more">仅显示日均单量前 12 个国家，使用上方筛选查看其余国家</div>';
     sm.textContent = '国家视图：共 ' + countryRows.length + ' 个国家，日均 ' + Math.round(overallAvg).toLocaleString() + ' 单；优先看核心市场和渠道集中度';
@@ -1795,8 +1826,8 @@ function updateSummaryTable(){
         + '<div class="cs-daily-share"><span class="cs-daily-share-text">' + share.toFixed(1) + '%</span>' + shareBar(r.total, grandTotal) + '</div>'
         + '<div class="cs-daily-country">' + escapeHtml(r.topChannel || '-') + '</div>'
         + '<div><span class="cs-daily-action ' + action.cls + '">' + action.text + '</span></div>'
-        + '<div><button class="cs-daily-expand" data-target="store-detail-' + index + '">详情</button></div>'
-        + '</div><div class="cs-daily-detail" id="store-detail-' + index + '">' + storeDetail(r.name) + '</div>';
+        + '<div><button class="cs-daily-expand" data-name="' + escapeHtml(r.name) + '">详情</button></div>'
+        + '</div>';
     });
     if (storeRows.length > visibleStores.length) listHtml += '<div class="cs-daily-more">仅显示日均单量前 12 个店铺，使用上方筛选查看其余店铺</div>';
     sm.textContent = '店铺视图：共 ' + storeRows.length + ' 个店铺，日均 ' + Math.round(overallAvg).toLocaleString() + ' 单；优先看重点客户的渠道和目的国';
@@ -1820,8 +1851,8 @@ function updateSummaryTable(){
         + '<div class="cs-daily-share"><span class="cs-daily-share-text">' + share.toFixed(1) + '%</span>' + shareBar(r.avg, maxChannelAvg) + '</div>'
         + '<div class="cs-daily-country">' + escapeHtml(r.topCountry || '-') + '</div>'
         + '<div><span class="cs-daily-action ' + action.cls + '">' + action.text + '</span></div>'
-        + '<div><button class="cs-daily-expand" data-target="channel-detail-' + index + '">详情</button></div>'
-        + '</div><div class="cs-daily-detail" id="channel-detail-' + index + '">' + channelDetail(r.name) + '</div>';
+        + '<div><button class="cs-daily-expand" data-name="' + escapeHtml(r.name) + '">详情</button></div>'
+        + '</div>';
     });
     if (channelRows.length > visibleChannels.length) listHtml += '<div class="cs-daily-more">仅显示日均单量前 12 条渠道，使用上方筛选查看其余渠道</div>';
     sm.textContent = '渠道视图：共 ' + channelRows.length + ' 条渠道，日均 ' + Math.round(overallAvg).toLocaleString() + ' 单；优先议价头部渠道，再点开详情看国家结构';
@@ -1834,10 +1865,11 @@ function updateSummaryTable(){
   });
   tw.querySelectorAll('.cs-daily-expand').forEach(function(btn) {
     btn.onclick = function() {
-      var target = document.getElementById(this.dataset.target);
-      if (!target) return;
-      target.classList.toggle('open');
-      this.textContent = target.classList.contains('open') ? '收起' : '详情';
+      var name = this.dataset.name || '';
+      if (!name) return;
+      if (csBoardView === 'country') openDailyDetail('国家：' + name + ' 渠道明细', countryDetail(name));
+      else if (csBoardView === 'store') openDailyDetail('店铺：' + name + ' 渠道/国家明细', storeDetail(name));
+      else openDailyDetail('渠道：' + name + ' 国家明细', channelDetail(name));
     };
   });
 }
@@ -1856,6 +1888,16 @@ document.getElementById('channelMappingBtn').style.display='inline-flex';
 document.getElementById('channelMappingBtn').onclick=openChannelMapping;
 loadChannelMapping();
 </script>
+
+<div class="cs-detail-overlay" id="dailyDetailOverlay" onclick="if(event.target===this)closeDailyDetail()">
+  <div class="cs-detail-modal">
+    <div class="cs-detail-header">
+      <h3 id="dailyDetailTitle"></h3>
+      <button class="vol-popup-close" onclick="closeDailyDetail()">&times;</button>
+    </div>
+    <div class="cs-detail-body" id="dailyDetailBody"></div>
+  </div>
+</div>
 
 <div class="channel-mapping-overlay" id="channelMappingOverlay" style="display:none;" onclick="if(event.target===this)closeChannelMapping()">
   <div class="channel-mapping-modal">
