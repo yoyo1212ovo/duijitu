@@ -92,7 +92,7 @@ async function main() {
         queryEndDate: cursor,
         timeField,
         allowHistorical: true,
-        statuses: [3, 7]
+        statuses: [1, 2, 3, 4, 5, 6, 7]
       });
 
       const daily = result && result.dailySummary && result.dailySummary.byDate ? result.dailySummary.byDate : {};
