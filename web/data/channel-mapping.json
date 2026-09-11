@@ -1,7 +1,88 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-11T17:10:09.472Z",
+  "updatedAt": "2026-09-11T19:44:28.118Z",
   "records": [
+    {
+      "id": "map-unknown-317",
+      "sourceName": "顺速宝MAX",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
+    },
+    {
+      "id": "map-unknown-323",
+      "sourceName": "万邦化妆品专线-回传转单号",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
+    },
+    {
+      "id": "map-unknown-324",
+      "sourceName": "云途欧洲化妆品专线-CHC",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
+    },
+    {
+      "id": "map-unknown-322",
+      "sourceName": "云途欧洲化妆品专线-CHC-回传转单号",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
+    },
+    {
+      "id": "map-unknown-319",
+      "sourceName": "云途欧洲专线（特惠带电）-CHC",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
+    },
+    {
+      "id": "map-unknown-321",
+      "sourceName": "云途欧洲专线（特惠带电）-CHC-回传转单号",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
+    },
+    {
+      "id": "map-unknown-320",
+      "sourceName": "云途欧洲专线（特惠普货）-CHC-回传转单号",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
+    },
+    {
+      "id": "map-unknown-325",
+      "sourceName": "中国邮政EUB",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
+    },
+    {
+      "id": "map-unknown-318",
+      "sourceName": "ST纯电专线小包",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
+    },
     {
       "id": "map-38",
       "sourceName": "傲飞国际快线_欧美_特惠带电-加拿大",
