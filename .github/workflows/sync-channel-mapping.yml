@@ -1,0 +1,49 @@
+name: Sync channel mapping from Render
+
+on:
+  schedule:
+    # Every 5 minutes while the Render service is available.
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-channel-mapping
+  cancel-in-progress: true
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Fetch and normalize mapping
+        run: node scripts/sync-channel-mapping.js
+        env:
+          RENDER_URL: https://duijitu.onrender.com
+
+      - name: Commit mapping changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -f web/data/channel-mapping.json
+          if git diff --cached --quiet; then
+            echo "No mapping changes"
+          else
+            git commit -m "chore: sync Mabang channel mapping"
+            git push
+          fi
