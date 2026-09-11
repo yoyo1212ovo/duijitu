@@ -221,6 +221,16 @@ select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--
 .cs-daily-action.priority{background:rgba(99,102,241,.14);color:var(--accent2)}
 .cs-daily-action.stable{background:rgba(52,211,153,.14);color:var(--green)}
 .cs-daily-action.tail{background:rgba(251,191,36,.14);color:var(--orange)}
+.cs-health{display:flex;flex-direction:column;gap:5px;min-width:0}
+.cs-health-top{display:flex;align-items:baseline;gap:6px;min-width:0}
+.cs-health-score{font-size:16px;font-weight:700;line-height:1}
+.cs-health-score.great{color:#38bdf8}
+.cs-health-score.healthy{color:var(--green)}
+.cs-health-score.watch{color:var(--orange)}
+.cs-health-score.risk{color:var(--red)}
+.cs-health-label{font-size:11px;color:var(--text2);white-space:nowrap}
+.cs-health-bar{height:5px;border-radius:4px;background:rgba(255,255,255,.07);overflow:hidden}
+.cs-health-bar i{display:block;height:100%;border-radius:4px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
 .cs-daily-more{padding:10px 16px;font-size:11px;color:var(--text3);border-top:1px solid var(--border);text-align:center}
 .cs-daily-tabs{display:flex;gap:6px;padding:10px 12px;border-bottom:1px solid var(--border);background:var(--surface2)}
 .cs-daily-tab{padding:6px 12px;border:1px solid var(--border);border-radius:8px;background:var(--card);color:var(--text2);font-size:12px;font-weight:600;cursor:pointer;transition:all .15s;font-family:var(--font)}
@@ -244,9 +254,11 @@ select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--
 .cs-detail-body::-webkit-scrollbar-thumb{background:rgba(139,143,168,.55);border-radius:8px}
 .cs-detail-row.cs-detail-head{position:sticky;top:0;background:var(--surface2);z-index:1}
 .cs-daily-board .cs-no-data{padding:40px;text-align:center;color:var(--text2);font-size:13px}
+.cs-daily-board.has-health .cs-daily-board-head,.cs-daily-board.has-health .cs-daily-row{grid-template-columns:minmax(180px,1.4fr) minmax(86px,.65fr) minmax(76px,.6fr) minmax(105px,.78fr) minmax(100px,.75fr) minmax(128px,.92fr) minmax(118px,.88fr) 64px;column-gap:10px}
 @media(max-width:900px){
   .cs-daily-board{overflow-x:auto}
   .cs-daily-board-head,.cs-daily-row{min-width:880px}
+  .cs-daily-board.has-health .cs-daily-board-head,.cs-daily-board.has-health .cs-daily-row{min-width:1060px}
 }
 .cs-no-data{padding:40px;text-align:center;color:var(--text2);font-size:13px}.cs-upload-btn{margin-top:8px;display:inline-flex!important}.empty-state{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:calc(100vh - 120px);gap:16px;color:var(--text3)}
 .empty-state .empty-icon{width:56px;height:56px;opacity:.3;margin-bottom:4px}
@@ -711,6 +723,59 @@ function getWeekFilteredTimeSeries(channel) {
 
 function getPeriodDayCount() {
   return channelSummary && channelSummary.allDays && channelSummary.allDays.length > 0 ? channelSummary.allDays.length : 1;
+}
+
+function getBoardDailySeries(channel) {
+  if (!channelSummary || !channelSummary.dailySeries || !channelSummary.dailySeries[channel]) return {};
+  if (csSelectedStores.length > 0) return getStoreChannelTimeSeries(channel, csSelectedCountries, csSelectedStores, true);
+  var countries = csSelectedCountries || [];
+  if (countries.length === 0) return channelSummary.dailySeries[channel];
+  var result = {};
+  (channelSummary.allDays || []).forEach(function(day) { result[day] = 0; });
+  countries.forEach(function(country) {
+    var series = channelSummary.countryDailySeries && channelSummary.countryDailySeries[channel] && channelSummary.countryDailySeries[channel][country];
+    if (!series) return;
+    for (var day in series) result[day] = (result[day] || 0) + series[day];
+  });
+  return result;
+}
+
+function average(values) {
+  if (!values.length) return 0;
+  return values.reduce(function(sum, value) { return sum + value; }, 0) / values.length;
+}
+
+function channelHealthScore(channel, channelAvg, maxChannelAvg) {
+  var series = getBoardDailySeries(channel);
+  var values = (channelSummary.allDays || []).map(function(day) { return Number(series[day] || 0); });
+  var mean = channelAvg || average(values);
+  var scoreScale = maxChannelAvg > 0 ? Math.min(100, mean / maxChannelAvg * 100) : 0;
+
+  var stability = 75;
+  var trend = 50;
+  if (values.length >= 2) {
+    var variance = values.reduce(function(sum, value) { return sum + Math.pow(value - mean, 2); }, 0) / values.length;
+    var cv = mean > 0 ? Math.sqrt(variance) / mean : 1;
+    stability = Math.max(0, Math.min(100, 100 - cv * 100));
+
+    var mid = Math.floor(values.length / 2);
+    var first = values.slice(0, mid);
+    var second = values.slice(mid);
+    var firstAvg = average(first);
+    var secondAvg = average(second);
+    var change = firstAvg > 0 ? (secondAvg - firstAvg) / firstAvg : 0;
+    trend = Math.max(0, Math.min(100, 50 + change * 100));
+  }
+
+  var score = Math.round(scoreScale * 0.4 + trend * 0.35 + stability * 0.25);
+  var label = score >= 80 ? '优质' : (score >= 65 ? '健康' : (score >= 45 ? '关注' : '风险'));
+  var cls = score >= 80 ? 'great' : (score >= 65 ? 'healthy' : (score >= 45 ? 'watch' : 'risk'));
+  return {
+    score: score,
+    label: label,
+    cls: cls,
+    summary: '规模 ' + Math.round(scoreScale) + ' · 趋势 ' + Math.round(trend) + ' · 稳定 ' + Math.round(stability)
+  };
 }
 
 function getChannelCountryPeriodValue(channel, country) {
@@ -1636,7 +1701,7 @@ function updateSummaryTable(){
   if (storeTrigger) storeTrigger.innerHTML = withArrow(selectedStores.length === 0 ? '全部店铺' : ('已选' + selectedStores.length + ' 个店铺'));
 
   var tw = document.getElementById('csTableWrap'), sm = document.getElementById('csSummary');
-  tw.className = 'cs-daily-board';
+  tw.className = 'cs-daily-board' + (csBoardView === 'channel' ? ' has-health' : '');
   if (selected.length === 0) { tw.innerHTML = '<div class="cs-no-data">请至少选择一条线路</div>'; sm.textContent = ''; return; }
 
   var countries = selectedCountries.length > 0 ? selectedCountries : channelSummary.countries;
@@ -1691,6 +1756,7 @@ function updateSummaryTable(){
   var grandTotal = channelRows.reduce(function(sum, r) { return sum + r.total; }, 0);
   var overallAvg = grandTotal / dayCount;
   var maxChannelAvg = channelRows.length ? channelRows[0].avg : 1;
+  channelRows.forEach(function(r) { r.health = channelHealthScore(r.name, r.avg, maxChannelAvg); });
   var topChannel = channelRows.length ? channelRows[0].name : '-';
 
   var countryRows = countries.map(function(cn) {
@@ -1839,24 +1905,26 @@ function updateSummaryTable(){
       + '<div class="cs-daily-kpi"><div class="cs-daily-kpi-label">主力渠道</div><div class="cs-daily-kpi-value accent-orange">' + escapeHtml(topChannel) + '</div><div class="cs-daily-kpi-sub">日均 ' + Math.round(channelRows.length ? channelRows[0].avg : 0).toLocaleString() + ' 单</div></div>'
       + '<div class="cs-daily-kpi"><div class="cs-daily-kpi-label">主力国家</div><div class="cs-daily-kpi-value accent-green">' + escapeHtml(countryRows.length ? countryRows[0].name : '-') + '</div><div class="cs-daily-kpi-sub">占 ' + (grandTotal ? (countryRows.length ? countryRows[0].total / grandTotal * 100 : 0) : 0).toFixed(1) + '%</div></div>'
       + '</div>';
-    listHtml = '<div class="cs-daily-board-head"><span>渠道</span><span>日均单量</span><span>总单量</span><span>占比</span><span>主力国家</span><span>建议</span><span></span></div>';
+    listHtml = '<div class="cs-daily-board-head"><span>渠道</span><span>日均单量</span><span>总单量</span><span>占比</span><span>主力国家</span><span>渠道健康分</span><span>建议</span><span></span></div>';
     var visibleChannels = channelRows.slice(0, 12);
     visibleChannels.forEach(function(r, index) {
       var rank = index + 1;
       var share = grandTotal ? (r.total / grandTotal * 100) : 0;
       var action = actionForChannel(rank, share, r.avg);
+      var health = r.health || { score: 0, label: '风险', cls: 'risk', summary: '' };
       listHtml += '<div class="cs-daily-row">'
         + '<div class="cs-daily-channel"><span class="cs-daily-rank">' + rank + '</span><span class="cs-daily-name" title="' + escapeHtml(r.name) + '">' + escapeHtml(r.name) + '</span></div>'
         + '<div class="cs-daily-avg">' + Math.round(r.avg).toLocaleString() + '</div>'
         + '<div class="cs-daily-total">' + r.total.toLocaleString() + '</div>'
         + '<div class="cs-daily-share"><span class="cs-daily-share-text">' + share.toFixed(1) + '%</span>' + shareBar(r.avg, maxChannelAvg) + '</div>'
         + '<div class="cs-daily-country">' + escapeHtml(r.topCountry || '-') + '</div>'
+        + '<div class="cs-health" title="' + escapeHtml(health.summary) + '"><div class="cs-health-top"><span class="cs-health-score ' + health.cls + '">' + health.score + '</span><span class="cs-health-label">' + health.label + '</span></div><div class="cs-health-bar"><i style="width:' + health.score + '%"></i></div></div>'
         + '<div><span class="cs-daily-action ' + action.cls + '">' + action.text + '</span></div>'
         + '<div><button class="cs-daily-expand" data-name="' + escapeHtml(r.name) + '">详情</button></div>'
         + '</div>';
     });
     if (channelRows.length > visibleChannels.length) listHtml += '<div class="cs-daily-more">仅显示日均单量前 12 条渠道，使用上方筛选查看其余渠道</div>';
-    sm.textContent = '渠道视图：共 ' + channelRows.length + ' 条渠道，日均 ' + Math.round(overallAvg).toLocaleString() + ' 单；优先议价头部渠道，再点开详情看国家结构';
+    sm.textContent = '渠道视图：共 ' + channelRows.length + ' 条渠道，日均 ' + Math.round(overallAvg).toLocaleString() + ' 单；健康分综合规模、趋势和稳定性，先处理高风险渠道';
   }
 
   tw.innerHTML = tabsHtml() + kpis + listHtml;
