@@ -525,6 +525,27 @@ app.get("/api/me", (req, res) => {
 });
 
 // === API: Mabang channel mapping database ===
+app.post("/api/channel-mapping/restore", (req, res) => {
+  const records = Array.isArray(req.body && req.body.records) ? req.body.records : [];
+  if (records.length === 0) return res.status(400).json({ error: "records is required" });
+
+  const normalized = records
+    .filter((record) => record && record.sourceName)
+    .map((record) => ({
+      id: String(record.id || ""),
+      sourceName: String(record.sourceName).trim(),
+      providerChannel: String(record.providerChannel || "").trim(),
+      provider: String(record.provider || "").trim(),
+      displayName: String(record.displayName || "").trim(),
+      enabled: Boolean(record.enabled),
+      status: String(record.displayName || "").trim() && Boolean(record.enabled) ? "mapped" : "unmapped"
+    }));
+
+  if (normalized.length === 0) return res.status(400).json({ error: "no valid channel mapping records" });
+  writeChannelMapping({ version: 1, updatedAt: new Date().toISOString(), records: normalized });
+  res.json({ restored: normalized.length });
+});
+
 app.get("/api/channel-mapping", (req, res) => {
   const mapping = readChannelMapping();
   const records = mapping.records
