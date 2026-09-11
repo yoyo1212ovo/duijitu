@@ -228,13 +228,14 @@ select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--
 .cs-daily-tab.active{background:var(--accent);border-color:var(--accent);color:#fff}
 .cs-daily-expand{padding:5px 9px;border:1px solid var(--border);border-radius:7px;background:var(--surface2);color:var(--text2);font-size:11px;font-weight:600;cursor:pointer;white-space:nowrap;font-family:var(--font)}
 .cs-daily-expand:hover{border-color:var(--accent);color:var(--text)}
-.cs-detail-grid{display:grid;grid-template-columns:repeat(5,minmax(110px,1fr));gap:8px 14px}
+.cs-detail-grid{display:grid;grid-template-columns:minmax(280px,2fr) minmax(120px,.8fr) minmax(90px,.7fr) minmax(90px,.65fr) minmax(160px,1.1fr);gap:8px 18px;min-width:1020px}
 .cs-detail-row{display:grid;grid-template-columns:subgrid;grid-column:1/-1;align-items:center;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.04);color:var(--text);font-size:12px}
 .cs-detail-row:last-child{border-bottom:none}
 .cs-detail-row span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cs-detail-row span:first-child{white-space:normal;overflow-wrap:anywhere;line-height:1.35}
 .cs-detail-row.cs-detail-head{color:var(--text3);font-size:11px;font-weight:600;padding-bottom:6px;border-bottom:1px solid var(--border)}
 .cs-detail-overlay{position:fixed;inset:0;background:rgba(0,0,0,.62);z-index:3200;display:none;align-items:center;justify-content:center;padding:18px}
-.cs-detail-modal{background:var(--surface);border:1px solid var(--border);border-radius:12px;width:min(900px,94vw);max-height:86vh;display:flex;flex-direction:column;box-shadow:0 24px 70px rgba(0,0,0,.55);animation:fadeIn .18s ease-out}
+.cs-detail-modal{background:var(--surface);border:1px solid var(--border);border-radius:12px;width:min(1220px,96vw);max-width:1220px;max-height:86vh;display:flex;flex-direction:column;box-shadow:0 24px 70px rgba(0,0,0,.55);animation:fadeIn .18s ease-out}
 .cs-detail-header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 20px;border-bottom:1px solid var(--border)}
 .cs-detail-header h3{font-size:15px;font-weight:700;letter-spacing:-.01em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .cs-detail-body{overflow:auto;min-height:0;padding:14px 20px 18px;scrollbar-width:thin;scrollbar-color:rgba(139,143,168,.5) rgba(255,255,255,.04)}
