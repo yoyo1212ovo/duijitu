@@ -1,7 +1,25 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-12T17:53:55.514Z",
+  "updatedAt": "2026-09-12T20:13:14.621Z",
   "records": [
+    {
+      "id": "map-unknown-328",
+      "sourceName": "京东特选服装标准专线-回传尾程单号",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
+    },
+    {
+      "id": "map-unknown-327",
+      "sourceName": "欧洲优选专线含电",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
+    },
     {
       "id": "map-unknown-317",
       "sourceName": "顺速宝MAX",
@@ -59,6 +77,15 @@
     {
       "id": "map-unknown-320",
       "sourceName": "云途欧洲专线（特惠普货）-CHC-回传转单号",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
+    },
+    {
+      "id": "map-unknown-326",
+      "sourceName": "智尚宝-特惠",
       "providerChannel": "",
       "provider": "",
       "displayName": "",
