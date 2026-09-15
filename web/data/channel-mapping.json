@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-15T19:11:34.104Z",
+  "updatedAt": "2026-09-15T22:15:34.211Z",
   "records": [
     {
       "id": "map-unknown-330",
@@ -12,6 +12,15 @@
       "status": "unmapped"
     },
     {
+      "id": "map-unknown-334",
+      "sourceName": "京东特选服装标准专线",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
+    },
+    {
       "id": "map-unknown-328",
       "sourceName": "京东特选服装标准专线-回传尾程单号",
       "providerChannel": "",
@@ -19,6 +28,15 @@
       "displayName": "",
       "enabled": false,
       "status": "unmapped"
+    },
+    {
+      "id": "map-unknown-333",
+      "sourceName": "联邮通标准自提-普货",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
     },
     {
       "id": "map-unknown-329",
@@ -136,6 +154,15 @@
       "displayName": "",
       "enabled": false,
       "status": "unmapped"
+    },
+    {
+      "id": "map-unknown-332",
+      "sourceName": "USPS Ground Advantag",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
     },
     {
       "id": "map-38",
