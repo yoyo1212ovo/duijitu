@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-16T18:30:05.267Z",
+  "updatedAt": "2026-09-16T21:39:38.930Z",
   "records": [
     {
       "id": "map-unknown-330",
@@ -136,6 +136,24 @@
       "displayName": "",
       "enabled": false,
       "status": "unmapped"
+    },
+    {
+      "id": "map-unknown-335",
+      "sourceName": "智尚宝-特惠-回传",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
+    },
+    {
+      "id": "map-unknown-336",
+      "sourceName": "智尚宝-特敏-回传",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
     },
     {
       "id": "map-unknown-325",
