@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-17T17:45:51.298Z",
+  "updatedAt": "2026-09-17T20:35:46.844Z",
   "records": [
     {
       "id": "map-unknown-330",
@@ -39,6 +39,15 @@
       "status": "unmapped"
     },
     {
+      "id": "map-unknown-338",
+      "sourceName": "联邮通标准自提-普货-回传",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
+    },
+    {
       "id": "map-unknown-329",
       "sourceName": "联邮通化妆品类专线挂号",
       "providerChannel": "",
@@ -46,6 +55,15 @@
       "displayName": "",
       "enabled": false,
       "status": "unmapped"
+    },
+    {
+      "id": "map-unknown-337",
+      "sourceName": "秘鲁特货专线",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
     },
     {
       "id": "map-unknown-327",
