@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-18T01:16:26.016Z",
+  "updatedAt": "2026-09-18T06:02:09.398Z",
   "records": [
     {
       "id": "map-unknown-330",
@@ -44,8 +44,8 @@
       "providerChannel": "",
       "provider": "",
       "displayName": "",
-      "status": "unmapped",
-      "enabled": false
+      "enabled": false,
+      "status": "unmapped"
     },
     {
       "id": "map-unknown-329",
@@ -62,8 +62,8 @@
       "providerChannel": "",
       "provider": "",
       "displayName": "",
-      "status": "unmapped",
-      "enabled": false
+      "enabled": false,
+      "status": "unmapped"
     },
     {
       "id": "map-unknown-327",
@@ -161,8 +161,8 @@
       "providerChannel": "",
       "provider": "",
       "displayName": "",
-      "status": "unmapped",
-      "enabled": false
+      "enabled": false,
+      "status": "unmapped"
     },
     {
       "id": "map-unknown-336",
@@ -170,8 +170,8 @@
       "providerChannel": "",
       "provider": "",
       "displayName": "",
-      "status": "unmapped",
-      "enabled": false
+      "enabled": false,
+      "status": "unmapped"
     },
     {
       "id": "map-unknown-325",
