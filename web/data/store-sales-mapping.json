@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-18T03:10:59.035Z",
+  "updatedAt": "2026-09-18T07:29:38.671Z",
   "records": [
     {
       "id": "sales-unknown-148",
@@ -8,7 +8,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-166",
@@ -16,7 +17,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-66",
@@ -24,7 +26,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-245",
@@ -32,7 +35,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-6",
@@ -40,15 +44,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
-    },
-    {
-      "id": "sales-unknown-213",
-      "storeName": "宁-爱沙尼亚杂货铺新店",
-      "salesName": "宁安沛",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-185",
@@ -56,31 +53,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
-    },
-    {
-      "id": "sales-unknown-267",
-      "storeName": "宁-波兰积木人",
-      "salesName": "宁安沛",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-272",
-      "storeName": "宁-波兰浴球新店",
-      "salesName": "宁安沛",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-110",
-      "storeName": "宁-德国精油-磨砂膏",
-      "salesName": "苏爱拜",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-173",
@@ -88,15 +62,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
-    },
-    {
-      "id": "sales-unknown-15",
-      "storeName": "宁-英国Harris",
-      "salesName": "苏爱拜",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-175",
@@ -104,7 +71,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-248",
@@ -112,63 +80,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
-    },
-    {
-      "id": "sales-unknown-221",
-      "storeName": "苏苏-灯具Hadleigh",
-      "salesName": "苏爱拜",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-117",
-      "storeName": "苏苏-法国化妆品Reyane",
-      "salesName": "苏爱拜",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-142",
-      "storeName": "苏苏-法国Louis",
-      "salesName": "苏爱拜",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-122",
-      "storeName": "苏苏-美国婴儿服",
-      "salesName": "苏爱拜",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-53",
-      "storeName": "苏苏-美国杂货Cole",
-      "salesName": "苏爱拜",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-41",
-      "storeName": "苏苏-杂货铺Fabrice",
-      "salesName": "苏爱拜",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-80",
-      "storeName": "苏苏-Henrique欧洲胶水",
-      "salesName": "苏爱拜",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-259",
@@ -176,7 +89,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-129",
@@ -184,31 +98,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
-    },
-    {
-      "id": "sales-unknown-57",
-      "storeName": "苏苏-Parosh全球内裤",
-      "salesName": "苏爱拜",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-52",
-      "storeName": "苏苏-sara头盔",
-      "salesName": "苏爱拜",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-28",
-      "storeName": "自营手工单",
-      "salesName": "杨继超",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-157",
@@ -216,7 +107,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-30",
@@ -224,15 +116,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
-    },
-    {
-      "id": "sales-unknown-115",
-      "storeName": "Ada-Kent手套-Danae",
-      "salesName": "范梦微",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-9",
@@ -240,7 +125,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-136",
@@ -248,7 +134,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-126",
@@ -256,15 +143,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
-    },
-    {
-      "id": "sales-unknown-27",
-      "storeName": "Alay-奥地利狗垫",
-      "salesName": "杨继超",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-63",
@@ -272,39 +152,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
-    },
-    {
-      "id": "sales-unknown-160",
-      "storeName": "Alay-丹麦-美国人",
-      "salesName": "杨继超",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-26",
-      "storeName": "Alay-德国卡片",
-      "salesName": "杨继超",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-113",
-      "storeName": "Alay-法国蜡烛",
-      "salesName": "杨继超",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-5",
-      "storeName": "Alay-法国首饰",
-      "salesName": "杨继超",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-93",
@@ -312,7 +161,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-121",
@@ -320,31 +170,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
-    },
-    {
-      "id": "sales-unknown-60",
-      "storeName": "Alay-罗马尼亚耳勺",
-      "salesName": "杨继超",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-62",
-      "storeName": "Alay-美国杂货铺Cole二店",
-      "salesName": "杨继超",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-233",
-      "storeName": "Alay-墨西哥化妆品",
-      "salesName": "杨继超",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-51",
@@ -352,7 +179,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-239",
@@ -360,7 +188,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-130",
@@ -368,23 +197,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
-    },
-    {
-      "id": "sales-unknown-271",
-      "storeName": "Alay-西班牙杂货铺",
-      "salesName": "杨继超",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-181",
-      "storeName": "Alay-英国汽车",
-      "salesName": "杨继超",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-14",
@@ -392,7 +206,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-125",
@@ -400,7 +215,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-123",
@@ -408,7 +224,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-137",
@@ -416,7 +233,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-167",
@@ -424,7 +242,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-264",
@@ -432,15 +251,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
-    },
-    {
-      "id": "sales-unknown-75",
-      "storeName": "Ava-Avi-Ivy",
-      "salesName": "范梦微",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-64",
@@ -448,7 +260,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-270",
@@ -456,7 +269,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-32",
@@ -464,7 +278,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-214",
@@ -472,15 +287,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
-    },
-    {
-      "id": "sales-unknown-161",
-      "storeName": "Danae-波捷手链",
-      "salesName": "曹瑶",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-241",
@@ -488,23 +296,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
-    },
-    {
-      "id": "sales-unknown-174",
-      "storeName": "Danae-波捷眼镜（荷兰店）",
-      "salesName": "曹瑶",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-12",
-      "storeName": "Danae-车钥匙扣",
-      "salesName": "何烁丹",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-225",
@@ -512,7 +305,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-249",
@@ -520,15 +314,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
-    },
-    {
-      "id": "sales-unknown-100",
-      "storeName": "Danae-地图",
-      "salesName": "廖晨昊",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-227",
@@ -536,7 +323,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-55",
@@ -544,15 +332,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
-    },
-    {
-      "id": "sales-unknown-78",
-      "storeName": "Danae-荷兰范佩西",
-      "salesName": "廖晨昊",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-81",
@@ -560,55 +341,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
-    },
-    {
-      "id": "sales-unknown-119",
-      "storeName": "Danae-脚链",
-      "salesName": "何烁丹",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-7",
-      "storeName": "Danae-克莱顿鞋",
-      "salesName": "何烁丹",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-50",
-      "storeName": "Danae-兰波人眼镜",
-      "salesName": "卓洪宇",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-16",
-      "storeName": "Danae-马里奥内衣",
-      "salesName": "刘思雨",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-3",
-      "storeName": "Danae-马里奥小潘",
-      "salesName": "何烁丹",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-211",
-      "storeName": "Danae-美国汽车绒布",
-      "salesName": "廖晨昊",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-165",
@@ -616,39 +350,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
-    },
-    {
-      "id": "sales-unknown-232",
-      "storeName": "Danae-盆栽哥",
-      "salesName": "廖晨昊",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-77",
-      "storeName": "Danae-朋克项链",
-      "salesName": "何烁丹",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-118",
-      "storeName": "Danae-手机壳",
-      "salesName": "曹瑶",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-22",
-      "storeName": "Danae-手机壳2",
-      "salesName": "卓洪宇",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-25",
@@ -656,7 +359,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-238",
@@ -664,15 +368,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
-    },
-    {
-      "id": "sales-unknown-17",
-      "storeName": "Danae-Hakan龙周边",
-      "salesName": "卓洪宇",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-206",
@@ -680,15 +377,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
-    },
-    {
-      "id": "sales-unknown-69",
-      "storeName": "Danae-kevin智能戒指",
-      "salesName": "何烁丹",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-205",
@@ -696,31 +386,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
-    },
-    {
-      "id": "sales-unknown-20",
-      "storeName": "Danae-max裙子",
-      "salesName": "何烁丹",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-145",
-      "storeName": "Danae-Med护发精油",
-      "salesName": "何烁丹",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-2",
-      "storeName": "Danae-mediasteins阿凡达",
-      "salesName": "何烁丹",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-223",
@@ -728,7 +395,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-195",
@@ -736,15 +404,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
-    },
-    {
-      "id": "sales-unknown-29",
-      "storeName": "Danae-pordein 包",
-      "salesName": "卓洪宇",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-198",
@@ -752,15 +413,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
-    },
-    {
-      "id": "sales-unknown-124",
-      "storeName": "Danae-Steven",
-      "salesName": "何烁丹",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-49",
@@ -768,15 +422,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
-    },
-    {
-      "id": "sales-unknown-103",
-      "storeName": "DanaeCiga-Andrey全球履约",
-      "salesName": "卓洪宇",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-240",
@@ -784,15 +431,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
-    },
-    {
-      "id": "sales-unknown-37",
-      "storeName": "DanaeJosie-第十七个波兰人水杯",
-      "salesName": "廖晨昊",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-21",
@@ -800,15 +440,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
-    },
-    {
-      "id": "sales-unknown-96",
-      "storeName": "DanaeJosie-墨西哥积木",
-      "salesName": "曹瑶",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-203",
@@ -816,7 +449,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-256",
@@ -824,7 +458,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-83",
@@ -832,7 +467,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-43",
@@ -840,7 +476,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-144",
@@ -848,39 +485,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
-    },
-    {
-      "id": "sales-unknown-45",
-      "storeName": "Ivy-阿根廷杂货铺",
-      "salesName": "范梦微",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-143",
-      "storeName": "Ivy-奥地利刮痧器",
-      "salesName": "范梦微",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-191",
-      "storeName": "Ivy-奥地利刮痧器-2",
-      "salesName": "范梦微",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-67",
-      "storeName": "Ivy-波兰搓澡巾",
-      "salesName": "范梦微",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-40",
@@ -888,7 +494,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-222",
@@ -896,7 +503,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-156",
@@ -904,7 +512,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-236",
@@ -912,7 +521,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-235",
@@ -920,7 +530,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-247",
@@ -928,7 +539,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-158",
@@ -936,7 +548,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-108",
@@ -944,31 +557,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
-    },
-    {
-      "id": "sales-unknown-163",
-      "storeName": "ivy-分酒器",
-      "salesName": "范梦微",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-4",
-      "storeName": "Ivy-荷兰Thomas",
-      "salesName": "范梦微",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-104",
-      "storeName": "Ivy-猫玩具",
-      "salesName": "范梦微",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-151",
@@ -976,7 +566,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-261",
@@ -984,15 +575,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
-    },
-    {
-      "id": "sales-unknown-106",
-      "storeName": "Ivy-英国Sam",
-      "salesName": "范梦微",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-220",
@@ -1000,31 +584,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
-    },
-    {
-      "id": "sales-unknown-98",
-      "storeName": "Ivy-dead活页夹",
-      "salesName": "范梦微",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-13",
-      "storeName": "Ivy-Dione Couture女包",
-      "salesName": "范梦微",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-68",
-      "storeName": "Ivy-Fardin保健品",
-      "salesName": "范梦微",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-243",
@@ -1032,7 +593,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-176",
@@ -1040,15 +602,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
-    },
-    {
-      "id": "sales-unknown-273",
-      "storeName": "Ivy-Zine法国平衡软糖",
-      "salesName": "范梦微",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-138",
@@ -1056,15 +611,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
-    },
-    {
-      "id": "sales-unknown-178",
-      "storeName": "Ivy-Zine平衡软糖英国",
-      "salesName": "范梦微",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-23",
@@ -1072,7 +620,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-212",
@@ -1080,7 +629,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-92",
@@ -1088,23 +638,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
-    },
-    {
-      "id": "sales-unknown-210",
-      "storeName": "Jadie-波兰捏捏",
-      "salesName": "张芷瑜",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-184",
-      "storeName": "Jadie-德国漱口水",
-      "salesName": "张芷瑜",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-180",
@@ -1112,15 +647,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
-    },
-    {
-      "id": "sales-unknown-116",
-      "storeName": "Josie-32个波兰人打鼾",
-      "salesName": "Josie-周晓清",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-179",
@@ -1128,23 +656,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
-    },
-    {
-      "id": "sales-unknown-70",
-      "storeName": "Josie-波兰唇膏",
-      "salesName": "Josie-周晓清",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-65",
-      "storeName": "Josie-波兰狗绳直连",
-      "salesName": "Josie-周晓清",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-146",
@@ -1152,7 +665,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-155",
@@ -1160,7 +674,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-8",
@@ -1168,7 +683,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-186",
@@ -1176,47 +692,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
-    },
-    {
-      "id": "sales-unknown-10",
-      "storeName": "josie-第七个波兰人狗串儿",
-      "salesName": "Josie-周晓清",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-90",
-      "storeName": "Josie-第三个波兰人袜子",
-      "salesName": "Josie-周晓清",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-209",
-      "storeName": "Josie-第三十八个波兰人猫串",
-      "salesName": "Josie-周晓清",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-189",
-      "storeName": "Josie-第三十二个波兰人",
-      "salesName": "Josie-周晓清",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-36",
-      "storeName": "Josie-第十二个波兰人大熊猫",
-      "salesName": "Josie-周晓清",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-202",
@@ -1224,7 +701,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-262",
@@ -1232,15 +710,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
-    },
-    {
-      "id": "sales-unknown-99",
-      "storeName": "Josie-第十个波兰人熊猫",
-      "salesName": "Josie-周晓清",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-120",
@@ -1248,23 +719,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
-    },
-    {
-      "id": "sales-unknown-58",
-      "storeName": "Josie-美国狗衣服",
-      "salesName": "Josie-周晓清",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-127",
-      "storeName": "Josie-美国魔术贴",
-      "salesName": "Josie-周晓清",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-188",
@@ -1272,31 +728,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
-    },
-    {
-      "id": "sales-unknown-91",
-      "storeName": "Josie-美国书包",
-      "salesName": "Josie-周晓清",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-34",
-      "storeName": "Josie-美国藤碗",
-      "salesName": "Josie-周晓清",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-132",
-      "storeName": "Josie-美国拖把",
-      "salesName": "Josie-周晓清",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-84",
@@ -1304,31 +737,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
-    },
-    {
-      "id": "sales-unknown-95",
-      "storeName": "josie-美黑滴剂",
-      "salesName": "Josie-周晓清",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-61",
-      "storeName": "Josie-美英吊坠",
-      "salesName": "Josie-周晓清",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-31",
-      "storeName": "Josie-欧美花盒",
-      "salesName": "Josie-周晓清",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-82",
@@ -1336,7 +746,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-46",
@@ -1344,7 +755,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-229",
@@ -1352,7 +764,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-71",
@@ -1360,7 +773,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-226",
@@ -1368,7 +782,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-258",
@@ -1376,7 +791,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-192",
@@ -1384,31 +800,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
-    },
-    {
-      "id": "sales-unknown-111",
-      "storeName": "Josie-英国连裤袜",
-      "salesName": "Josie-周晓清",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-18",
-      "storeName": "Josie-英美戒指",
-      "salesName": "Josie-周晓清",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-72",
-      "storeName": "Josie-英美手串",
-      "salesName": "Josie-周晓清",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-215",
@@ -1416,23 +809,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
-    },
-    {
-      "id": "sales-unknown-107",
-      "storeName": "Josie-Sky美容仪",
-      "salesName": "Josie-周晓清",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-79",
-      "storeName": "Josie-VZN新眼镜",
-      "salesName": "Josie-周晓清",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-11",
@@ -1440,7 +818,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-250",
@@ -1448,15 +827,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
-    },
-    {
-      "id": "sales-unknown-183",
-      "storeName": "Joy-德国石榴胶囊",
-      "salesName": "周星月",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-265",
@@ -1464,15 +836,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
-    },
-    {
-      "id": "sales-unknown-266",
-      "storeName": "Joy-全球妆前乳",
-      "salesName": "周星月",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-168",
@@ -1480,7 +845,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-147",
@@ -1488,7 +854,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-224",
@@ -1496,7 +863,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-260",
@@ -1504,15 +872,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
-    },
-    {
-      "id": "sales-unknown-268",
-      "storeName": "Kelly-波捷面包袋",
-      "salesName": "曹瑶",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-237",
@@ -1520,7 +881,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-246",
@@ -1528,7 +890,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-244",
@@ -1536,7 +899,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-263",
@@ -1544,7 +908,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-228",
@@ -1552,15 +917,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
-    },
-    {
-      "id": "sales-unknown-86",
-      "storeName": "suJosie-美国按摩梳",
-      "salesName": "苏爱拜",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-196",
@@ -1568,7 +926,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-231",
@@ -1576,15 +935,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
-    },
-    {
-      "id": "sales-unknown-59",
-      "storeName": "suJosie-泡泡机",
-      "salesName": "苏爱拜",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-177",
@@ -1592,15 +944,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
-    },
-    {
-      "id": "sales-unknown-114",
-      "storeName": "Trae-德国杂货铺",
-      "salesName": "廖晨昊",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-217",
@@ -1608,15 +953,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
-    },
-    {
-      "id": "sales-unknown-194",
-      "storeName": "Trae-黑哥bra",
-      "salesName": "廖晨昊",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-133",
@@ -1624,31 +962,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
-    },
-    {
-      "id": "sales-unknown-112",
-      "storeName": "Trae-trigger打火机",
-      "salesName": "廖晨昊",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-141",
-      "storeName": "X²- Jaye-法国美容仪",
-      "salesName": "高明轩",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-19",
-      "storeName": "X²- Jaye-法国杂货铺",
-      "salesName": "高明轩",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-170",
@@ -1656,7 +971,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-200",
@@ -1664,7 +980,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-201",
@@ -1672,7 +989,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-140",
@@ -1680,47 +998,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
-    },
-    {
-      "id": "sales-unknown-38",
-      "storeName": "X²-Hebe-澳大利亚彩虹",
-      "salesName": "杨琪涵",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-47",
-      "storeName": "X²-Hebe-波兰美容仪",
-      "salesName": "杨琪涵",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-218",
-      "storeName": "X²-Hebe-德国瑜伽袜",
-      "salesName": "杨琪涵",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-150",
-      "storeName": "X²-Hebe-法国女装",
-      "salesName": "杨琪涵",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-131",
-      "storeName": "X²-Ivy Liu-波兰五金配件",
-      "salesName": "刘天瑾",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-85",
@@ -1728,7 +1007,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-234",
@@ -1736,7 +1016,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-44",
@@ -1744,23 +1025,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
-    },
-    {
-      "id": "sales-unknown-182",
-      "storeName": "X²-Ivy Liu-法国小风扇",
-      "salesName": "刘天瑾",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-42",
-      "storeName": "X²-Ivy Liu-美国定制背心",
-      "salesName": "刘天瑾",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-257",
@@ -1768,7 +1034,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-172",
@@ -1776,31 +1043,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
-    },
-    {
-      "id": "sales-unknown-54",
-      "storeName": "X²-Ivy Liu-小狗梳子1",
-      "salesName": "刘天瑾",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-109",
-      "storeName": "X²-Ivy Liu-英国牙刷",
-      "salesName": "刘天瑾",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-76",
-      "storeName": "X²-Ivy Liu-miumin服装1",
-      "salesName": "刘天瑾",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-219",
@@ -1808,47 +1052,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
-    },
-    {
-      "id": "sales-unknown-33",
-      "storeName": "X²-Ivy LiuEdison-澳大利亚超市1",
-      "salesName": "刘天瑾",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-97",
-      "storeName": "X²-Ivy LiuEdison-洁牙仪1",
-      "salesName": "刘天瑾",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-149",
-      "storeName": "X²-Ivy LiuEdison-美国老年鞋1",
-      "salesName": "刘天瑾",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-56",
-      "storeName": "X²-Ivy LiuEdison-墨西哥内衣1",
-      "salesName": "刘天瑾",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-94",
-      "storeName": "X²-Ivy LiuEdison-香港脱毛仪1",
-      "salesName": "刘天瑾",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-134",
@@ -1856,7 +1061,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-101",
@@ -1864,7 +1070,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-197",
@@ -1872,7 +1079,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-128",
@@ -1880,15 +1088,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
-    },
-    {
-      "id": "sales-unknown-1",
-      "storeName": "X²-Jaye-除毛手套",
-      "salesName": "高明轩",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-216",
@@ -1896,15 +1097,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
-    },
-    {
-      "id": "sales-unknown-39",
-      "storeName": "X²-Jaye-法国安东尼鞋",
-      "salesName": "高明轩",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-253",
@@ -1912,23 +1106,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
-    },
-    {
-      "id": "sales-unknown-73",
-      "storeName": "X²-Jaye-露营装备杂货铺",
-      "salesName": "高明轩",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-255",
-      "storeName": "X²-Jaye-美国软糖",
-      "salesName": "高明轩",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-207",
@@ -1936,23 +1115,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
-    },
-    {
-      "id": "sales-unknown-230",
-      "storeName": "X²-jaye-墨西哥情趣用品",
-      "salesName": "高明轩",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-105",
-      "storeName": "X²-Jaye-瑞典宠物用品1",
-      "salesName": "高明轩",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-89",
@@ -1960,15 +1124,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
-    },
-    {
-      "id": "sales-unknown-87",
-      "storeName": "X²-Jaye-以色列客户",
-      "salesName": "杨琪涵",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-208",
@@ -1976,39 +1133,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
-    },
-    {
-      "id": "sales-unknown-135",
-      "storeName": "X²-JayeEdison-波兰磁吸支架1",
-      "salesName": "高明轩",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-153",
-      "storeName": "X²-JayeEdison-德国保健品1",
-      "salesName": "高明轩",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-193",
-      "storeName": "X²-JayeEdison-法国面膜1",
-      "salesName": "高明轩",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-35",
-      "storeName": "X²-JayeEdison-瑞典握力器1",
-      "salesName": "高明轩",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-190",
@@ -2016,23 +1142,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
-    },
-    {
-      "id": "sales-unknown-139",
-      "storeName": "X²-ltjJosie-美国握力器",
-      "salesName": "刘天瑾",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-162",
-      "storeName": "X²-ltjJosie-全球背心",
-      "salesName": "刘天瑾",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-252",
@@ -2040,23 +1151,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
-    },
-    {
-      "id": "sales-unknown-74",
-      "storeName": "X²-ltx-法国刮痧板",
-      "salesName": "李天宣",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-164",
-      "storeName": "X²-zby-法尔赞的戒指",
-      "salesName": "赵伯言",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-152",
@@ -2064,7 +1160,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-159",
@@ -2072,7 +1169,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-187",
@@ -2080,7 +1178,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-254",
@@ -2088,7 +1187,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-242",
@@ -2096,31 +1196,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
-    },
-    {
-      "id": "sales-unknown-102",
-      "storeName": "ZCL-法国腰带",
-      "salesName": "张丛麟",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-88",
-      "storeName": "ZCL-美国口红",
-      "salesName": "张丛麟",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
-    },
-    {
-      "id": "sales-unknown-154",
-      "storeName": "ZCL-美国设计师",
-      "salesName": "张丛麟",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-269",
@@ -2128,7 +1205,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-48",
@@ -2136,7 +1214,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-199",
@@ -2144,7 +1223,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-169",
@@ -2152,7 +1232,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-204",
@@ -2160,15 +1241,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
-    },
-    {
-      "id": "sales-unknown-24",
-      "storeName": "ZCL-美国衣服",
-      "salesName": "张丛麟",
-      "enabled": true,
-      "auto": true,
-      "status": "assigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-171",
@@ -2176,7 +1250,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-251",
@@ -2184,7 +1259,1205 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-213",
+      "storeName": "宁-爱沙尼亚杂货铺新店",
+      "salesName": "宁安沛",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-267",
+      "storeName": "宁-波兰积木人",
+      "salesName": "宁安沛",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-272",
+      "storeName": "宁-波兰浴球新店",
+      "salesName": "宁安沛",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-110",
+      "storeName": "宁-德国精油-磨砂膏",
+      "salesName": "苏爱拜",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-15",
+      "storeName": "宁-英国Harris",
+      "salesName": "苏爱拜",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-221",
+      "storeName": "苏苏-灯具Hadleigh",
+      "salesName": "苏爱拜",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-117",
+      "storeName": "苏苏-法国化妆品Reyane",
+      "salesName": "苏爱拜",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-142",
+      "storeName": "苏苏-法国Louis",
+      "salesName": "苏爱拜",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-122",
+      "storeName": "苏苏-美国婴儿服",
+      "salesName": "苏爱拜",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-53",
+      "storeName": "苏苏-美国杂货Cole",
+      "salesName": "苏爱拜",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-41",
+      "storeName": "苏苏-杂货铺Fabrice",
+      "salesName": "苏爱拜",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-80",
+      "storeName": "苏苏-Henrique欧洲胶水",
+      "salesName": "苏爱拜",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-57",
+      "storeName": "苏苏-Parosh全球内裤",
+      "salesName": "苏爱拜",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-52",
+      "storeName": "苏苏-sara头盔",
+      "salesName": "苏爱拜",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-28",
+      "storeName": "自营手工单",
+      "salesName": "杨继超",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-115",
+      "storeName": "Ada-Kent手套-Danae",
+      "salesName": "范梦微",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-27",
+      "storeName": "Alay-奥地利狗垫",
+      "salesName": "杨继超",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-160",
+      "storeName": "Alay-丹麦-美国人",
+      "salesName": "杨继超",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-26",
+      "storeName": "Alay-德国卡片",
+      "salesName": "杨继超",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-113",
+      "storeName": "Alay-法国蜡烛",
+      "salesName": "杨继超",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-5",
+      "storeName": "Alay-法国首饰",
+      "salesName": "杨继超",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-60",
+      "storeName": "Alay-罗马尼亚耳勺",
+      "salesName": "杨继超",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-62",
+      "storeName": "Alay-美国杂货铺Cole二店",
+      "salesName": "杨继超",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-233",
+      "storeName": "Alay-墨西哥化妆品",
+      "salesName": "杨继超",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-271",
+      "storeName": "Alay-西班牙杂货铺",
+      "salesName": "杨继超",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-181",
+      "storeName": "Alay-英国汽车",
+      "salesName": "杨继超",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-75",
+      "storeName": "Ava-Avi-Ivy",
+      "salesName": "范梦微",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-161",
+      "storeName": "Danae-波捷手链",
+      "salesName": "曹瑶",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-174",
+      "storeName": "Danae-波捷眼镜（荷兰店）",
+      "salesName": "曹瑶",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-12",
+      "storeName": "Danae-车钥匙扣",
+      "salesName": "何烁丹",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-100",
+      "storeName": "Danae-地图",
+      "salesName": "廖晨昊",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-78",
+      "storeName": "Danae-荷兰范佩西",
+      "salesName": "廖晨昊",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-119",
+      "storeName": "Danae-脚链",
+      "salesName": "何烁丹",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-7",
+      "storeName": "Danae-克莱顿鞋",
+      "salesName": "何烁丹",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-50",
+      "storeName": "Danae-兰波人眼镜",
+      "salesName": "卓洪宇",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-16",
+      "storeName": "Danae-马里奥内衣",
+      "salesName": "刘思雨",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-3",
+      "storeName": "Danae-马里奥小潘",
+      "salesName": "何烁丹",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-211",
+      "storeName": "Danae-美国汽车绒布",
+      "salesName": "廖晨昊",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-232",
+      "storeName": "Danae-盆栽哥",
+      "salesName": "廖晨昊",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-77",
+      "storeName": "Danae-朋克项链",
+      "salesName": "何烁丹",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-118",
+      "storeName": "Danae-手机壳",
+      "salesName": "曹瑶",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-22",
+      "storeName": "Danae-手机壳2",
+      "salesName": "卓洪宇",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-17",
+      "storeName": "Danae-Hakan龙周边",
+      "salesName": "卓洪宇",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-69",
+      "storeName": "Danae-kevin智能戒指",
+      "salesName": "何烁丹",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-20",
+      "storeName": "Danae-max裙子",
+      "salesName": "何烁丹",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-145",
+      "storeName": "Danae-Med护发精油",
+      "salesName": "何烁丹",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-2",
+      "storeName": "Danae-mediasteins阿凡达",
+      "salesName": "何烁丹",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-29",
+      "storeName": "Danae-pordein 包",
+      "salesName": "卓洪宇",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-124",
+      "storeName": "Danae-Steven",
+      "salesName": "何烁丹",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-103",
+      "storeName": "DanaeCiga-Andrey全球履约",
+      "salesName": "卓洪宇",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-37",
+      "storeName": "DanaeJosie-第十七个波兰人水杯",
+      "salesName": "廖晨昊",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-96",
+      "storeName": "DanaeJosie-墨西哥积木",
+      "salesName": "曹瑶",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-45",
+      "storeName": "Ivy-阿根廷杂货铺",
+      "salesName": "范梦微",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-143",
+      "storeName": "Ivy-奥地利刮痧器",
+      "salesName": "范梦微",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-191",
+      "storeName": "Ivy-奥地利刮痧器-2",
+      "salesName": "范梦微",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-67",
+      "storeName": "Ivy-波兰搓澡巾",
+      "salesName": "范梦微",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-163",
+      "storeName": "ivy-分酒器",
+      "salesName": "范梦微",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-4",
+      "storeName": "Ivy-荷兰Thomas",
+      "salesName": "范梦微",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-104",
+      "storeName": "Ivy-猫玩具",
+      "salesName": "范梦微",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-106",
+      "storeName": "Ivy-英国Sam",
+      "salesName": "范梦微",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-98",
+      "storeName": "Ivy-dead活页夹",
+      "salesName": "范梦微",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-13",
+      "storeName": "Ivy-Dione Couture女包",
+      "salesName": "范梦微",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-68",
+      "storeName": "Ivy-Fardin保健品",
+      "salesName": "范梦微",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-273",
+      "storeName": "Ivy-Zine法国平衡软糖",
+      "salesName": "范梦微",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-178",
+      "storeName": "Ivy-Zine平衡软糖英国",
+      "salesName": "范梦微",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-210",
+      "storeName": "Jadie-波兰捏捏",
+      "salesName": "张芷瑜",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-184",
+      "storeName": "Jadie-德国漱口水",
+      "salesName": "张芷瑜",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-116",
+      "storeName": "Josie-32个波兰人打鼾",
+      "salesName": "Josie-周晓清",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-70",
+      "storeName": "Josie-波兰唇膏",
+      "salesName": "Josie-周晓清",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-65",
+      "storeName": "Josie-波兰狗绳直连",
+      "salesName": "Josie-周晓清",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-10",
+      "storeName": "josie-第七个波兰人狗串儿",
+      "salesName": "Josie-周晓清",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-90",
+      "storeName": "Josie-第三个波兰人袜子",
+      "salesName": "Josie-周晓清",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-209",
+      "storeName": "Josie-第三十八个波兰人猫串",
+      "salesName": "Josie-周晓清",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-189",
+      "storeName": "Josie-第三十二个波兰人",
+      "salesName": "Josie-周晓清",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-36",
+      "storeName": "Josie-第十二个波兰人大熊猫",
+      "salesName": "Josie-周晓清",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-99",
+      "storeName": "Josie-第十个波兰人熊猫",
+      "salesName": "Josie-周晓清",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-58",
+      "storeName": "Josie-美国狗衣服",
+      "salesName": "Josie-周晓清",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-127",
+      "storeName": "Josie-美国魔术贴",
+      "salesName": "Josie-周晓清",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-91",
+      "storeName": "Josie-美国书包",
+      "salesName": "Josie-周晓清",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-34",
+      "storeName": "Josie-美国藤碗",
+      "salesName": "Josie-周晓清",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-132",
+      "storeName": "Josie-美国拖把",
+      "salesName": "Josie-周晓清",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-95",
+      "storeName": "josie-美黑滴剂",
+      "salesName": "Josie-周晓清",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-61",
+      "storeName": "Josie-美英吊坠",
+      "salesName": "Josie-周晓清",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-31",
+      "storeName": "Josie-欧美花盒",
+      "salesName": "Josie-周晓清",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-111",
+      "storeName": "Josie-英国连裤袜",
+      "salesName": "Josie-周晓清",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-18",
+      "storeName": "Josie-英美戒指",
+      "salesName": "Josie-周晓清",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-72",
+      "storeName": "Josie-英美手串",
+      "salesName": "Josie-周晓清",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-107",
+      "storeName": "Josie-Sky美容仪",
+      "salesName": "Josie-周晓清",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-79",
+      "storeName": "Josie-VZN新眼镜",
+      "salesName": "Josie-周晓清",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-183",
+      "storeName": "Joy-德国石榴胶囊",
+      "salesName": "周星月",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-266",
+      "storeName": "Joy-全球妆前乳",
+      "salesName": "周星月",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-268",
+      "storeName": "Kelly-波捷面包袋",
+      "salesName": "曹瑶",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-86",
+      "storeName": "suJosie-美国按摩梳",
+      "salesName": "苏爱拜",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-59",
+      "storeName": "suJosie-泡泡机",
+      "salesName": "苏爱拜",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-114",
+      "storeName": "Trae-德国杂货铺",
+      "salesName": "廖晨昊",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-194",
+      "storeName": "Trae-黑哥bra",
+      "salesName": "廖晨昊",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-112",
+      "storeName": "Trae-trigger打火机",
+      "salesName": "廖晨昊",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-141",
+      "storeName": "X²- Jaye-法国美容仪",
+      "salesName": "高明轩",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-19",
+      "storeName": "X²- Jaye-法国杂货铺",
+      "salesName": "高明轩",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-38",
+      "storeName": "X²-Hebe-澳大利亚彩虹",
+      "salesName": "杨琪涵",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-47",
+      "storeName": "X²-Hebe-波兰美容仪",
+      "salesName": "杨琪涵",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-218",
+      "storeName": "X²-Hebe-德国瑜伽袜",
+      "salesName": "杨琪涵",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-150",
+      "storeName": "X²-Hebe-法国女装",
+      "salesName": "杨琪涵",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-131",
+      "storeName": "X²-Ivy Liu-波兰五金配件",
+      "salesName": "刘天瑾",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-182",
+      "storeName": "X²-Ivy Liu-法国小风扇",
+      "salesName": "刘天瑾",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-42",
+      "storeName": "X²-Ivy Liu-美国定制背心",
+      "salesName": "刘天瑾",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-54",
+      "storeName": "X²-Ivy Liu-小狗梳子1",
+      "salesName": "刘天瑾",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-109",
+      "storeName": "X²-Ivy Liu-英国牙刷",
+      "salesName": "刘天瑾",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-76",
+      "storeName": "X²-Ivy Liu-miumin服装1",
+      "salesName": "刘天瑾",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-33",
+      "storeName": "X²-Ivy LiuEdison-澳大利亚超市1",
+      "salesName": "刘天瑾",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-97",
+      "storeName": "X²-Ivy LiuEdison-洁牙仪1",
+      "salesName": "刘天瑾",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-149",
+      "storeName": "X²-Ivy LiuEdison-美国老年鞋1",
+      "salesName": "刘天瑾",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-56",
+      "storeName": "X²-Ivy LiuEdison-墨西哥内衣1",
+      "salesName": "刘天瑾",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-94",
+      "storeName": "X²-Ivy LiuEdison-香港脱毛仪1",
+      "salesName": "刘天瑾",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-1",
+      "storeName": "X²-Jaye-除毛手套",
+      "salesName": "高明轩",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-39",
+      "storeName": "X²-Jaye-法国安东尼鞋",
+      "salesName": "高明轩",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-73",
+      "storeName": "X²-Jaye-露营装备杂货铺",
+      "salesName": "高明轩",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-255",
+      "storeName": "X²-Jaye-美国软糖",
+      "salesName": "高明轩",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-230",
+      "storeName": "X²-jaye-墨西哥情趣用品",
+      "salesName": "高明轩",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-105",
+      "storeName": "X²-Jaye-瑞典宠物用品1",
+      "salesName": "高明轩",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-87",
+      "storeName": "X²-Jaye-以色列客户",
+      "salesName": "杨琪涵",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-135",
+      "storeName": "X²-JayeEdison-波兰磁吸支架1",
+      "salesName": "高明轩",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-153",
+      "storeName": "X²-JayeEdison-德国保健品1",
+      "salesName": "高明轩",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-193",
+      "storeName": "X²-JayeEdison-法国面膜1",
+      "salesName": "高明轩",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-35",
+      "storeName": "X²-JayeEdison-瑞典握力器1",
+      "salesName": "高明轩",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-139",
+      "storeName": "X²-ltjJosie-美国握力器",
+      "salesName": "刘天瑾",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-162",
+      "storeName": "X²-ltjJosie-全球背心",
+      "salesName": "刘天瑾",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-74",
+      "storeName": "X²-ltx-法国刮痧板",
+      "salesName": "李天宣",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-164",
+      "storeName": "X²-zby-法尔赞的戒指",
+      "salesName": "赵伯言",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-102",
+      "storeName": "ZCL-法国腰带",
+      "salesName": "张丛麟",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-88",
+      "storeName": "ZCL-美国口红",
+      "salesName": "张丛麟",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-154",
+      "storeName": "ZCL-美国设计师",
+      "salesName": "张丛麟",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-24",
+      "storeName": "ZCL-美国衣服",
+      "salesName": "张丛麟",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
     }
   ]
 }
