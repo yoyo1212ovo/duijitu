@@ -40,6 +40,8 @@ const HISTORY_FILE = "live-history.json";
 const HISTORY_SEED_FILE = process.env.HISTORY_SEED_FILE || path.join(__dirname, "data", HISTORY_FILE);
 const CHANNEL_MAPPING_FILE = "channel-mapping.json";
 const CHANNEL_MAPPING_SEED_FILE = process.env.CHANNEL_MAPPING_SEED_FILE || path.join(__dirname, "data", CHANNEL_MAPPING_FILE);
+const STORE_SALES_MAPPING_FILE = "store-sales-mapping.json";
+const STORE_SALES_MAPPING_SEED_FILE = process.env.STORE_SALES_MAPPING_SEED_FILE || path.join(__dirname, "data", STORE_SALES_MAPPING_FILE);
 
 function pad2(n) {
   return String(n).padStart(2, "0");
@@ -158,6 +160,55 @@ function readChannelMapping() {
 
 function writeChannelMapping(mapping) {
   writeJSON(CHANNEL_MAPPING_FILE, { version: 1, updatedAt: new Date().toISOString(), records: mapping.records });
+}
+
+function readStoreSalesMapping() {
+  const readMappingFile = (filePath) => {
+    if (!filePath || !fs.existsSync(filePath)) return [];
+    try {
+      const parsed = JSON.parse(fs.readFileSync(filePath, "utf8"));
+      return Array.isArray(parsed) ? parsed : (parsed && Array.isArray(parsed.records) ? parsed.records : []);
+    } catch {
+      return [];
+    }
+  };
+  const records = [
+    ...readMappingFile(STORE_SALES_MAPPING_SEED_FILE),
+    ...readMappingFile(path.join(DATA_DIR, STORE_SALES_MAPPING_FILE))
+  ];
+  const byStore = new Map();
+  for (const record of records) {
+    if (!record || !record.storeName) continue;
+    byStore.set(record.storeName, record);
+  }
+
+  const history = readHistory();
+  let dynamicIndex = byStore.size + 1;
+  for (const day of Object.values(history.days || {})) {
+    for (const store of Object.keys(day.stores || {})) {
+      if (byStore.has(store)) continue;
+      byStore.set(store, {
+        id: "sales-unknown-" + dynamicIndex++,
+        storeName: store,
+        salesName: "",
+        enabled: true,
+        status: "unassigned"
+      });
+    }
+  }
+
+  const normalized = [...byStore.values()];
+  return { records: normalized, byStore: Object.fromEntries(byStore) };
+}
+
+function writeStoreSalesMapping(mapping) {
+  writeJSON(STORE_SALES_MAPPING_FILE, { version: 1, updatedAt: new Date().toISOString(), records: mapping.records });
+}
+
+function resolveSalesName(storeName, mapping) {
+  const record = mapping.byStore[storeName];
+  if (!record || record.status !== "assigned" || !record.enabled || !record.salesName) return "";
+  return String(record.salesName).trim();
 }
 
 function resolveDisplayChannel(sourceName, mapping) {
@@ -579,6 +630,60 @@ app.put("/api/channel-mapping/:id", (req, res) => {
 
   if (!record.sourceName) return res.status(400).json({ error: "sourceName is required" });
   writeChannelMapping(mapping);
+  res.json({ record });
+});
+
+// === API: Store sales owner mapping ===
+app.post("/api/store-sales-mapping/restore", (req, res) => {
+  const records = Array.isArray(req.body && req.body.records) ? req.body.records : [];
+  if (records.length === 0) return res.status(400).json({ error: "records is required" });
+
+  const normalized = records
+    .filter((record) => record && record.storeName)
+    .map((record) => ({
+      id: String(record.id || ""),
+      storeName: String(record.storeName).trim(),
+      salesName: String(record.salesName || "").trim(),
+      enabled: Boolean(record.enabled),
+      status: String(record.salesName || "").trim() && Boolean(record.enabled) ? "assigned" : "unassigned"
+    }));
+
+  if (normalized.length === 0) return res.status(400).json({ error: "no valid store sales mapping records" });
+  writeStoreSalesMapping({ version: 1, updatedAt: new Date().toISOString(), records: normalized });
+  res.json({ restored: normalized.length });
+});
+
+app.get("/api/store-sales-mapping", (req, res) => {
+  const mapping = readStoreSalesMapping();
+  const records = mapping.records
+    .map((record) => ({ ...record }))
+    .sort((a, b) => {
+      if (a.status === b.status) return a.storeName.localeCompare(b.storeName, "zh-CN");
+      return a.status === "unassigned" ? -1 : 1;
+    });
+  res.json({
+    records,
+    assignedCount: records.filter((record) => record.status === "assigned").length,
+    unassignedCount: records.filter((record) => record.status === "unassigned").length
+  });
+});
+
+app.put("/api/store-sales-mapping/:id", (req, res) => {
+  const mapping = readStoreSalesMapping();
+  const record = mapping.records.find((item) => item.id === req.params.id);
+  if (!record) return res.status(404).json({ error: "store sales mapping record not found" });
+
+  const allowed = ["storeName", "salesName", "enabled"];
+  for (const key of allowed) {
+    if (Object.prototype.hasOwnProperty.call(req.body, key)) record[key] = req.body[key];
+  }
+  record.storeName = String(record.storeName || "").trim();
+  record.salesName = String(record.salesName || "").trim();
+  record.enabled = Boolean(record.enabled);
+  record.status = record.salesName && record.enabled ? "assigned" : "unassigned";
+
+  if (!record.storeName) return res.status(400).json({ error: "storeName is required" });
+  writeStoreSalesMapping(mapping);
   res.json({ record });
 });
 
