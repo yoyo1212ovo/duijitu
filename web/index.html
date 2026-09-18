@@ -256,10 +256,12 @@ select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--
 .cs-detail-row.cs-detail-head{position:sticky;top:0;background:var(--surface2);z-index:1}
 .cs-daily-board .cs-no-data{padding:40px;text-align:center;color:var(--text2);font-size:13px}
 .cs-daily-board.has-health .cs-daily-board-head,.cs-daily-board.has-health .cs-daily-row{grid-template-columns:minmax(180px,1.4fr) minmax(86px,.65fr) minmax(76px,.6fr) minmax(105px,.78fr) minmax(100px,.75fr) minmax(128px,.92fr) minmax(118px,.88fr) 64px;column-gap:10px}
+.cs-daily-board.has-sales .cs-daily-board-head,.cs-daily-board.has-sales .cs-daily-row{grid-template-columns:minmax(150px,1.15fr) minmax(86px,.65fr) minmax(78px,.6fr) minmax(96px,.72fr) minmax(70px,.55fr) minmax(160px,1.15fr) minmax(104px,.82fr) 64px;column-gap:10px}
 @media(max-width:900px){
   .cs-daily-board{overflow-x:auto}
   .cs-daily-board-head,.cs-daily-row{min-width:880px}
   .cs-daily-board.has-health .cs-daily-board-head,.cs-daily-board.has-health .cs-daily-row{min-width:1060px}
+  .cs-daily-board.has-sales .cs-daily-board-head,.cs-daily-board.has-sales .cs-daily-row{min-width:1020px}
 }
 .cs-no-data{padding:40px;text-align:center;color:var(--text2);font-size:13px}.cs-upload-btn{margin-top:8px;display:inline-flex!important}.empty-state{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:calc(100vh - 120px);gap:16px;color:var(--text3)}
 .empty-state .empty-icon{width:56px;height:56px;opacity:.3;margin-bottom:4px}
@@ -364,7 +366,7 @@ select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--
 </div>
 <header class="header" id="appHeader" style="display:none;">
   <div class="header-l"><span class="dot"></span><h1>&#x7269;&#x6D41;&#x8FD0;&#x8D39;&#x5206;&#x6790;&#x5E73;&#x53F0;</h1></div>
-  <div class="header-r"><button class="export-btn" id="exportBtn" style="display:none;" title="导出报告">📥 导出</button><div style="position:relative;display:inline-flex"><button class="admin-btn" id="channelMappingBtn" style="display:none;">&#x1F4E6; 物流渠道</button><span class="channel-alert-badge" id="channelAlertBadge" style="display:none;">0</span><div class="channel-alert-popover" id="channelAlertPopover" role="status"></div></div><button class="admin-btn" id="adminBtn" style="display:none;">&#x2699; &#x7BA1;&#x7406;</button><span class="user-tag" id="liveTime" style="display:none;"></span><span class="user-tag" id="userTag"></span><button class="logout-btn" id="logoutBtn">&#x9000;&#x51FA;</button></div>
+  <div class="header-r"><button class="export-btn" id="exportBtn" style="display:none;" title="导出报告">📥 导出</button><div style="position:relative;display:inline-flex"><button class="admin-btn" id="salesMappingBtn" style="display:none;">&#x1F465; 销售负责人</button><span class="channel-alert-badge" id="salesAlertBadge" style="display:none;">0</span><div class="channel-alert-popover" id="salesAlertPopover" role="status"></div></div><div style="position:relative;display:inline-flex"><button class="admin-btn" id="channelMappingBtn" style="display:none;">&#x1F4E6; 物流渠道</button><span class="channel-alert-badge" id="channelAlertBadge" style="display:none;">0</span><div class="channel-alert-popover" id="channelAlertPopover" role="status"></div></div><button class="admin-btn" id="adminBtn" style="display:none;">&#x2699; &#x7BA1;&#x7406;</button><span class="user-tag" id="liveTime" style="display:none;"></span><span class="user-tag" id="userTag"></span><button class="logout-btn" id="logoutBtn">&#x9000;&#x51FA;</button></div>
 </header>
 <div class="file-bar" id="fileBar" style="display:none;">
   <button class="upload-btn" id="uploadBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>&#x4E0A;&#x4F20; Excel</button>
@@ -463,6 +465,17 @@ select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--
         </div>
       </div>
     </div>
+    <div class="cs-filter-wrap">
+      <span class="cs-filter-label">销售负责人：</span>
+      <div class="cs-multi-select" id="csSalesSelect">
+        <div class="cs-ms-trigger" id="csSalesMsTrigger"><span>全部销售</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><polyline points="6 9 12 15 18 9"/></svg></div>
+        <div class="cs-ms-dropdown" id="csSalesMsDropdown" style="display:none;">
+          <div class="cs-ms-search"><input id="csSalesSearch" placeholder="搜索销售负责人..."></div>
+          <label class="cs-ms-all"><input type="checkbox" id="csSalesSelectAll"> 全选</label>
+          <div class="cs-ms-list" id="csSalesMsList"></div>
+        </div>
+      </div>
+    </div>
   <div class="cs-summary" id="csSummary"></div>
   </div>
   <div class="cs-suggestions" id="csSuggestions"></div>
@@ -518,7 +531,7 @@ div>
   <p>&#x4E0A;&#x4F20; Excel &#x6587;&#x4EF6;&#x4EE5;&#x67E5;&#x770B;&#x8FD0;&#x8D39;&#x5BF9;&#x6BD4;&#x56FE;&#x8868;</p>
 </div><script>
 
-var API={async request(method,url,body){var opts={method:method,headers:{"Content-Type":"application/json"}};var token=localStorage.getItem("token");if(token)opts.headers["Authorization"]="Bearer "+token;if(body)opts.body=JSON.stringify(body);var res=await fetch(url,opts);var text=await res.text();var data;try{data=JSON.parse(text)}catch(e){if(text&&(text.indexOf("<!DOCTYPE")>=0||text.indexOf("<html")>=0)){if(res.status>=500)throw new Error("服务暂时不可用或正在启动，请稍后重试");throw new Error("服务返回了非 JSON 数据，请稍后重试")}throw e}if(!res.ok)throw new Error(data&&data.error?data.error:"请求失败");return data},async uploadFile(file){var form=new FormData();form.append("file",file);var token=localStorage.getItem("token");var res=await fetch("/api/upload",{method:"POST",headers:{"Authorization":"Bearer "+token},body:form});var data=await res.json();if(!res.ok)throw new Error(data.error||"上传失败");return data},register:function(u,p){return API.request("POST","/api/register",{username:u,password:p})},login:function(u,p){return API.request("POST","/api/login",{username:u,password:p})},me:function(){return API.request("GET","/api/me")},files:function(){return API.request("GET","/api/files")},fileData:function(id){return API.request("GET","/api/file/"+id+"/data")},channelSummary:function(id){return API.request("GET","/api/file/"+id+"/channel-summary")},liveChannelSummary:function(){return API.request("GET","/api/live/channel-summary")},liveHistory:function(){return API.request("GET","/api/live/history")},liveHistoryWeek:function(week){return API.request("GET","/api/live/history/"+encodeURIComponent(week))},liveHistoryRange:function(start,end){return API.request("GET","/api/live/history/range?startDate="+encodeURIComponent(start)+"&endDate="+encodeURIComponent(end))},channelMapping:function(){return API.request("GET","/api/channel-mapping")},updateChannelMapping:function(id,body){return API.request("PUT","/api/channel-mapping/"+encodeURIComponent(id),body)},restoreChannelMapping:function(records){return API.request("POST","/api/channel-mapping/restore",{records:records})},deleteFile:function(id){return API.request("DELETE","/api/file/"+id)}};
+var API={async request(method,url,body){var opts={method:method,headers:{"Content-Type":"application/json"}};var token=localStorage.getItem("token");if(token)opts.headers["Authorization"]="Bearer "+token;if(body)opts.body=JSON.stringify(body);var res=await fetch(url,opts);var text=await res.text();var data;try{data=JSON.parse(text)}catch(e){if(text&&(text.indexOf("<!DOCTYPE")>=0||text.indexOf("<html")>=0)){if(res.status>=500)throw new Error("服务暂时不可用或正在启动，请稍后重试");throw new Error("服务返回了非 JSON 数据，请稍后重试")}throw e}if(!res.ok)throw new Error(data&&data.error?data.error:"请求失败");return data},async uploadFile(file){var form=new FormData();form.append("file",file);var token=localStorage.getItem("token");var res=await fetch("/api/upload",{method:"POST",headers:{"Authorization":"Bearer "+token},body:form});var data=await res.json();if(!res.ok)throw new Error(data.error||"上传失败");return data},register:function(u,p){return API.request("POST","/api/register",{username:u,password:p})},login:function(u,p){return API.request("POST","/api/login",{username:u,password:p})},me:function(){return API.request("GET","/api/me")},files:function(){return API.request("GET","/api/files")},fileData:function(id){return API.request("GET","/api/file/"+id+"/data")},channelSummary:function(id){return API.request("GET","/api/file/"+id+"/channel-summary")},liveChannelSummary:function(){return API.request("GET","/api/live/channel-summary")},liveHistory:function(){return API.request("GET","/api/live/history")},liveHistoryWeek:function(week){return API.request("GET","/api/live/history/"+encodeURIComponent(week))},liveHistoryRange:function(start,end){return API.request("GET","/api/live/history/range?startDate="+encodeURIComponent(start)+"&endDate="+encodeURIComponent(end))},channelMapping:function(){return API.request("GET","/api/channel-mapping")},updateChannelMapping:function(id,body){return API.request("PUT","/api/channel-mapping/"+encodeURIComponent(id),body)},restoreChannelMapping:function(records){return API.request("POST","/api/channel-mapping/restore",{records:records})},storeSalesMapping:function(){return API.request("GET","/api/store-sales-mapping")},updateStoreSalesMapping:function(id,body){return API.request("PUT","/api/store-sales-mapping/"+encodeURIComponent(id),body)},restoreStoreSalesMapping:function(records){return API.request("POST","/api/store-sales-mapping/restore",{records:records})},deleteFile:function(id){return API.request("DELETE","/api/file/"+id)}};
 var isLoginMode=true;
 function showAuthError(msg){document.getElementById("authError").textContent=msg;document.getElementById("authError").classList.add("show")}
 function clearAuthError(){document.getElementById("authError").classList.remove("show")}
@@ -555,12 +568,14 @@ var csSelectedWeek = null;
 var csSelectedChannels = [];
 var csSelectedCountries = [];
 var csSelectedStores = [];
+var csSelectedSalesPeople = [];
 var csTrendChannels = [];
 var csTrendCountries = [];
 var csTrendStores = [];
 var csTrendMode = "week";
 var csBoardView = "channel";
 var stackedSelectedStores = [];
+var storeSalesMappingRecords = [];
 
 function activeStoreSelection(list) {
   if (!channelSummary || !list || list.length === 0) return [];
@@ -568,19 +583,71 @@ function activeStoreSelection(list) {
   return list.filter(function(s) { return all.indexOf(s) >= 0; });
 }
 
+function getStoreSalesOwner(store) {
+  if (!store) return "";
+  var record = storeSalesMappingRecords.find(function(item) { return item && item.storeName === store; });
+  if (!record || record.status !== "assigned" || !record.enabled) return "";
+  return String(record.salesName || "").trim();
+}
+
+function getAllSalesPeople() {
+  var names = {};
+  storeSalesMappingRecords.forEach(function(record) {
+    var name = String((record && record.salesName) || "").trim();
+    if (name && record.enabled && record.status === "assigned") names[name] = true;
+  });
+  return Object.keys(names).sort(function(a, b) { return a.localeCompare(b, "zh-CN"); });
+}
+
+function storesForSelectedSales(selectedSales) {
+  if (!selectedSales || selectedSales.length === 0) return [];
+  var selected = selectedSales.slice();
+  return (channelSummary.stores || []).filter(function(store) {
+    return selected.indexOf(getStoreSalesOwner(store)) >= 0;
+  });
+}
+
+function effectiveStoreSelection(selectedStores, selectedSales) {
+  if (!channelSummary) return [];
+  var hasStoreFilter = selectedStores && selectedStores.length > 0;
+  var hasSalesFilter = selectedSales && selectedSales.length > 0;
+  if (!hasStoreFilter && !hasSalesFilter) return [];
+
+  var base = hasStoreFilter ? activeStoreSelection(selectedStores) : (channelSummary.stores || []).slice();
+  if (!hasSalesFilter) return base;
+  var salesSet = selectedSales.slice();
+  return base.filter(function(store) { return salesSet.indexOf(getStoreSalesOwner(store)) >= 0; });
+}
+
+function getEffectiveFilterStores() {
+  if (!csSelectedStores.length && !csSelectedSalesPeople.length) return [];
+  return effectiveStoreSelection(csSelectedStores, csSelectedSalesPeople);
+}
+
+function hasActiveStoreOrSalesFilter() {
+  return csSelectedStores.length > 0 || csSelectedSalesPeople.length > 0;
+}
+
+function getTrendEffectiveStores() {
+  if (csTrendStores.length > 0) return effectiveStoreSelection(csTrendStores, csSelectedSalesPeople);
+  if (csSelectedSalesPeople.length > 0) return storesForSelectedSales(csSelectedSalesPeople);
+  return [];
+}
+
 function getFilteredChannelCountryValue(channel, country) {
   if (!channelSummary) return 0;
-  var selectedStores = activeStoreSelection(csSelectedStores);
-  if (selectedStores.length === 0) {
+  if (hasActiveStoreOrSalesFilter()) {
+    var selectedStores = getEffectiveFilterStores();
+    if (selectedStores.length === 0) return 0;
+    var storeData = channelSummary.storeData || {};
+    var total = 0;
+    selectedStores.forEach(function(store) {
+      total += storeData[store] && storeData[store][channel] && storeData[store][channel][country] ? storeData[store][channel][country] : 0;
+    });
+    return total;
+  }
     var data = channelSummary.data || {};
     return data[channel] && data[channel][country] ? data[channel][country] : 0;
-  }
-  var storeData = channelSummary.storeData || {};
-  var total = 0;
-  selectedStores.forEach(function(store) {
-    total += storeData[store] && storeData[store][channel] && storeData[store][channel][country] ? storeData[store][channel][country] : 0;
-  });
-  return total;
 }
 
 function getFilteredVolData(volData, selectedStores) {
@@ -601,7 +668,7 @@ function getFilteredVolData(volData, selectedStores) {
 
 function getStoreChannelTotal(channel, selectedCountries, selectedStores, weekKey) {
   var countries = selectedCountries && selectedCountries.length ? selectedCountries : (channelSummary.countries || []);
-  var stores = activeStoreSelection(selectedStores);
+  var stores = effectiveStoreSelection(selectedStores, csSelectedSalesPeople);
   if (stores.length === 0) return 0;
   var total = 0;
   stores.forEach(function(store) {
@@ -624,7 +691,7 @@ function getStoreChannelTotal(channel, selectedCountries, selectedStores, weekKe
 
 function getStoreChannelTimeSeries(channel, selectedCountries, selectedStores, isDaily) {
   var countries = selectedCountries && selectedCountries.length ? selectedCountries : (channelSummary.countries || []);
-  var stores = activeStoreSelection(selectedStores);
+  var stores = effectiveStoreSelection(selectedStores, csSelectedSalesPeople);
   var result = {};
   var points = isDaily ? (channelSummary.allDays || []) : (channelSummary.allWeeks || []);
   points.forEach(function(p) { result[p] = 0; });
@@ -643,7 +710,7 @@ function getStoreChannelTimeSeries(channel, selectedCountries, selectedStores, i
 
 function getStoreCountryTimeSeries(country, selectedChannels, selectedStores, isDaily) {
   var channels = selectedChannels && selectedChannels.length ? selectedChannels : (channelSummary.channels || []);
-  var stores = activeStoreSelection(selectedStores);
+  var stores = effectiveStoreSelection(selectedStores, csSelectedSalesPeople);
   var result = {};
   var points = isDaily ? (channelSummary.allDays || []) : (channelSummary.allWeeks || []);
   points.forEach(function(p) { result[p] = 0; });
@@ -661,7 +728,7 @@ function getStoreCountryTimeSeries(country, selectedChannels, selectedStores, is
 }
 
 function getStoreTotalTimeSeries(selectedStores, isDaily) {
-  var stores = activeStoreSelection(selectedStores);
+  var stores = effectiveStoreSelection(selectedStores, csSelectedSalesPeople);
   var result = {};
   var points = isDaily ? (channelSummary.allDays || []) : (channelSummary.allWeeks || []);
   points.forEach(function(p) { result[p] = 0; });
@@ -681,8 +748,9 @@ function getStoreTotalTimeSeries(selectedStores, isDaily) {
 function getWeekFilteredTotal(channel) {
   if (!channelSummary) return 0;
   var countries = csSelectedCountries || [];
-  if (csSelectedStores.length > 0) {
-    return getStoreChannelTotal(channel, countries, csSelectedStores, csSelectedWeek);
+  if (hasActiveStoreOrSalesFilter()) {
+    var effectiveStores = getEffectiveFilterStores();
+    return effectiveStores.length > 0 ? getStoreChannelTotal(channel, countries, effectiveStores, csSelectedWeek) : 0;
   }
   if (countries.length > 0 && channelSummary.countryWeeklySeries && channelSummary.countryWeeklySeries[channel]) {
     var cw = channelSummary.countryWeeklySeries[channel];
@@ -709,7 +777,10 @@ function getWeekFilteredTotal(channel) {
 
 function getWeekFilteredTimeSeries(channel) {
   if (!channelSummary || !channelSummary.weeklySeries || !channelSummary.weeklySeries[channel]) return {};
-  if (csSelectedStores.length > 0) return getStoreChannelTimeSeries(channel, csSelectedCountries, csSelectedStores, false);
+  if (hasActiveStoreOrSalesFilter()) {
+    var effectiveStores = getEffectiveFilterStores();
+    return getStoreChannelTimeSeries(channel, csSelectedCountries, effectiveStores, false);
+  }
   var countries = csSelectedCountries || [];
   if (countries.length === 0) return channelSummary.weeklySeries[channel];
   var result = {};
@@ -728,7 +799,10 @@ function getPeriodDayCount() {
 
 function getBoardDailySeries(channel) {
   if (!channelSummary || !channelSummary.dailySeries || !channelSummary.dailySeries[channel]) return {};
-  if (csSelectedStores.length > 0) return getStoreChannelTimeSeries(channel, csSelectedCountries, csSelectedStores, true);
+  if (hasActiveStoreOrSalesFilter()) {
+    var effectiveStores = getEffectiveFilterStores();
+    return getStoreChannelTimeSeries(channel, csSelectedCountries, effectiveStores, true);
+  }
   var countries = csSelectedCountries || [];
   if (countries.length === 0) return channelSummary.dailySeries[channel];
   var result = {};
@@ -818,8 +892,9 @@ function channelHealthScore(channel, channelAvg, maxChannelAvg, countries, store
 }
 
 function getChannelCountryPeriodValue(channel, country) {
-  var stores = activeStoreSelection(csSelectedStores);
-  if (stores.length > 0) {
+  if (hasActiveStoreOrSalesFilter()) {
+    var stores = getEffectiveFilterStores();
+    if (stores.length === 0) return 0;
     var storeTotal = 0;
     stores.forEach(function(store) { storeTotal += getStoreChannelCountryPeriodValue(store, channel, country); });
     return storeTotal;
@@ -842,7 +917,7 @@ function getStoreChannelCountryPeriodValue(store, channel, country) {
 
 function getActiveStoresForBoard() {
   if (!channelSummary || !channelSummary.stores || channelSummary.stores.length === 0) return [];
-  if (csSelectedStores.length > 0) return activeStoreSelection(csSelectedStores);
+  if (csSelectedStores.length > 0 || csSelectedSalesPeople.length > 0) return effectiveStoreSelection(csSelectedStores, csSelectedSalesPeople);
   return channelSummary.stores.slice();
 }
 
@@ -872,7 +947,7 @@ document.addEventListener('keydown', function(e) {
 
 function getTrendChannelTimeSeries(channel) {
   if (!channelSummary || !channelSummary.weeklySeries || !channelSummary.weeklySeries[channel]) return {};
-  if (csTrendStores.length > 0) return getStoreChannelTimeSeries(channel, csTrendCountries, csTrendStores, false);
+  if (csTrendStores.length > 0 || csSelectedSalesPeople.length > 0) return getStoreChannelTimeSeries(channel, csTrendCountries, getTrendEffectiveStores(), false);
   var countries = csTrendCountries || [];
   if (countries.length === 0) return channelSummary.weeklySeries[channel];
   var result = {};
@@ -887,7 +962,7 @@ function getTrendChannelTimeSeries(channel) {
 
 function getTrendCountryTimeSeries(country, channels) {
   if (!channelSummary || !channelSummary.countryWeeklySeries || !channelSummary.allWeeks) return {};
-  if (csTrendStores.length > 0) return getStoreCountryTimeSeries(country, channels, csTrendStores, false);
+  if (csTrendStores.length > 0 || csSelectedSalesPeople.length > 0) return getStoreCountryTimeSeries(country, channels, getTrendEffectiveStores(), false);
   var channelList = channels && channels.length ? channels : (channelSummary.channels || []);
   var result = {};
   (channelSummary.allWeeks || []).forEach(function(w) { result[w] = 0; });
@@ -901,7 +976,7 @@ function getTrendCountryTimeSeries(country, channels) {
 
 function getTrendDailyChannelTimeSeries(channel) {
   if (!channelSummary || !channelSummary.dailySeries || !channelSummary.dailySeries[channel]) return {};
-  if (csTrendStores.length > 0) return getStoreChannelTimeSeries(channel, csTrendCountries, csTrendStores, true);
+  if (csTrendStores.length > 0 || csSelectedSalesPeople.length > 0) return getStoreChannelTimeSeries(channel, csTrendCountries, getTrendEffectiveStores(), true);
   var countries = csTrendCountries || [];
   if (countries.length === 0) return channelSummary.dailySeries[channel];
   var result = {};
@@ -916,7 +991,7 @@ function getTrendDailyChannelTimeSeries(channel) {
 
 function getTrendDailyCountryTimeSeries(country, channels) {
   if (!channelSummary || !channelSummary.countryDailySeries || !channelSummary.allDays) return {};
-  if (csTrendStores.length > 0) return getStoreCountryTimeSeries(country, channels, csTrendStores, true);
+  if (csTrendStores.length > 0 || csSelectedSalesPeople.length > 0) return getStoreCountryTimeSeries(country, channels, getTrendEffectiveStores(), true);
   var channelList = channels && channels.length ? channels : (channelSummary.channels || []);
   var result = {};
   (channelSummary.allDays || []).forEach(function(d) { result[d] = 0; });
@@ -1027,11 +1102,20 @@ function renderTrendChart() {
   csTrend.style.display = 'block';
 
   var sub = document.getElementById('csTrendSub');
+  var salesOnlyStores = (csTrendChannels.length === 0 && csTrendCountries.length === 0 && csTrendStores.length === 0 && csSelectedSalesPeople.length > 0) ? getTrendEffectiveStores() : [];
 
-  if (csTrendChannels.length === 0 && csTrendCountries.length === 0 && csTrendStores.length === 0) {
+  if (csTrendChannels.length === 0 && csTrendCountries.length === 0 && csTrendStores.length === 0 && csSelectedSalesPeople.length === 0) {
     var empty2 = document.getElementById('csTrendEmpty');
     if (empty2) empty2.style.display = 'block';
     if (sub) sub.textContent = isDaily ? '选择渠道、国家或店铺查看每日发货单量变化' : '选择渠道、国家或店铺查看每周发货单量变化';
+    if (trendChart) { trendChart.destroy(); trendChart = null; }
+    return;
+  }
+
+  if (salesOnlyStores.length === 0 && csTrendChannels.length === 0 && csTrendCountries.length === 0 && csTrendStores.length === 0 && csSelectedSalesPeople.length > 0) {
+    var empty3 = document.getElementById('csTrendEmpty');
+    if (empty3) empty3.style.display = 'block';
+    if (sub) sub.textContent = '当前销售负责人筛选下没有可用店铺';
     if (trendChart) { trendChart.destroy(); trendChart = null; }
     return;
   }
@@ -1043,6 +1127,8 @@ function renderTrendChart() {
     var modeLabel = isDaily ? '每日发货单量趋势' : '每周发货单量趋势';
     if (csTrendChannels.length === 0 && csTrendCountries.length === 0 && csTrendStores.length > 0) {
       sub.textContent = '当前展示 ' + csTrendStores.length + ' 个店铺的' + modeLabel;
+    } else if (csTrendChannels.length === 0 && csTrendCountries.length === 0 && csTrendStores.length === 0 && salesOnlyStores.length > 0) {
+      sub.textContent = '当前展示所选销售负责人合计单量的' + modeLabel;
     } else if (csTrendCountries.length === 1 && csTrendChannels.length > 0) {
       sub.textContent = '当前展示 ' + csTrendChannels.length + ' 条渠道在 ' + csTrendCountries[0] + ' 的单量';
     } else if (csTrendCountries.length > 0) {
@@ -1067,7 +1153,16 @@ function renderTrendChart() {
 
   var colors = ['#818cf8', '#34d399', '#fbbf24', '#f87171', '#a78bfa', '#f472b6', '#38bdf8', '#fb923c'];
   var datasets;
-  if (csTrendChannels.length === 0 && csTrendCountries.length === 0 && csTrendStores.length > 0) {
+  if (salesOnlyStores.length > 0) {
+    var salesTs = isDaily ? getStoreTotalTimeSeries(salesOnlyStores, true) : getStoreTotalTimeSeries(salesOnlyStores, false);
+    datasets = [{
+      label: '所选销售负责人合计',
+      data: points.map(function(p) { return salesTs[p] || 0; }),
+      borderColor: '#818cf8',
+      backgroundColor: 'rgba(129,140,248,.20)',
+      borderWidth: 2.5, pointRadius: 3, pointHoverRadius: 6, tension: 0.35, fill: false
+    }];
+  } else if (csTrendChannels.length === 0 && csTrendCountries.length === 0 && csTrendStores.length > 0) {
     datasets = csTrendStores.map(function(store, i) {
       var ts = isDaily ? getStoreTotalTimeSeries([store], true) : getStoreTotalTimeSeries([store], false);
       var data = points.map(function(p) { return ts[p] || 0; });
@@ -1559,6 +1654,76 @@ function initStoreMultiSelect() {
   document.addEventListener('click', function() { dropdown.style.display = 'none'; });
 }
 
+function initSalesMultiSelect() {
+  var list = document.getElementById('csSalesMsList');
+  var trigger = document.getElementById('csSalesMsTrigger');
+  var dropdown = document.getElementById('csSalesMsDropdown');
+  var search = document.getElementById('csSalesSearch');
+  var selectAll = document.getElementById('csSalesSelectAll');
+  if (!list || !trigger || !dropdown || !search || !selectAll) {
+    var host = document.getElementById('csStoreSelect') || document.getElementById('csCountrySelect') || document.getElementById('csMultiSelect');
+    if (!host || !host.parentNode) return;
+    var wrap = document.createElement('div');
+    wrap.className = 'cs-filter-wrap';
+    wrap.innerHTML = '<span class="cs-filter-label">销售负责人：</span><div class="cs-multi-select" id="csSalesSelect"><div class="cs-ms-trigger" id="csSalesMsTrigger"><span>全部销售</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><polyline points="6 9 12 15 18 9"/></svg></div><div class="cs-ms-dropdown" id="csSalesMsDropdown" style="display:none;"><div class="cs-ms-search"><input id="csSalesSearch" placeholder="搜索销售负责人..."></div><label class="cs-ms-all"><input type="checkbox" id="csSalesSelectAll"> 全选</label><div class="cs-ms-list" id="csSalesMsList"></div></div></div>';
+    var summary = document.getElementById('csSummary');
+    if (summary && summary.parentNode) summary.parentNode.insertBefore(wrap, summary);
+    else host.parentNode.insertBefore(wrap, host.nextSibling);
+    return initSalesMultiSelect();
+  }
+  var all = getAllSalesPeople();
+  csSelectedSalesPeople = csSelectedSalesPeople.filter(function(name) { return all.indexOf(name) >= 0; });
+
+  function renderItems(filter) {
+    var f = (filter || '').toLowerCase();
+    list.innerHTML = '';
+    if (all.length === 0) {
+      var empty = document.createElement('div');
+      empty.style.padding = '12px';
+      empty.style.color = 'var(--text3)';
+      empty.style.fontSize = '12px';
+      empty.textContent = '尚未配置销售负责人，请点击右上角“销售负责人”维护';
+      list.appendChild(empty);
+      return;
+    }
+    all.forEach(function(name) {
+      if (f && name.toLowerCase().indexOf(f) === -1) return;
+      var label = document.createElement('label');
+      var cb = document.createElement('input');
+      cb.type = 'checkbox';
+      cb.value = name;
+      cb.checked = csSelectedSalesPeople.indexOf(name) >= 0;
+      cb.addEventListener('change', function() {
+        csSelectedSalesPeople = getCheckedValues(list);
+        refreshFilteredChannelViews();
+      });
+      label.appendChild(cb);
+      label.appendChild(document.createTextNode(name));
+      list.appendChild(label);
+    });
+  }
+
+  function updateTrigger() {
+    var count = getCheckedValues(list).length;
+    var label = count === 0 ? '全部销售' : '已选' + count + ' 位销售';
+    trigger.innerHTML = withArrow(label);
+    selectAll.checked = count === all.length && count > 0;
+  }
+
+  renderItems('');
+  updateTrigger();
+  selectAll.onchange = function() {
+    list.querySelectorAll('input[type=checkbox]').forEach(function(cb) { cb.checked = selectAll.checked; });
+    csSelectedSalesPeople = getCheckedValues(list);
+    refreshFilteredChannelViews();
+  };
+  trigger.onclick = function(e) { e.stopPropagation(); dropdown.style.display = dropdown.style.display === 'none' ? 'flex' : 'none'; search.focus(); };
+  search.addEventListener('input', function() { renderItems(this.value); });
+  search.addEventListener('click', function(e) { e.stopPropagation(); });
+  dropdown.addEventListener('click', function(e) { e.stopPropagation(); });
+  document.addEventListener('click', function() { dropdown.style.display = 'none'; });
+}
+
 function renderCostSuggestions() {
   var el = document.getElementById('csSuggestions');
   if (!el) {
@@ -1697,6 +1862,7 @@ function renderChannelSummary(){
     initChannelMultiSelect();
   initCountryMultiSelect();
   initStoreMultiSelect();
+  initSalesMultiSelect();
   updateSummaryTable();
   
   if (rankingChart) { rankingChart.destroy(); rankingChart = null; }
@@ -1720,9 +1886,11 @@ function updateSummaryTable(){
   var selected = getCheckedValues(document.getElementById('csMsList'));
   var selectedCountries = getCheckedValues(document.getElementById('csCountryMsList'));
   var selectedStores = getCheckedValues(document.getElementById('csStoreMsList'));
+  var selectedSalesPeople = getCheckedValues(document.getElementById('csSalesMsList'));
   csSelectedChannels = selected;
   csSelectedCountries = selectedCountries;
   csSelectedStores = selectedStores;
+  csSelectedSalesPeople = selectedSalesPeople;
 
   var selectAll = document.getElementById('csSelectAll');
   if (selectAll) selectAll.checked = selected.length === channelSummary.channels.length;
@@ -1739,8 +1907,13 @@ function updateSummaryTable(){
   var storeTrigger = document.getElementById('csStoreMsTrigger');
   if (storeTrigger) storeTrigger.innerHTML = withArrow(selectedStores.length === 0 ? '全部店铺' : ('已选' + selectedStores.length + ' 个店铺'));
 
+  var salesSelectAll = document.getElementById('csSalesSelectAll');
+  if (salesSelectAll) salesSelectAll.checked = selectedSalesPeople.length === getAllSalesPeople().length && selectedSalesPeople.length > 0;
+  var salesTrigger = document.getElementById('csSalesMsTrigger');
+  if (salesTrigger) salesTrigger.innerHTML = withArrow(selectedSalesPeople.length === 0 ? '全部销售' : ('已选' + selectedSalesPeople.length + ' 位销售'));
+
   var tw = document.getElementById('csTableWrap'), sm = document.getElementById('csSummary');
-  tw.className = 'cs-daily-board' + (csBoardView === 'channel' ? ' has-health' : '');
+  tw.className = 'cs-daily-board' + (csBoardView === 'channel' ? ' has-health' : (csBoardView === 'sales' ? ' has-sales' : ''));
   if (selected.length === 0) { tw.innerHTML = '<div class="cs-no-data">请至少选择一条线路</div>'; sm.textContent = ''; return; }
 
   var countries = selectedCountries.length > 0 ? selectedCountries : channelSummary.countries;
@@ -1810,6 +1983,66 @@ function updateSummaryTable(){
   }).filter(function(r) { return r.total > 0; })
     .sort(function(a, b) { return b.avg - a.avg; });
 
+  function salesStoreTotal(name) {
+    var total = 0;
+    stores.forEach(function(st) { if (getStoreSalesOwner(st) === name) total += storeTotal(st); });
+    return total;
+  }
+  function topChannelForSales(name) {
+    var best = '', value = 0;
+    selected.forEach(function(ch) {
+      var total = 0;
+      countries.forEach(function(cn) {
+        stores.forEach(function(st) { if (getStoreSalesOwner(st) === name) total += getStoreChannelCountryPeriodValue(st, ch, cn); });
+      });
+      if (total > value) { value = total; best = ch; }
+    });
+    return best;
+  }
+  function topCountryForSales(name) {
+    var best = '', value = 0;
+    countries.forEach(function(cn) {
+      var total = 0;
+      selected.forEach(function(ch) {
+        stores.forEach(function(st) { if (getStoreSalesOwner(st) === name) total += getStoreChannelCountryPeriodValue(st, ch, cn); });
+      });
+      if (total > value) { value = total; best = cn; }
+    });
+    return best;
+  }
+  function topStoreForSales(name) {
+    var best = '', value = 0;
+    stores.forEach(function(st) {
+      if (getStoreSalesOwner(st) !== name) return;
+      var total = storeTotal(st);
+      if (total > value) { value = total; best = st; }
+    });
+    return best;
+  }
+  function salesNames() {
+    if (csSelectedSalesPeople.length > 0) return csSelectedSalesPeople.slice();
+    var names = {};
+    stores.forEach(function(st) {
+      var name = getStoreSalesOwner(st);
+      if (name) names[name] = true;
+    });
+    return Object.keys(names).sort(function(a, b) { return a.localeCompare(b, 'zh-CN'); });
+  }
+  var salesRows = salesNames().map(function(name) {
+    var total = salesStoreTotal(name);
+    var ownedStores = stores.filter(function(st) { return getStoreSalesOwner(st) === name; });
+    return {
+      name: name,
+      total: total,
+      avg: total / dayCount,
+      storeCount: ownedStores.length,
+      topStore: topStoreForSales(name),
+      topChannel: topChannelForSales(name),
+      topCountry: topCountryForSales(name)
+    };
+  }).filter(function(r) { return r.total > 0; })
+    .sort(function(a, b) { return b.avg - a.avg; });
+
   function shareBar(value, max) {
     var width = max > 0 ? Math.max(2, value / max * 100) : 0;
     return '<span class="cs-daily-bar"><i style="width:' + width + '%"></i></span>';
@@ -1853,6 +2086,23 @@ function updateSummaryTable(){
       }).join('') + '</div>';
   }
 
+  function salesDetail(name) {
+    var total = salesStoreTotal(name) || 1;
+    var items = [];
+    stores.forEach(function(st) {
+      if (getStoreSalesOwner(st) !== name) return;
+      var value = storeTotal(st);
+      if (value <= 0) return;
+      var top = topForStore(st);
+      items.push({ store: st, total: value, topChannel: top.channel, topCountry: top.country });
+    });
+    items.sort(function(a, b) { return b.total - a.total; });
+    return '<div class="cs-detail-grid"><div class="cs-detail-row cs-detail-head"><span>店铺</span><span>日均单量</span><span>总单量</span><span>占比</span><span>主力渠道</span></div>'
+      + items.map(function(r) {
+        return '<div class="cs-detail-row"><span>' + escapeHtml(r.store) + '</span><span>' + Math.round(r.total / dayCount).toLocaleString() + '</span><span>' + r.total.toLocaleString() + '</span><span>' + (r.total / total * 100).toFixed(1) + '%</span><span>' + escapeHtml(r.topChannel || '-') + '</span></div>';
+      }).join('') + '</div>';
+  }
+
   function actionForChannel(rank, share, avg) {
     var ratio = overallAvg > 0 ? avg / overallAvg : 0;
     if (rank <= 3) return { text: '优先议价', cls: 'priority' };
@@ -1875,11 +2125,19 @@ function updateSummaryTable(){
     return { text: '潜力客户', cls: 'tail' };
   }
 
+  function actionForSales(rank, avg) {
+    var ratio = overallAvg > 0 ? avg / overallAvg : 0;
+    if (rank <= 2) return { text: '核心销售', cls: 'priority' };
+    if (ratio >= .7) return { text: '稳定销售', cls: 'stable' };
+    return { text: '成长销售', cls: 'tail' };
+  }
+
   function tabsHtml() {
     return '<div class="cs-daily-tabs">'
       + '<button class="cs-daily-tab' + (csBoardView === 'channel' ? ' active' : '') + '" data-view="channel">物流渠道</button>'
       + '<button class="cs-daily-tab' + (csBoardView === 'country' ? ' active' : '') + '" data-view="country">国家</button>'
       + '<button class="cs-daily-tab' + (csBoardView === 'store' ? ' active' : '') + '" data-view="store">店铺</button>'
+      + '<button class="cs-daily-tab' + (csBoardView === 'sales' ? ' active' : '') + '" data-view="sales">销售</button>'
       + '</div>';
   }
 
@@ -1936,6 +2194,33 @@ function updateSummaryTable(){
     });
     if (storeRows.length > visibleStores.length) listHtml += '<div class="cs-daily-more">仅显示日均单量前 12 个店铺，使用上方筛选查看其余店铺</div>';
     sm.textContent = '店铺视图：共 ' + storeRows.length + ' 个店铺，日均 ' + Math.round(overallAvg).toLocaleString() + ' 单；优先看重点客户的渠道和目的国';
+  } else if (csBoardView === 'sales') {
+    var coveredStoreCount = salesRows.reduce(function(sum, r) { return sum + r.storeCount; }, 0);
+    kpis = '<div class="cs-daily-kpis">'
+      + '<div class="cs-daily-kpi"><div class="cs-daily-kpi-label">日均发货</div><div class="cs-daily-kpi-value accent-blue">' + Math.round(overallAvg).toLocaleString() + '</div><div class="cs-daily-kpi-sub">近 ' + dayCount + ' 天</div></div>'
+      + '<div class="cs-daily-kpi"><div class="cs-daily-kpi-label">销售数</div><div class="cs-daily-kpi-value">' + salesRows.length + '</div><div class="cs-daily-kpi-sub">覆盖 ' + coveredStoreCount + ' 个店铺</div></div>'
+      + '<div class="cs-daily-kpi"><div class="cs-daily-kpi-label">主力销售</div><div class="cs-daily-kpi-value accent-green">' + escapeHtml(salesRows.length ? salesRows[0].name : '-') + '</div><div class="cs-daily-kpi-sub">日均 ' + Math.round(salesRows.length ? salesRows[0].avg : 0).toLocaleString() + ' 单</div></div>'
+      + '<div class="cs-daily-kpi"><div class="cs-daily-kpi-label">主力店铺</div><div class="cs-daily-kpi-value accent-orange">' + escapeHtml(salesRows.length ? salesRows[0].topStore : '-') + '</div><div class="cs-daily-kpi-sub">该销售最大发货店铺</div></div>'
+      + '</div>';
+    listHtml = '<div class="cs-daily-board-head"><span>销售负责人</span><span>日均单量</span><span>总单量</span><span>占比</span><span>店铺数</span><span>主力店铺</span><span>建议</span><span></span></div>';
+    var visibleSales = salesRows.slice(0, 12);
+    visibleSales.forEach(function(r, index) {
+      var rank = index + 1;
+      var share = grandTotal ? (r.total / grandTotal * 100) : 0;
+      var action = actionForSales(rank, r.avg);
+      listHtml += '<div class="cs-daily-row">'
+        + '<div class="cs-daily-channel"><span class="cs-daily-rank">' + rank + '</span><span class="cs-daily-name" title="' + escapeHtml(r.name) + '">' + escapeHtml(r.name) + '</span></div>'
+        + '<div class="cs-daily-avg">' + Math.round(r.avg).toLocaleString() + '</div>'
+        + '<div class="cs-daily-total">' + r.total.toLocaleString() + '</div>'
+        + '<div class="cs-daily-share"><span class="cs-daily-share-text">' + share.toFixed(1) + '%</span>' + shareBar(r.total, grandTotal) + '</div>'
+        + '<div class="cs-daily-total">' + r.storeCount + '</div>'
+        + '<div class="cs-daily-country">' + escapeHtml(r.topStore || '-') + '</div>'
+        + '<div><span class="cs-daily-action ' + action.cls + '">' + action.text + '</span></div>'
+        + '<div><button class="cs-daily-expand" data-name="' + escapeHtml(r.name) + '">详情</button></div>'
+        + '</div>';
+    });
+    if (salesRows.length > visibleSales.length) listHtml += '<div class="cs-daily-more">仅显示日均单量前 12 位销售，使用上方筛选查看其余销售</div>';
+    sm.textContent = '销售视图：共 ' + salesRows.length + ' 位销售，覆盖 ' + coveredStoreCount + ' 个店铺；优先看销售负责人承接的店铺结构和主力渠道';
   } else {
     kpis = '<div class="cs-daily-kpis">'
       + '<div class="cs-daily-kpi"><div class="cs-daily-kpi-label">日均发货</div><div class="cs-daily-kpi-value accent-blue">' + Math.round(overallAvg).toLocaleString() + '</div><div class="cs-daily-kpi-sub">近 ' + dayCount + ' 天</div></div>'
@@ -1976,6 +2261,7 @@ function updateSummaryTable(){
       if (!name) return;
       if (csBoardView === 'country') openDailyDetail('国家：' + name + ' 渠道明细', countryDetail(name));
       else if (csBoardView === 'store') openDailyDetail('店铺：' + name + ' 渠道/国家明细', storeDetail(name));
+      else if (csBoardView === 'sales') openDailyDetail('销售负责人：' + name + ' 店铺明细', salesDetail(name));
       else openDailyDetail('渠道：' + name + ' 国家明细', channelDetail(name));
     };
   });
@@ -2001,6 +2287,23 @@ document.getElementById('channelMappingBtn').style.display='inline-flex';
 document.getElementById('channelMappingBtn').onclick=openChannelMapping;
 async function bootstrapChannelMapping(){await loadChannelMapping();var restored=await restoreLocalChannelMapping();if(restored&&pageMode==='channel'){if(currentPeriodMode==='history'&&currentHistoryWeek)loadHistoryWeek(currentHistoryWeek);else if(currentPeriodMode==='custom'&&currentRangeStart&&currentRangeEnd)loadHistoryRange(currentRangeStart,currentRangeEnd);else loadLiveChannelSummary()}}
 bootstrapChannelMapping();
+
+var STORE_SALES_LOCAL_KEY='storeSalesMappingRecordsV1';
+function readLocalStoreSalesMapping(){try{var raw=localStorage.getItem(STORE_SALES_LOCAL_KEY);if(!raw)return[];var records=JSON.parse(raw);return Array.isArray(records)?records:[]}catch(e){return[]}}
+function writeLocalStoreSalesMapping(records){try{localStorage.setItem(STORE_SALES_LOCAL_KEY,JSON.stringify(records))}catch(e){}}
+function mergeStoreSalesMappings(serverRecords,localRecords){var map={};serverRecords.forEach(function(r){if(r&&r.storeName)map[r.storeName]=r});localRecords.forEach(function(r){if(r&&r.storeName)map[r.storeName]=r});return Object.keys(map).map(function(k){return map[k]})}
+function applyStoreSalesMappingToUI(records){storeSalesMappingRecords=records;writeLocalStoreSalesMapping(records);updateSalesAlert();if(document.getElementById('storeSalesOverlay').style.display==='flex')renderStoreSalesMappingRows();if(channelSummary&&channelSummary.channels&&channelSummary.channels.length>0){initSalesMultiSelect();refreshFilteredChannelViews()}}
+async function restoreLocalStoreSalesMapping(){var local=readLocalStoreSalesMapping();if(local.length===0)return false;storeSalesMappingRecords=mergeStoreSalesMappings(storeSalesMappingRecords,local);writeLocalStoreSalesMapping(storeSalesMappingRecords);updateSalesAlert();try{await API.restoreStoreSalesMapping(storeSalesMappingRecords);return true}catch(e){console.error('restore store sales mapping failed',e);return false}}
+function updateSalesAlert(){var badge=document.getElementById('salesAlertBadge'),popover=document.getElementById('salesAlertPopover');if(!badge)return;var count=storeSalesMappingRecords.filter(function(r){return r.status==='unassigned'}).length;badge.textContent=count;badge.style.display=count>0?'flex':'none';if(popover){popover.style.display=count>0?'block':'none';popover.textContent=count>0?'有 '+count+' 个店铺未配置销售负责人，请点击“销售负责人”处理':'';}}
+function renderStoreSalesMappingRows(){var tbody=document.getElementById('storeSalesMappingBody');if(!tbody)return;var records=storeSalesMappingRecords.slice().sort(function(a,b){if(a.status===b.status)return a.storeName.localeCompare(b.storeName,'zh-CN');return a.status==='unassigned'?-1:1});tbody.innerHTML=records.map(function(r){var statusText=r.status==='assigned'?'已配置':'待配置';return'<tr><td><input class="cm-input" id="ss-store-'+r.id+'" value="'+escapeHtml(r.storeName)+'"></td><td><input class="cm-input" id="ss-sales-'+r.id+'" value="'+escapeHtml(r.salesName)+'"></td><td><span class="cm-status '+r.status+'"><span class="cm-status-dot"></span>'+statusText+'</span></td><td><button class="cm-save" onclick="saveStoreSalesMappingRecord(\''+r.id+'\')">保存</button></td></tr>'}).join('');document.getElementById('storeSalesMappingSummary').textContent='共 '+records.length+' 个店铺，未配置 '+records.filter(function(r){return r.status==='unassigned'}).length+' 个';}
+async function loadStoreSalesMapping(){try{var data=await API.storeSalesMapping();var serverRecords=(data&&data.records)||[];var localRecords=readLocalStoreSalesMapping();storeSalesMappingRecords=mergeStoreSalesMappings(serverRecords,localRecords);writeLocalStoreSalesMapping(storeSalesMappingRecords);updateSalesAlert();if(document.getElementById('storeSalesOverlay').style.display==='flex')renderStoreSalesMappingRows()}catch(e){console.error(e)}}
+function openStoreSalesMapping(){var popover=document.getElementById('salesAlertPopover');if(popover)popover.style.display='none';document.getElementById('storeSalesOverlay').style.display='flex';loadStoreSalesMapping().then(renderStoreSalesMappingRows)}
+function closeStoreSalesMapping(){document.getElementById('storeSalesOverlay').style.display='none'}
+async function saveStoreSalesMappingRecord(id){var store=document.getElementById('ss-store-'+id),sales=document.getElementById('ss-sales-'+id);if(!store||!sales)return;var btn=event&&event.target;if(btn){btn.disabled=true;btn.textContent='保存中'}try{await API.updateStoreSalesMapping(id,{storeName:store.value,salesName:sales.value,enabled:true});await loadStoreSalesMapping();writeLocalStoreSalesMapping(storeSalesMappingRecords);renderStoreSalesMappingRows();applyStoreSalesMappingToUI(storeSalesMappingRecords)}catch(e){alert('保存失败: '+e.message)}finally{if(btn){btn.disabled=false;btn.textContent='保存'}}}
+document.getElementById('salesMappingBtn').style.display='inline-flex';
+document.getElementById('salesMappingBtn').onclick=openStoreSalesMapping;
+async function bootstrapStoreSalesMapping(){await loadStoreSalesMapping();var restored=await restoreLocalStoreSalesMapping();if(channelSummary&&channelSummary.channels&&channelSummary.channels.length>0){initSalesMultiSelect();refreshFilteredChannelViews()}if(restored&&pageMode==='channel'){if(currentPeriodMode==='history'&&currentHistoryWeek)loadHistoryWeek(currentHistoryWeek);else if(currentPeriodMode==='custom'&&currentRangeStart&&currentRangeEnd)loadHistoryRange(currentRangeStart,currentRangeEnd);else loadLiveChannelSummary()}}
+bootstrapStoreSalesMapping();
 </script>
 
 <div class="cs-detail-overlay" id="dailyDetailOverlay" onclick="if(event.target===this)closeDailyDetail()">
@@ -2029,6 +2332,25 @@ bootstrapChannelMapping();
       </div>
     </div>
     <div class="channel-mapping-footer"><span id="channelMappingSummary"></span><span>保存后会立即刷新页面渠道统计</span></div>
+  </div>
+</div>
+
+<div class="channel-mapping-overlay" id="storeSalesOverlay" style="display:none;" onclick="if(event.target===this)closeStoreSalesMapping()">
+  <div class="channel-mapping-modal" style="width:960px;">
+    <div class="channel-mapping-header">
+      <h3>销售负责人映射</h3>
+      <button class="vol-popup-close" onclick="closeStoreSalesMapping()">&times;</button>
+    </div>
+    <div class="channel-mapping-body">
+      <div style="margin-bottom:12px;font-size:12px;color:var(--text3);">把每个马帮店铺归属到销售负责人，配置后会同步影响单量排行、物流渠道、国家、店铺和销售视图。</div>
+      <div style="overflow:auto;max-height:68vh;">
+        <table class="cm-table">
+          <thead><tr><th>马帮店铺</th><th>销售负责人</th><th>状态</th><th>操作</th></tr></thead>
+          <tbody id="storeSalesMappingBody"><tr><td colspan="4" style="text-align:center;padding:28px;color:var(--text3)">加载中...</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="channel-mapping-footer"><span id="storeSalesMappingSummary"></span><span>保存后会立即刷新页面统计</span></div>
   </div>
 </div>
 
