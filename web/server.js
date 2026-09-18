@@ -162,6 +162,18 @@ function writeChannelMapping(mapping) {
   writeJSON(CHANNEL_MAPPING_FILE, { version: 1, updatedAt: new Date().toISOString(), records: mapping.records });
 }
 
+function readAutoStoreSales(history) {
+  const autoSales = {};
+  for (const day of Object.values((history && history.days) || {})) {
+    const daySales = day && day.storeSales;
+    if (!daySales || typeof daySales !== "object") continue;
+    for (const [store, owner] of Object.entries(daySales)) {
+      if (typeof owner === "string" && owner.trim()) autoSales[store] = owner.trim();
+    }
+  }
+  return autoSales;
+}
+
 function readStoreSalesMapping() {
   const readMappingFile = (filePath) => {
     if (!filePath || !fs.existsSync(filePath)) return [];
@@ -176,23 +188,40 @@ function readStoreSalesMapping() {
     ...readMappingFile(STORE_SALES_MAPPING_SEED_FILE),
     ...readMappingFile(path.join(DATA_DIR, STORE_SALES_MAPPING_FILE))
   ];
+  const history = readHistory();
+  const autoSales = readAutoStoreSales(history);
   const byStore = new Map();
   for (const record of records) {
     if (!record || !record.storeName) continue;
-    byStore.set(record.storeName, record);
+    const storeName = String(record.storeName).trim();
+    if (!storeName) continue;
+    const existing = byStore.get(storeName);
+    const normalized = {
+      ...record,
+      storeName,
+      salesName: String(record.salesName || "").trim(),
+      enabled: record.enabled !== false
+    };
+    if (!normalized.salesName && !normalized.manual && autoSales[storeName]) {
+      normalized.salesName = autoSales[storeName];
+      normalized.auto = true;
+    }
+    normalized.status = normalized.salesName && normalized.enabled ? "assigned" : "unassigned";
+    byStore.set(storeName, existing ? { ...existing, ...normalized } : normalized);
   }
 
-  const history = readHistory();
   let dynamicIndex = byStore.size + 1;
   for (const day of Object.values(history.days || {})) {
     for (const store of Object.keys(day.stores || {})) {
       if (byStore.has(store)) continue;
+      const autoName = autoSales[store] || "";
       byStore.set(store, {
         id: "sales-unknown-" + dynamicIndex++,
         storeName: store,
-        salesName: "",
+        salesName: autoName,
         enabled: true,
-        status: "unassigned"
+        auto: Boolean(autoName),
+        status: autoName ? "assigned" : "unassigned"
       });
     }
   }
@@ -644,7 +673,9 @@ app.post("/api/store-sales-mapping/restore", (req, res) => {
       id: String(record.id || ""),
       storeName: String(record.storeName).trim(),
       salesName: String(record.salesName || "").trim(),
-      enabled: Boolean(record.enabled),
+      enabled: record.enabled !== false,
+      auto: Boolean(record.auto),
+      manual: Boolean(record.manual),
       status: String(record.salesName || "").trim() && Boolean(record.enabled) ? "assigned" : "unassigned"
     }));
 
@@ -680,6 +711,8 @@ app.put("/api/store-sales-mapping/:id", (req, res) => {
   record.storeName = String(record.storeName || "").trim();
   record.salesName = String(record.salesName || "").trim();
   record.enabled = Boolean(record.enabled);
+  record.manual = true;
+  record.auto = false;
   record.status = record.salesName && record.enabled ? "assigned" : "unassigned";
 
   if (!record.storeName) return res.status(400).json({ error: "storeName is required" });

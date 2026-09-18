@@ -271,6 +271,40 @@ function extractStore(order) {
   return store || "未知店铺";
 }
 
+function extractSalesOwner(order) {
+  const topLevelKeys = [
+    "sellerName",
+    "salesName",
+    "salespersonName",
+    "salesPersonName",
+    "salesmanName",
+    "salesManagerName",
+    "salesOperatorName",
+    "salesOperName",
+    "operatorName",
+    "operName",
+    "ownerName",
+    "principalName"
+  ];
+  const direct = firstString(order, topLevelKeys);
+  if (direct) return direct;
+
+  const items = Array.isArray(order && order.orderItem) ? order.orderItem : [];
+  for (const item of items) {
+    const name = firstString(item, [
+      "salesOperName",
+      "salesOperatorName",
+      "salesName",
+      "salespersonName",
+      "sellerName",
+      "operatorName",
+      "operName"
+    ]);
+    if (name) return name;
+  }
+  return "";
+}
+
 function extractDate(order) {
   const keys = [
     "createDate",
@@ -436,6 +470,7 @@ function aggregateOrders(orders) {
 
 function aggregateDailyOrders(orders) {
   const byDate = {};
+  const storeSalesCounts = {};
 
   for (const order of orders) {
     const channel = extractChannel(order);
@@ -449,6 +484,13 @@ function aggregateDailyOrders(orders) {
     if (!byDate[dateStr]) byDate[dateStr] = { channels: {}, countries: {}, stores: {}, storeChannels: {} };
     const day = byDate[dateStr];
 
+    const salesOwner = extractSalesOwner(order);
+    if (salesOwner) {
+      if (!storeSalesCounts[dateStr]) storeSalesCounts[dateStr] = {};
+      if (!storeSalesCounts[dateStr][store]) storeSalesCounts[dateStr][store] = {};
+      storeSalesCounts[dateStr][store][salesOwner] = (storeSalesCounts[dateStr][store][salesOwner] || 0) + 1;
+    }
+
     day.channels[channel] = (day.channels[channel] || 0) + 1;
     if (!day.countries[channel]) day.countries[channel] = {};
     day.countries[channel][country] = (day.countries[channel][country] || 0) + 1;
@@ -456,6 +498,23 @@ function aggregateDailyOrders(orders) {
     if (!day.storeChannels[store]) day.storeChannels[store] = {};
     if (!day.storeChannels[store][channel]) day.storeChannels[store][channel] = {};
     day.storeChannels[store][channel][country] = (day.storeChannels[store][channel][country] || 0) + 1;
+  }
+
+  for (const [dateStr, storeCounts] of Object.entries(storeSalesCounts)) {
+    const day = byDate[dateStr];
+    if (!day) continue;
+    day.storeSales = {};
+    for (const [store, ownerCounts] of Object.entries(storeCounts)) {
+      let bestOwner = "";
+      let bestCount = 0;
+      for (const [owner, count] of Object.entries(ownerCounts)) {
+        if (count > bestCount || (count === bestCount && owner < bestOwner)) {
+          bestOwner = owner;
+          bestCount = count;
+        }
+      }
+      if (bestOwner) day.storeSales[store] = bestOwner;
+    }
   }
 
   return {
