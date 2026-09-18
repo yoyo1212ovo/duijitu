@@ -273,6 +273,7 @@ function extractStore(order) {
 
 function extractSalesOwner(order) {
   const topLevelKeys = [
+    "salesOwner",
     "sellerName",
     "salesName",
     "salespersonName",
@@ -303,6 +304,86 @@ function extractSalesOwner(order) {
     if (name) return name;
   }
   return "";
+}
+
+function collectOrderStockSkus(orders) {
+  const stockSkus = new Set();
+  for (const order of orders) {
+    const items = Array.isArray(order && order.orderItem) ? order.orderItem : [];
+    for (const item of items) {
+      const stockSku = item && String(item.stockSku || "").trim();
+      if (stockSku) stockSkus.add(stockSku);
+    }
+  }
+  return [...stockSkus];
+}
+
+async function fetchSkuSalesMap({ orders, appKey, appToken, gateway, signal } = {}) {
+  const stockSkus = collectOrderStockSkus(orders || []);
+  const map = new Map();
+  if (stockSkus.length === 0) return map;
+
+  const batchSize = Math.max(1, Number(process.env.MABANG_SKU_BATCH_SIZE) || 50);
+  for (let index = 0; index < stockSkus.length; index += batchSize) {
+    const batch = stockSkus.slice(index, index + batchSize);
+    try {
+      const response = await mabangRequest({
+        appKey,
+        appToken,
+        gateway,
+        action: "stock-do-search-sku-list-new",
+        data: { stockSkuList: batch },
+        signal
+      });
+      const rows = response && response.data && Array.isArray(response.data.data) ? response.data.data : [];
+      for (const row of rows) {
+        const stockSku = row && String(row.stockSku || "").trim();
+        const sales = Array.isArray(row.sales) ? row.sales : [];
+        const names = sales
+          .map((item) => item && String(item.name || "").trim())
+          .filter(Boolean);
+        if (stockSku) map.set(stockSku, names);
+      }
+    } catch (err) {
+      console.error("MABANG stock SKU sales lookup failed:", err && err.message ? err.message : err);
+    }
+  }
+  return map;
+}
+
+function inferOrderSalesOwner(order, skuSalesMap) {
+  const items = Array.isArray(order && order.orderItem) ? order.orderItem : [];
+  const counts = {};
+  const orderNames = [];
+  for (const item of items) {
+    const stockSku = item && String(item.stockSku || "").trim();
+    const names = stockSku && skuSalesMap.get(stockSku) ? skuSalesMap.get(stockSku) : [];
+    for (const name of names) {
+      if (!counts[name]) counts[name] = 0;
+      counts[name] += 1;
+      orderNames.push(name);
+    }
+  }
+  if (orderNames.length === 0) return "";
+
+  let bestOwner = orderNames[0];
+  let bestCount = 0;
+  for (const [name, count] of Object.entries(counts)) {
+    if (count > bestCount) {
+      bestOwner = name;
+      bestCount = count;
+    }
+  }
+  return bestOwner;
+}
+
+function applySkuSalesToOrders(orders, skuSalesMap) {
+  return (orders || []).map((order) => {
+    if (!order || extractSalesOwner(order)) return order;
+    const inferred = inferOrderSalesOwner(order, skuSalesMap);
+    if (!inferred) return order;
+    return { ...order, salesOwner: inferred };
+  });
 }
 
 function extractDate(order) {
@@ -687,8 +768,16 @@ async function fetchLiveChannelSummary(options = {}) {
   const queryEndDate = options.queryEndDate || options.endDate;
   const { orders, total: rawTotal } = await fetchLiveOrders({ ...options, startDate: queryStartDate, endDate: queryEndDate });
   const filteredOrders = filterOrdersByShippingDateRange(orders, shippingStartDate, shippingEndDate);
-  const channelSummary = aggregateOrders(filteredOrders);
-  const dailySummary = aggregateDailyOrders(filteredOrders);
+  const skuSalesMap = await fetchSkuSalesMap({
+    orders: filteredOrders,
+    appKey: options.appKey || process.env.MABANG_APP_KEY,
+    appToken: options.appToken || process.env.MABANG_APP_TOKEN,
+    gateway: options.gateway || process.env.MABANG_API_GATEWAY || DEFAULT_GATEWAY,
+    signal: options.signal
+  });
+  const enrichedOrders = applySkuSalesToOrders(filteredOrders, skuSalesMap);
+  const channelSummary = aggregateOrders(enrichedOrders);
+  const dailySummary = aggregateDailyOrders(enrichedOrders);
   return {
     source: "mabang",
     action: options.action || process.env.MABANG_ORDER_ACTION || DEFAULT_ACTION,
