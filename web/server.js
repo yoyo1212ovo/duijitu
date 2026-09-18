@@ -526,6 +526,8 @@ const PORT = process.env.PORT || 4567;
 const app = express();
 app.use(express.json());
 
+app.use("/vendor", express.static(path.join(__dirname, "vendor"), { maxAge: "1y", immutable: true }));
+
 app.get("/", (req, res) => res.sendFile(path.join(__dirname, "index.html")));
 
 app.get("/api/health", (req, res) => res.json({ status: "ok", time: new Date().toISOString() }));
