@@ -620,6 +620,7 @@ app.post("/api/channel-mapping/restore", (req, res) => {
       provider: String(record.provider || "").trim(),
       displayName: String(record.displayName || "").trim(),
       enabled: Boolean(record.enabled),
+      manual: Boolean(record.manual),
       status: String(record.displayName || "").trim() && Boolean(record.enabled) ? "mapped" : "unmapped"
     }));
 
@@ -657,6 +658,7 @@ app.put("/api/channel-mapping/:id", (req, res) => {
   record.provider = String(record.provider || "").trim();
   record.displayName = String(record.displayName || "").trim();
   record.enabled = Boolean(record.enabled);
+  record.manual = true;
   record.status = record.displayName && record.enabled ? "mapped" : "unmapped";
 
   if (!record.sourceName) return res.status(400).json({ error: "sourceName is required" });
