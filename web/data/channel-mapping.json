@@ -1,7 +1,88 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-19T17:14:42.286Z",
+  "updatedAt": "2026-09-19T19:22:47.111Z",
   "records": [
+    {
+      "id": "map-unknown-341",
+      "sourceName": "华邮通挂号-特货",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
+    },
+    {
+      "id": "map-unknown-343",
+      "sourceName": "京东服装标准专线",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
+    },
+    {
+      "id": "map-unknown-340",
+      "sourceName": "联邮通标准自提-带电-回传",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
+    },
+    {
+      "id": "map-unknown-344",
+      "sourceName": "顺速宝挂号-回传转单号",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
+    },
+    {
+      "id": "map-unknown-339",
+      "sourceName": "燕文服装专线-普货-美国",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
+    },
+    {
+      "id": "map-unknown-347",
+      "sourceName": "燕文化妆品专线-美国",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
+    },
+    {
+      "id": "map-unknown-346",
+      "sourceName": "云途大货18000专线挂号（特惠普货）",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
+    },
+    {
+      "id": "map-unknown-345",
+      "sourceName": "云途加拿大商派专线（特惠普货）",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
+    },
+    {
+      "id": "map-unknown-342",
+      "sourceName": "智惠选专线-特惠-回传",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
+    },
     {
       "id": "map-38",
       "sourceName": "傲飞国际快线_欧美_特惠带电-加拿大",
