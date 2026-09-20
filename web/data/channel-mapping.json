@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-20T18:53:03.467Z",
+  "updatedAt": "2026-09-20T21:09:30.628Z",
   "records": [
     {
       "id": "map-unknown-341",
@@ -39,6 +39,15 @@
       "enabled": false
     },
     {
+      "id": "map-unknown-348",
+      "sourceName": "通邮快线-2",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
+    },
+    {
       "id": "map-unknown-339",
       "sourceName": "燕文服装专线-普货-美国",
       "providerChannel": "",
@@ -68,6 +77,15 @@
     {
       "id": "map-unknown-345",
       "sourceName": "云途加拿大商派专线（特惠普货）",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
+    },
+    {
+      "id": "map-unknown-349",
+      "sourceName": "云途全球商派专线（标快普货）",
       "providerChannel": "",
       "provider": "",
       "displayName": "",
