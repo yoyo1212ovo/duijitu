@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-20T17:43:54.804Z",
+  "updatedAt": "2026-09-20T19:44:49.497Z",
   "records": [
     {
       "id": "sales-unknown-148",
@@ -86,15 +86,6 @@
     {
       "id": "sales-unknown-30",
       "storeName": "Ada-美国Philip",
-      "salesName": "",
-      "enabled": true,
-      "auto": false,
-      "status": "unassigned",
-      "manual": false
-    },
-    {
-      "id": "sales-unknown-136",
-      "storeName": "Agent-Danae",
       "salesName": "",
       "enabled": true,
       "auto": false,
@@ -383,15 +374,6 @@
     {
       "id": "sales-unknown-247",
       "storeName": "Ivy-迪拜Ismail",
-      "salesName": "",
-      "enabled": true,
-      "auto": false,
-      "status": "unassigned",
-      "manual": false
-    },
-    {
-      "id": "sales-unknown-151",
-      "storeName": "Ivy-暖宫宝",
       "salesName": "",
       "enabled": true,
       "auto": false,
@@ -1020,6 +1002,15 @@
       "manual": false
     },
     {
+      "id": "sales-unknown-136",
+      "storeName": "Agent-Danae",
+      "salesName": "廖晨昊",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
       "id": "sales-unknown-126",
       "storeName": "Agent-Ivy",
       "salesName": "杨继超",
@@ -1550,6 +1541,15 @@
       "manual": false
     },
     {
+      "id": "sales-unknown-151",
+      "storeName": "Ivy-暖宫宝",
+      "salesName": "范梦微",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
       "id": "sales-unknown-106",
       "storeName": "Ivy-英国Sam",
       "salesName": "范梦微",
@@ -1750,6 +1750,14 @@
     {
       "id": "sales-unknown-275",
       "storeName": "Josie-第十五个波兰人袜子",
+      "salesName": "Josie-周晓清",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
+    },
+    {
+      "id": "sales-unknown-278",
+      "storeName": "Josie-第四十个波兰人内裤",
       "salesName": "Josie-周晓清",
       "enabled": true,
       "auto": true,
@@ -2041,6 +2049,14 @@
       "auto": true,
       "status": "assigned",
       "manual": false
+    },
+    {
+      "id": "sales-unknown-279",
+      "storeName": "Trae-VB",
+      "salesName": "廖晨昊",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
     },
     {
       "id": "sales-unknown-141",
