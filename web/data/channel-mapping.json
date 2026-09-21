@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-21T18:49:34.823Z",
+  "updatedAt": "2026-09-21T22:19:56.475Z",
   "records": [
     {
       "id": "map-unknown-341",
@@ -95,6 +95,15 @@
     {
       "id": "map-unknown-342",
       "sourceName": "智惠选专线-特惠-回传",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
+    },
+    {
+      "id": "map-unknown-350",
+      "sourceName": "Customized Fulfillment DRACEND-Standard(3-8 Business Days)-DE",
       "providerChannel": "",
       "provider": "",
       "displayName": "",
