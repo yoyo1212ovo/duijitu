@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-22T18:36:23.888Z",
+  "updatedAt": "2026-09-22T21:38:27.899Z",
   "records": [
     {
       "id": "sales-unknown-148",
@@ -95,15 +95,6 @@
     {
       "id": "sales-unknown-63",
       "storeName": "Alay-大丹麦猫草棒",
-      "salesName": "",
-      "enabled": true,
-      "auto": false,
-      "status": "unassigned",
-      "manual": false
-    },
-    {
-      "id": "sales-unknown-93",
-      "storeName": "Alay-锅厨具",
       "salesName": "",
       "enabled": true,
       "auto": false,
@@ -1065,6 +1056,15 @@
       "manual": false
     },
     {
+      "id": "sales-unknown-93",
+      "storeName": "Alay-锅厨具",
+      "salesName": "杨继超",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
       "id": "sales-unknown-121",
       "storeName": "Alay-加拿大背心",
       "salesName": "杨继超",
@@ -1658,6 +1658,14 @@
       "manual": false
     },
     {
+      "id": "sales-unknown-280",
+      "storeName": "Joey-瑞士Almira",
+      "salesName": "卓洪宇",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
+    },
+    {
       "id": "sales-unknown-116",
       "storeName": "Josie-32个波兰人打鼾",
       "salesName": "Josie-周晓清",
@@ -1758,6 +1766,14 @@
     {
       "id": "sales-unknown-278",
       "storeName": "Josie-第四十个波兰人内裤",
+      "salesName": "Josie-周晓清",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
+    },
+    {
+      "id": "sales-unknown-281",
+      "storeName": "Josie-捷克驱虫器",
       "salesName": "Josie-周晓清",
       "enabled": true,
       "auto": true,
