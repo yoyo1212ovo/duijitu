@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-23T17:05:29.419Z",
+  "updatedAt": "2026-09-23T20:13:44.344Z",
   "records": [
     {
       "id": "sales-unknown-148",
@@ -363,15 +363,6 @@
       "manual": false
     },
     {
-      "id": "sales-unknown-247",
-      "storeName": "Ivy-迪拜Ismail",
-      "salesName": "",
-      "enabled": true,
-      "auto": false,
-      "status": "unassigned",
-      "manual": false
-    },
-    {
       "id": "sales-unknown-261",
       "storeName": "Ivy-英国鞋垫",
       "salesName": "",
@@ -437,15 +428,6 @@
     {
       "id": "sales-unknown-8",
       "storeName": "Josie-第32个波兰人",
-      "salesName": "",
-      "enabled": true,
-      "auto": false,
-      "status": "unassigned",
-      "manual": false
-    },
-    {
-      "id": "sales-unknown-186",
-      "storeName": "Josie-第二十四个波兰人",
       "salesName": "",
       "enabled": true,
       "auto": false,
@@ -669,26 +651,8 @@
       "manual": false
     },
     {
-      "id": "sales-unknown-44",
-      "storeName": "X²-Ivy Liu-法国包",
-      "salesName": "",
-      "enabled": true,
-      "auto": false,
-      "status": "unassigned",
-      "manual": false
-    },
-    {
       "id": "sales-unknown-257",
       "storeName": "X²-Ivy Liu-美国瑜伽裤1",
-      "salesName": "",
-      "enabled": true,
-      "auto": false,
-      "status": "unassigned",
-      "manual": false
-    },
-    {
-      "id": "sales-unknown-172",
-      "storeName": "X²-Ivy Liu-身体乳1",
       "salesName": "",
       "enabled": true,
       "auto": false,
@@ -1496,6 +1460,15 @@
       "manual": false
     },
     {
+      "id": "sales-unknown-247",
+      "storeName": "Ivy-迪拜Ismail",
+      "salesName": "范梦微",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
       "id": "sales-unknown-158",
       "storeName": "ivy-法国帽子",
       "salesName": "范梦微",
@@ -1675,6 +1648,14 @@
       "manual": false
     },
     {
+      "id": "sales-unknown-282",
+      "storeName": "Josie-7波挖耳勺",
+      "salesName": "Josie-周晓清",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
+    },
+    {
       "id": "sales-unknown-70",
       "storeName": "Josie-波兰唇膏",
       "salesName": "Josie-周晓清",
@@ -1702,6 +1683,15 @@
       "manual": false
     },
     {
+      "id": "sales-unknown-186",
+      "storeName": "Josie-第二十四个波兰人",
+      "salesName": "Josie-周晓清",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
       "id": "sales-unknown-10",
       "storeName": "josie-第七个波兰人狗串儿",
       "salesName": "Josie-周晓清",
@@ -1718,6 +1708,14 @@
       "auto": true,
       "status": "assigned",
       "manual": false
+    },
+    {
+      "id": "sales-unknown-283",
+      "storeName": "Josie-第三个波兰人新店",
+      "salesName": "Josie-周晓清",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
     },
     {
       "id": "sales-unknown-209",
@@ -1876,6 +1874,14 @@
       "auto": true,
       "status": "assigned",
       "manual": false
+    },
+    {
+      "id": "sales-unknown-284",
+      "storeName": "Josie-瑞士金主爸爸",
+      "salesName": "Josie-周晓清",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
     },
     {
       "id": "sales-unknown-71",
@@ -2156,6 +2162,15 @@
       "manual": false
     },
     {
+      "id": "sales-unknown-44",
+      "storeName": "X²-Ivy Liu-法国包",
+      "salesName": "李天宣",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
       "id": "sales-unknown-182",
       "storeName": "X²-Ivy Liu-法国小风扇",
       "salesName": "刘天瑾",
@@ -2167,6 +2182,15 @@
     {
       "id": "sales-unknown-42",
       "storeName": "X²-Ivy Liu-美国定制背心",
+      "salesName": "刘天瑾",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-172",
+      "storeName": "X²-Ivy Liu-身体乳1",
       "salesName": "刘天瑾",
       "enabled": true,
       "auto": true,
