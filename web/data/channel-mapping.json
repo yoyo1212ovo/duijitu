@@ -1,127 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-24T05:19:38.758Z",
+  "updatedAt": "2026-09-24T10:15:18.120Z",
   "records": [
-    {
-      "id": "map-unknown-341",
-      "sourceName": "华邮通挂号-特货",
-      "providerChannel": "",
-      "provider": "",
-      "displayName": "",
-      "enabled": false,
-      "manual": false,
-      "status": "unmapped"
-    },
-    {
-      "id": "map-unknown-343",
-      "sourceName": "京东服装标准专线",
-      "providerChannel": "",
-      "provider": "",
-      "displayName": "",
-      "enabled": false,
-      "manual": false,
-      "status": "unmapped"
-    },
-    {
-      "id": "map-unknown-340",
-      "sourceName": "联邮通标准自提-带电-回传",
-      "providerChannel": "",
-      "provider": "",
-      "displayName": "",
-      "enabled": false,
-      "manual": false,
-      "status": "unmapped"
-    },
-    {
-      "id": "map-unknown-344",
-      "sourceName": "顺速宝挂号-回传转单号",
-      "providerChannel": "",
-      "provider": "",
-      "displayName": "",
-      "enabled": false,
-      "manual": false,
-      "status": "unmapped"
-    },
-    {
-      "id": "map-unknown-348",
-      "sourceName": "通邮快线-2",
-      "providerChannel": "",
-      "provider": "",
-      "displayName": "",
-      "enabled": false,
-      "manual": false,
-      "status": "unmapped"
-    },
-    {
-      "id": "map-unknown-339",
-      "sourceName": "燕文服装专线-普货-美国",
-      "providerChannel": "",
-      "provider": "",
-      "displayName": "",
-      "enabled": false,
-      "manual": false,
-      "status": "unmapped"
-    },
-    {
-      "id": "map-unknown-347",
-      "sourceName": "燕文化妆品专线-美国",
-      "providerChannel": "",
-      "provider": "",
-      "displayName": "",
-      "enabled": false,
-      "manual": false,
-      "status": "unmapped"
-    },
-    {
-      "id": "map-unknown-346",
-      "sourceName": "云途大货18000专线挂号（特惠普货）",
-      "providerChannel": "",
-      "provider": "",
-      "displayName": "",
-      "enabled": false,
-      "manual": false,
-      "status": "unmapped"
-    },
-    {
-      "id": "map-unknown-345",
-      "sourceName": "云途加拿大商派专线（特惠普货）",
-      "providerChannel": "",
-      "provider": "",
-      "displayName": "",
-      "enabled": false,
-      "manual": false,
-      "status": "unmapped"
-    },
-    {
-      "id": "map-unknown-349",
-      "sourceName": "云途全球商派专线（标快普货）",
-      "providerChannel": "",
-      "provider": "",
-      "displayName": "",
-      "enabled": false,
-      "manual": false,
-      "status": "unmapped"
-    },
-    {
-      "id": "map-unknown-342",
-      "sourceName": "智惠选专线-特惠-回传",
-      "providerChannel": "",
-      "provider": "",
-      "displayName": "",
-      "enabled": false,
-      "manual": false,
-      "status": "unmapped"
-    },
-    {
-      "id": "map-unknown-350",
-      "sourceName": "Customized Fulfillment DRACEND-Standard(3-8 Business Days)-DE",
-      "providerChannel": "",
-      "provider": "",
-      "displayName": "",
-      "enabled": false,
-      "manual": false,
-      "status": "unmapped"
-    },
     {
       "id": "map-38",
       "sourceName": "傲飞国际快线_欧美_特惠带电-加拿大",
@@ -1493,6 +1373,16 @@
       "status": "mapped"
     },
     {
+      "id": "map-unknown-341",
+      "sourceName": "华邮通挂号-特货",
+      "providerChannel": "华邮通挂号-特货",
+      "provider": "华翰",
+      "displayName": "华翰/华邮通挂号-特货",
+      "enabled": true,
+      "manual": true,
+      "status": "mapped"
+    },
+    {
       "id": "map-153",
       "sourceName": "急速全球专线标快-普货-回传",
       "providerChannel": "急速全球专线标快-普货",
@@ -1500,6 +1390,16 @@
       "displayName": "急速/急速全球专线标快-普货",
       "enabled": true,
       "manual": false,
+      "status": "mapped"
+    },
+    {
+      "id": "map-unknown-343",
+      "sourceName": "京东服装标准专线",
+      "providerChannel": "京东服装标准专线",
+      "provider": "京东",
+      "displayName": "京东/京东服装标准专线",
+      "enabled": true,
+      "manual": true,
       "status": "mapped"
     },
     {
@@ -1640,6 +1540,16 @@
       "displayName": "递四方/联邮通标准自提-带电",
       "enabled": true,
       "manual": false,
+      "status": "mapped"
+    },
+    {
+      "id": "map-unknown-340",
+      "sourceName": "联邮通标准自提-带电-回传",
+      "providerChannel": "联邮通标准自提-带电",
+      "provider": "递四方",
+      "displayName": "递四方/联邮通标准自提-带电",
+      "enabled": true,
+      "manual": true,
       "status": "mapped"
     },
     {
@@ -2223,6 +2133,16 @@
       "status": "mapped"
     },
     {
+      "id": "map-unknown-344",
+      "sourceName": "顺速宝挂号-回传转单号",
+      "providerChannel": "顺速宝挂号",
+      "provider": "顺友",
+      "displayName": "顺友/顺速宝挂号",
+      "enabled": true,
+      "manual": true,
+      "status": "mapped"
+    },
+    {
       "id": "map-214",
       "sourceName": "顺速宝挂号普货",
       "providerChannel": "顺速宝(普货)",
@@ -2260,6 +2180,16 @@
       "displayName": "顺友/顺邮宝挂号",
       "enabled": true,
       "manual": false,
+      "status": "mapped"
+    },
+    {
+      "id": "map-unknown-348",
+      "sourceName": "通邮快线-2",
+      "providerChannel": "通邮快线-2",
+      "provider": "本捷",
+      "displayName": "本捷/通邮快线-2",
+      "enabled": true,
+      "manual": true,
       "status": "mapped"
     },
     {
@@ -2310,6 +2240,16 @@
       "displayName": "燕文/燕文服装专线-普货",
       "enabled": true,
       "manual": false,
+      "status": "mapped"
+    },
+    {
+      "id": "map-unknown-339",
+      "sourceName": "燕文服装专线-普货-美国",
+      "providerChannel": "燕文服装专线-普货",
+      "provider": "燕文",
+      "displayName": "燕文/燕文服装专线-普货",
+      "enabled": true,
+      "manual": true,
       "status": "mapped"
     },
     {
@@ -2420,6 +2360,16 @@
       "displayName": "燕文/燕文化妆品专线",
       "enabled": true,
       "manual": false,
+      "status": "mapped"
+    },
+    {
+      "id": "map-unknown-347",
+      "sourceName": "燕文化妆品专线-美国",
+      "providerChannel": "燕文化妆品专线",
+      "provider": "燕文",
+      "displayName": "燕文/燕文化妆品专线",
+      "enabled": true,
+      "manual": true,
       "status": "mapped"
     },
     {
@@ -2723,6 +2673,16 @@
       "status": "mapped"
     },
     {
+      "id": "map-unknown-346",
+      "sourceName": "云途大货18000专线挂号（特惠普货）",
+      "providerChannel": "云途大货18000专线挂号（特惠普货）",
+      "provider": "云途",
+      "displayName": "云途/云途大货18000专线挂号（特惠普货）",
+      "enabled": true,
+      "manual": true,
+      "status": "mapped"
+    },
+    {
       "id": "map-261",
       "sourceName": "云途岛屿专线（特惠带电）",
       "providerChannel": "云途岛屿专线（特惠带电）",
@@ -2750,6 +2710,16 @@
       "displayName": "云途/云途岛屿专线（特惠普货）",
       "enabled": true,
       "manual": false,
+      "status": "mapped"
+    },
+    {
+      "id": "map-unknown-345",
+      "sourceName": "云途加拿大商派专线（特惠普货）",
+      "providerChannel": "云途加拿大商派专线（特惠普货）",
+      "provider": "云途",
+      "displayName": "云途/云途加拿大商派专线（特惠普货）",
+      "enabled": true,
+      "manual": true,
       "status": "mapped"
     },
     {
@@ -2920,6 +2890,16 @@
       "displayName": "云途/云途全球精选专线挂号（特惠普货）",
       "enabled": true,
       "manual": false,
+      "status": "mapped"
+    },
+    {
+      "id": "map-unknown-349",
+      "sourceName": "云途全球商派专线（标快普货）",
+      "providerChannel": "云途全球商派专线（标快普货）",
+      "provider": "云途",
+      "displayName": "云途/云途全球商派专线（标快普货）",
+      "enabled": true,
+      "manual": true,
       "status": "mapped"
     },
     {
@@ -3113,6 +3093,16 @@
       "status": "mapped"
     },
     {
+      "id": "map-unknown-342",
+      "sourceName": "智惠选专线-特惠-回传",
+      "providerChannel": "智惠选专线-特惠",
+      "provider": "华翰",
+      "displayName": "华翰/智惠选专线-特惠",
+      "enabled": true,
+      "manual": true,
+      "status": "mapped"
+    },
+    {
       "id": "map-289",
       "sourceName": "智惠选专线-特货(不限偏远)",
       "providerChannel": "智惠选专线-特货",
@@ -3230,6 +3220,16 @@
       "displayName": "云途/A01特惠普货",
       "enabled": true,
       "manual": false,
+      "status": "mapped"
+    },
+    {
+      "id": "map-unknown-350",
+      "sourceName": "Customized Fulfillment DRACEND-Standard(3-8 Business Days)-DE",
+      "providerChannel": "Customized Fulfillment DRACEND-Standard(3-8 Business Days)-DE",
+      "provider": "万邑通",
+      "displayName": "万邑通/Customized Fulfillment DRACEND-Standard(3-8 Business Days)-DE",
+      "enabled": true,
+      "manual": true,
       "status": "mapped"
     },
     {
