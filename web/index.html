@@ -502,6 +502,22 @@ select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--
         </div>
       </div>
     </div>
+    <div class="cs-wc-analysis">
+      <div class="cs-wc-analysis-head">
+        <span class="cs-wc-analysis-title">路线 × 国家单量增减排行</span>
+      </div>
+      <div class="cs-wc-analysis-sub" id="csWeeklyRouteCountrySub"></div>
+      <div class="cs-wc-grid">
+        <div class="cs-wc-panel">
+          <div class="cs-wc-panel-title"><span class="cs-wc-dot up"></span>增长前十</div>
+          <div class="cs-wc-table" id="csWcRouteCountryRise"></div>
+        </div>
+        <div class="cs-wc-panel">
+          <div class="cs-wc-panel-title"><span class="cs-wc-dot down"></span>下降前十</div>
+          <div class="cs-wc-table" id="csWcRouteCountryFall"></div>
+        </div>
+      </div>
+    </div>
   </div>
   <!-- Existing toolbar + table -->
   <div class="cs-toolbar">
@@ -1282,7 +1298,7 @@ function ensureWeeklyChangeBoard() {
   board.className = 'cs-weekly-change';
   board.id = 'csWeeklyChange';
   board.style.display = 'none';
-  board.innerHTML = '<div class="cs-weekly-change-header"><span class="cs-weekly-change-title">物流渠道每周单量增减</span><span class="cs-weekly-change-sub" id="csWeeklyChangeSub"></span></div><div class="cs-wc-grid"><div class="cs-wc-panel"><div class="cs-wc-panel-title"><span class="cs-wc-dot up"></span>增长前十</div><div class="cs-wc-table" id="csWcRise"></div></div><div class="cs-wc-panel"><div class="cs-wc-panel-title"><span class="cs-wc-dot down"></span>下降前十</div><div class="cs-wc-table" id="csWcFall"></div></div></div><div class="cs-wc-analysis"><div class="cs-wc-analysis-head"><span class="cs-wc-analysis-title" id="csWeeklyAnalysisTitle">各国单量环比变化排行</span></div><div class="cs-wc-analysis-sub" id="csWeeklyAnalysisSub"></div><div class="cs-wc-grid" id="csWeeklyAnalysisWrap"><div class="cs-wc-panel"><div class="cs-wc-panel-title"><span class="cs-wc-dot up"></span>增长前十</div><div class="cs-wc-table" id="csWcCountryRise"></div></div><div class="cs-wc-panel"><div class="cs-wc-panel-title"><span class="cs-wc-dot down"></span>下降前十</div><div class="cs-wc-table" id="csWcCountryFall"></div></div></div></div>';
+  board.innerHTML = '<div class="cs-weekly-change-header"><span class="cs-weekly-change-title">物流渠道每周单量增减</span><span class="cs-weekly-change-sub" id="csWeeklyChangeSub"></span></div><div class="cs-wc-grid"><div class="cs-wc-panel"><div class="cs-wc-panel-title"><span class="cs-wc-dot up"></span>增长前十</div><div class="cs-wc-table" id="csWcRise"></div></div><div class="cs-wc-panel"><div class="cs-wc-panel-title"><span class="cs-wc-dot down"></span>下降前十</div><div class="cs-wc-table" id="csWcFall"></div></div></div><div class="cs-wc-analysis"><div class="cs-wc-analysis-head"><span class="cs-wc-analysis-title" id="csWeeklyAnalysisTitle">各国单量环比变化排行</span></div><div class="cs-wc-analysis-sub" id="csWeeklyAnalysisSub"></div><div class="cs-wc-grid" id="csWeeklyAnalysisWrap"><div class="cs-wc-panel"><div class="cs-wc-panel-title"><span class="cs-wc-dot up"></span>增长前十</div><div class="cs-wc-table" id="csWcCountryRise"></div></div><div class="cs-wc-panel"><div class="cs-wc-panel-title"><span class="cs-wc-dot down"></span>下降前十</div><div class="cs-wc-table" id="csWcCountryFall"></div></div></div></div><div class="cs-wc-analysis"><div class="cs-wc-analysis-head"><span class="cs-wc-analysis-title">路线 × 国家单量增减排行</span></div><div class="cs-wc-analysis-sub" id="csWeeklyRouteCountrySub"></div><div class="cs-wc-grid"><div class="cs-wc-panel"><div class="cs-wc-panel-title"><span class="cs-wc-dot up"></span>增长前十</div><div class="cs-wc-table" id="csWcRouteCountryRise"></div></div><div class="cs-wc-panel"><div class="cs-wc-panel-title"><span class="cs-wc-dot down"></span>下降前十</div><div class="cs-wc-table" id="csWcRouteCountryFall"></div></div></div></div>';
   ranking.parentNode.insertBefore(board, ranking.nextSibling);
 }
 
@@ -1344,6 +1360,37 @@ function renderWeeklyCountryChangeRows(countries, channels, pair) {
   fall.innerHTML = body(falls, 'down');
 }
 
+function renderWeeklyRouteCountryChangeRows(channels, countries, pair) {
+  var rise = document.getElementById('csWcRouteCountryRise');
+  var fall = document.getElementById('csWcRouteCountryFall');
+  if (!rise || !fall) return;
+
+  var rows = [];
+  channels.forEach(function(ch) {
+    countries.forEach(function(cn) {
+      var previous = getCountryWeekTotalForChange(cn, pair.previous, [ch]);
+      var current = getCountryWeekTotalForChange(cn, pair.current, [ch]);
+      if ((previous > 0 || current > 0) && current !== previous) {
+        rows.push({ channel: ch, country: cn, previous: previous, current: current, delta: current - previous });
+      }
+    });
+  });
+
+  var head = '<div class="cs-wc-row"><span class="cs-wc-head cs-wc-rank">#</span><span class="cs-wc-head cs-wc-name">路线 / 国家</span><span class="cs-wc-head cs-wc-num">上上周</span><span class="cs-wc-head cs-wc-num">上周</span><span class="cs-wc-head cs-wc-delta">变化</span></div>';
+  function body(rows, type) {
+    if (!rows.length) return head + '<div class="cs-wc-empty" style="grid-column:1/-1">' + (type === 'up' ? '暂无增长组合' : '暂无下降组合') + '</div>';
+    return head + rows.map(function(r, i) {
+      var cls = type === 'up' ? 'up' : 'down';
+      var name = r.channel + ' - ' + r.country;
+      return '<div class="cs-wc-row"><span class="cs-wc-cell cs-wc-rank">' + (i + 1) + '</span><span class="cs-wc-cell cs-wc-name" title="' + escapeHtml(name) + '">' + escapeHtml(name) + '</span><span class="cs-wc-cell cs-wc-num">' + r.previous.toLocaleString() + '</span><span class="cs-wc-cell cs-wc-num">' + r.current.toLocaleString() + '</span><span class="cs-wc-cell cs-wc-delta ' + cls + '">' + wcDeltaMark(r.delta) + '</span></div>';
+    }).join('');
+  }
+  var rises = rows.filter(function(r) { return r.delta > 0; }).sort(function(a, b) { return b.delta - a.delta; }).slice(0, 10);
+  var falls = rows.filter(function(r) { return r.delta < 0; }).sort(function(a, b) { return a.delta - b.delta; }).slice(0, 10);
+  rise.innerHTML = body(rises, 'up');
+  fall.innerHTML = body(falls, 'down');
+}
+
 function renderWeeklyChangeBoard() {
   ensureWeeklyChangeBoard();
   var board = document.getElementById('csWeeklyChange');
@@ -1357,6 +1404,7 @@ function renderWeeklyChangeBoard() {
   var sub = document.getElementById('csWeeklyChangeSub');
   var title = document.getElementById('csWeeklyAnalysisTitle');
   var analysisSub = document.getElementById('csWeeklyAnalysisSub');
+  var routeSub = document.getElementById('csWeeklyRouteCountrySub');
   var pair = getWeeklyChangePair();
   var channels = getChangeSelectedChannels();
   var countries = getChangeSelectedCountries();
@@ -1364,12 +1412,17 @@ function renderWeeklyChangeBoard() {
   if (!pair || !channels.length || !countries.length) {
     var rise = document.getElementById('csWcRise');
     var fall = document.getElementById('csWcFall');
+    var rcRise = document.getElementById('csWcRouteCountryRise');
+    var rcFall = document.getElementById('csWcRouteCountryFall');
     if (rise) rise.innerHTML = '';
     if (fall) fall.innerHTML = '';
+    if (rcRise) rcRise.innerHTML = '';
+    if (rcFall) rcFall.innerHTML = '';
     destroyWeeklyChangeChart();
     showWeeklyAnalysisEmpty(!channels.length ? '请至少选择一条线路' : (!countries.length ? '请至少选择一个国家' : '至少需要两个自然周数据，请选择自定义时间段查看'));
     if (title) title.textContent = '各国单量环比变化排行';
     if (analysisSub) analysisSub.textContent = '';
+    if (routeSub) routeSub.textContent = '';
     return;
   }
   var changeData = buildWeeklyChannelChangeRows();
@@ -1380,6 +1433,10 @@ function renderWeeklyChangeBoard() {
     ? '所有线路的各国合计单量 · 上周较上上周 · 绿色增长 / 红色下降'
     : '已选 ' + channels.length + ' 条线路 · 上周较上上周 · 绿色增长 / 红色下降';
   renderWeeklyCountryChangeRows(countries, channels, pair);
+  if (routeSub) routeSub.textContent = allChannelsSelected
+    ? '所有线路 × 国家组合 · 上周较上上周 · 绿色增长 / 红色下降'
+    : '已选 ' + channels.length + ' 条线路 × ' + countries.length + ' 个国家 · 上周较上上周 · 绿色增长 / 红色下降';
+  renderWeeklyRouteCountryChangeRows(channels, countries, pair);
 }
 
 function renderTrendChart() {
