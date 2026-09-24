@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-24T19:26:58.854Z",
+  "updatedAt": "2026-09-24T22:36:22.861Z",
   "records": [
     {
       "id": "sales-unknown-148",
@@ -46,6 +46,14 @@
       "auto": false,
       "status": "unassigned",
       "manual": false
+    },
+    {
+      "id": "sales-unknown-285",
+      "storeName": "JoyJosie-全球妆前乳",
+      "salesName": "",
+      "enabled": true,
+      "auto": false,
+      "status": "unassigned"
     },
     {
       "id": "sales-unknown-228",
@@ -2170,6 +2178,14 @@
       "auto": true,
       "status": "assigned",
       "manual": false
+    },
+    {
+      "id": "sales-unknown-286",
+      "storeName": "X²-IvyLiu-波兰雪花灯",
+      "salesName": "刘天瑾",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
     },
     {
       "id": "sales-unknown-134",
