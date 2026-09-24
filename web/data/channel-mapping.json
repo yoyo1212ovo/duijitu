@@ -1,7 +1,25 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-24T19:17:25.926Z",
+  "updatedAt": "2026-09-24T22:32:40.627Z",
   "records": [
+    {
+      "id": "map-unknown-351",
+      "sourceName": "欧洲优选专线敏感",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
+    },
+    {
+      "id": "map-unknown-352",
+      "sourceName": "云途全球专线挂号（标快普货）-加拿大",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
+    },
     {
       "id": "map-38",
       "sourceName": "傲飞国际快线_欧美_特惠带电-加拿大",
