@@ -127,6 +127,43 @@ select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--
 .cs-ranking-wrap canvas{width:100%!important}
 .cs-ranking-empty{padding:40px;text-align:center;color:var(--text3);font-size:13px}
 
+/* Weekly Change Board */
+.cs-weekly-change{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px 24px;margin-bottom:16px}
+.cs-weekly-change-header{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:4px}
+.cs-weekly-change-title{font-size:14px;font-weight:700;letter-spacing:-.01em}
+.cs-weekly-change-sub{font-size:11px;color:var(--text3);margin-bottom:16px}
+.cs-wc-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px}
+.cs-wc-panel{min-width:0;overflow-x:auto}
+.cs-wc-panel-title{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;color:var(--text2);margin-bottom:10px}
+.cs-wc-panel-title .cs-wc-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.cs-wc-panel-title .cs-wc-dot.up{background:var(--green);box-shadow:0 0 0 4px rgba(52,211,153,.12)}
+.cs-wc-panel-title .cs-wc-dot.down{background:var(--red);box-shadow:0 0 0 4px rgba(248,113,113,.12)}
+.cs-wc-table{display:grid;grid-template-columns:34px minmax(150px,1fr) 72px 72px 86px;border-top:1px solid var(--border);font-size:12px;min-width:470px}
+.cs-wc-table .cs-wc-row{display:contents}
+.cs-wc-table .cs-wc-head,.cs-wc-table .cs-wc-cell{padding:8px 8px;border-bottom:1px solid rgba(255,255,255,.05);display:flex;align-items:center;min-width:0}
+.cs-wc-table .cs-wc-head{color:var(--text3);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+.cs-wc-table .cs-wc-row:hover .cs-wc-cell{background:rgba(255,255,255,.02)}
+.cs-wc-rank{justify-content:center;font-weight:700}
+.cs-wc-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600}
+.cs-wc-num{justify-content:flex-end;font-variant-numeric:tabular-nums}
+.cs-wc-delta{justify-content:flex-end;font-weight:700;white-space:nowrap}
+.cs-wc-delta.up{color:var(--green)}
+.cs-wc-delta.down{color:var(--red)}
+.cs-wc-empty{padding:28px 12px;color:var(--text3);font-size:12px;text-align:center}
+.cs-wc-analysis{margin-top:18px;border-top:1px solid var(--border);padding-top:16px}
+.cs-wc-analysis-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:2px}
+.cs-wc-analysis-title{font-size:13px;font-weight:700}
+.cs-wc-analysis-sub{font-size:11px;color:var(--text3);margin-bottom:12px;line-height:1.5}
+.cs-wc-analysis-scroll{position:relative;max-height:640px;overflow:auto;border:1px solid rgba(255,255,255,.05);border-radius:8px;background:rgba(255,255,255,.012)}
+.cs-wc-analysis-wrap{position:relative;min-height:340px}
+.cs-wc-analysis-wrap canvas{width:100%!important}
+.cs-wc-analysis-empty{padding:48px 20px;text-align:center;color:var(--text3);font-size:13px}
+@media(max-width:900px){
+  .cs-wc-grid{grid-template-columns:1fr;gap:20px}
+  .cs-wc-panel{overflow-x:auto}
+}
+
+
 /* Trend Section */
 .cs-trend{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px 24px;margin-top:16px}
 .cs-trend-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
@@ -430,6 +467,37 @@ select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--
       <div class="cs-ranking-empty" id="csRankingEmpty">暂无数据</div>
     </div>
   </div>
+  <div class="cs-weekly-change" id="csWeeklyChange" style="display:none;">
+    <div class="cs-weekly-change-header">
+      <span class="cs-weekly-change-title">物流渠道每周单量增减</span>
+      <span class="cs-weekly-change-sub" id="csWeeklyChangeSub"></span>
+    </div>
+    <div class="cs-wc-grid">
+      <div class="cs-wc-panel">
+        <div class="cs-wc-panel-title"><span class="cs-wc-dot up"></span>增长前十</div>
+        <div class="cs-wc-table" id="csWcRise">
+          <div class="cs-wc-row"><span class="cs-wc-head cs-wc-rank">#</span><span class="cs-wc-head cs-wc-name">物流渠道</span><span class="cs-wc-head cs-wc-num">上上周</span><span class="cs-wc-head cs-wc-num">上周</span><span class="cs-wc-head cs-wc-delta">变化</span></div>
+        </div>
+      </div>
+      <div class="cs-wc-panel">
+        <div class="cs-wc-panel-title"><span class="cs-wc-dot down"></span>下降前十</div>
+        <div class="cs-wc-table" id="csWcFall">
+          <div class="cs-wc-row"><span class="cs-wc-head cs-wc-rank">#</span><span class="cs-wc-head cs-wc-name">物流渠道</span><span class="cs-wc-head cs-wc-num">上上周</span><span class="cs-wc-head cs-wc-num">上周</span><span class="cs-wc-head cs-wc-delta">变化</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="cs-wc-analysis">
+      <div class="cs-wc-analysis-head">
+        <span class="cs-wc-analysis-title" id="csWeeklyAnalysisTitle">各国单量环比变化排行</span>
+      </div>
+      <div class="cs-wc-analysis-sub" id="csWeeklyAnalysisSub"></div>
+      <div class="cs-wc-analysis-scroll">
+        <div class="cs-wc-analysis-wrap" id="csWeeklyAnalysisWrap">
+          <div class="cs-wc-analysis-empty" id="csWeeklyAnalysisEmpty">暂无数据</div>
+        </div>
+      </div>
+    </div>
+  </div>
   <!-- Existing toolbar + table -->
   <div class="cs-toolbar">
         <div class="cs-filter-wrap">
@@ -566,6 +634,7 @@ document.querySelectorAll('.mt-btn').forEach(function(btn){btn.addEventListener(
 // === Channel Summary Rendering ===
 var rankingChart = null;
 var trendChart = null;
+var weeklyChangeChart = null;
 var csSelectedWeek = null;
 var csSelectedChannels = [];
 var csSelectedCountries = [];
@@ -1095,6 +1164,366 @@ function renderRankingChart() {
     }
   });
   wrap.style.height = Math.max(300, topN.length * 22 + 40) + 'px';
+}
+
+function getWeeklyChangePair() {
+  var weeks = channelSummary && channelSummary.allWeeks ? channelSummary.allWeeks : [];
+  if (weeks.length < 2) return null;
+  return { previous: weeks[weeks.length - 2], current: weeks[weeks.length - 1] };
+}
+
+function getWeekDisplayLabel(weekKey) {
+  if (!weekKey) return '';
+  return channelSummary && channelSummary.weekLabels && channelSummary.weekLabels[weekKey] ? channelSummary.weekLabels[weekKey] : weekKey;
+}
+
+function getChangeSelectedChannels() {
+  if (!channelSummary || !channelSummary.channels) return [];
+  if (!csSelectedChannels || csSelectedChannels.length === 0) return [];
+  var all = channelSummary.channels;
+  return csSelectedChannels.filter(function(ch) { return all.indexOf(ch) >= 0; });
+}
+
+function getChangeSelectedCountries() {
+  if (!channelSummary) return [];
+  if (csSelectedCountries && csSelectedCountries.length > 0) {
+    var all = channelSummary.countries || [];
+    return csSelectedCountries.filter(function(cn) { return all.indexOf(cn) >= 0; });
+  }
+  return (channelSummary.countries || []).slice();
+}
+
+var countryCodeLookup = null;
+function buildCountryCodeLookup() {
+  if (countryCodeLookup) return countryCodeLookup;
+  var map = {
+    '中国香港': 'HK', '中国台湾': 'TW', '阿联酋': 'AE', '黑山共和国': 'ME', '马其顿': 'MK',
+    '波黑': 'BA', '多米尼加共和国': 'DO', '特立尼达和多巴哥': 'TT', '新喀里多尼亚': 'NC',
+    '法属波利尼西亚': 'PF', '法属圭亚那': 'GF', '法罗群岛': 'FO', '根西岛': 'GG', '泽西岛': 'JE',
+    '格陵兰岛': 'GL', '瓜德罗普': 'GP', '马提尼克': 'MQ', '留尼汪岛': 'RE', '直布罗陀': 'GI',
+    '阿鲁巴': 'AW', '波多黎各': 'PR', '科特迪瓦': 'CI', '刚果民主共和国': 'CD'
+  };
+  try {
+    var dn = new Intl.DisplayNames(['zh-CN'], { type: 'region' });
+    var codes = ['AD','AE','AF','AG','AI','AL','AM','AO','AR','AT','AU','AW','AX','AZ','BA','BB','BD','BE','BF','BG','BH','BI','BJ','BL','BM','BN','BO','BQ','BR','BS','BT','BW','BY','BZ','CA','CC','CD','CF','CG','CH','CI','CK','CL','CM','CN','CO','CR','CU','CV','CW','CX','CY','CZ','DE','DJ','DK','DM','DO','DZ','EC','EE','EG','EH','ER','ES','ET','FI','FJ','FK','FM','FO','FR','GA','GB','GD','GE','GF','GG','GH','GI','GL','GM','GN','GP','GQ','GR','GT','GU','GW','GY','HK','HN','HR','HT','HU','ID','IE','IL','IM','IN','IO','IQ','IR','IS','IT','JE','JM','JO','JP','KE','KG','KH','KI','KM','KN','KP','KR','KW','KY','KZ','LA','LB','LC','LI','LK','LR','LS','LT','LU','LV','LY','MA','MC','MD','ME','MF','MG','MH','MK','ML','MM','MN','MO','MP','MQ','MR','MS','MT','MU','MV','MW','MX','MY','MZ','NA','NC','NE','NF','NG','NI','NL','NO','NP','NR','NU','NZ','OM','PA','PE','PF','PG','PH','PK','PL','PM','PN','PR','PS','PT','PW','PY','QA','RE','RO','RS','RU','RW','SA','SB','SC','SD','SE','SG','SH','SI','SJ','SK','SL','SM','SN','SO','SR','SS','ST','SV','SX','SY','SZ','TC','TD','TF','TG','TH','TJ','TK','TL','TM','TN','TO','TR','TT','TV','TW','TZ','UA','UG','UM','US','UY','UZ','VA','VC','VE','VG','VI','VN','VU','WF','WS','YE','YT','ZA','ZM','ZW'];
+    codes.forEach(function(code) {
+      var name = dn.of(code);
+      if (name && !map[name]) map[name] = code;
+    });
+  } catch (e) {}
+  countryCodeLookup = map;
+  return map;
+}
+
+function getCountryDisplayCode(name) {
+  if (!name) return '';
+  if (/^[A-Za-z]{2}$/.test(name)) return name.toUpperCase();
+  var map = buildCountryCodeLookup();
+  return map[name] || name;
+}
+
+function getCountryWeeklySeriesForChange(country, channels) {
+  if (!channelSummary || !channelSummary.countryWeeklySeries || !channelSummary.allWeeks) return {};
+  var channelList = channels && channels.length ? channels : (channelSummary.channels || []);
+  if (hasActiveStoreOrSalesFilter()) {
+    var stores = getEffectiveFilterStores();
+    if (!stores.length) return {};
+    return getStoreCountryTimeSeries(country, channelList, stores, false);
+  }
+  var result = {};
+  channelSummary.allWeeks.forEach(function(w) { result[w] = 0; });
+  channelList.forEach(function(ch) {
+    var cw = channelSummary.countryWeeklySeries[ch] && channelSummary.countryWeeklySeries[ch][country];
+    if (!cw) return;
+    for (var w in cw) result[w] = (result[w] || 0) + cw[w];
+  });
+  return result;
+}
+
+function getCountryWeekTotalForChange(country, weekKey, channels) {
+  var series = getCountryWeeklySeriesForChange(country, channels);
+  return Number(series[weekKey] || 0);
+}
+
+function formatWeeklyDelta(delta) {
+  return (delta > 0 ? '+' : '') + Number(delta).toLocaleString();
+}
+
+function wcDeltaMark(delta) {
+  return (delta > 0 ? '↑' : '↓') + ' ' + Math.abs(delta).toLocaleString();
+}
+
+function buildWeeklyChannelChangeRows() {
+  var pair = getWeeklyChangePair();
+  if (!pair) return null;
+  var channels = getChangeSelectedChannels();
+  return {
+    pair: pair,
+    rows: channels.map(function(ch) {
+      var series = getWeekFilteredTimeSeries(ch);
+      var previous = Number(series[pair.previous] || 0);
+      var current = Number(series[pair.current] || 0);
+      return { channel: ch, previous: previous, current: current, delta: current - previous };
+    }).filter(function(r) { return r.delta !== 0; })
+  };
+}
+
+function ensureWeeklyChangeBoard() {
+  if (document.getElementById('csWeeklyChange')) return;
+  var cs = document.getElementById('channelSummary');
+  var ranking = document.getElementById('csRanking');
+  if (!cs || !ranking) return;
+  var board = document.createElement('div');
+  board.className = 'cs-weekly-change';
+  board.id = 'csWeeklyChange';
+  board.style.display = 'none';
+  board.innerHTML = '<div class="cs-weekly-change-header"><span class="cs-weekly-change-title">物流渠道每周单量增减</span><span class="cs-weekly-change-sub" id="csWeeklyChangeSub"></span></div><div class="cs-wc-grid"><div class="cs-wc-panel"><div class="cs-wc-panel-title"><span class="cs-wc-dot up"></span>增长前十</div><div class="cs-wc-table" id="csWcRise"></div></div><div class="cs-wc-panel"><div class="cs-wc-panel-title"><span class="cs-wc-dot down"></span>下降前十</div><div class="cs-wc-table" id="csWcFall"></div></div></div><div class="cs-wc-analysis"><div class="cs-wc-analysis-head"><span class="cs-wc-analysis-title" id="csWeeklyAnalysisTitle">各国单量环比变化排行</span></div><div class="cs-wc-analysis-sub" id="csWeeklyAnalysisSub"></div><div class="cs-wc-analysis-scroll"><div class="cs-wc-analysis-wrap" id="csWeeklyAnalysisWrap"><div class="cs-wc-analysis-empty" id="csWeeklyAnalysisEmpty">暂无数据</div></div></div></div>';
+  ranking.parentNode.insertBefore(board, ranking.nextSibling);
+}
+
+function destroyWeeklyChangeChart() {
+  if (weeklyChangeChart) {
+    weeklyChangeChart.destroy();
+    weeklyChangeChart = null;
+  }
+}
+
+function showWeeklyAnalysisEmpty(message) {
+  var wrap = document.getElementById('csWeeklyAnalysisWrap');
+  if (!wrap) return;
+  destroyWeeklyChangeChart();
+  wrap.innerHTML = '';
+  var empty = document.createElement('div');
+  empty.className = 'cs-wc-analysis-empty';
+  empty.textContent = message || '暂无数据';
+  wrap.appendChild(empty);
+  wrap.style.height = '340px';
+}
+
+function renderWeeklyChangeRows(pair, changeData) {
+  var rise = document.getElementById('csWcRise');
+  var fall = document.getElementById('csWcFall');
+  if (!rise || !fall) return;
+  var head = '<div class="cs-wc-row"><span class="cs-wc-head cs-wc-rank">#</span><span class="cs-wc-head cs-wc-name">物流渠道</span><span class="cs-wc-head cs-wc-num">上上周</span><span class="cs-wc-head cs-wc-num">上周</span><span class="cs-wc-head cs-wc-delta">变化</span></div>';
+  function body(rows, type) {
+    if (!rows.length) return head + '<div class="cs-wc-empty" style="grid-column:1/-1">' + (type === 'up' ? '暂无增长渠道' : '暂无下降渠道') + '</div>';
+    return head + rows.map(function(r, i) {
+      var cls = type === 'up' ? 'up' : 'down';
+      return '<div class="cs-wc-row"><span class="cs-wc-cell cs-wc-rank">' + (i + 1) + '</span><span class="cs-wc-cell cs-wc-name" title="' + escapeHtml(r.channel) + '">' + escapeHtml(r.channel) + '</span><span class="cs-wc-cell cs-wc-num">' + r.previous.toLocaleString() + '</span><span class="cs-wc-cell cs-wc-num">' + r.current.toLocaleString() + '</span><span class="cs-wc-cell cs-wc-delta ' + cls + '">' + wcDeltaMark(r.delta) + '</span></div>';
+    }).join('');
+  }
+  var rises = changeData.rows.filter(function(r) { return r.delta > 0; }).sort(function(a, b) { return b.delta - a.delta; }).slice(0, 10);
+  var falls = changeData.rows.filter(function(r) { return r.delta < 0; }).sort(function(a, b) { return a.delta - b.delta; }).slice(0, 10);
+  rise.innerHTML = body(rises, 'up');
+  fall.innerHTML = body(falls, 'down');
+}
+
+function renderWeeklyCountryDeltaChart(countries, channels, pair) {
+  var wrap = document.getElementById('csWeeklyAnalysisWrap');
+  if (!wrap) return;
+  destroyWeeklyChangeChart();
+  wrap.innerHTML = '';
+  var rows = countries.map(function(cn) {
+    var previous = getCountryWeekTotalForChange(cn, pair.previous, channels);
+    var current = getCountryWeekTotalForChange(cn, pair.current, channels);
+    return { country: cn, code: getCountryDisplayCode(cn), previous: previous, current: current, delta: current - previous };
+  }).filter(function(r) { return r.previous > 0 || r.current > 0; })
+    .sort(function(a, b) { return b.delta - a.delta; });
+  if (!rows.length) {
+    showWeeklyAnalysisEmpty('当前筛选暂无国家单量数据');
+    return;
+  }
+  var canvas = document.createElement('canvas');
+  wrap.appendChild(canvas);
+  var values = rows.map(function(r) { return r.delta; });
+  weeklyChangeChart = new Chart(canvas, {
+    type: 'bar',
+    data: {
+      labels: rows.map(function(r) { return r.code; }),
+      datasets: [{
+        data: values,
+        backgroundColor: values.map(function(v) { return v >= 0 ? 'rgba(52,211,153,.72)' : 'rgba(248,113,113,.72)'; }),
+        borderColor: values.map(function(v) { return v >= 0 ? '#34d399' : '#f87171'; }),
+        borderWidth: 1,
+        borderRadius: 4,
+        borderSkipped: false
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#1c1f2e', titleColor: '#e4e6f0', bodyColor: '#c4c6d4', borderColor: '#252836', borderWidth: 1, padding: 10, cornerRadius: 8,
+          callbacks: {
+            title: function(items) { return items.length ? rows[items[0].dataIndex].country : ''; },
+            label: function(ctx) {
+              var r = rows[ctx.dataIndex];
+              return ['上上周: ' + r.previous.toLocaleString(), '上周: ' + r.current.toLocaleString(), '变化: ' + formatWeeklyDelta(r.delta)];
+            }
+          }
+        }
+      },
+      scales: {
+        x: { title: { display: true, text: '环比变化单量', color: '#8b8fa8', font: { size: 11 } }, grid: { color: 'rgba(255,255,255,.04)' }, ticks: { color: '#8b8fa8', font: { size: 10 }, callback: function(v) { return formatWeeklyDelta(v); } }, border: { color: 'rgba(255,255,255,.06)' } },
+        y: { grid: { display: false }, ticks: { color: '#8b8fa8', font: { size: 10 } }, border: { color: 'rgba(255,255,255,.06)' } }
+      }
+    }
+  });
+  wrap.style.height = Math.max(340, Math.min(1500, rows.length * 26 + 90)) + 'px';
+}
+
+function renderWeeklyCountryTrendChart(countries, channels) {
+  var wrap = document.getElementById('csWeeklyAnalysisWrap');
+  if (!wrap) return;
+  destroyWeeklyChangeChart();
+  wrap.innerHTML = '';
+  var weeks = channelSummary.allWeeks || [];
+  if (!weeks.length || !countries.length) {
+    showWeeklyAnalysisEmpty(!countries.length ? '请至少选择一个国家' : '当前数据暂无周趋势');
+    return;
+  }
+  var canvas = document.createElement('canvas');
+  wrap.appendChild(canvas);
+  var colors = ['#34d399','#818cf8','#fbbf24','#f87171','#a78bfa','#f472b6','#38bdf8','#fb923c'];
+  var activeCountries = countries.map(function(cn) {
+    var series = getCountryWeeklySeriesForChange(cn, channels);
+    var total = weeks.reduce(function(sum, w) { return sum + Number(series[w] || 0); }, 0);
+    return { country: cn, series: series, total: total };
+  }).filter(function(item) { return item.total > 0; })
+    .sort(function(a, b) { return b.total - a.total; })
+    .slice(0, 12);
+  if (!activeCountries.length) {
+    showWeeklyAnalysisEmpty('当前筛选线路暂无国家单量数据');
+    return;
+  }
+  var analysisSub = document.getElementById('csWeeklyAnalysisSub');
+  if (analysisSub) analysisSub.textContent = '已选 ' + channels.length + ' 条线路 · 展示单量最高的 ' + activeCountries.length + ' 个国家 · 红色↓绿色↑表示环比增减';
+  var datasets = activeCountries.map(function(item, i) {
+    var cn = item.country;
+    var series = item.series;
+    return {
+      label: getCountryDisplayCode(cn),
+      fullName: cn,
+      data: weeks.map(function(w) { return Number(series[w] || 0); }),
+      borderColor: colors[i % colors.length],
+      backgroundColor: colors[i % colors.length] + '18',
+      borderWidth: 2.2,
+      pointRadius: 3,
+      pointHoverRadius: 5,
+      tension: 0.32,
+      fill: false
+    };
+  });
+  weeklyChangeChart = new Chart(canvas, {
+    type: 'line',
+    data: {
+      labels: weeks.map(function(w, i) { return 'W' + (i + 1); }),
+      fullLabels: weeks.map(function(w) { return getWeekDisplayLabel(w); }),
+      datasets: datasets
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { position: 'bottom', labels: { usePointStyle: true, padding: 18, color: '#8b8fa8', font: { size: 11 }, boxWidth: 8 } },
+        tooltip: {
+          backgroundColor: '#1c1f2e', titleColor: '#e4e6f0', bodyColor: '#c4c6d4', borderColor: '#252836', borderWidth: 1, padding: 10, cornerRadius: 8,
+          callbacks: {
+            title: function(items) { var idx = items.length ? items[0].dataIndex : 0; return weeklyChangeChart.data.fullLabels ? weeklyChangeChart.data.fullLabels[idx] : ''; },
+            label: function(ctx) {
+              var ds = ctx.dataset;
+              var val = Number(ctx.raw || 0);
+              var prev = ctx.dataIndex > 0 ? Number(ds.data[ctx.dataIndex - 1] || 0) : 0;
+              var delta = ctx.dataIndex > 0 ? val - prev : 0;
+              return ds.fullName + ': ' + val.toLocaleString() + (delta !== 0 ? ' (' + formatWeeklyDelta(delta) + ')' : '');
+            }
+          }
+        }
+      },
+      scales: {
+        x: { title: { display: true, text: '周', color: '#8b8fa8', font: { size: 11 } }, grid: { color: 'rgba(255,255,255,.04)' }, ticks: { color: '#8b8fa8', font: { size: 10 } }, border: { color: 'rgba(255,255,255,.06)' } },
+        y: { title: { display: true, text: '单量', color: '#8b8fa8', font: { size: 11 } }, beginAtZero: true, grid: { color: 'rgba(255,255,255,.04)' }, ticks: { color: '#8b8fa8', font: { size: 10 } }, border: { color: 'rgba(255,255,255,.06)' } }
+      }
+    },
+    plugins: [{
+      id: 'weeklyTrendChangeMarkers',
+      afterDatasetsDraw: function(chart) {
+        var ctx = chart.ctx;
+        chart.data.datasets.forEach(function(ds, di) {
+          var meta = chart.getDatasetMeta(di);
+          if (!meta || meta.hidden) return;
+          for (var i = 1; i < ds.data.length; i++) {
+            var delta = Number(ds.data[i] || 0) - Number(ds.data[i - 1] || 0);
+            if (!delta) continue;
+            var point = meta.data[i];
+            if (!point) continue;
+            var up = delta > 0;
+            ctx.save();
+            ctx.fillStyle = up ? '#34d399' : '#f87171';
+            ctx.font = "700 11px 'Inter',sans-serif";
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'bottom';
+            ctx.fillText(up ? '↑' : '↓', point.x, up ? point.y - 11 : point.y + 21);
+            ctx.restore();
+          }
+        });
+      }
+    }]
+  });
+  wrap.style.height = Math.max(340, Math.min(720, activeCountries.length * 20 + 260)) + 'px';
+}
+
+function renderWeeklyChangeBoard() {
+  ensureWeeklyChangeBoard();
+  var board = document.getElementById('csWeeklyChange');
+  if (!board) return;
+  if (!channelSummary || !channelSummary.channels || channelSummary.channels.length === 0) {
+    board.style.display = 'none';
+    destroyWeeklyChangeChart();
+    return;
+  }
+  board.style.display = 'block';
+  var sub = document.getElementById('csWeeklyChangeSub');
+  var title = document.getElementById('csWeeklyAnalysisTitle');
+  var analysisSub = document.getElementById('csWeeklyAnalysisSub');
+  var empty = document.getElementById('csWeeklyAnalysisEmpty');
+  var wrap = document.getElementById('csWeeklyAnalysisWrap');
+  var pair = getWeeklyChangePair();
+  var channels = getChangeSelectedChannels();
+  var countries = getChangeSelectedCountries();
+  if (sub) sub.textContent = pair ? ('上上周 ' + getWeekDisplayLabel(pair.previous) + ' · 上周 ' + getWeekDisplayLabel(pair.current)) : '当前仅有一个自然周，暂无环比数据';
+  if (!pair || !channels.length || !countries.length) {
+    var rise = document.getElementById('csWcRise');
+    var fall = document.getElementById('csWcFall');
+    if (rise) rise.innerHTML = '';
+    if (fall) fall.innerHTML = '';
+    destroyWeeklyChangeChart();
+    if (wrap) wrap.innerHTML = '';
+    if (empty) {
+      empty.style.display = 'block';
+      empty.textContent = !channels.length ? '请至少选择一条线路' : (!countries.length ? '请至少选择一个国家' : '至少需要两个自然周数据，请选择自定义时间段查看');
+    }
+    if (title) title.textContent = '各国单量环比变化排行';
+    if (analysisSub) analysisSub.textContent = '';
+    if (wrap) wrap.style.height = '340px';
+    return;
+  }
+  var changeData = buildWeeklyChannelChangeRows();
+  if (changeData) renderWeeklyChangeRows(pair, changeData);
+  var allChannelsSelected = channelSummary.channels.length > 0 && channels.length === channelSummary.channels.length;
+  if (allChannelsSelected) {
+    if (title) title.textContent = '各国单量环比变化排行';
+    if (analysisSub) analysisSub.textContent = '所有线路的各国合计单量 · 按上周较上上周增量倒序 · 绿色增长 / 红色下降';
+    renderWeeklyCountryDeltaChart(countries, channels, pair);
+  } else {
+    if (title) title.textContent = '各国每周单量趋势';
+    if (analysisSub) analysisSub.textContent = '已选 ' + channels.length + ' 条线路 · ' + countries.length + ' 个国家 · 红色↓绿色↑表示环比增减';
+    renderWeeklyCountryTrendChart(countries, channels);
+  }
 }
 
 function renderTrendChart() {
@@ -1846,6 +2275,7 @@ function renderCostSuggestions() {
 function refreshFilteredChannelViews() {
   updateSummaryTable();
   renderRankingChart();
+  renderWeeklyChangeBoard();
   renderTrendChart();
   renderCostSuggestions();
 }
@@ -1877,12 +2307,14 @@ function renderChannelSummary(){
   
   if (rankingChart) { rankingChart.destroy(); rankingChart = null; }
   if (trendChart) { trendChart.destroy(); trendChart = null; }
+  if (weeklyChangeChart) { weeklyChangeChart.destroy(); weeklyChangeChart = null; }
   csTrendChannels = [];
   csTrendCountries = [];
   csTrendStores = [];
   csTrendMode = currentPeriodMode === 'custom' ? 'day' : 'week';
   
   renderRankingChart();
+  renderWeeklyChangeBoard();
   initWeekPicker();
   initTrendSelect();
   initTrendCountrySelect();
