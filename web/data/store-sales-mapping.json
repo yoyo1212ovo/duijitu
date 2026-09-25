@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-25T19:20:47.638Z",
+  "updatedAt": "2026-09-25T22:30:08.494Z",
   "records": [
     {
       "id": "sales-unknown-148",
@@ -1928,6 +1928,14 @@
       "manual": true
     },
     {
+      "id": "sales-unknown-287",
+      "storeName": "trae-moe圣诞老人",
+      "salesName": "廖晨昊",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
+    },
+    {
       "id": "sales-unknown-112",
       "storeName": "Trae-trigger打火机",
       "salesName": "廖晨昊",
@@ -2025,6 +2033,14 @@
       "auto": true,
       "status": "assigned",
       "manual": false
+    },
+    {
+      "id": "sales-unknown-288",
+      "storeName": "X²-Ivy Liu-波兰毯子2店",
+      "salesName": "廖晨昊",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
     },
     {
       "id": "sales-unknown-131",
