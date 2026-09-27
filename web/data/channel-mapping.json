@@ -1,10 +1,37 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-27T18:30:03.597Z",
+  "updatedAt": "2026-09-27T21:33:56.967Z",
   "records": [
+    {
+      "id": "map-unknown-353",
+      "sourceName": "4PX国际快递经济速递",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
+    },
     {
       "id": "map-unknown-351",
       "sourceName": "欧洲优选专线敏感",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
+    },
+    {
+      "id": "map-unknown-354",
+      "sourceName": "顺瓴BS专线敏感货",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
+    },
+    {
+      "id": "map-unknown-355",
+      "sourceName": "云途全球专线挂号（标快带电）-加拿大",
       "providerChannel": "",
       "provider": "",
       "displayName": "",
