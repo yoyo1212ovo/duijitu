@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-27T19:45:12.546Z",
+  "updatedAt": "2026-09-27T22:35:04.089Z",
   "records": [
     {
       "id": "sales-unknown-148",
@@ -189,6 +189,14 @@
       "auto": true,
       "status": "assigned",
       "manual": false
+    },
+    {
+      "id": "sales-unknown-291",
+      "storeName": "苏苏-美国牙套",
+      "salesName": "苏爱拜",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
     },
     {
       "id": "sales-unknown-122",
@@ -1424,6 +1432,14 @@
       "manual": false
     },
     {
+      "id": "sales-unknown-290",
+      "storeName": "Josie-第三十个波兰人脱毛仪",
+      "salesName": "Josie-周晓清",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
+    },
+    {
       "id": "sales-unknown-36",
       "storeName": "Josie-第十二个波兰人大熊猫",
       "salesName": "Josie-周晓清",
@@ -2283,6 +2299,14 @@
       "auto": true,
       "status": "assigned",
       "manual": false
+    },
+    {
+      "id": "sales-unknown-289",
+      "storeName": "X²-Jaye-美国按摩梳",
+      "salesName": "高明轩",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
     },
     {
       "id": "sales-unknown-255",
