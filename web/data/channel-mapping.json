@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-28T18:43:58.012Z",
+  "updatedAt": "2026-09-28T23:33:42.652Z",
   "records": [
     {
       "id": "map-unknown-353",
@@ -11,6 +11,24 @@
       "enabled": false,
       "manual": false,
       "status": "unmapped"
+    },
+    {
+      "id": "map-unknown-356",
+      "sourceName": "海外仓传单号专用",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
+    },
+    {
+      "id": "map-unknown-357",
+      "sourceName": "急速全球专线特惠-带电",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
     },
     {
       "id": "map-unknown-351",
