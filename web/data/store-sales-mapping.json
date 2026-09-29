@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-29T18:15:08.264Z",
+  "updatedAt": "2026-09-29T22:17:21.381Z",
   "records": [
     {
       "id": "sales-unknown-148",
@@ -14,15 +14,6 @@
     {
       "id": "sales-unknown-166",
       "storeName": "1688项目私域",
-      "salesName": "",
-      "enabled": true,
-      "auto": false,
-      "status": "unassigned",
-      "manual": false
-    },
-    {
-      "id": "sales-unknown-66",
-      "storeName": "2dbb77-0e",
       "salesName": "",
       "enabled": true,
       "auto": false,
@@ -72,6 +63,15 @@
       "auto": false,
       "status": "unassigned",
       "manual": true
+    },
+    {
+      "id": "sales-unknown-66",
+      "storeName": "2dbb77-0e",
+      "salesName": "卓洪宇",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-245",
@@ -1168,6 +1168,14 @@
       "auto": true,
       "status": "assigned",
       "manual": false
+    },
+    {
+      "id": "sales-unknown-294",
+      "storeName": "Ivy-Avicenna面膜",
+      "salesName": "范梦微",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
     },
     {
       "id": "sales-unknown-220",
