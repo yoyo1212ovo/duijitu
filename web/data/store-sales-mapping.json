@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-28T20:41:53.099Z",
+  "updatedAt": "2026-09-29T00:33:12.551Z",
   "records": [
     {
       "id": "sales-unknown-148",
@@ -296,6 +296,14 @@
       "auto": false,
       "status": "assigned",
       "manual": true
+    },
+    {
+      "id": "sales-unknown-293",
+      "storeName": "Ada-印度小猫咪",
+      "salesName": "邓鑫钰",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
     },
     {
       "id": "sales-unknown-115",
@@ -1492,6 +1500,14 @@
       "auto": true,
       "status": "assigned",
       "manual": false
+    },
+    {
+      "id": "sales-unknown-292",
+      "storeName": "Josie-第四十一个波兰人塞尔维亚狗串",
+      "salesName": "Josie-周晓清",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
     },
     {
       "id": "sales-unknown-281",
