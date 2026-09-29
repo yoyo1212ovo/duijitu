@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-29T20:16:05.521Z",
+  "updatedAt": "2026-09-29T23:47:40.812Z",
   "records": [
     {
       "id": "map-unknown-353",
@@ -51,6 +51,15 @@
       "status": "unmapped"
     },
     {
+      "id": "map-unknown-359",
+      "sourceName": "云途岛屿专线（特惠带电）-回传转单号",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
+    },
+    {
       "id": "map-unknown-355",
       "sourceName": "云途全球专线挂号（标快带电）-加拿大",
       "providerChannel": "",
@@ -69,6 +78,15 @@
       "enabled": false,
       "manual": false,
       "status": "unmapped"
+    },
+    {
+      "id": "map-unknown-358",
+      "sourceName": "智尚选-特惠",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
     },
     {
       "id": "map-38",
