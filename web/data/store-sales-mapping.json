@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-30T01:19:45.077Z",
+  "updatedAt": "2026-09-30T06:49:59.206Z",
   "records": [
     {
       "id": "sales-unknown-148",
@@ -44,7 +44,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-228",
@@ -196,7 +197,8 @@
       "salesName": "苏爱拜",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-122",
@@ -303,7 +305,8 @@
       "salesName": "邓鑫钰",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-115",
@@ -1175,7 +1178,8 @@
       "salesName": "范梦微",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-220",
@@ -1453,7 +1457,8 @@
       "salesName": "Josie-周晓清",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-36",
@@ -1515,7 +1520,8 @@
       "salesName": "Josie-周晓清",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-281",
@@ -1973,7 +1979,8 @@
       "salesName": "廖晨昊",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-112",
@@ -2080,7 +2087,8 @@
       "salesName": "廖晨昊",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-131",
@@ -2241,7 +2249,8 @@
       "salesName": "刘天瑾",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-134",
@@ -2330,7 +2339,8 @@
       "salesName": "高明轩",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-255",
