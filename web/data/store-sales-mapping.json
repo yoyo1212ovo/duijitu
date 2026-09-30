@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-30T18:23:08.289Z",
+  "updatedAt": "2026-09-30T22:24:12.066Z",
   "records": [
     {
       "id": "sales-unknown-148",
@@ -37,6 +37,14 @@
       "auto": false,
       "status": "unassigned",
       "manual": false
+    },
+    {
+      "id": "sales-unknown-296",
+      "storeName": "Ivy-Florian按摩贴",
+      "salesName": "",
+      "enabled": true,
+      "auto": false,
+      "status": "unassigned"
     },
     {
       "id": "sales-unknown-285",
@@ -1090,6 +1098,14 @@
       "auto": false,
       "status": "assigned",
       "manual": true
+    },
+    {
+      "id": "sales-unknown-295",
+      "storeName": "Ivy-德国Tony",
+      "salesName": "范梦微",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
     },
     {
       "id": "sales-unknown-247",
