@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-02T19:16:48.205Z",
+  "updatedAt": "2026-10-02T23:04:49.838Z",
   "records": [
     {
       "id": "map-unknown-353",
@@ -15,6 +15,15 @@
     {
       "id": "map-unknown-356",
       "sourceName": "海外仓传单号专用",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
+    },
+    {
+      "id": "map-unknown-361",
+      "sourceName": "华速通-标准",
       "providerChannel": "",
       "provider": "",
       "displayName": "",
@@ -78,6 +87,15 @@
       "enabled": false,
       "manual": false,
       "status": "unmapped"
+    },
+    {
+      "id": "map-unknown-362",
+      "sourceName": "云途全球专线挂号（特快普货）",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
     },
     {
       "id": "map-unknown-358",
