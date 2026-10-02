@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-02T19:45:30.755Z",
+  "updatedAt": "2026-10-02T23:16:37.831Z",
   "records": [
     {
       "id": "sales-unknown-148",
@@ -19,6 +19,14 @@
       "auto": false,
       "status": "unassigned",
       "manual": false
+    },
+    {
+      "id": "sales-unknown-298",
+      "storeName": "非自营手工单",
+      "salesName": "",
+      "enabled": true,
+      "auto": false,
+      "status": "unassigned"
     },
     {
       "id": "sales-unknown-248",
