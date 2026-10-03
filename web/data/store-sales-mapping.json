@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-03T16:45:59.942Z",
+  "updatedAt": "2026-10-03T19:29:13.645Z",
   "records": [
     {
       "id": "sales-unknown-148",
@@ -415,6 +415,14 @@
       "manual": false
     },
     {
+      "id": "sales-unknown-302",
+      "storeName": "Alay-法国眼贴2",
+      "salesName": "杨继超",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
+    },
+    {
       "id": "sales-unknown-93",
       "storeName": "Alay-锅厨具",
       "salesName": "杨继超",
@@ -809,6 +817,14 @@
       "auto": false,
       "status": "assigned",
       "manual": true
+    },
+    {
+      "id": "sales-unknown-301",
+      "storeName": "Danae-AU玩具好手男",
+      "salesName": "何烁丹",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
     },
     {
       "id": "sales-unknown-17",
@@ -1575,6 +1591,14 @@
       "manual": false
     },
     {
+      "id": "sales-unknown-300",
+      "storeName": "Josie-美国画布",
+      "salesName": "Josie-周晓清",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
+    },
+    {
       "id": "sales-unknown-277",
       "storeName": "Josie-美国礼物卡",
       "salesName": "Josie-周晓清",
@@ -2175,6 +2199,14 @@
       "auto": true,
       "status": "assigned",
       "manual": false
+    },
+    {
+      "id": "sales-unknown-299",
+      "storeName": "X²-Ivy Liu-美国握力器",
+      "salesName": "刘天瑾",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
     },
     {
       "id": "sales-unknown-257",
