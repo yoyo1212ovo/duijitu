@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-03T16:47:25.318Z",
+  "updatedAt": "2026-10-03T19:32:35.394Z",
   "records": [
     {
       "id": "map-unknown-353",
@@ -11,6 +11,15 @@
       "enabled": false,
       "manual": false,
       "status": "unmapped"
+    },
+    {
+      "id": "map-unknown-363",
+      "sourceName": "够快商派普货专线",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
     },
     {
       "id": "map-unknown-356",
@@ -89,8 +98,35 @@
       "status": "unmapped"
     },
     {
+      "id": "map-unknown-366",
+      "sourceName": "云途全球专线挂号（标快普货）-申报不设限",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
+    },
+    {
+      "id": "map-unknown-364",
+      "sourceName": "云途全球专线挂号（特惠普货）-申报不设限",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
+    },
+    {
       "id": "map-unknown-362",
       "sourceName": "云途全球专线挂号（特快普货）",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
+    },
+    {
+      "id": "map-unknown-365",
+      "sourceName": "智惠选专线-特货(不限偏远)-回传",
       "providerChannel": "",
       "provider": "",
       "displayName": "",
