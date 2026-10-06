@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-05T18:44:44.256Z",
+  "updatedAt": "2026-10-06T00:23:29.901Z",
   "records": [
     {
       "id": "map-unknown-353",
@@ -42,6 +42,15 @@
     {
       "id": "map-unknown-357",
       "sourceName": "急速全球专线特惠-带电",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
+    },
+    {
+      "id": "map-unknown-367",
+      "sourceName": "急速全球专线特惠-普货",
       "providerChannel": "",
       "provider": "",
       "displayName": "",
