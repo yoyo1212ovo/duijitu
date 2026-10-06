@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-05T22:11:16.381Z",
+  "updatedAt": "2026-10-06T02:17:06.051Z",
   "records": [
     {
       "id": "sales-unknown-148",
@@ -323,6 +323,14 @@
       "auto": true,
       "status": "assigned",
       "manual": false
+    },
+    {
+      "id": "sales-unknown-304",
+      "storeName": "Ada-印度小猫咪2店",
+      "salesName": "邓鑫钰",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
     },
     {
       "id": "sales-unknown-115",
@@ -817,6 +825,14 @@
       "auto": false,
       "status": "assigned",
       "manual": true
+    },
+    {
+      "id": "sales-unknown-303",
+      "storeName": "Danae-anis",
+      "salesName": "何烁丹",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
     },
     {
       "id": "sales-unknown-301",
@@ -2057,6 +2073,14 @@
       "manual": false
     },
     {
+      "id": "sales-unknown-305",
+      "storeName": "Trae法国宠物喷剂",
+      "salesName": "廖晨昊",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
+    },
+    {
       "id": "sales-unknown-141",
       "storeName": "X²- Jaye-法国美容仪",
       "salesName": "高明轩",
@@ -2154,6 +2178,14 @@
       "auto": true,
       "status": "assigned",
       "manual": false
+    },
+    {
+      "id": "sales-unknown-307",
+      "storeName": "X²-Ivy Liu-波兰蒸汽机3店",
+      "salesName": "刘天瑾",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
     },
     {
       "id": "sales-unknown-85",
@@ -2603,6 +2635,14 @@
       "auto": false,
       "status": "assigned",
       "manual": true
+    },
+    {
+      "id": "sales-unknown-306",
+      "storeName": "ZCL-德国除草",
+      "salesName": "张丛麟",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
     },
     {
       "id": "sales-unknown-102",
