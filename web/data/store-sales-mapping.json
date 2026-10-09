@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-09T19:40:50.559Z",
+  "updatedAt": "2026-10-09T23:29:21.979Z",
   "records": [
     {
       "id": "sales-unknown-148",
@@ -45,6 +45,22 @@
       "auto": false,
       "status": "unassigned",
       "manual": false
+    },
+    {
+      "id": "sales-unknown-316",
+      "storeName": "Cedric-Emil波兰电子秤",
+      "salesName": "",
+      "enabled": true,
+      "auto": false,
+      "status": "unassigned"
+    },
+    {
+      "id": "sales-unknown-317",
+      "storeName": "Gianna-法国帅哥项链",
+      "salesName": "",
+      "enabled": true,
+      "auto": false,
+      "status": "unassigned"
     },
     {
       "id": "sales-unknown-296",
@@ -510,6 +526,14 @@
       "auto": true,
       "status": "assigned",
       "manual": false
+    },
+    {
+      "id": "sales-unknown-312",
+      "storeName": "Alay-西班牙Carlos",
+      "salesName": "杨继超",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
     },
     {
       "id": "sales-unknown-181",
@@ -1400,6 +1424,14 @@
       "manual": true
     },
     {
+      "id": "sales-unknown-314",
+      "storeName": "josie-3pl耳机",
+      "salesName": "Josie-周晓清",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
+    },
+    {
       "id": "sales-unknown-282",
       "storeName": "Josie-7波挖耳勺",
       "salesName": "Josie-周晓清",
@@ -1425,6 +1457,14 @@
       "auto": true,
       "status": "assigned",
       "manual": false
+    },
+    {
+      "id": "sales-unknown-311",
+      "storeName": "josie-德国三角板",
+      "salesName": "Josie-周晓清",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
     },
     {
       "id": "sales-unknown-146",
@@ -1625,6 +1665,14 @@
     {
       "id": "sales-unknown-300",
       "storeName": "Josie-美国画布",
+      "salesName": "Josie-周晓清",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
+    },
+    {
+      "id": "sales-unknown-319",
+      "storeName": "Josie-美国加拿大鞋子",
       "salesName": "Josie-周晓清",
       "enabled": true,
       "auto": true,
@@ -1844,6 +1892,14 @@
       "auto": true,
       "status": "assigned",
       "manual": false
+    },
+    {
+      "id": "sales-unknown-318",
+      "storeName": "Josie-VA kacper",
+      "salesName": "Josie-周晓清",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
     },
     {
       "id": "sales-unknown-79",
@@ -2240,6 +2296,14 @@
       "manual": false
     },
     {
+      "id": "sales-unknown-313",
+      "storeName": "X²-Ivy Liu-加拿大滴剂",
+      "salesName": "刘天瑾",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
+    },
+    {
       "id": "sales-unknown-42",
       "storeName": "X²-Ivy Liu-美国定制背心",
       "salesName": "刘天瑾",
@@ -2563,6 +2627,14 @@
       "manual": true
     },
     {
+      "id": "sales-unknown-315",
+      "storeName": "X²-ltj-英国牙刷4",
+      "salesName": "刘天瑾",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
+    },
+    {
       "id": "sales-unknown-139",
       "storeName": "X²-ltjJosie-美国握力器",
       "salesName": "刘天瑾",
@@ -2651,6 +2723,14 @@
       "auto": false,
       "status": "assigned",
       "manual": true
+    },
+    {
+      "id": "sales-unknown-310",
+      "storeName": "ZCL-波兰小书",
+      "salesName": "张丛麟",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
     },
     {
       "id": "sales-unknown-306",
