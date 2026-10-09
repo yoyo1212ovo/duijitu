@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-09T19:03:27.074Z",
+  "updatedAt": "2026-10-09T23:12:26.945Z",
   "records": [
     {
       "id": "map-unknown-353",
@@ -33,6 +33,15 @@
     {
       "id": "map-unknown-361",
       "sourceName": "华速通-标准",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
+    },
+    {
+      "id": "map-unknown-373",
+      "sourceName": "急速化妆品专线",
       "providerChannel": "",
       "provider": "",
       "displayName": "",
@@ -89,6 +98,15 @@
     {
       "id": "map-unknown-359",
       "sourceName": "云途岛屿专线（特惠带电）-回传转单号",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
+    },
+    {
+      "id": "map-unknown-372",
+      "sourceName": "云途全球精选专线挂号（特惠普货）-加拿大",
       "providerChannel": "",
       "provider": "",
       "displayName": "",
