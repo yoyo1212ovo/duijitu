@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-10T18:59:44.057Z",
+  "updatedAt": "2026-10-10T22:26:04.925Z",
   "records": [
     {
       "id": "map-unknown-353",
@@ -60,6 +60,15 @@
     {
       "id": "map-unknown-367",
       "sourceName": "急速全球专线特惠-普货",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
+    },
+    {
+      "id": "map-unknown-374",
+      "sourceName": "美国岛屿专线-带电",
       "providerChannel": "",
       "provider": "",
       "displayName": "",
