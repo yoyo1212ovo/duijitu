@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-10T18:56:40.036Z",
+  "updatedAt": "2026-10-10T22:07:37.658Z",
   "records": [
     {
       "id": "sales-unknown-148",
@@ -1564,6 +1564,14 @@
       "manual": false
     },
     {
+      "id": "sales-unknown-320",
+      "storeName": "josie-第三十二个波兰人内裤店",
+      "salesName": "Josie-周晓清",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
+    },
+    {
       "id": "sales-unknown-290",
       "storeName": "Josie-第三十个波兰人脱毛仪",
       "salesName": "Josie-周晓清",
@@ -2196,6 +2204,14 @@
       "auto": false,
       "status": "assigned",
       "manual": true
+    },
+    {
+      "id": "sales-unknown-321",
+      "storeName": "X²-cy-澳大利亚大k",
+      "salesName": "崔叶",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
     },
     {
       "id": "sales-unknown-38",
