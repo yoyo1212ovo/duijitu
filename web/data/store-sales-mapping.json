@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-11T18:18:08.307Z",
+  "updatedAt": "2026-10-11T22:04:43.281Z",
   "records": [
     {
       "id": "sales-unknown-148",
@@ -1572,6 +1572,14 @@
       "status": "assigned"
     },
     {
+      "id": "sales-unknown-322",
+      "storeName": "josie-第三十二个波兰人手指抓力器",
+      "salesName": "Josie-周晓清",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
+    },
+    {
       "id": "sales-unknown-290",
       "storeName": "Josie-第三十个波兰人脱毛仪",
       "salesName": "Josie-周晓清",
@@ -2641,6 +2649,14 @@
       "auto": false,
       "status": "assigned",
       "manual": true
+    },
+    {
+      "id": "sales-unknown-323",
+      "storeName": "X²-Lisa-法国超市",
+      "salesName": "李天宣",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
     },
     {
       "id": "sales-unknown-315",
