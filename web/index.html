@@ -656,6 +656,10 @@ document.querySelectorAll('.mt-btn').forEach(function(btn){btn.addEventListener(
 var rankingChart = null;
 var trendChart = null;
 var weeklyChangeChart = null;
+var liveWeeklyBoardCacheKey = '';
+var liveWeeklyBoardPromise = null;
+var liveWeeklyBoardLoading = false;
+var liveWeeklyBoardSummary = null;
 var csSelectedWeek = null;
 var csSelectedChannels = [];
 var csSelectedCountries = [];
@@ -1392,6 +1396,95 @@ function renderWeeklyRouteCountryChangeRows(channels, countries, pair) {
 }
 
 function renderWeeklyChangeBoard() {
+  if (currentPeriodMode === 'live') {
+    loadLiveWeeklyChangeBoard();
+    return;
+  }
+  renderWeeklyChangeBoardSync();
+}
+
+async function loadLiveWeeklyChangeBoard() {
+  if (!liveHistoryWeeks || !liveHistoryWeeks.length) {
+    try {
+      var hist = await API.liveHistory();
+      liveHistoryWeeks = (hist && hist.weeks) || [];
+      liveHistoryDays = (hist && hist.days) || [];
+    } catch (e) {}
+  }
+  var complete = (liveHistoryWeeks || []).filter(function(w) { return Number(w.daysCount) >= 7 && w.startDate && w.endDate; });
+  if (complete.length < 2) {
+    renderWeeklyChangeBoardSync();
+    return;
+  }
+  var prev = complete[complete.length - 2];
+  var curr = complete[complete.length - 1];
+  var key = prev.startDate + '|' + curr.endDate;
+  if (liveWeeklyBoardCacheKey === key) {
+    if (liveWeeklyBoardSummary) {
+      renderLiveWeeklyBoardWithSummary(liveWeeklyBoardSummary);
+      return;
+    }
+    if (liveWeeklyBoardPromise) {
+      try {
+        var cachedSummary = await liveWeeklyBoardPromise;
+        if (cachedSummary && cachedSummary.channels && cachedSummary.channels.length) {
+          renderLiveWeeklyBoardWithSummary(cachedSummary);
+        } else {
+          renderWeeklyChangeBoardSync();
+        }
+      } catch (e) {
+        renderWeeklyChangeBoardSync();
+      }
+      return;
+    }
+  }
+  liveWeeklyBoardCacheKey = key;
+  liveWeeklyBoardLoading = true;
+  try {
+    liveWeeklyBoardPromise = API.liveHistoryRange(prev.startDate, curr.endDate);
+    var data = await liveWeeklyBoardPromise;
+    var summary = data && data.channelSummary;
+    if (!summary || !summary.channels || !summary.channels.length) {
+      liveWeeklyBoardPromise = null;
+      liveWeeklyBoardCacheKey = '';
+      renderWeeklyChangeBoardSync();
+      return;
+    }
+    liveWeeklyBoardSummary = summary;
+    renderLiveWeeklyBoardWithSummary(summary);
+  } catch (e) {
+    liveWeeklyBoardCacheKey = '';
+    liveWeeklyBoardPromise = null;
+    liveWeeklyBoardSummary = null;
+    renderWeeklyChangeBoardSync();
+  } finally {
+    liveWeeklyBoardLoading = false;
+  }
+}
+
+function renderLiveWeeklyBoardWithSummary(summary) {
+  var oldSummary = channelSummary;
+  var oldSelectedChannels = csSelectedChannels.slice();
+  var oldSelectedCountries = csSelectedCountries.slice();
+  var allLiveSelected = oldSummary && oldSummary.channels && oldSelectedChannels.length === oldSummary.channels.length && oldSelectedChannels.length > 0;
+  channelSummary = summary;
+  if (allLiveSelected) {
+    csSelectedChannels = summary.channels.slice();
+  } else {
+    csSelectedChannels = oldSelectedChannels.filter(function(ch) { return summary.channels.indexOf(ch) >= 0; });
+  }
+  if (oldSelectedCountries && oldSelectedCountries.length) {
+    csSelectedCountries = oldSelectedCountries.filter(function(cn) { return (summary.countries || []).indexOf(cn) >= 0; });
+  } else {
+    csSelectedCountries = [];
+  }
+  renderWeeklyChangeBoardSync();
+  channelSummary = oldSummary;
+  csSelectedChannels = oldSelectedChannels;
+  csSelectedCountries = oldSelectedCountries;
+}
+
+function renderWeeklyChangeBoardSync() {
   ensureWeeklyChangeBoard();
   var board = document.getElementById('csWeeklyChange');
   if (!board) return;
