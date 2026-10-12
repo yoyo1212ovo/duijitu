@@ -1412,6 +1412,7 @@ async function loadLiveWeeklyChangeBoard() {
     } catch (e) {}
   }
   var complete = (liveHistoryWeeks || []).filter(function(w) { return Number(w.daysCount) >= 7 && w.startDate && w.endDate; });
+  complete.sort(function(a, b) { return a.key < b.key ? -1 : (a.key > b.key ? 1 : 0); });
   if (complete.length < 2) {
     renderWeeklyChangeBoardSync();
     return;
@@ -1485,6 +1486,17 @@ function renderLiveWeeklyBoardWithSummary(summary) {
 }
 
 function renderWeeklyChangeBoardSync() {
+  if (currentPeriodMode === 'live') {
+    if (!liveWeeklyBoardSummary) {
+      var preBoard = document.getElementById('csWeeklyChange');
+      if (preBoard) preBoard.style.display = 'none';
+      return;
+    }
+    if (channelSummary !== liveWeeklyBoardSummary) {
+      renderLiveWeeklyBoardWithSummary(liveWeeklyBoardSummary);
+      return;
+    }
+  }
   ensureWeeklyChangeBoard();
   var board = document.getElementById('csWeeklyChange');
   if (!board) return;
