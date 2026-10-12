@@ -1414,7 +1414,7 @@ async function loadLiveWeeklyChangeBoard() {
   var complete = (liveHistoryWeeks || []).filter(function(w) { return Number(w.daysCount) >= 7 && w.startDate && w.endDate; });
   complete.sort(function(a, b) { return a.key < b.key ? -1 : (a.key > b.key ? 1 : 0); });
   if (complete.length < 2) {
-    renderWeeklyChangeBoardSync();
+    renderWeeklyChangeBoardSync('至少需要两个完整自然周数据');
     return;
   }
   var prev = complete[complete.length - 2];
@@ -1485,11 +1485,14 @@ function renderLiveWeeklyBoardWithSummary(summary) {
   csSelectedCountries = oldSelectedCountries;
 }
 
-function renderWeeklyChangeBoardSync() {
+function renderWeeklyChangeBoardSync(liveEmptyMessage) {
   if (currentPeriodMode === 'live') {
     if (!liveWeeklyBoardSummary) {
+      ensureWeeklyChangeBoard();
       var preBoard = document.getElementById('csWeeklyChange');
-      if (preBoard) preBoard.style.display = 'none';
+      if (preBoard) preBoard.style.display = 'block';
+      var preSub = document.getElementById('csWeeklyChangeSub');
+      if (preSub) preSub.textContent = liveEmptyMessage || '正在加载最近两个完整自然周数据...';
       return;
     }
     if (channelSummary !== liveWeeklyBoardSummary) {
