@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-12T01:12:31.636Z",
+  "updatedAt": "2026-10-12T07:20:12.330Z",
   "records": [
     {
       "id": "sales-unknown-148",
@@ -26,7 +26,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-248",
@@ -52,7 +53,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-317",
@@ -60,7 +62,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-296",
@@ -68,7 +71,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-285",
@@ -346,7 +350,8 @@
       "salesName": "邓鑫钰",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-115",
@@ -444,7 +449,8 @@
       "salesName": "杨继超",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-93",
@@ -533,7 +539,8 @@
       "salesName": "杨继超",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-181",
@@ -856,7 +863,8 @@
       "salesName": "何烁丹",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-301",
@@ -864,7 +872,8 @@
       "salesName": "何烁丹",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-17",
@@ -1169,7 +1178,8 @@
       "salesName": "范梦微",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-247",
@@ -1429,7 +1439,8 @@
       "salesName": "Josie-周晓清",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-282",
@@ -1464,7 +1475,8 @@
       "salesName": "Josie-周晓清",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-146",
@@ -1499,7 +1511,8 @@
       "salesName": "Josie-周晓清",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-186",
@@ -1516,7 +1529,8 @@
       "salesName": "Josie-周晓清",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-10",
@@ -1569,7 +1583,8 @@
       "salesName": "Josie-周晓清",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-322",
@@ -1577,7 +1592,8 @@
       "salesName": "Josie-周晓清",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-290",
@@ -1684,7 +1700,8 @@
       "salesName": "Josie-周晓清",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-319",
@@ -1692,7 +1709,8 @@
       "salesName": "Josie-周晓清",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-277",
@@ -1898,7 +1916,8 @@
       "salesName": "Josie-周晓清",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-107",
@@ -1915,7 +1934,8 @@
       "salesName": "Josie-周晓清",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-79",
@@ -2166,7 +2186,8 @@
       "salesName": "廖晨昊",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-141",
@@ -2219,7 +2240,8 @@
       "salesName": "崔叶",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-38",
@@ -2281,7 +2303,8 @@
       "salesName": "刘天瑾",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-85",
@@ -2325,7 +2348,8 @@
       "salesName": "刘天瑾",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-42",
@@ -2342,7 +2366,8 @@
       "salesName": "刘天瑾",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-257",
@@ -2656,7 +2681,8 @@
       "salesName": "李天宣",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-315",
@@ -2664,7 +2690,8 @@
       "salesName": "刘天瑾",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-139",
@@ -2762,7 +2789,8 @@
       "salesName": "张丛麟",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-306",
@@ -2770,7 +2798,8 @@
       "salesName": "张丛麟",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-102",
