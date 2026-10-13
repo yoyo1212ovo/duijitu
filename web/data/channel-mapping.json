@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-13T00:32:07.673Z",
+  "updatedAt": "2026-10-13T07:03:28.116Z",
   "records": [
     {
       "id": "map-unknown-353",
@@ -18,8 +18,9 @@
       "providerChannel": "",
       "provider": "",
       "displayName": "",
-      "status": "unmapped",
-      "enabled": false
+      "enabled": false,
+      "manual": false,
+      "status": "unmapped"
     },
     {
       "id": "map-unknown-363",
@@ -27,8 +28,9 @@
       "providerChannel": "",
       "provider": "",
       "displayName": "",
-      "status": "unmapped",
-      "enabled": false
+      "enabled": false,
+      "manual": false,
+      "status": "unmapped"
     },
     {
       "id": "map-unknown-356",
@@ -36,8 +38,9 @@
       "providerChannel": "",
       "provider": "",
       "displayName": "",
-      "status": "unmapped",
-      "enabled": false
+      "enabled": false,
+      "manual": false,
+      "status": "unmapped"
     },
     {
       "id": "map-unknown-361",
@@ -45,8 +48,9 @@
       "providerChannel": "",
       "provider": "",
       "displayName": "",
-      "status": "unmapped",
-      "enabled": false
+      "enabled": false,
+      "manual": false,
+      "status": "unmapped"
     },
     {
       "id": "map-unknown-373",
@@ -54,8 +58,9 @@
       "providerChannel": "",
       "provider": "",
       "displayName": "",
-      "status": "unmapped",
-      "enabled": false
+      "enabled": false,
+      "manual": false,
+      "status": "unmapped"
     },
     {
       "id": "map-unknown-357",
@@ -63,8 +68,9 @@
       "providerChannel": "",
       "provider": "",
       "displayName": "",
-      "status": "unmapped",
-      "enabled": false
+      "enabled": false,
+      "manual": false,
+      "status": "unmapped"
     },
     {
       "id": "map-unknown-367",
@@ -72,8 +78,9 @@
       "providerChannel": "",
       "provider": "",
       "displayName": "",
-      "status": "unmapped",
-      "enabled": false
+      "enabled": false,
+      "manual": false,
+      "status": "unmapped"
     },
     {
       "id": "map-unknown-374",
@@ -81,8 +88,9 @@
       "providerChannel": "",
       "provider": "",
       "displayName": "",
-      "status": "unmapped",
-      "enabled": false
+      "enabled": false,
+      "manual": false,
+      "status": "unmapped"
     },
     {
       "id": "map-unknown-351",
@@ -110,8 +118,9 @@
       "providerChannel": "",
       "provider": "",
       "displayName": "",
-      "status": "unmapped",
-      "enabled": false
+      "enabled": false,
+      "manual": false,
+      "status": "unmapped"
     },
     {
       "id": "map-unknown-359",
@@ -119,8 +128,9 @@
       "providerChannel": "",
       "provider": "",
       "displayName": "",
-      "status": "unmapped",
-      "enabled": false
+      "enabled": false,
+      "manual": false,
+      "status": "unmapped"
     },
     {
       "id": "map-unknown-372",
@@ -128,8 +138,9 @@
       "providerChannel": "",
       "provider": "",
       "displayName": "",
-      "status": "unmapped",
-      "enabled": false
+      "enabled": false,
+      "manual": false,
+      "status": "unmapped"
     },
     {
       "id": "map-unknown-370",
@@ -137,8 +148,9 @@
       "providerChannel": "",
       "provider": "",
       "displayName": "",
-      "status": "unmapped",
-      "enabled": false
+      "enabled": false,
+      "manual": false,
+      "status": "unmapped"
     },
     {
       "id": "map-unknown-371",
@@ -146,8 +158,9 @@
       "providerChannel": "",
       "provider": "",
       "displayName": "",
-      "status": "unmapped",
-      "enabled": false
+      "enabled": false,
+      "manual": false,
+      "status": "unmapped"
     },
     {
       "id": "map-unknown-355",
@@ -175,8 +188,9 @@
       "providerChannel": "",
       "provider": "",
       "displayName": "",
-      "status": "unmapped",
-      "enabled": false
+      "enabled": false,
+      "manual": false,
+      "status": "unmapped"
     },
     {
       "id": "map-unknown-364",
@@ -184,8 +198,9 @@
       "providerChannel": "",
       "provider": "",
       "displayName": "",
-      "status": "unmapped",
-      "enabled": false
+      "enabled": false,
+      "manual": false,
+      "status": "unmapped"
     },
     {
       "id": "map-unknown-362",
@@ -193,8 +208,9 @@
       "providerChannel": "",
       "provider": "",
       "displayName": "",
-      "status": "unmapped",
-      "enabled": false
+      "enabled": false,
+      "manual": false,
+      "status": "unmapped"
     },
     {
       "id": "map-unknown-365",
@@ -202,8 +218,9 @@
       "providerChannel": "",
       "provider": "",
       "displayName": "",
-      "status": "unmapped",
-      "enabled": false
+      "enabled": false,
+      "manual": false,
+      "status": "unmapped"
     },
     {
       "id": "map-unknown-358",
@@ -211,8 +228,9 @@
       "providerChannel": "",
       "provider": "",
       "displayName": "",
-      "status": "unmapped",
-      "enabled": false
+      "enabled": false,
+      "manual": false,
+      "status": "unmapped"
     },
     {
       "id": "map-unknown-368",
@@ -220,8 +238,9 @@
       "providerChannel": "",
       "provider": "",
       "displayName": "",
-      "status": "unmapped",
-      "enabled": false
+      "enabled": false,
+      "manual": false,
+      "status": "unmapped"
     },
     {
       "id": "map-unknown-360",
@@ -229,8 +248,9 @@
       "providerChannel": "",
       "provider": "",
       "displayName": "",
-      "status": "unmapped",
-      "enabled": false
+      "enabled": false,
+      "manual": false,
+      "status": "unmapped"
     },
     {
       "id": "map-38",
