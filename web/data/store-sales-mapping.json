@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-13T18:05:17.723Z",
+  "updatedAt": "2026-10-13T22:37:31.191Z",
   "records": [
     {
       "id": "sales-unknown-148",
@@ -759,6 +759,14 @@
       "manual": false
     },
     {
+      "id": "sales-unknown-326",
+      "storeName": "Danae-兰波人宠物店",
+      "salesName": "何烁丹",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
+    },
+    {
       "id": "sales-unknown-50",
       "storeName": "Danae-兰波人眼镜",
       "salesName": "卓洪宇",
@@ -1515,6 +1523,14 @@
       "manual": false
     },
     {
+      "id": "sales-unknown-329",
+      "storeName": "josie-第43个波兰人美缝胶带",
+      "salesName": "Josie-周晓清",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
+    },
+    {
       "id": "sales-unknown-186",
       "storeName": "Josie-第二十四个波兰人",
       "salesName": "Josie-周晓清",
@@ -2244,6 +2260,14 @@
       "manual": false
     },
     {
+      "id": "sales-unknown-328",
+      "storeName": "X²-Ethan-斯拉夫的宠物用品",
+      "salesName": "赵伯言",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
+    },
+    {
       "id": "sales-unknown-38",
       "storeName": "X²-Hebe-澳大利亚彩虹",
       "salesName": "杨琪涵",
@@ -2278,6 +2302,14 @@
       "auto": true,
       "status": "assigned",
       "manual": false
+    },
+    {
+      "id": "sales-unknown-327",
+      "storeName": "X²-Hebe-法国鼠标垫",
+      "salesName": "杨琪涵",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
     },
     {
       "id": "sales-unknown-288",
@@ -2368,6 +2400,14 @@
       "auto": true,
       "status": "assigned",
       "manual": false
+    },
+    {
+      "id": "sales-unknown-325",
+      "storeName": "X²-Ivy Liu-美国星星灯",
+      "salesName": "刘天瑾",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
     },
     {
       "id": "sales-unknown-257",
@@ -2503,6 +2543,14 @@
       "auto": false,
       "status": "assigned",
       "manual": true
+    },
+    {
+      "id": "sales-unknown-324",
+      "storeName": "X²-Jaye-澳大利亚牙刷",
+      "salesName": "高明轩",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
     },
     {
       "id": "sales-unknown-128",
