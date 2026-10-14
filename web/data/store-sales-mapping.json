@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-14T01:22:27.066Z",
+  "updatedAt": "2026-10-14T06:15:18.310Z",
   "records": [
     {
       "id": "sales-unknown-148",
@@ -764,7 +764,8 @@
       "salesName": "何烁丹",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-50",
@@ -1528,7 +1529,8 @@
       "salesName": "Josie-周晓清",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-186",
@@ -2265,7 +2267,8 @@
       "salesName": "赵伯言",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-38",
@@ -2309,7 +2312,8 @@
       "salesName": "杨琪涵",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-288",
@@ -2407,7 +2411,8 @@
       "salesName": "刘天瑾",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-257",
@@ -2550,7 +2555,8 @@
       "salesName": "高明轩",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-128",
