@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-14T20:11:31.618Z",
+  "updatedAt": "2026-10-14T23:11:44.534Z",
   "records": [
     {
       "id": "sales-unknown-148",
@@ -73,6 +73,14 @@
       "auto": false,
       "status": "unassigned",
       "manual": false
+    },
+    {
+      "id": "sales-unknown-332",
+      "storeName": "Jacy-新西兰车配",
+      "salesName": "",
+      "enabled": true,
+      "auto": false,
+      "status": "unassigned"
     },
     {
       "id": "sales-unknown-285",
@@ -498,6 +506,14 @@
       "manual": false
     },
     {
+      "id": "sales-unknown-330",
+      "storeName": "Alay-西班牙杯子",
+      "salesName": "杨继超",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
+    },
+    {
       "id": "sales-unknown-51",
       "storeName": "Alay-西班牙唇膏",
       "salesName": "杨继超",
@@ -523,6 +539,14 @@
       "auto": false,
       "status": "assigned",
       "manual": true
+    },
+    {
+      "id": "sales-unknown-331",
+      "storeName": "Alay-西班牙万圣节",
+      "salesName": "杨继超",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
     },
     {
       "id": "sales-unknown-271",
@@ -1783,6 +1807,14 @@
       "auto": true,
       "status": "assigned",
       "manual": false
+    },
+    {
+      "id": "sales-unknown-333",
+      "storeName": "Josie-美国瑜伽裤",
+      "salesName": "Josie-周晓清",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
     },
     {
       "id": "sales-unknown-84",
