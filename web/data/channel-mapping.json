@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-14T18:50:17.657Z",
+  "updatedAt": "2026-10-14T21:58:57.837Z",
   "records": [
     {
       "id": "map-unknown-353",
@@ -31,6 +31,15 @@
       "enabled": false,
       "manual": false,
       "status": "unmapped"
+    },
+    {
+      "id": "map-unknown-380",
+      "sourceName": "够快商派普货专线7K",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
     },
     {
       "id": "map-unknown-378",
@@ -149,6 +158,15 @@
       "enabled": false,
       "manual": false,
       "status": "unmapped"
+    },
+    {
+      "id": "map-unknown-379",
+      "sourceName": "云途加拿大商派专线（特惠带电）",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
     },
     {
       "id": "map-unknown-377",
