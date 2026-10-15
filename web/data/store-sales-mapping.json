@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-15T19:22:20.121Z",
+  "updatedAt": "2026-10-15T22:28:42.516Z",
   "records": [
     {
       "id": "sales-unknown-148",
@@ -50,15 +50,6 @@
     {
       "id": "sales-unknown-316",
       "storeName": "Cedric-Emil波兰电子秤",
-      "salesName": "",
-      "enabled": true,
-      "auto": false,
-      "status": "unassigned",
-      "manual": false
-    },
-    {
-      "id": "sales-unknown-317",
-      "storeName": "Gianna-法国帅哥项链",
       "salesName": "",
       "enabled": true,
       "auto": false,
@@ -396,6 +387,14 @@
       "auto": false,
       "status": "assigned",
       "manual": true
+    },
+    {
+      "id": "sales-unknown-335",
+      "storeName": "Agent-Zoe",
+      "salesName": "赵伯言",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
     },
     {
       "id": "sales-unknown-27",
@@ -1074,6 +1073,15 @@
       "id": "sales-unknown-203",
       "storeName": "Gary-澳洲狗垫",
       "salesName": "何烁丹",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
+      "id": "sales-unknown-317",
+      "storeName": "Gianna-法国帅哥项链",
+      "salesName": "杨金倩",
       "enabled": true,
       "auto": true,
       "status": "assigned",
@@ -2069,6 +2077,14 @@
       "manual": true
     },
     {
+      "id": "sales-unknown-334",
+      "storeName": "Joy-Fidel美国书",
+      "salesName": "周星月",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
+    },
+    {
       "id": "sales-unknown-260",
       "storeName": "Kai-法国摩托车",
       "salesName": "沈佳豪",
@@ -2157,6 +2173,14 @@
       "auto": true,
       "status": "assigned",
       "manual": false
+    },
+    {
+      "id": "sales-unknown-336",
+      "storeName": "trae 美国婴儿服",
+      "salesName": "廖晨昊",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
     },
     {
       "id": "sales-unknown-177",
