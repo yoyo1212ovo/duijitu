@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-16T17:56:45.639Z",
+  "updatedAt": "2026-10-16T20:22:47.788Z",
   "records": [
     {
       "id": "sales-unknown-148",
@@ -2139,6 +2139,14 @@
       "manual": true
     },
     {
+      "id": "sales-unknown-338",
+      "storeName": "Rin-美国雪茄盒",
+      "salesName": "黄祎琳",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
+    },
+    {
       "id": "sales-unknown-86",
       "storeName": "suJosie-美国按摩梳",
       "salesName": "苏爱拜",
@@ -2316,6 +2324,14 @@
       "auto": true,
       "status": "assigned",
       "manual": false
+    },
+    {
+      "id": "sales-unknown-337",
+      "storeName": "X²-Ethan-露营装备杂货铺",
+      "salesName": "高明轩",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
     },
     {
       "id": "sales-unknown-328",
