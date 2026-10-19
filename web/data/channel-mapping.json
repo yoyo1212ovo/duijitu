@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-19T06:59:00.291Z",
+  "updatedAt": "2026-10-19T14:36:00.820Z",
   "records": [
     {
       "id": "map-unknown-353",
@@ -21,6 +21,15 @@
       "enabled": false,
       "manual": false,
       "status": "unmapped"
+    },
+    {
+      "id": "map-unknown-385",
+      "sourceName": "够快商派带电专线",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
     },
     {
       "id": "map-unknown-363",
@@ -285,6 +294,15 @@
       "enabled": false,
       "manual": false,
       "status": "unmapped"
+    },
+    {
+      "id": "map-unknown-384",
+      "sourceName": "智优选专线-特货",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
     },
     {
       "id": "map-unknown-383",
