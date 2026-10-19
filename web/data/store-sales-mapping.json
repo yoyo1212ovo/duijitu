@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-19T17:47:50.590Z",
+  "updatedAt": "2026-10-19T21:45:36.717Z",
   "records": [
     {
       "id": "sales-unknown-148",
@@ -367,6 +367,14 @@
       "auto": true,
       "status": "assigned",
       "manual": false
+    },
+    {
+      "id": "sales-unknown-350",
+      "storeName": "Ada-印度小猫咪3店",
+      "salesName": "邓鑫钰",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
     },
     {
       "id": "sales-unknown-115",
@@ -1627,6 +1635,14 @@
       "auto": true,
       "status": "assigned",
       "manual": false
+    },
+    {
+      "id": "sales-unknown-351",
+      "storeName": "Josie-第44个波兰人生日项链",
+      "salesName": "Josie-周晓清",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
     },
     {
       "id": "sales-unknown-186",
@@ -2942,6 +2958,14 @@
       "auto": true,
       "status": "assigned",
       "manual": false
+    },
+    {
+      "id": "sales-unknown-352",
+      "storeName": "X²-Seki-巴基斯坦杂货铺",
+      "salesName": "郭硕",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
     },
     {
       "id": "sales-unknown-164",
