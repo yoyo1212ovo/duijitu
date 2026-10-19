@@ -19,6 +19,20 @@ function loadEnvFile(filePath) {
   }
 }
 
+function chinaDate(value = new Date()) {
+  return new Date(value.getTime() + 8 * 60 * 60 * 1000).toISOString().slice(0, 10);
+}
+
+function addDays(dateStr, amount) {
+  const date = new Date(dateStr + "T00:00:00Z");
+  date.setUTCDate(date.getUTCDate() + amount);
+  return date.toISOString().slice(0, 10);
+}
+
+function sumChannels(record) {
+  return Object.values((record && record.channels) || {}).reduce((sum, value) => sum + Number(value || 0), 0);
+}
+
 function readHistory() {
   if (!fs.existsSync(HISTORY_PATH)) return { days: {}, updatedAt: null };
   try {
@@ -44,21 +58,39 @@ async function main() {
     throw new Error("缺少 MABANG_APP_KEY / MABANG_APP_TOKEN");
   }
 
-  const result = await fetchLiveChannelSummary({ timeField: "expressTime" });
+  const today = chinaDate();
+  const endDate = addDays(today, -1);
+  const lookbackDays = Math.max(1, Number(process.env.ARCHIVE_LOOKBACK_DAYS) || 3);
+  const startDate = addDays(endDate, -(lookbackDays - 1));
   const history = readHistory();
+  let latestFetchedAt = history.lastFetchedAt || null;
 
-  if (!result.dailySummary || !result.dailySummary.byDate) {
-    throw new Error("马帮接口没有返回可归档的每日汇总数据");
-  }
+  for (let date = startDate; date <= endDate; date = addDays(date, 1)) {
+    const result = await fetchLiveChannelSummary({
+      startDate: date,
+      endDate: date,
+      queryStartDate: date,
+      queryEndDate: date,
+      timeField: "expressTime",
+      allowHistorical: true,
+      statuses: [1, 2, 3, 4, 5, 6, 7]
+    });
 
-  for (const [date, record] of Object.entries(result.dailySummary.byDate)) {
+    const daily = result && result.dailySummary && result.dailySummary.byDate ? result.dailySummary.byDate : {};
+    const record = daily[date];
+    if (!record) {
+      console.log("no record for", date);
+      continue;
+    }
     history.days[date] = record;
+    latestFetchedAt = result.fetchedAt || latestFetchedAt;
+    console.log("archived", date, sumChannels(record));
   }
 
   history.updatedAt = new Date().toISOString();
-  history.lastFetchedAt = result.fetchedAt || history.lastFetchedAt || null;
-  history.lastStartDate = result.startDate || history.lastStartDate || null;
-  history.lastEndDate = result.endDate || history.lastEndDate || null;
+  history.lastFetchedAt = latestFetchedAt;
+  history.lastStartDate = startDate;
+  history.lastEndDate = endDate;
 
   const dir = path.dirname(HISTORY_PATH);
   if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });

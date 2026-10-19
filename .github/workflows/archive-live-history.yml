@@ -5,6 +5,11 @@ on:
     # 00:30 Asia/Shanghai, every day
     - cron: '30 16 * * *'
   workflow_dispatch:
+    inputs:
+      lookback_days:
+        description: Number of completed days to archive
+        required: false
+        default: '3'
 
 permissions:
   contents: write
@@ -12,7 +17,7 @@ permissions:
 jobs:
   archive:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 45
 
     steps:
       - name: Check out repository
@@ -32,6 +37,7 @@ jobs:
         env:
           MABANG_APP_KEY: ${{ secrets.MABANG_APP_KEY }}
           MABANG_APP_TOKEN: ${{ secrets.MABANG_APP_TOKEN }}
+          ARCHIVE_LOOKBACK_DAYS: ${{ github.event.inputs.lookback_days || '3' }}
 
       - name: Commit history changes
         run: |
