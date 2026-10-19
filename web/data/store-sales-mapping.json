@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-19T05:57:05.235Z",
+  "updatedAt": "2026-10-19T11:48:24.723Z",
   "records": [
     {
       "id": "sales-unknown-148",
@@ -218,6 +218,14 @@
       "manual": false
     },
     {
+      "id": "sales-unknown-340",
+      "storeName": "苏苏-法国胶囊儿",
+      "salesName": "苏爱拜",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
+    },
+    {
       "id": "sales-unknown-142",
       "storeName": "苏苏-法国Louis",
       "salesName": "苏爱拜",
@@ -317,6 +325,14 @@
       "manual": false
     },
     {
+      "id": "sales-unknown-348",
+      "storeName": "Ada-波兰小子",
+      "salesName": "邓鑫钰",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
+    },
+    {
       "id": "sales-unknown-157",
       "storeName": "Ada-美国健腹轮",
       "salesName": "邓鑫钰",
@@ -360,6 +376,14 @@
       "auto": true,
       "status": "assigned",
       "manual": false
+    },
+    {
+      "id": "sales-unknown-339",
+      "storeName": "Ada-loan",
+      "salesName": "廖晨昊",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
     },
     {
       "id": "sales-unknown-9",
@@ -503,6 +527,14 @@
       "auto": true,
       "status": "assigned",
       "manual": false
+    },
+    {
+      "id": "sales-unknown-349",
+      "storeName": "Alay-墨西哥内衣",
+      "salesName": "杨继超",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
     },
     {
       "id": "sales-unknown-330",
@@ -726,6 +758,14 @@
       "auto": true,
       "status": "assigned",
       "manual": false
+    },
+    {
+      "id": "sales-unknown-341",
+      "storeName": "Danae-第十九个波兰人发梳",
+      "salesName": "何烁丹",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
     },
     {
       "id": "sales-unknown-227",
@@ -1268,6 +1308,14 @@
       "manual": false
     },
     {
+      "id": "sales-unknown-344",
+      "storeName": "Ivy-可爱Yannik",
+      "salesName": "范梦微",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
+    },
+    {
       "id": "sales-unknown-104",
       "storeName": "Ivy-猫玩具",
       "salesName": "范梦微",
@@ -1302,6 +1350,14 @@
       "auto": true,
       "status": "assigned",
       "manual": false
+    },
+    {
+      "id": "sales-unknown-346",
+      "storeName": "Ivy-Adrian",
+      "salesName": "范梦微",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
     },
     {
       "id": "sales-unknown-294",
@@ -1374,6 +1430,14 @@
       "auto": true,
       "status": "assigned",
       "manual": false
+    },
+    {
+      "id": "sales-unknown-345",
+      "storeName": "Ivy-Zine平衡软糖荷兰",
+      "salesName": "范梦微",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
     },
     {
       "id": "sales-unknown-138",
@@ -2103,6 +2167,14 @@
       "manual": false
     },
     {
+      "id": "sales-unknown-347",
+      "storeName": "kelly-美国家居店",
+      "salesName": "曹瑶",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
+    },
+    {
       "id": "sales-unknown-237",
       "storeName": "Lucia-波捷连衣裙",
       "salesName": "普凡珂",
@@ -2181,6 +2253,14 @@
       "auto": true,
       "status": "assigned",
       "manual": false
+    },
+    {
+      "id": "sales-unknown-342",
+      "storeName": "trae 美国电热睫毛卷",
+      "salesName": "廖晨昊",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
     },
     {
       "id": "sales-unknown-336",
@@ -2449,6 +2529,14 @@
       "auto": true,
       "status": "assigned",
       "manual": false
+    },
+    {
+      "id": "sales-unknown-343",
+      "storeName": "X²-Ivy Liu-画板",
+      "salesName": "刘天瑾",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
     },
     {
       "id": "sales-unknown-313",
