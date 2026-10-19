@@ -40,7 +40,20 @@ jobs:
           git add -f web/data/live-history.json
           if git diff --cached --quiet; then
             echo "No history changes"
-          else
-            git commit -m "chore: archive Mabang history"
-            git push
+            exit 0
           fi
+
+          git commit -m "chore: archive Mabang history"
+          for attempt in 1 2 3 4 5; do
+            echo "Pushing history, attempt $attempt"
+            git fetch origin main --quiet
+            if ! git rebase --quiet origin/main; then
+              git rebase --abort || true
+              echo "Rebase failed, will retry"
+            elif git push origin HEAD:refs/heads/main; then
+              exit 0
+            fi
+            sleep 15
+          done
+          echo "Failed to push history after retries"
+          exit 1
