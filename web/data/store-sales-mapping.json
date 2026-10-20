@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-20T19:00:05.910Z",
+  "updatedAt": "2026-10-20T22:09:47.982Z",
   "records": [
     {
       "id": "sales-unknown-148",
@@ -1639,6 +1639,14 @@
     {
       "id": "sales-unknown-351",
       "storeName": "Josie-第44个波兰人生日项链",
+      "salesName": "Josie-周晓清",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
+    },
+    {
+      "id": "sales-unknown-353",
+      "storeName": "Josie-第45个波兰人日历",
       "salesName": "Josie-周晓清",
       "enabled": true,
       "auto": true,
