@@ -1,39 +1,10 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-19T23:45:29.501Z",
+  "updatedAt": "2026-10-20T02:09:56.206Z",
   "records": [
-    {
-      "id": "map-unknown-353",
-      "sourceName": "4PX国际快递经济速递",
-      "providerChannel": "",
-      "provider": "",
-      "displayName": "",
-      "enabled": false,
-      "manual": false,
-      "status": "unmapped"
-    },
-    {
-      "id": "map-unknown-375",
-      "sourceName": "傲飞国际快线_WB 专线挂号-加拿大",
-      "providerChannel": "",
-      "provider": "",
-      "displayName": "",
-      "enabled": false,
-      "manual": false,
-      "status": "unmapped"
-    },
     {
       "id": "map-unknown-385",
       "sourceName": "够快商派带电专线",
-      "providerChannel": "",
-      "provider": "",
-      "displayName": "",
-      "status": "unmapped",
-      "enabled": false
-    },
-    {
-      "id": "map-unknown-363",
-      "sourceName": "够快商派普货专线",
       "providerChannel": "",
       "provider": "",
       "displayName": "",
@@ -47,101 +18,13 @@
       "providerChannel": "",
       "provider": "",
       "displayName": "",
-      "status": "unmapped",
-      "enabled": false
-    },
-    {
-      "id": "map-unknown-378",
-      "sourceName": "广州EUB",
-      "providerChannel": "",
-      "provider": "",
-      "displayName": "",
-      "status": "unmapped",
-      "enabled": false
+      "enabled": false,
+      "manual": false,
+      "status": "unmapped"
     },
     {
       "id": "map-unknown-356",
       "sourceName": "海外仓传单号专用",
-      "providerChannel": "",
-      "provider": "",
-      "displayName": "",
-      "enabled": false,
-      "manual": false,
-      "status": "unmapped"
-    },
-    {
-      "id": "map-unknown-361",
-      "sourceName": "华速通-标准",
-      "providerChannel": "",
-      "provider": "",
-      "displayName": "",
-      "enabled": false,
-      "manual": false,
-      "status": "unmapped"
-    },
-    {
-      "id": "map-unknown-373",
-      "sourceName": "急速化妆品专线",
-      "providerChannel": "",
-      "provider": "",
-      "displayName": "",
-      "enabled": false,
-      "manual": false,
-      "status": "unmapped"
-    },
-    {
-      "id": "map-unknown-357",
-      "sourceName": "急速全球专线特惠-带电",
-      "providerChannel": "",
-      "provider": "",
-      "displayName": "",
-      "enabled": false,
-      "manual": false,
-      "status": "unmapped"
-    },
-    {
-      "id": "map-unknown-367",
-      "sourceName": "急速全球专线特惠-普货",
-      "providerChannel": "",
-      "provider": "",
-      "displayName": "",
-      "enabled": false,
-      "manual": false,
-      "status": "unmapped"
-    },
-    {
-      "id": "map-unknown-374",
-      "sourceName": "美国岛屿专线-带电",
-      "providerChannel": "",
-      "provider": "",
-      "displayName": "",
-      "enabled": false,
-      "manual": false,
-      "status": "unmapped"
-    },
-    {
-      "id": "map-unknown-351",
-      "sourceName": "欧洲优选专线敏感",
-      "providerChannel": "",
-      "provider": "",
-      "displayName": "",
-      "enabled": false,
-      "manual": false,
-      "status": "unmapped"
-    },
-    {
-      "id": "map-unknown-354",
-      "sourceName": "顺瓴BS专线敏感货",
-      "providerChannel": "",
-      "provider": "",
-      "displayName": "",
-      "enabled": false,
-      "manual": false,
-      "status": "unmapped"
-    },
-    {
-      "id": "map-unknown-369",
-      "sourceName": "顺速宝挂号普货-回传转单号",
       "providerChannel": "",
       "provider": "",
       "displayName": "",
@@ -155,24 +38,6 @@
       "providerChannel": "",
       "provider": "",
       "displayName": "",
-      "status": "unmapped",
-      "enabled": false
-    },
-    {
-      "id": "map-unknown-376",
-      "sourceName": "云途大货18000专线挂号（特惠普货）-回传转单号",
-      "providerChannel": "",
-      "provider": "",
-      "displayName": "",
-      "status": "unmapped",
-      "enabled": false
-    },
-    {
-      "id": "map-unknown-359",
-      "sourceName": "云途岛屿专线（特惠带电）-回传转单号",
-      "providerChannel": "",
-      "provider": "",
-      "displayName": "",
       "enabled": false,
       "manual": false,
       "status": "unmapped"
@@ -180,114 +45,6 @@
     {
       "id": "map-unknown-379",
       "sourceName": "云途加拿大商派专线（特惠带电）",
-      "providerChannel": "",
-      "provider": "",
-      "displayName": "",
-      "status": "unmapped",
-      "enabled": false
-    },
-    {
-      "id": "map-unknown-377",
-      "sourceName": "云途全球化妆品-回传转单号",
-      "providerChannel": "",
-      "provider": "",
-      "displayName": "",
-      "status": "unmapped",
-      "enabled": false
-    },
-    {
-      "id": "map-unknown-372",
-      "sourceName": "云途全球精选专线挂号（特惠普货）-加拿大",
-      "providerChannel": "",
-      "provider": "",
-      "displayName": "",
-      "enabled": false,
-      "manual": false,
-      "status": "unmapped"
-    },
-    {
-      "id": "map-unknown-370",
-      "sourceName": "云途全球商派专线（标快带电）-回传转单号",
-      "providerChannel": "",
-      "provider": "",
-      "displayName": "",
-      "enabled": false,
-      "manual": false,
-      "status": "unmapped"
-    },
-    {
-      "id": "map-unknown-371",
-      "sourceName": "云途全球商派专线（标快普货）-回传转单号",
-      "providerChannel": "",
-      "provider": "",
-      "displayName": "",
-      "enabled": false,
-      "manual": false,
-      "status": "unmapped"
-    },
-    {
-      "id": "map-unknown-355",
-      "sourceName": "云途全球专线挂号（标快带电）-加拿大",
-      "providerChannel": "",
-      "provider": "",
-      "displayName": "",
-      "enabled": false,
-      "manual": false,
-      "status": "unmapped"
-    },
-    {
-      "id": "map-unknown-352",
-      "sourceName": "云途全球专线挂号（标快普货）-加拿大",
-      "providerChannel": "",
-      "provider": "",
-      "displayName": "",
-      "enabled": false,
-      "manual": false,
-      "status": "unmapped"
-    },
-    {
-      "id": "map-unknown-366",
-      "sourceName": "云途全球专线挂号（标快普货）-申报不设限",
-      "providerChannel": "",
-      "provider": "",
-      "displayName": "",
-      "enabled": false,
-      "manual": false,
-      "status": "unmapped"
-    },
-    {
-      "id": "map-unknown-364",
-      "sourceName": "云途全球专线挂号（特惠普货）-申报不设限",
-      "providerChannel": "",
-      "provider": "",
-      "displayName": "",
-      "enabled": false,
-      "manual": false,
-      "status": "unmapped"
-    },
-    {
-      "id": "map-unknown-362",
-      "sourceName": "云途全球专线挂号（特快普货）",
-      "providerChannel": "",
-      "provider": "",
-      "displayName": "",
-      "enabled": false,
-      "manual": false,
-      "status": "unmapped"
-    },
-    {
-      "id": "map-unknown-365",
-      "sourceName": "智惠选专线-特货(不限偏远)-回传",
-      "providerChannel": "",
-      "provider": "",
-      "displayName": "",
-      "enabled": false,
-      "manual": false,
-      "status": "unmapped"
-    },
-    {
-      "id": "map-unknown-358",
-      "sourceName": "智尚选-特惠",
       "providerChannel": "",
       "provider": "",
       "displayName": "",
@@ -301,8 +58,9 @@
       "providerChannel": "",
       "provider": "",
       "displayName": "",
-      "status": "unmapped",
-      "enabled": false
+      "enabled": false,
+      "manual": false,
+      "status": "unmapped"
     },
     {
       "id": "map-unknown-383",
@@ -310,8 +68,9 @@
       "providerChannel": "",
       "provider": "",
       "displayName": "",
-      "status": "unmapped",
-      "enabled": false
+      "enabled": false,
+      "manual": false,
+      "status": "unmapped"
     },
     {
       "id": "map-unknown-381",
@@ -319,28 +78,19 @@
       "providerChannel": "",
       "provider": "",
       "displayName": "",
-      "status": "unmapped",
-      "enabled": false
-    },
-    {
-      "id": "map-unknown-368",
-      "sourceName": "Specialpak-优速专线-回传",
-      "providerChannel": "",
-      "provider": "",
-      "displayName": "",
       "enabled": false,
       "manual": false,
       "status": "unmapped"
     },
     {
-      "id": "map-unknown-360",
-      "sourceName": "ST敏感专线小包",
-      "providerChannel": "",
-      "provider": "",
-      "displayName": "",
-      "enabled": false,
-      "manual": false,
-      "status": "unmapped"
+      "id": "map-unknown-353",
+      "sourceName": "4PX国际快递经济速递",
+      "providerChannel": "国际快递经济速递",
+      "provider": "递四方",
+      "displayName": "递四方/国际快递经济速递",
+      "enabled": true,
+      "manual": true,
+      "status": "mapped"
     },
     {
       "id": "map-38",
@@ -400,6 +150,16 @@
       "displayName": "万邦/万邦快线含电",
       "enabled": true,
       "manual": false,
+      "status": "mapped"
+    },
+    {
+      "id": "map-unknown-375",
+      "sourceName": "傲飞国际快线_WB 专线挂号-加拿大",
+      "providerChannel": "万邦专线挂号普货",
+      "provider": "万邦",
+      "displayName": "万邦/万邦专线挂号普货",
+      "enabled": true,
+      "manual": true,
       "status": "mapped"
     },
     {
@@ -1653,6 +1413,16 @@
       "status": "mapped"
     },
     {
+      "id": "map-unknown-363",
+      "sourceName": "够快商派普货专线",
+      "providerChannel": "够快商派普货专线",
+      "provider": "够快",
+      "displayName": "够快/够快商派普货专线",
+      "enabled": true,
+      "manual": true,
+      "status": "mapped"
+    },
+    {
       "id": "map-151",
       "sourceName": "广东航空大包-A",
       "providerChannel": "广东航空大包-A",
@@ -1680,6 +1450,16 @@
       "displayName": "嘉运/广东E邮宝普货",
       "enabled": true,
       "manual": false,
+      "status": "mapped"
+    },
+    {
+      "id": "map-unknown-378",
+      "sourceName": "广州EUB",
+      "providerChannel": "广州EUB",
+      "provider": "本捷",
+      "displayName": "本捷/广州EUB",
+      "enabled": true,
+      "manual": true,
       "status": "mapped"
     },
     {
@@ -1713,11 +1493,31 @@
       "status": "mapped"
     },
     {
+      "id": "map-unknown-361",
+      "sourceName": "华速通-标准",
+      "providerChannel": "华速通-标准",
+      "provider": "华翰",
+      "displayName": "华翰/华速通-标准",
+      "enabled": true,
+      "manual": true,
+      "status": "mapped"
+    },
+    {
       "id": "map-unknown-341",
       "sourceName": "华邮通挂号-特货",
       "providerChannel": "华邮通挂号-特货",
       "provider": "华翰",
       "displayName": "华翰/华邮通挂号-特货",
+      "enabled": true,
+      "manual": true,
+      "status": "mapped"
+    },
+    {
+      "id": "map-unknown-373",
+      "sourceName": "急速化妆品专线",
+      "providerChannel": "急速化妆品专线",
+      "provider": "急速",
+      "displayName": "急速/急速化妆品专线",
       "enabled": true,
       "manual": true,
       "status": "mapped"
@@ -1730,6 +1530,26 @@
       "displayName": "急速/急速全球专线标快-普货",
       "enabled": true,
       "manual": false,
+      "status": "mapped"
+    },
+    {
+      "id": "map-unknown-357",
+      "sourceName": "急速全球专线特惠-带电",
+      "providerChannel": "急速全球专线特惠-带电",
+      "provider": "急速",
+      "displayName": "急速/急速全球专线特惠-带电",
+      "enabled": true,
+      "manual": true,
+      "status": "mapped"
+    },
+    {
+      "id": "map-unknown-367",
+      "sourceName": "急速全球专线特惠-普货",
+      "providerChannel": "急速全球专线特惠-普货",
+      "provider": "急速",
+      "displayName": "急速/急速全球专线特惠-普货",
+      "enabled": true,
+      "manual": true,
       "status": "mapped"
     },
     {
@@ -2173,6 +1993,16 @@
       "status": "mapped"
     },
     {
+      "id": "map-unknown-374",
+      "sourceName": "美国岛屿专线-带电",
+      "providerChannel": "美国岛屿专线-带电",
+      "provider": "递四方",
+      "displayName": "递四方/美国岛屿专线-带电",
+      "enabled": true,
+      "manual": true,
+      "status": "mapped"
+    },
+    {
       "id": "map-190",
       "sourceName": "美国经济小包-普货",
       "providerChannel": "美国经济小包-普货",
@@ -2270,6 +2100,16 @@
       "displayName": "万邦/万邦优选专线含电",
       "enabled": true,
       "manual": false,
+      "status": "mapped"
+    },
+    {
+      "id": "map-unknown-351",
+      "sourceName": "欧洲优选专线敏感",
+      "providerChannel": "万邦优选专线敏感",
+      "provider": "万邦",
+      "displayName": "万邦/万邦优选专线敏感",
+      "enabled": true,
+      "manual": true,
       "status": "mapped"
     },
     {
@@ -2463,6 +2303,16 @@
       "status": "mapped"
     },
     {
+      "id": "map-unknown-354",
+      "sourceName": "顺瓴BS专线敏感货",
+      "providerChannel": "顺瓴BS专线敏感货",
+      "provider": "顺瓴",
+      "displayName": "顺瓴/顺瓴BS专线敏感货",
+      "enabled": true,
+      "manual": true,
+      "status": "mapped"
+    },
+    {
       "id": "map-213",
       "sourceName": "顺速宝挂号",
       "providerChannel": "顺速宝(普货)",
@@ -2490,6 +2340,16 @@
       "displayName": "顺友/顺速宝(普货)",
       "enabled": true,
       "manual": false,
+      "status": "mapped"
+    },
+    {
+      "id": "map-unknown-369",
+      "sourceName": "顺速宝挂号普货-回传转单号",
+      "providerChannel": "顺速宝(普货)",
+      "provider": "顺友",
+      "displayName": "顺友/顺速宝(普货)",
+      "enabled": true,
+      "manual": true,
       "status": "mapped"
     },
     {
@@ -3023,6 +2883,16 @@
       "status": "mapped"
     },
     {
+      "id": "map-unknown-376",
+      "sourceName": "云途大货18000专线挂号（特惠普货）-回传转单号",
+      "providerChannel": "云途大货18000专线挂号（特惠普货）",
+      "provider": "云途",
+      "displayName": "云途/云途大货18000专线挂号（特惠普货）",
+      "enabled": true,
+      "manual": true,
+      "status": "mapped"
+    },
+    {
       "id": "map-261",
       "sourceName": "云途岛屿专线（特惠带电）",
       "providerChannel": "云途岛屿专线（特惠带电）",
@@ -3030,6 +2900,16 @@
       "displayName": "云途/云途岛屿专线（特惠带电）",
       "enabled": true,
       "manual": false,
+      "status": "mapped"
+    },
+    {
+      "id": "map-unknown-359",
+      "sourceName": "云途岛屿专线（特惠带电）-回传转单号",
+      "providerChannel": "云途岛屿专线（特惠带电）",
+      "provider": "云途",
+      "displayName": "云途/云途岛屿专线（特惠带电）",
+      "enabled": true,
+      "manual": true,
       "status": "mapped"
     },
     {
@@ -3203,6 +3083,16 @@
       "status": "mapped"
     },
     {
+      "id": "map-unknown-377",
+      "sourceName": "云途全球化妆品-回传转单号",
+      "providerChannel": "云途全球化妆品类专线挂号",
+      "provider": "云途",
+      "displayName": "云途/云途全球化妆品类专线挂号",
+      "enabled": true,
+      "manual": true,
+      "status": "mapped"
+    },
+    {
       "id": "map-270",
       "sourceName": "云途全球化妆品类专线挂号",
       "providerChannel": "云途全球化妆品类专线挂号",
@@ -3233,8 +3123,38 @@
       "status": "mapped"
     },
     {
+      "id": "map-unknown-372",
+      "sourceName": "云途全球精选专线挂号（特惠普货）-加拿大",
+      "providerChannel": "云途全球精选专线挂号（特惠普货）",
+      "provider": "云途",
+      "displayName": "云途/云途全球精选专线挂号（特惠普货）",
+      "enabled": true,
+      "manual": true,
+      "status": "mapped"
+    },
+    {
+      "id": "map-unknown-370",
+      "sourceName": "云途全球商派专线（标快带电）-回传转单号",
+      "providerChannel": "云途全球商派专线（标快带电）",
+      "provider": "云途",
+      "displayName": "云途/云途全球商派专线（标快带电）",
+      "enabled": true,
+      "manual": true,
+      "status": "mapped"
+    },
+    {
       "id": "map-unknown-349",
       "sourceName": "云途全球商派专线（标快普货）",
+      "providerChannel": "云途全球商派专线（标快普货）",
+      "provider": "云途",
+      "displayName": "云途/云途全球商派专线（标快普货）",
+      "enabled": true,
+      "manual": true,
+      "status": "mapped"
+    },
+    {
+      "id": "map-unknown-371",
+      "sourceName": "云途全球商派专线（标快普货）-回传转单号",
       "providerChannel": "云途全球商派专线（标快普货）",
       "provider": "云途",
       "displayName": "云途/云途全球商派专线（标快普货）",
@@ -3263,6 +3183,16 @@
       "status": "mapped"
     },
     {
+      "id": "map-unknown-355",
+      "sourceName": "云途全球专线挂号（标快带电）-加拿大",
+      "providerChannel": "云途全球专线挂号（标快带电）",
+      "provider": "云途",
+      "displayName": "云途/云途全球专线挂号（标快带电）",
+      "enabled": true,
+      "manual": true,
+      "status": "mapped"
+    },
+    {
       "id": "map-274",
       "sourceName": "云途全球专线挂号（标快普货）",
       "providerChannel": "云途全球专线挂号（标快普货）",
@@ -3280,6 +3210,26 @@
       "displayName": "云途/云途全球专线挂号（标快普货）",
       "enabled": true,
       "manual": false,
+      "status": "mapped"
+    },
+    {
+      "id": "map-unknown-352",
+      "sourceName": "云途全球专线挂号（标快普货）-加拿大",
+      "providerChannel": "云途全球专线挂号（标快普货）",
+      "provider": "云途",
+      "displayName": "云途/云途全球专线挂号（标快普货）",
+      "enabled": true,
+      "manual": true,
+      "status": "mapped"
+    },
+    {
+      "id": "map-unknown-366",
+      "sourceName": "云途全球专线挂号（标快普货）-申报不设限",
+      "providerChannel": "云途全球专线挂号（标快普货）",
+      "provider": "云途",
+      "displayName": "云途/云途全球专线挂号（标快普货）",
+      "enabled": true,
+      "manual": true,
       "status": "mapped"
     },
     {
@@ -3363,6 +3313,16 @@
       "status": "mapped"
     },
     {
+      "id": "map-unknown-364",
+      "sourceName": "云途全球专线挂号（特惠普货）-申报不设限",
+      "providerChannel": "云途全球专线挂号（特惠普货）",
+      "provider": "云途",
+      "displayName": "云途/云途全球专线挂号（特惠普货）",
+      "enabled": true,
+      "manual": true,
+      "status": "mapped"
+    },
+    {
       "id": "map-unknown-316",
       "sourceName": "云途全球专线挂号（特快带电）",
       "providerChannel": "云途全球专线挂号（特快带电）",
@@ -3370,6 +3330,16 @@
       "displayName": "云途/云途全球专线挂号（特快带电）",
       "enabled": true,
       "manual": false,
+      "status": "mapped"
+    },
+    {
+      "id": "map-unknown-362",
+      "sourceName": "云途全球专线挂号（特快普货）",
+      "providerChannel": "云途全球专线挂号（特快普货）",
+      "provider": "云途",
+      "displayName": "云途/云途全球专线挂号（特快普货）",
+      "enabled": true,
+      "manual": true,
       "status": "mapped"
     },
     {
@@ -3453,6 +3423,16 @@
       "status": "mapped"
     },
     {
+      "id": "map-unknown-365",
+      "sourceName": "智惠选专线-特货(不限偏远)-回传",
+      "providerChannel": "智惠选专线-特货",
+      "provider": "华翰",
+      "displayName": "华翰/智惠选专线-特货",
+      "enabled": true,
+      "manual": true,
+      "status": "mapped"
+    },
+    {
       "id": "map-unknown-331",
       "sourceName": "智利(代缴)专线小包-特货(AQ)",
       "providerChannel": "智利(代缴)专线小包-特货(AQ)",
@@ -3518,6 +3498,16 @@
       "providerChannel": "智尚宝-特敏",
       "provider": "华翰",
       "displayName": "华翰/智尚宝-特敏",
+      "enabled": true,
+      "manual": true,
+      "status": "mapped"
+    },
+    {
+      "id": "map-unknown-358",
+      "sourceName": "智尚选-特惠",
+      "providerChannel": "智尚选-特惠",
+      "provider": "华翰",
+      "displayName": "华翰/智尚选-特惠",
       "enabled": true,
       "manual": true,
       "status": "mapped"
@@ -3763,6 +3753,16 @@
       "status": "mapped"
     },
     {
+      "id": "map-unknown-368",
+      "sourceName": "Specialpak-优速专线-回传",
+      "providerChannel": "Specialpak-优速专线",
+      "provider": "华翰",
+      "displayName": "华翰/Specialpak-优速专线",
+      "enabled": true,
+      "manual": true,
+      "status": "mapped"
+    },
+    {
       "id": "map-unknown-318",
       "sourceName": "ST纯电专线小包",
       "providerChannel": "ST纯电专线小包",
@@ -3800,6 +3800,16 @@
       "displayName": "嘉运/ST美国食品专线特惠",
       "enabled": true,
       "manual": false,
+      "status": "mapped"
+    },
+    {
+      "id": "map-unknown-360",
+      "sourceName": "ST敏感专线小包",
+      "providerChannel": "ST敏感专线小包",
+      "provider": "嘉运",
+      "displayName": "嘉运/ST敏感专线小包",
+      "enabled": true,
+      "manual": true,
       "status": "mapped"
     },
     {
