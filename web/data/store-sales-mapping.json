@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-21T19:17:35.630Z",
+  "updatedAt": "2026-10-21T22:24:17.414Z",
   "records": [
     {
       "id": "sales-unknown-148",
@@ -117,6 +117,14 @@
       "auto": false,
       "status": "assigned",
       "manual": true
+    },
+    {
+      "id": "sales-unknown-355",
+      "storeName": "美国饰品Dylan",
+      "salesName": "宁安沛",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
     },
     {
       "id": "sales-unknown-6",
@@ -2374,6 +2382,14 @@
       "auto": true,
       "status": "assigned",
       "manual": false
+    },
+    {
+      "id": "sales-unknown-354",
+      "storeName": "trae小龙运动护膝",
+      "salesName": "廖晨昊",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
     },
     {
       "id": "sales-unknown-141",
