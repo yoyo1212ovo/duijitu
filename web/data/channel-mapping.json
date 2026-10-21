@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-21T18:57:57.108Z",
+  "updatedAt": "2026-10-21T22:15:16.447Z",
   "records": [
     {
       "id": "map-unknown-356",
@@ -11,6 +11,42 @@
       "enabled": false,
       "manual": false,
       "status": "unmapped"
+    },
+    {
+      "id": "map-unknown-390",
+      "sourceName": "TWB专线标准-特敏",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
+    },
+    {
+      "id": "map-unknown-392",
+      "sourceName": "TWB专线标准-特敏SP",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
+    },
+    {
+      "id": "map-unknown-391",
+      "sourceName": "TWB专线标准-特敏US",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
+    },
+    {
+      "id": "map-unknown-389",
+      "sourceName": "TWB专线标准AU-特敏",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
     },
     {
       "id": "map-unknown-353",
