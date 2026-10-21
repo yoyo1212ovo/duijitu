@@ -1,107 +1,10 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-21T04:34:33.977Z",
+  "updatedAt": "2026-10-21T09:36:35.524Z",
   "records": [
-    {
-      "id": "map-unknown-385",
-      "sourceName": "够快商派带电专线",
-      "providerChannel": "",
-      "provider": "",
-      "displayName": "",
-      "enabled": false,
-      "manual": false,
-      "status": "unmapped"
-    },
-    {
-      "id": "map-unknown-380",
-      "sourceName": "够快商派普货专线7K",
-      "providerChannel": "",
-      "provider": "",
-      "displayName": "",
-      "enabled": false,
-      "manual": false,
-      "status": "unmapped"
-    },
-    {
-      "id": "map-unknown-386",
-      "sourceName": "广东E邮宝普货-回传尾程单号",
-      "providerChannel": "",
-      "provider": "",
-      "displayName": "",
-      "status": "unmapped",
-      "enabled": false
-    },
     {
       "id": "map-unknown-356",
       "sourceName": "海外仓传单号专用",
-      "providerChannel": "",
-      "provider": "",
-      "displayName": "",
-      "enabled": false,
-      "manual": false,
-      "status": "unmapped"
-    },
-    {
-      "id": "map-unknown-382",
-      "sourceName": "燕文专线追踪-纯电",
-      "providerChannel": "",
-      "provider": "",
-      "displayName": "",
-      "enabled": false,
-      "manual": false,
-      "status": "unmapped"
-    },
-    {
-      "id": "map-unknown-379",
-      "sourceName": "云途加拿大商派专线（特惠带电）",
-      "providerChannel": "",
-      "provider": "",
-      "displayName": "",
-      "enabled": false,
-      "manual": false,
-      "status": "unmapped"
-    },
-    {
-      "id": "map-unknown-384",
-      "sourceName": "智优选专线-特货",
-      "providerChannel": "",
-      "provider": "",
-      "displayName": "",
-      "enabled": false,
-      "manual": false,
-      "status": "unmapped"
-    },
-    {
-      "id": "map-unknown-383",
-      "sourceName": "EUSLR - 万邦专线挂号含电-回传转单号",
-      "providerChannel": "",
-      "provider": "",
-      "displayName": "",
-      "enabled": false,
-      "manual": false,
-      "status": "unmapped"
-    },
-    {
-      "id": "map-unknown-388",
-      "sourceName": "JS11-敏感货",
-      "providerChannel": "",
-      "provider": "",
-      "displayName": "",
-      "status": "unmapped",
-      "enabled": false
-    },
-    {
-      "id": "map-unknown-387",
-      "sourceName": "SL-美国专线-特惠",
-      "providerChannel": "",
-      "provider": "",
-      "displayName": "",
-      "status": "unmapped",
-      "enabled": false
-    },
-    {
-      "id": "map-unknown-381",
-      "sourceName": "SL-美国专线偏远-特惠",
       "providerChannel": "",
       "provider": "",
       "displayName": "",
@@ -1430,6 +1333,16 @@
       "status": "mapped"
     },
     {
+      "id": "map-unknown-385",
+      "sourceName": "够快商派带电专线",
+      "providerChannel": "够快商派带电专线",
+      "provider": "够快",
+      "displayName": "够快/够快商派带电专线",
+      "enabled": true,
+      "manual": true,
+      "status": "mapped"
+    },
+    {
       "id": "map-148",
       "sourceName": "够快商派服装专线",
       "providerChannel": "够快商派服装专线",
@@ -1445,6 +1358,16 @@
       "providerChannel": "够快商派普货专线",
       "provider": "够快",
       "displayName": "够快/够快商派普货专线",
+      "enabled": true,
+      "manual": true,
+      "status": "mapped"
+    },
+    {
+      "id": "map-unknown-380",
+      "sourceName": "够快商派普货专线7K",
+      "providerChannel": "够快商派普货专线7K",
+      "provider": "够快",
+      "displayName": "够快/够快商派普货专线7K",
       "enabled": true,
       "manual": true,
       "status": "mapped"
@@ -1478,6 +1401,16 @@
       "enabled": true,
       "manual": false,
       "status": "mapped"
+    },
+    {
+      "id": "map-unknown-386",
+      "sourceName": "广东E邮宝普货-回传尾程单号",
+      "providerChannel": "广东E邮宝普货",
+      "provider": "嘉运",
+      "displayName": "嘉运/广东E邮宝普货",
+      "status": "mapped",
+      "enabled": true,
+      "manual": true
     },
     {
       "id": "map-unknown-378",
@@ -2720,6 +2653,16 @@
       "status": "mapped"
     },
     {
+      "id": "map-unknown-382",
+      "sourceName": "燕文专线追踪-纯电",
+      "providerChannel": "燕文专线追踪-纯电",
+      "provider": "燕文",
+      "displayName": "燕文/燕文专线追踪-纯电",
+      "enabled": true,
+      "manual": true,
+      "status": "mapped"
+    },
+    {
       "id": "map-243",
       "sourceName": "燕文专线追踪-普货",
       "providerChannel": "燕文专线追踪-普货",
@@ -2957,6 +2900,16 @@
       "displayName": "云途/云途岛屿专线（特惠普货）",
       "enabled": true,
       "manual": false,
+      "status": "mapped"
+    },
+    {
+      "id": "map-unknown-379",
+      "sourceName": "云途加拿大商派专线（特惠带电）",
+      "providerChannel": "云途",
+      "provider": "云途加拿大商派专线（特惠带电）",
+      "displayName": "云途/云途加拿大商派专线（特惠带电）",
+      "enabled": true,
+      "manual": true,
       "status": "mapped"
     },
     {
@@ -3550,6 +3503,16 @@
       "status": "mapped"
     },
     {
+      "id": "map-unknown-384",
+      "sourceName": "智优选专线-特货",
+      "providerChannel": "智优选专线-特货",
+      "provider": "华翰",
+      "displayName": "华翰/智优选专线-特货",
+      "enabled": true,
+      "manual": true,
+      "status": "mapped"
+    },
+    {
       "id": "map-unknown-325",
       "sourceName": "中国邮政EUB",
       "providerChannel": "中国邮政EUB",
@@ -3660,6 +3623,16 @@
       "status": "mapped"
     },
     {
+      "id": "map-unknown-383",
+      "sourceName": "EUSLR - 万邦专线挂号含电-回传转单号",
+      "providerChannel": "万邦专线挂号含电",
+      "provider": "万邦",
+      "displayName": "万邦/万邦专线挂号含电",
+      "enabled": true,
+      "manual": true,
+      "status": "mapped"
+    },
+    {
       "id": "map-unknown-315",
       "sourceName": "EUSLR - 万邦专线挂号含电-加拿大",
       "providerChannel": "万邦专线挂号含电",
@@ -3730,6 +3703,16 @@
       "status": "mapped"
     },
     {
+      "id": "map-unknown-388",
+      "sourceName": "JS11-敏感货",
+      "providerChannel": "JS11-敏感货",
+      "provider": "急速",
+      "displayName": "急速/JS11-敏感货",
+      "status": "mapped",
+      "enabled": true,
+      "manual": true
+    },
+    {
       "id": "map-12",
       "sourceName": "JS11-普货",
       "providerChannel": "JS11-普货",
@@ -3767,6 +3750,26 @@
       "displayName": "环世通/PLXB-Z2",
       "enabled": true,
       "manual": false,
+      "status": "mapped"
+    },
+    {
+      "id": "map-unknown-387",
+      "sourceName": "SL-美国专线-特惠",
+      "providerChannel": "美国专线小包-特惠",
+      "provider": "顺瓴",
+      "displayName": "顺瓴/美国专线小包-特惠",
+      "status": "mapped",
+      "enabled": true,
+      "manual": true
+    },
+    {
+      "id": "map-unknown-381",
+      "sourceName": "SL-美国专线偏远-特惠",
+      "providerChannel": "SL-美国专线偏远-特惠",
+      "provider": "顺瓴",
+      "displayName": "顺瓴/SL-美国专线偏远-特惠",
+      "enabled": true,
+      "manual": true,
       "status": "mapped"
     },
     {
