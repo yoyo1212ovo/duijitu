@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-22T19:17:57.358Z",
+  "updatedAt": "2026-10-22T22:24:24.558Z",
   "records": [
     {
       "id": "sales-unknown-148",
@@ -1562,6 +1562,14 @@
       "auto": true,
       "status": "assigned",
       "manual": false
+    },
+    {
+      "id": "sales-unknown-356",
+      "storeName": "Josie-7波日历捏捏",
+      "salesName": "Josie-周晓清",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
     },
     {
       "id": "sales-unknown-282",
