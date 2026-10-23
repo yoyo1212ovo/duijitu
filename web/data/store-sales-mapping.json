@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-23T19:08:13.695Z",
+  "updatedAt": "2026-10-23T22:04:04.609Z",
   "records": [
     {
       "id": "sales-unknown-148",
@@ -334,6 +334,14 @@
       "auto": true,
       "status": "assigned",
       "manual": false
+    },
+    {
+      "id": "sales-unknown-357",
+      "storeName": "Ada-法国蜡烛灯",
+      "salesName": "邓鑫钰",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
     },
     {
       "id": "sales-unknown-157",
