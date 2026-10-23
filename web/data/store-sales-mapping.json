@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-23T05:25:11.874Z",
+  "updatedAt": "2026-10-23T10:16:24.189Z",
   "records": [
     {
       "id": "sales-unknown-148",
@@ -39,15 +39,6 @@
       "manual": false
     },
     {
-      "id": "sales-unknown-125",
-      "storeName": "amy-美德kitty",
-      "salesName": "",
-      "enabled": true,
-      "auto": false,
-      "status": "unassigned",
-      "manual": false
-    },
-    {
       "id": "sales-unknown-316",
       "storeName": "Cedric-Emil波兰电子秤",
       "salesName": "",
@@ -71,7 +62,8 @@
       "salesName": "",
       "enabled": true,
       "auto": false,
-      "status": "unassigned"
+      "status": "unassigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-285",
@@ -124,7 +116,8 @@
       "salesName": "宁安沛",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-6",
@@ -231,7 +224,8 @@
       "salesName": "苏爱拜",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-142",
@@ -338,7 +332,8 @@
       "salesName": "邓鑫钰",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-157",
@@ -382,7 +377,8 @@
       "salesName": "邓鑫钰",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-115",
@@ -399,7 +395,8 @@
       "salesName": "廖晨昊",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-9",
@@ -434,7 +431,8 @@
       "salesName": "赵伯言",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-27",
@@ -550,7 +548,8 @@
       "salesName": "杨继超",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-330",
@@ -558,7 +557,8 @@
       "salesName": "杨继超",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-51",
@@ -593,7 +593,8 @@
       "salesName": "杨继超",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-271",
@@ -626,6 +627,15 @@
       "id": "sales-unknown-14",
       "storeName": "Amy-法国游戏机",
       "salesName": "卓洪宇",
+      "enabled": true,
+      "auto": false,
+      "status": "assigned",
+      "manual": true
+    },
+    {
+      "id": "sales-unknown-125",
+      "storeName": "amy-美德kitty",
+      "salesName": "何烁丹",
       "enabled": true,
       "auto": false,
       "status": "assigned",
@@ -781,7 +791,8 @@
       "salesName": "何烁丹",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-227",
@@ -1329,7 +1340,8 @@
       "salesName": "范梦微",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-104",
@@ -1373,7 +1385,8 @@
       "salesName": "范梦微",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-294",
@@ -1453,7 +1466,8 @@
       "salesName": "范梦微",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-138",
@@ -1569,7 +1583,8 @@
       "salesName": "Josie-周晓清",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-282",
@@ -1658,7 +1673,8 @@
       "salesName": "Josie-周晓清",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-353",
@@ -1666,7 +1682,8 @@
       "salesName": "Josie-周晓清",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-186",
@@ -1926,7 +1943,8 @@
       "salesName": "Josie-周晓清",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-84",
@@ -2186,7 +2204,8 @@
       "salesName": "周星月",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-260",
@@ -2212,7 +2231,8 @@
       "salesName": "曹瑶",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-237",
@@ -2256,7 +2276,8 @@
       "salesName": "黄祎琳",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-86",
@@ -2300,7 +2321,8 @@
       "salesName": "廖晨昊",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-336",
@@ -2308,7 +2330,8 @@
       "salesName": "廖晨昊",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-177",
@@ -2397,7 +2420,8 @@
       "salesName": "廖晨昊",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-141",
@@ -2459,7 +2483,8 @@
       "salesName": "高明轩",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-328",
@@ -2584,7 +2609,8 @@
       "salesName": "刘天瑾",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-313",
@@ -2997,7 +3023,8 @@
       "salesName": "郭硕",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-164",
