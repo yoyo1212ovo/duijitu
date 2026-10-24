@@ -1,7 +1,25 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-24T17:23:49.853Z",
+  "updatedAt": "2026-10-24T19:39:46.615Z",
   "records": [
+    {
+      "id": "map-unknown-394",
+      "sourceName": "波兰邮政直邮小包预付-B-SL-GC",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
+    },
+    {
+      "id": "map-unknown-395",
+      "sourceName": "东欧专线-T-SL-GC-PUDO",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
+    },
     {
       "id": "map-unknown-356",
       "sourceName": "海外仓传单号专用",
@@ -11,6 +29,15 @@
       "enabled": false,
       "manual": false,
       "status": "unmapped"
+    },
+    {
+      "id": "map-unknown-393",
+      "sourceName": "JS11-敏感货-回传尾程",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
     },
     {
       "id": "map-unknown-390",
