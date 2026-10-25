@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-25T18:21:11.072Z",
+  "updatedAt": "2026-10-25T20:58:51.937Z",
   "records": [
     {
       "id": "sales-unknown-148",
@@ -334,6 +334,14 @@
       "auto": true,
       "status": "assigned",
       "manual": false
+    },
+    {
+      "id": "sales-unknown-358",
+      "storeName": "Ada-波兰自然流",
+      "salesName": "邓鑫钰",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
     },
     {
       "id": "sales-unknown-357",
@@ -2358,6 +2366,14 @@
       "auto": true,
       "status": "assigned",
       "manual": false
+    },
+    {
+      "id": "sales-unknown-359",
+      "storeName": "Trae-法国毛巾",
+      "salesName": "廖晨昊",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
     },
     {
       "id": "sales-unknown-217",
