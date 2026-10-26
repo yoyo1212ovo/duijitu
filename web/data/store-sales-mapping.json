@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-26T18:48:10.857Z",
+  "updatedAt": "2026-10-26T22:53:51.571Z",
   "records": [
     {
       "id": "sales-unknown-148",
@@ -3121,6 +3121,14 @@
       "auto": true,
       "status": "assigned",
       "manual": false
+    },
+    {
+      "id": "sales-unknown-360",
+      "storeName": "ZCL-法国灯",
+      "salesName": "张丛麟",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
     },
     {
       "id": "sales-unknown-102",
