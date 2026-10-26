@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-26T17:17:30.872Z",
+  "updatedAt": "2026-10-26T21:41:23.916Z",
   "records": [
     {
       "id": "map-unknown-394",
@@ -29,6 +29,15 @@
       "enabled": false,
       "manual": false,
       "status": "unmapped"
+    },
+    {
+      "id": "map-unknown-396",
+      "sourceName": "云途全球精选专线挂号（特惠带电）",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
     },
     {
       "id": "map-unknown-393",
