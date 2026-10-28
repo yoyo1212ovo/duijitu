@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-28T07:08:37.923Z",
+  "updatedAt": "2026-10-28T13:58:14.080Z",
   "records": [
     {
       "id": "sales-unknown-148",
@@ -341,7 +341,8 @@
       "salesName": "邓鑫钰",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-357",
@@ -349,7 +350,8 @@
       "salesName": "邓鑫钰",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-157",
@@ -2373,7 +2375,8 @@
       "salesName": "廖晨昊",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-217",
@@ -3128,7 +3131,8 @@
       "salesName": "张丛麟",
       "enabled": true,
       "auto": true,
-      "status": "assigned"
+      "status": "assigned",
+      "manual": false
     },
     {
       "id": "sales-unknown-102",
