@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-28T18:56:22.169Z",
+  "updatedAt": "2026-10-28T23:03:35.812Z",
   "records": [
     {
       "id": "map-unknown-394",
@@ -31,6 +31,15 @@
       "enabled": false,
       "manual": false,
       "status": "unmapped"
+    },
+    {
+      "id": "map-unknown-397",
+      "sourceName": "联邮通欧盟专线4-经济带电-身体护理剂",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
     },
     {
       "id": "map-unknown-393",
