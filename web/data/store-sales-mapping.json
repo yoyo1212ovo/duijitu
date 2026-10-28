@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-28T19:19:34.201Z",
+  "updatedAt": "2026-10-28T23:18:48.808Z",
   "records": [
     {
       "id": "sales-unknown-148",
@@ -82,6 +82,14 @@
       "auto": false,
       "status": "unassigned",
       "manual": false
+    },
+    {
+      "id": "sales-unknown-363",
+      "storeName": "Trae-墨西哥阿凡达",
+      "salesName": "",
+      "enabled": true,
+      "auto": false,
+      "status": "unassigned"
     },
     {
       "id": "sales-unknown-201",
@@ -370,6 +378,14 @@
       "auto": false,
       "status": "assigned",
       "manual": true
+    },
+    {
+      "id": "sales-unknown-362",
+      "storeName": "Ada-投影定制照片手链",
+      "salesName": "邓鑫钰",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
     },
     {
       "id": "sales-unknown-293",
@@ -1297,6 +1313,14 @@
       "auto": false,
       "status": "assigned",
       "manual": true
+    },
+    {
+      "id": "sales-unknown-361",
+      "storeName": "Ivy-德国Milk Thistle Detox",
+      "salesName": "范梦微",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
     },
     {
       "id": "sales-unknown-295",
