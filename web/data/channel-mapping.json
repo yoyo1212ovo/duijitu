@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-28T06:19:52.298Z",
+  "updatedAt": "2026-10-28T13:16:32.008Z",
   "records": [
     {
       "id": "map-unknown-394",
@@ -8,8 +8,9 @@
       "providerChannel": "",
       "provider": "",
       "displayName": "",
-      "status": "unmapped",
-      "enabled": false
+      "enabled": false,
+      "manual": false,
+      "status": "unmapped"
     },
     {
       "id": "map-unknown-395",
@@ -17,8 +18,9 @@
       "providerChannel": "",
       "provider": "",
       "displayName": "",
-      "status": "unmapped",
-      "enabled": false
+      "enabled": false,
+      "manual": false,
+      "status": "unmapped"
     },
     {
       "id": "map-unknown-356",
@@ -31,22 +33,14 @@
       "status": "unmapped"
     },
     {
-      "id": "map-unknown-396",
-      "sourceName": "云途全球精选专线挂号（特惠带电）",
-      "providerChannel": "",
-      "provider": "",
-      "displayName": "",
-      "status": "unmapped",
-      "enabled": false
-    },
-    {
       "id": "map-unknown-393",
       "sourceName": "JS11-敏感货-回传尾程",
       "providerChannel": "",
       "provider": "",
       "displayName": "",
-      "status": "unmapped",
-      "enabled": false
+      "enabled": false,
+      "manual": false,
+      "status": "unmapped"
     },
     {
       "id": "map-unknown-390",
@@ -54,8 +48,9 @@
       "providerChannel": "",
       "provider": "",
       "displayName": "",
-      "status": "unmapped",
-      "enabled": false
+      "enabled": false,
+      "manual": false,
+      "status": "unmapped"
     },
     {
       "id": "map-unknown-392",
@@ -63,8 +58,9 @@
       "providerChannel": "",
       "provider": "",
       "displayName": "",
-      "status": "unmapped",
-      "enabled": false
+      "enabled": false,
+      "manual": false,
+      "status": "unmapped"
     },
     {
       "id": "map-unknown-391",
@@ -72,17 +68,9 @@
       "providerChannel": "",
       "provider": "",
       "displayName": "",
-      "status": "unmapped",
-      "enabled": false
-    },
-    {
-      "id": "map-unknown-389",
-      "sourceName": "TWB专线标准AU-特敏",
-      "providerChannel": "",
-      "provider": "",
-      "displayName": "",
-      "status": "unmapped",
-      "enabled": false
+      "enabled": false,
+      "manual": false,
+      "status": "unmapped"
     },
     {
       "id": "map-unknown-353",
@@ -1480,9 +1468,9 @@
       "providerChannel": "广东E邮宝普货",
       "provider": "嘉运",
       "displayName": "嘉运/广东E邮宝普货",
-      "status": "mapped",
       "enabled": true,
-      "manual": true
+      "manual": true,
+      "status": "mapped"
     },
     {
       "id": "map-unknown-378",
@@ -3165,6 +3153,16 @@
       "status": "mapped"
     },
     {
+      "id": "map-unknown-396",
+      "sourceName": "云途全球精选专线挂号（特惠带电）",
+      "providerChannel": "云途全球精选专线挂号（特惠带电）",
+      "provider": "云途",
+      "displayName": "云途/云途全球精选专线挂号（特惠带电）",
+      "enabled": true,
+      "manual": true,
+      "status": "mapped"
+    },
+    {
       "id": "map-272",
       "sourceName": "云途全球精选专线挂号（特惠普货）",
       "providerChannel": "云途全球精选专线挂号（特惠普货）",
@@ -3780,9 +3778,9 @@
       "providerChannel": "JS11-敏感货",
       "provider": "急速",
       "displayName": "急速/JS11-敏感货",
-      "status": "mapped",
       "enabled": true,
-      "manual": true
+      "manual": true,
+      "status": "mapped"
     },
     {
       "id": "map-12",
@@ -3830,9 +3828,9 @@
       "providerChannel": "美国专线小包-特惠",
       "provider": "顺瓴",
       "displayName": "顺瓴/美国专线小包-特惠",
-      "status": "mapped",
       "enabled": true,
-      "manual": true
+      "manual": true,
+      "status": "mapped"
     },
     {
       "id": "map-unknown-381",
@@ -3922,6 +3920,16 @@
       "displayName": "顺友/顺速宝plus挂号",
       "enabled": true,
       "manual": false,
+      "status": "mapped"
+    },
+    {
+      "id": "map-unknown-389",
+      "sourceName": "TWB专线标准AU-特敏",
+      "providerChannel": "TWB专线标准AU-特敏",
+      "provider": "伯聚世通",
+      "displayName": "伯聚世通/TWB专线标准AU-特敏",
+      "enabled": true,
+      "manual": true,
       "status": "mapped"
     },
     {
