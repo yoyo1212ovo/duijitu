@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-30T17:09:05.034Z",
+  "updatedAt": "2026-10-30T21:28:13.987Z",
   "records": [
     {
       "id": "sales-unknown-148",
@@ -57,15 +57,6 @@
       "manual": false
     },
     {
-      "id": "sales-unknown-332",
-      "storeName": "Jacy-新西兰车配",
-      "salesName": "",
-      "enabled": true,
-      "auto": false,
-      "status": "unassigned",
-      "manual": false
-    },
-    {
       "id": "sales-unknown-285",
       "storeName": "JoyJosie-全球妆前乳",
       "salesName": "",
@@ -82,14 +73,6 @@
       "auto": false,
       "status": "unassigned",
       "manual": false
-    },
-    {
-      "id": "sales-unknown-363",
-      "storeName": "Trae-墨西哥阿凡达",
-      "salesName": "",
-      "enabled": true,
-      "auto": false,
-      "status": "unassigned"
     },
     {
       "id": "sales-unknown-201",
@@ -1557,6 +1540,15 @@
       "manual": true
     },
     {
+      "id": "sales-unknown-332",
+      "storeName": "Jacy-新西兰车配",
+      "salesName": "姜春羽",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned",
+      "manual": false
+    },
+    {
       "id": "sales-unknown-210",
       "storeName": "Jadie-波兰捏捏",
       "salesName": "张芷瑜",
@@ -1618,6 +1610,14 @@
       "auto": true,
       "status": "assigned",
       "manual": false
+    },
+    {
+      "id": "sales-unknown-365",
+      "storeName": "Josie-40波娃娃店",
+      "salesName": "Josie-周晓清",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
     },
     {
       "id": "sales-unknown-356",
@@ -1726,6 +1726,14 @@
       "auto": true,
       "status": "assigned",
       "manual": false
+    },
+    {
+      "id": "sales-unknown-367",
+      "storeName": "Josie-第46个波兰人LED",
+      "salesName": "Josie-周晓清",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
     },
     {
       "id": "sales-unknown-186",
@@ -1906,6 +1914,14 @@
       "auto": true,
       "status": "assigned",
       "manual": false
+    },
+    {
+      "id": "sales-unknown-368",
+      "storeName": "Josie-美国护具",
+      "salesName": "Josie-周晓清",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
     },
     {
       "id": "sales-unknown-300",
@@ -2277,6 +2293,14 @@
       "manual": false
     },
     {
+      "id": "sales-unknown-366",
+      "storeName": "Kelly-美国杂货铺",
+      "salesName": "曹瑶",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
+    },
+    {
       "id": "sales-unknown-237",
       "storeName": "Lucia-波捷连衣裙",
       "salesName": "普凡珂",
@@ -2424,6 +2448,14 @@
       "id": "sales-unknown-364",
       "storeName": "trae-路亚钓鱼饵",
       "salesName": "廖晨昊",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
+    },
+    {
+      "id": "sales-unknown-363",
+      "storeName": "Trae-墨西哥阿凡达",
+      "salesName": "何烁丹",
       "enabled": true,
       "auto": true,
       "status": "assigned"
