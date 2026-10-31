@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-31T17:30:53.817Z",
+  "updatedAt": "2026-10-31T20:37:41.315Z",
   "records": [
     {
       "id": "sales-unknown-148",
@@ -1405,6 +1405,14 @@
       "manual": false
     },
     {
+      "id": "sales-unknown-370",
+      "storeName": "Ivy-脂肪贴滴剂Seraflor",
+      "salesName": "范梦微",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
+    },
+    {
       "id": "sales-unknown-346",
       "storeName": "Ivy-Adrian",
       "salesName": "范梦微",
@@ -2447,6 +2455,14 @@
     {
       "id": "sales-unknown-364",
       "storeName": "trae-路亚钓鱼饵",
+      "salesName": "廖晨昊",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
+    },
+    {
+      "id": "sales-unknown-369",
+      "storeName": "trae-美国猫玩具",
       "salesName": "廖晨昊",
       "enabled": true,
       "auto": true,
