@@ -1,7 +1,16 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-01T18:37:56.536Z",
+  "updatedAt": "2026-11-01T22:26:38.073Z",
   "records": [
+    {
+      "id": "map-unknown-398",
+      "sourceName": "傲飞国际快线WB_优选专线敏感（BBC）",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
+    },
     {
       "id": "map-unknown-394",
       "sourceName": "波兰邮政直邮小包预付-B-SL-GC",
@@ -35,6 +44,15 @@
     {
       "id": "map-unknown-397",
       "sourceName": "联邮通欧盟专线4-经济带电-身体护理剂",
+      "providerChannel": "",
+      "provider": "",
+      "displayName": "",
+      "status": "unmapped",
+      "enabled": false
+    },
+    {
+      "id": "map-unknown-399",
+      "sourceName": "三态特惠专线（带电）",
       "providerChannel": "",
       "provider": "",
       "displayName": "",
