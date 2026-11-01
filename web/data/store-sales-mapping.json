@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-01T20:35:59.287Z",
+  "updatedAt": "2026-11-01T23:51:53.256Z",
   "records": [
     {
       "id": "sales-unknown-148",
@@ -343,6 +343,14 @@
       "auto": true,
       "status": "assigned",
       "manual": false
+    },
+    {
+      "id": "sales-unknown-373",
+      "storeName": "Ada-法国亚当",
+      "salesName": "邓鑫钰",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
     },
     {
       "id": "sales-unknown-157",
@@ -1172,6 +1180,14 @@
       "manual": false
     },
     {
+      "id": "sales-unknown-375",
+      "storeName": "Gianna-六组一波面膜",
+      "salesName": "杨金倩",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
+    },
+    {
       "id": "sales-unknown-256",
       "storeName": "gmxJosie-美国精油",
       "salesName": "高明轩",
@@ -1591,6 +1607,14 @@
       "auto": true,
       "status": "assigned",
       "manual": false
+    },
+    {
+      "id": "sales-unknown-372",
+      "storeName": "Josie-12波枕头",
+      "salesName": "Josie-周晓清",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
     },
     {
       "id": "sales-unknown-116",
@@ -3017,6 +3041,14 @@
       "manual": false
     },
     {
+      "id": "sales-unknown-371",
+      "storeName": "X²-jaye-Jason-颈贴",
+      "salesName": "高明轩",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
+    },
+    {
       "id": "sales-unknown-208",
       "storeName": "X²-JayeEdison-澳大利亚超市2",
       "salesName": "高明轩",
@@ -3150,6 +3182,14 @@
       "auto": false,
       "status": "assigned",
       "manual": true
+    },
+    {
+      "id": "sales-unknown-374",
+      "storeName": "Zayden-法国露营杂货铺",
+      "salesName": "刘泽澔",
+      "enabled": true,
+      "auto": true,
+      "status": "assigned"
     },
     {
       "id": "sales-unknown-159",
