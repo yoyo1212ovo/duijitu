@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-02T20:14:20.816Z",
+  "updatedAt": "2026-11-03T02:18:06.713Z",
   "records": [
     {
       "id": "sales-unknown-148",
@@ -1567,6 +1567,15 @@
       "auto": false,
       "status": "assigned",
       "manual": true
+    },
+    {
+      "id": "sales-unknown-376",
+      "storeName": "Jacy-两只小熊",
+      "salesName": "姜春羽",
+      "enabled": true,
+      "auto": true,
+      "manual": false,
+      "status": "assigned"
     },
     {
       "id": "sales-unknown-332",
